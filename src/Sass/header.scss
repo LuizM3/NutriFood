@@ -1,0 +1,55 @@
+#logo {
+    background-image: url("../imagens/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 8.5em;
+    display: flex;
+    height: 2em;
+    align-self: center;
+}
+
+#navBar {
+    margin: 0;
+    width: 100%;
+    padding: 0.8em;
+    align-items: center;
+    display: flex;
+}
+
+
+#nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+    #nav-left {
+        align-items: center;
+        justify-content: left;
+    }
+
+    #nav-right {
+        align-items: center;
+        justify-content: right;
+    }
+}
+
+#btLogin {
+    color: white;
+    background-color: #00bf63;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.5em;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2em 1em 0.2em 1em;
+    transition: all 0.5s;
+    display: flex;
+}
+
+#btLogin:hover {
+    transition: all 0.5s;
+    background-color: #00bf63;
+    border-radius: 0.5em 1em 0.5em 1em;
+}

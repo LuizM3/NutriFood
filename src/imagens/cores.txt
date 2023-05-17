@@ -1,0 +1,3 @@
+#00bf63 verde
+#ffb300 laranja
+#212529 cinza
