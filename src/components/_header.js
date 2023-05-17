@@ -1,9 +1,9 @@
 import React from "react";
 // import Image from "react-bootstrap/Image";
 // import Figure from "react-bootstrap/Figure"
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 
-import "../Sass/header.scss";
+import "../Sass/_header.scss";
 
 const Header = () => {
     return (

@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import "../Sass/funcionamento.scss"
+import "../Sass/_main.scss"
 
 const Section2 = () => {
     return (
@@ -8,7 +8,7 @@ const Section2 = () => {
             <div id="background">
                 <Card id="card"> 
                     <Card.Body>
-                        <Card.Title><h2>Horário de funcionamento</h2></Card.Title>
+                        <Card.Title><h2>Horário de _main</h2></Card.Title>
                         <Card.Text>
                            Funcionamos
                         </Card.Text>

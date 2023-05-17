@@ -1,6 +1,5 @@
 import React from "react";
-import "../Sass/footer.scss"
-import { Container } from "react-bootstrap";
+import "../Sass/_footer.scss"
 
 const rodaPe = () => {
     return (

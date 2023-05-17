@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from "react-bootstrap/Carousel";
 
-import "../Sass/carousel.scss";
+import "../Sass/_carousel.scss";
 
 const Carrossel = () => {
   return (
