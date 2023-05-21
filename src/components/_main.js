@@ -1,20 +1,17 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
+import {Container, Row, Col} from 'react-bootstrap';
 import "../Sass/_main.scss"
 
 const Section2 = () => {
     return (
         <>
-            <div id="background">
-                <Card id="card"> 
-                    <Card.Body>
-                        <Card.Title><h2>Horário de _main</h2></Card.Title>
-                        <Card.Text>
-                           Funcionamos
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </div>
+      <Container id="container-main" bg="dark">
+      <Row>
+        <Col>Horário de funcionamento</Col>
+        <Col>Aaa</Col>
+        <Col>AAA</Col>
+      </Row>
+    </Container>
         </>
     );
 }

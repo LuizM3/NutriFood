@@ -1,30 +1,46 @@
 import React from "react";
-// import Image from "react-bootstrap/Image";
-// import Figure from "react-bootstrap/Figure"
-import { Navbar, Nav, Button } from 'react-bootstrap';
-
+import { Navbar, Nav, Button, Container, Image } from 'react-bootstrap';
+import logo from '../imagens/logo.png';
 import "../Sass/_header.scss";
 
 const Header = () => {
     return (
-        <><Navbar bg="dark" variant="dark" id="navBar" fixed="top" >
-            <Navbar.Brand href="#home">
-                <div id="logo"></div>
-            </Navbar.Brand>
-            <Nav id="nav">
-                <Nav id="nav-left">
-                    <Nav.Link href="#cardapio">Cardápio</Nav.Link>
-                    <Nav.Link href="#avaliacao">Avaliação</Nav.Link>
-                    <Nav.Link href="#sugestao">Sugestão</Nav.Link>
-                </Nav>
-                <Nav id="nav-right">
-                    <Nav.Link href="#sobre">Sobre</Nav.Link>
-                    <Nav.Link href="#contato">Contato</Nav.Link>
-                    <Nav.Link> <Button href="#login" size="sm" id="btLogin"><ion-icon name="person-outline"></ion-icon><span>entrar</span></Button></Nav.Link>
-                </Nav>
-            </Nav>
-        </Navbar>
+        <>
+            <Navbar collapseOnSelect expand="lg">
+
+                <Container>
+                    <Navbar.Brand href="#home">
+                        <Navbar>
+                            <Container>
+
+                                <Navbar.Brand>
+                                    <Image src={logo} alt="Logo" fluid id="logo" />
+                                </Navbar.Brand>
+                            </Container>
+
+                        </Navbar>
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="me-auto">
+
+                            <Nav.Link href="#cardapio">Cardápio</Nav.Link>
+                            <Nav.Link href="#avaliacao">Avaliação</Nav.Link>
+                            <Nav.Link href="#sugestao">Sugestão</Nav.Link>
+
+                        </Nav>
+                        <Nav>
+
+                            <Nav.Link href="#sobre">Sobre</Nav.Link>
+                            <Nav.Link href="#contato">Contato</Nav.Link>
+                            <Button href="#login" size="sm" id="btLogin"><ion-icon name="person-outline"></ion-icon>Entrar</Button>
+
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </>
+
     );
 }
 export default Header;

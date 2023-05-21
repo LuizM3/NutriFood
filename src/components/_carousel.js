@@ -1,39 +1,28 @@
 import React from 'react';
 import Carousel from "react-bootstrap/Carousel";
-
 import "../Sass/_carousel.scss";
 
 const Carrossel = () => {
   return (
     <Carousel fade>
-      <Carousel.Item>
-        <div className="divCarousel d-grid justify-content-center position-relative" id='day1'>
-        <h1>Segunda-feira</h1>
-        </div>
+      <Carousel.Item id="day1">
+        <h1>Bem-vindo</h1>
       </Carousel.Item>
 
-      <Carousel.Item>
-        <div className="divCarousel d-grid justify-content-center position-relative" id='day2'>
-          <h1>Terça-feira</h1>
-        </div>
+      <Carousel.Item id="day2">
+      <h1>O que achou da comida?</h1>
       </Carousel.Item>
 
-      <Carousel.Item>
-        <div className="divCarousel d-grid justify-content-center position-relative" id='day3'>
-          <h1>Quarta-feira</h1>
-        </div>
+      <Carousel.Item id="day3">
+      <h1>Sugira uma refeição</h1>
       </Carousel.Item>
 
-      <Carousel.Item>
-        <div className="divCarousel d-grid justify-content-center position-relative" id='day4'>
-          <h1>Quinta-feira</h1>
-        </div>
+      <Carousel.Item id="day4">
+      <h1>Veja o cardápio do dia</h1>
       </Carousel.Item>
 
-      <Carousel.Item>
-        <div className="divCarousel d-grid justify-content-center position-relative" id='day5'>
-          <h1>Sexta-feira</h1>
-        </div>
+      <Carousel.Item id="day5">
+      <h1>Contate-nos</h1>
       </Carousel.Item>
     </Carousel>
   );
