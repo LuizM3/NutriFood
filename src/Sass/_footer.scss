@@ -1,17 +1,19 @@
+@import url(../Sass/_root.scss);
+
 #footer {
     width: 100%;
     height: 4em;
-    background-color: #212529;
+    background-color: var(--tertiary);
     display: flex;
-    color: #4a4a4a;
+    color: rgb(209, 209, 209);
     align-items: center;
     justify-content: center;
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--default-font);
 
-   #marca {
-    display: flex;
-    justify-content: center;
-    font-size: 0.8em;
-    padding: 0;
-   }
-} 
+    #marca {
+        display: flex;
+        justify-content: center;
+        font-size: 0.8em;
+        padding: 0;
+    }
+}

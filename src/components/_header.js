@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Button, Container, Image } from 'react-bootstrap';
+import { Navbar, Nav, Button, Container, Image, NavDropdown } from 'react-bootstrap';
 import logo from '../imagens/logo.png';
 import "../Sass/_header.scss";
 
@@ -23,10 +23,18 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-
-                            <Nav.Link href="#cardapio">Cardápio</Nav.Link>
                             <Nav.Link href="#avaliacao">Avaliação</Nav.Link>
                             <Nav.Link href="#sugestao">Sugestão</Nav.Link>
+                            <NavDropdown title="Cardápio" id="nav-dropdown" className="dropdown">
+                                <Nav.Link className="dropdown-itens" href="#cardapio-segunda"><p>Segunda-feira</p></Nav.Link>
+                                <Nav.Link className="dropdown-itens" href="#cardapio-terca"><p>Terça-feira</p></Nav.Link>
+                                <Nav.Link className="dropdown-itens" href="#cardapio-quarta"><p>Quarta-feira</p></Nav.Link>
+                                <Nav.Link className="dropdown-itens" href="#cardapio-quinta"><p>Quinta-feira</p></Nav.Link>
+                                <Nav.Link className="dropdown-itens" href="#cardapio-sexta"><p>Sexta-feira</p></Nav.Link>
+                                <NavDropdown.Divider />
+                                <Nav.Link className="dropdown-itens" href="#cardapio"><p>Ver mais</p></Nav.Link>
+                            </NavDropdown>
+
 
                         </Nav>
                         <Nav>

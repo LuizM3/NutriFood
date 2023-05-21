@@ -5,15 +5,15 @@ import "../Sass/_main.scss"
 const Section2 = () => {
     return (
         <>
-      <Container id="container-main" bg="dark">
+      <Container id="container-main">
       <Row>
         <Col>Horário de funcionamento</Col>
-        <Col>Aaa</Col>
-        <Col>AAA</Col>
+        <Col>Feedback dos alunos</Col>
+        <Col>Notícias</Col>
       </Row>
     </Container>
         </>
-    );
+  
 }
 
 export default Section2;

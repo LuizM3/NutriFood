@@ -1,5 +1,7 @@
+@import url(../Sass/_root.scss);
+
 h1 {
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--default-font);
     color: rgb(246, 246, 246);
     background-color:rgba(0, 0, 0, 0.293);
     width: 100%;
