@@ -1,0 +1,44 @@
+.login-signup-page {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  
+    .login-section {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 5px;
+  
+      h2 {
+        margin-bottom: 20px;
+      }
+  
+      form {
+        margin-bottom: 0;
+      }
+    }
+  
+    .signup-section {
+      background-color: #e9ecef;
+      padding: 30px;
+      border-radius: 5px;
+  
+      h2 {
+        margin-bottom: 20px;
+      }
+  
+      form {
+        margin-bottom: 0;
+      }
+    }
+  
+    @media (max-width: 767px) {
+      flex-direction: column;
+  
+      .login-section,
+      .signup-section {
+        margin-bottom: 30px;
+      }
+    }
+  }

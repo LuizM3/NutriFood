@@ -13,7 +13,7 @@ const Section2 = () => {
       </Row>
     </Container>
         </>
-  
+    )
 }
 
 export default Section2;
