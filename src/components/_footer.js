@@ -5,7 +5,7 @@ import { Navbar } from "react-bootstrap";
 const rodaPe = () => {
     return (
         <>
-     <Navbar fixed="bottom" className="footer" id="footer" expand="sm">
+     <Navbar  className="footer" id="footer" expand="sm" fixed="bottom">
       <Navbar.Brand>@nutrifood</Navbar.Brand>
     </Navbar>
         </>

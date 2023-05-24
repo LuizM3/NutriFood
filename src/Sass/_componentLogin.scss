@@ -1,44 +1,63 @@
+@import url(_root.scss);
+
 .login-signup-page {
-    height: 50vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  
-    .login-section {
-      background-color: #f8f9fa;
-      padding: 30px;
-      border-radius: 5px;
-  
-      h2 {
-        margin-bottom: 20px;
-      }
-  
-      form {
-        margin-bottom: 0;
-      }
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  height: 60vh;
+  padding: 0px;
+
+  .login-section {
+    background-color: rgb(149, 91, 91);
+    padding: 30px;
+    width: 50%;
+    height: 100%;
+    border-radius: 1em 0em 0em 1em; 
+    display: grid; 
+    // justify-content: center;
+    // align-items: center;
+
+    h2 {
+      margin-bottom: 20px;
     }
-  
-    .signup-section {
-      background-color: #e9ecef;
-      padding: 30px;
-      border-radius: 5px;
-  
-      h2 {
-        margin-bottom: 20px;
-      }
-  
-      form {
-        margin-bottom: 0;
-      }
-    }
-  
-    @media (max-width: 767px) {
-      flex-direction: column;
-  
-      .login-section,
-      .signup-section {
-        margin-bottom: 30px;
-      }
+    
+    form {
+      margin-bottom: 0;
     }
   }
+  
+  .signup-section {
+    background-color: #e9ecef;
+    padding: 30px;
+    width: 50%;
+    height: 100%;
+    border-radius: 0 1em 1em 0em ;
+    
+    h2 {
+      margin-bottom: 20px;
+    }
+    
+    form {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    
+    width: 100%;
+    border: 0px;
+    height: 60vh;
+    
+    .login-signup-page {
+      .login-section{
+        border-radius: 1em;
+      }
+      .signup-section {
+        
+        border-radius: 1em;
+      }
+    } 
+  }
+}

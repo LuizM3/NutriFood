@@ -4,7 +4,7 @@ import "../Sass/_carousel.scss";
 
 const Carrossel = () => {
   return (
-    <Carousel fade>
+    <Carousel fade className='carousel'>
       <Carousel.Item id="day1">
         <h1>Bem-vindo</h1>
       </Carousel.Item>

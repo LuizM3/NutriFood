@@ -6,7 +6,6 @@ const Login = () => {
     return (
         <>
         <Container className="login-signup-page">
-      <Row>
         <Col xs={12} md={6} className="login-section">
           <h2>Log In</h2>
           <Form>
@@ -43,7 +42,6 @@ const Login = () => {
             <Button variant="primary" type="submit">Sign Up</Button>
           </Form>
         </Col>
-      </Row>
     </Container>
     </>
     )

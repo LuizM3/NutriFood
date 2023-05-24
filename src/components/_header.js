@@ -6,8 +6,7 @@ import "../Sass/_header.scss";
 const Header = () => {
     return (
         <>
-            <Navbar collapseOnSelect expand="lg">
-
+            <Navbar collapseOnSelect expand="lg" bg="light">
                 <Container>
                     <Navbar.Brand href="#home">
                         <Navbar>
