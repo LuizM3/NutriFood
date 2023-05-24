@@ -6,7 +6,7 @@ const Carrossel = () => {
   return (
     <Carousel fade className='carousel'>
       <Carousel.Item id="day1">
-        <h1>Bem-vindo</h1>
+        <h1 className='tittleCar'>Bem-vindo</h1>
       </Carousel.Item>
 
       <Carousel.Item id="day2">

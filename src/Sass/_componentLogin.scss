@@ -1,63 +1,12 @@
 @import url(_root.scss);
 
-.login-signup-page {
-  margin-top: 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60%;
-  height: 60vh;
-  padding: 0px;
-
-  .login-section {
-    background-color: rgb(149, 91, 91);
-    padding: 30px;
+.cont {
     width: 50%;
-    height: 100%;
-    border-radius: 1em 0em 0em 1em; 
-    display: grid; 
-    // justify-content: center;
-    // align-items: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
 
-    h2 {
-      margin-bottom: 20px;
-    }
-    
-    form {
-      margin-bottom: 0;
-    }
-  }
-  
-  .signup-section {
-    background-color: #e9ecef;
-    padding: 30px;
-    width: 50%;
-    height: 100%;
-    border-radius: 0 1em 1em 0em ;
-    
-    h2 {
-      margin-bottom: 20px;
-    }
-    
-    form {
-      margin-bottom: 0;
-    }
-  }
-
-  @media (max-width: 767px) {
-    
-    width: 100%;
-    border: 0px;
-    height: 60vh;
-    
-    .login-signup-page {
-      .login-section{
-        border-radius: 1em;
-      }
-      .signup-section {
-        
-        border-radius: 1em;
-      }
-    } 
-  }
+#button-login {
+    background-color: var(--primary);
+    border: none;
 }
