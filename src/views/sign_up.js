@@ -1,20 +1,16 @@
 import React from "react";
-import Header from "../components/_header";
-import Footer from "../components/_footer";
 import SignUp from "../components/_componentSignUp";
+import Footer from "../components/_footer";
 
 import "../Sass/_bootstrap.scss";
 
-const Principal = () => {
+const cadastro = () => {
     return(
         <>
-            <Header />
-        
             <SignUp />
-
-            <Footer />
+            <Footer fixe="bottom"/>
         </>
     );
 }
 
-export default Principal;
+export default cadastro;

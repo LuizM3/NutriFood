@@ -1,18 +1,14 @@
 import React from "react";
-import Header from "../components/_header";
-import Footer from "../components/_footer";
 import Login from "../components/_componentLogin";
+import Footer from "../components/_footer";
 
 import "../Sass/_bootstrap.scss";
 
 const Principal = () => {
     return(
         <>
-            <Header />
-        
             <Login />
-
-            <Footer />
+            <Footer fixe="bottom"/>
         </>
     );
 }

@@ -1,5 +1,6 @@
 import "../Sass/_componentLogin.scss";
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import React from 'react';
 
 const Login = () => {
@@ -24,10 +25,10 @@ const Login = () => {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Lembrar de mim" />
       </Form.Group>
-      <Button type="submit" id="button-login">
+      <Button type="submit" id="button-login-signup">
         Entrar
       </Button>
-      <Form>     <a href="#cadastro">Não tem conta? Cadastre-se agora</a></Form>
+      <Form><Link to="/sign_up">Não tem conta? Cadastre-se agora</Link></Form>
     </Form></Col>
       </Row>
     </Container>

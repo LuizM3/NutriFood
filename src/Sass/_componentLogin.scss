@@ -4,9 +4,11 @@
     width: 50%;
     margin-top: 2em;
     margin-bottom: 2em;
+    height: 75vh;
+    color: var(--light);
 }
 
-#button-login {
+#button-login-sign {
     background-color: var(--primary);
     border: none;
 }

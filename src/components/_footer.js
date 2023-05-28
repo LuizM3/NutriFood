@@ -2,14 +2,13 @@ import React from "react";
 import "../Sass/_footer.scss";
 import { Navbar } from "react-bootstrap";
 
-const rodaPe = () => {
+const rodaPe = (prop) => {
     return (
         <>
-     <Navbar  className="footer" id="footer" expand="sm" fixed="bottom">
-      <Navbar.Brand>@nutrifood</Navbar.Brand>
-    </Navbar>
+            <Navbar className="footer" fixed={prop.fixe} id="footer" expand="sm">
+                <Navbar.Brand>@nutrifood</Navbar.Brand>
+            </Navbar>
         </>
-
     );
 }
 

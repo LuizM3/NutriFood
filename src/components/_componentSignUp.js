@@ -1,5 +1,6 @@
 import "../Sass/_componentSignUp.scss";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import React from 'react';
 
 const SignUp = () => {
@@ -21,10 +22,10 @@ const SignUp = () => {
                             <Form.Label>Senha</Form.Label>
                             <Form.Control type="password" placeholder="Digite sua senha" />
                         </Form.Group>
-                        <Button type="submit" id="button-signup">
+                        <Button type="submit" id="button-login-signup">
                             Cadastrar
                         </Button>
-                        <Form>     <a href="#Login">Já possui conta? Faça login</a></Form>
+                        <Form><Link to="/login">Já possui conta? Faça login</Link></Form>
                     </Form></Col>
                 </Row>
             </Container>

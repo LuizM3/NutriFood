@@ -2,21 +2,20 @@ import React from "react";
 import { Navbar, Nav, Button, Container, Image, NavDropdown } from 'react-bootstrap';
 import logo from '../imagens/logo.png';
 import "../Sass/_header.scss";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="light">
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand>
                         <Navbar>
                             <Container>
-
                                 <Navbar.Brand>
-                                    <Image src={logo} alt="Logo" fluid id="logo" />
+                                    <Link to="/"><Image src={logo} alt="Logo" fluid id="logo" /></Link>
                                 </Navbar.Brand>
                             </Container>
-
                         </Navbar>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -33,20 +32,16 @@ const Header = () => {
                                 <NavDropdown.Divider />
                                 <Nav.Link className="dropdown-itens" href="#cardapio"><p>Ver mais</p></Nav.Link>
                             </NavDropdown>
-
-
                         </Nav>
                         <Nav>
-
                             <Nav.Link href="#sobre">Sobre</Nav.Link>
                             <Nav.Link href="#contato">Contato</Nav.Link>
-                            <Button href="#login" size="sm" id="btLogin"><ion-icon name="person-outline"></ion-icon>Entrar</Button>
-
+                            <Link to="/login" className="text-decoration-none text-white"><Button to="/login" size="sm" id="btLogin" className="py-2"><ion-icon name="person-outline"></ion-icon>Entrar</Button></Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            
+
         </>
 
     );

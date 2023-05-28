@@ -1,9 +1,17 @@
 @import url(../Sass/_root.scss);
+#root{
+    background-image: url("../imagens/background2.jpg");
+}
+
 #container-main {
-    margin: 0px;
     width: 100%;
     justify-content: space-between;
     height: 90vh;
     align-items: center;
-
+    
+    .card{
+        border-radius: 1rem;
+        border: 1px solid var(--color-font-gray);
+        height: 60vh;
+    }
 }
