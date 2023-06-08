@@ -10,19 +10,19 @@ const Carrossel = () => {
       </Carousel.Item>
 
       <Carousel.Item id="day2">
-      <h1>O que achou da comida?</h1>
+      <h1 className='tittleCar'>O que achou da comida?</h1>
       </Carousel.Item>
 
       <Carousel.Item id="day3">
-      <h1>Sugira uma refeição</h1>
+      <h1 className='tittleCar'>Sugira uma refeição</h1>
       </Carousel.Item>
 
       <Carousel.Item id="day4">
-      <h1>Veja o cardápio do dia</h1>
+      <h1 className='tittleCar'>Veja o cardápio do dia</h1>
       </Carousel.Item>
 
       <Carousel.Item id="day5">
-      <h1>Contate-nos</h1>
+      <h1 className='tittleCar'>Contate-nos</h1>
       </Carousel.Item>
     </Carousel>
   );

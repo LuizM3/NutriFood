@@ -37,6 +37,7 @@ const Section2 = () => {
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
           </Card>
+          
       </Container>
     </>
   )

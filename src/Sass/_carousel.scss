@@ -1,10 +1,12 @@
 @import url(../Sass/_root.scss);
 
-
+.carousel{
+  border-bottom: 0.4rem var(--light) solid;
+}
 .tittleCar {
     font-family: var(--default-font);
     color: rgb(246, 246, 246);
-    background-color:rgba(0, 0, 0, 0.293);
+    background-color:rgba(0, 0, 0, 0.373);
     width: 100%;
     height: 85vh;
     display: flex;
@@ -21,6 +23,10 @@
   justify-content: center;
   display: flex;
   align-items: center;
+  
+  h1{
+    color: var(--light);
+  }
 }
 #day2 {
     background: url("../imagens/c2.jpg");
@@ -32,6 +38,10 @@
   justify-content: center;
   display: flex;
   align-items: center;
+
+  h1{
+    color: var(--light);
+  }
 }
 #day3 {
     background: url("../imagens/c3.jpg");
@@ -43,6 +53,10 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    
+  h1{
+    color: var(--light);
+  }
 }
 #day4 {
     background: url("../imagens/c4.jpg");
@@ -54,6 +68,10 @@
   justify-content: center;
   display: flex;
   align-items: center;
+  
+  h1{
+    color: var(--light);
+  }
 }
 #day5 {
     background: url("../imagens/c5.jpg");
@@ -65,4 +83,8 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    
+  h1{
+    color: var(--light);
+  }
 }
