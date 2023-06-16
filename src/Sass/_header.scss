@@ -1,54 +1,65 @@
 @import url(../Sass/_root.scss);
-
 * {
     font-family: var(--default-font);
 }
-
 #logo {
     width: max(200px);
 }
-
-#navBar {
-    margin: 0;
-    width: 100%;
-    padding: 0.8em;
-    align-items: center;
-    display: flex;
+#nbar {
+    justify-content: space-around;
+    height: 3em;
 }
-
+#logo {
+    height: 100px;
+    width: 120px;
+    margin: 0;
+    padding: 0;
+}
+#link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #btLogin {
     color: var(--light);
-    background-color: var(--primary);
+    background-color: var(--fifty);
     border: none;
-    font-weight: 600;
-    border-radius: 0.8em;
+    border-radius: 1em;
     justify-content: center;
     align-items: center;
-    padding: 0.2em 1em 0.2em 1em;
+    padding: 0.8em 1em 0.8em 1em;
     display: flex;
     width: 100%;
 }
-
 .dropdown {
-
     .dropdown-itens {
         display: flex;
         justify-content: start;
         align-items: center;
-
         p {
             margin: 0px;
             padding: 2px 0px 2px 10px;
-
-            color: var(--color-font-gray);
+            color: var(--dark);
         }
     }
-
-    .dropdown-itens:hover{
+    .dropdown-itens:hover {
         transition: 0.3s all;
-        background-color: var(--primary);
-         p{
+        background-color: var(--fifty);
+        p {
             color: var(--light);
-         }
+        }
     }
+}
+.nav-toggle {
+   
+    width: 100%;
+    @media (max-width: 990px) {
+        border-top: 0.1rem var(--gray) solid;
+        
+      }
+
+      #logo {
+        height: 100px;
+    width: 120px;
+      }
 }

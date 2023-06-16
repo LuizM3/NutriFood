@@ -7,6 +7,7 @@ import Principal from './views/main_page';
 import Login from "./views/login";
 import SignUp from './views/sign_up';
 import reportWebVitals from './reportWebVitals';
+import Footer from "../src/components/_footer";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
         <Route path='/login' element={<Login />} />
         <Route path='/sign_up' element={<SignUp />} />
       </Routes>
+      <Footer />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

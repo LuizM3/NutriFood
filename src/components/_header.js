@@ -3,23 +3,27 @@ import { Navbar, Nav, Button, Container, Image, NavDropdown } from 'react-bootst
 import logo from '../imagens/logo.png';
 import "../Sass/_header.scss";
 import { Link } from "react-router-dom";
+import { Helmet } from 'react-helmet';
 
 const Header = () => {
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="light" sticky="top">
+        <Helmet>
+        <Image src={logo} alt="Logo" fluid id="logo" />
+        </Helmet>
+            <Navbar collapseOnSelect expand="lg" bg="light" static="top">
                 <Container>
                     <Navbar.Brand>
                         <Navbar>
-                            <Container>
+                            <Container id="nbar">
                                 <Navbar.Brand>
-                                    <Link to="/"><Image src={logo} alt="Logo" fluid id="logo" /></Link>
+                                    <Link to="/" id="link"><Nav id="link"><Image src={logo} alt="Logo" fluid id="logo" /></Nav></Link>
                                 </Navbar.Brand>
                             </Container>
                         </Navbar>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
+                    <Navbar.Collapse id="responsive-navbar-nav" className="nav-toggle">
                         <Nav className="me-auto">
                             <Nav.Link href="#avaliacao">Avaliação</Nav.Link>
                             <Nav.Link href="#sugestao">Sugestão</Nav.Link>

@@ -1,23 +1,32 @@
 @import url(../Sass/_root.scss);
 #root{
-    background-image: url("../imagens/background2.jpg");
+    background-color: var(--dark);
 }
-
 #container-main {
     width: 100%;
     justify-content: space-between;
-    height: 90vh;
+    height: 150vh;
     align-items: center;
+    
 
     @media (max-width: 767px) {
-        height: 130vh;
+        
         display: grid;
         justify-content: space-around;
     }
     
-    .card{
+    
+}
+.card{
+        
+        display: flex;
         border-radius: 1rem;
         border: 1px solid var(--color-font-gray);
-        height: 60vh;
+        height: 100%;
+        width: 100%;
+
+        .bt-more {
+            background-color: var(--fifty);
+            border: none;
+        }
     }
-}

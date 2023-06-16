@@ -1,12 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family= Roboto :wght@300 & display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 :root {
-    --primary:#00bf63;
-    --secundary: #FF9F1C;
-    --tertiary: #212925;
-    --light: #FDFFFC;
+// root
+    --primary:#4B644A;
+    --secundary: #89023E;
+    --tertiary: #57C4E5;
+    --quarter: #F97068;
+    --fifty:#30ca54;
+// background
+    --light: #EDF2EF;
     --dark: #212529;
+    --gray: #b6b6b6;
+// text-shadow
     --error: #e71d36;
     --alert: blue;
-    --default-font: 'Roboto', sans-serif;
+    --default-font: 'Montserrat', sans-serif;
     --color-font-gray: #747474;
 }
+
