@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Card, Button, CardGroup } from 'react-bootstrap';
+import { Container, Card, Button} from 'react-bootstrap';
 import "../Sass/_main.scss"
 
 const Section2 = () => {
@@ -27,7 +27,6 @@ Essas descobertas destacam a importância de uma alimentação equilibrada e div
 <Button className="bt-more">Saiba mais</Button>
             </Card.Body>
           </Card>
-          
           
       </Container>
     </>

@@ -10,6 +10,12 @@ const SignUp = () => {
                 <Row>
                     <Col> <Form>
                         <h2>Cadastro</h2>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Nome</Form.Label>
+                            <Form.Control type="text" placeholder="Digite seu nome" />
+                            
+                        </Form.Group>
+                        
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Endereço de email</Form.Label>
                             <Form.Control type="email" placeholder="Digite seu email" />
@@ -17,16 +23,20 @@ const SignUp = () => {
                                 Nós nunca iremos compartilhar seu email com terceiros
                             </Form.Text>
                         </Form.Group>
-
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Senha</Form.Label>
                             <Form.Control type="password" placeholder="Digite sua senha" />
                         </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Confirmar senha</Form.Label>
+                            <Form.Control type="password" placeholder="Confirme sua senha" />
+                        </Form.Group>
                         <Button type="submit" id="button-login-signup">
                             Cadastrar
                         </Button>
-                        <Form><Link to="/login">Já possui conta? Faça login</Link></Form>
-                    </Form></Col>
+                        
+                    </Form>
+                    <Form><Link to="/login">Já possui conta? Faça login</Link></Form></Col>
                 </Row>
             </Container>
         </>

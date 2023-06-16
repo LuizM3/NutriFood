@@ -1,16 +1,22 @@
 @import url(../Sass/_root.scss);
 #root{
-    background-color: var(--dark);
+    
+  background-image: url("../imagens/wpp4.jpg"); /* Define a imagem de fundo */
+  background-repeat: no-repeat; /* Impede a repetição da imagem */
+  background-size: cover; /* Redimensiona a imagem para preencher todo o elemento pai */
+  background-position: center; /* Posiciona a imagem no centro do elemento */
+
+  
 }
 #container-main {
     width: 100%;
     justify-content: space-between;
-    height: 150vh;
+    height: 80vh;
     align-items: center;
     
 
-    @media (max-width: 767px) {
-        
+    @media (max-width: 992px) {
+        height: 160vh;
         display: grid;
         justify-content: space-around;
     }
@@ -19,14 +25,13 @@
 }
 .card{
         
-        display: flex;
-        border-radius: 1rem;
-        border: 1px solid var(--color-font-gray);
-        height: 100%;
-        width: 100%;
+    display: flex;
+    border-radius: 2rem;
+    height: 100%;
+    width: 100%;
 
-        .bt-more {
-            background-color: var(--fifty);
-            border: none;
-        }
+    .bt-more {
+        background-color: var(--fifty);
+        border: none;
     }
+}

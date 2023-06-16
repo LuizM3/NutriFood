@@ -1,24 +1,50 @@
 @import url(../Sass/_root.scss);
+
 * {
     font-family: var(--default-font);
+
+    button {
+        color: var(--light);
+        background-color: var(--fifty);
+        border: none;
+        border-radius: 0.8em;
+        justify-content: center;
+        align-items: center;
+        padding: 0.8em 1em 0.8em 1em;
+        display: flex;
+        width: 20vh;
+
+    }
+
+    #btLogin:hover {
+        transition: all 0.5s ease;
+        background-color: seagreen;
+    }
 }
+
 #logo {
     width: max(200px);
 }
+
 #nbar {
     justify-content: space-around;
     height: 3em;
 }
+
 #logo {
-    height: 100px;
-    width: 120px;
+    height: 55px;
+    width: 65px;
     margin: 0;
     padding: 0;
 }
+
 #link {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#nav-bar-cnf {
+    background-color: var(--light);
 }
 #btLogin {
     color: var(--light);
@@ -29,37 +55,47 @@
     align-items: center;
     padding: 0.8em 1em 0.8em 1em;
     display: flex;
-    width: 100%;
+    width: 20vh;
+
+    #btLogin:hover {
+        background-color: var(--fifty);
+    }
 }
+
 .dropdown {
     .dropdown-itens {
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
+
         p {
             margin: 0px;
             padding: 2px 0px 2px 10px;
             color: var(--dark);
         }
     }
+
     .dropdown-itens:hover {
         transition: 0.3s all;
         background-color: var(--fifty);
+
         p {
             color: var(--light);
         }
     }
 }
+
 .nav-toggle {
-   
-    width: 100%;
     @media (max-width: 990px) {
         border-top: 0.1rem var(--gray) solid;
-        
-      }
+    }
 
-      #logo {
-        height: 100px;
-    width: 120px;
-      }
+
+}
+#toggle-nav {
+    width: 15%;
+    border: none;
+}
+#toggle-nav:focus {
+border: none;
 }
