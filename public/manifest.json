@@ -1,6 +1,6 @@
 {
-    "name": "Nutrifood",
-    "short_name": "Nutrifood",
+    "name": "Nutrify",
+    "short_name": "Nutrify",
     "description": "Seu site de avaliação nutricional",
     "start_url": "/",
     "display": "standalone",

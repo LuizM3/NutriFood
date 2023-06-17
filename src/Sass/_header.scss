@@ -3,23 +3,18 @@
 * {
     font-family: var(--default-font);
 
-    button {
-        color: var(--light);
-        background-color: var(--fifty);
-        border: none;
-        border-radius: 0.8em;
-        justify-content: center;
-        align-items: center;
-        padding: 0.8em 1em 0.8em 1em;
-        display: flex;
-        width: 20vh;
-
-    }
+    
 
     #btLogin:hover {
         transition: all 0.5s ease;
-        background-color: seagreen;
+       
     }
+}
+#ic-login {
+    position: relative;
+    top: -1.5px;
+    height: 1em;
+    width: 1.5em;
 }
 
 #logo {
@@ -29,13 +24,17 @@
 #nbar {
     justify-content: space-around;
     height: 3em;
+
+
 }
 
 #logo {
-    height: 55px;
-    width: 65px;
+    height: 140px;
+    width: 180px;
     margin: 0;
     padding: 0;
+    position: relative;
+    top: -10px;
 }
 
 #link {
@@ -43,19 +42,24 @@
     align-items: center;
     justify-content: center;
 }
+
 #nav-bar-cnf {
     background-color: var(--light);
 }
+
 #btLogin {
+
     color: var(--light);
-    background-color: var(--fifty);
+    background-color: var(--secundary);
     border: none;
     border-radius: 1em;
     justify-content: center;
     align-items: center;
     padding: 0.8em 1em 0.8em 1em;
     display: flex;
-    width: 20vh;
+    width: 100%;
+    text-align: center;
+    
 
     #btLogin:hover {
         background-color: var(--fifty);
@@ -63,39 +67,90 @@
 }
 
 .dropdown {
+    #dropdown-divider {
+        background-color: var(--light);
+    }
+
+    .dropdown-menu {
+
+        background-color: var(--secundary);
+        border: 1px var(--light);
+       
+        
+    }
+
     .dropdown-itens {
+        flex-direction: column;
         display: flex;
-        justify-content: flex-start;
+       text-align: center;
         align-items: center;
+        border-radius: 10px;
+       
 
         p {
             margin: 0px;
-            padding: 2px 0px 2px 10px;
-            color: var(--dark);
+            width: 200px; /* Largura máxima do parágrafo */
+  white-space: nowrap; /* Impede que o texto seja quebrado em várias linhas */
+  overflow: hidden; /* Oculta o conteúdo excedente */
+  text-overflow: ellipsis; /* Adiciona reticências (...) para indicar que o texto foi cortado */
+            color: var(--light);
         }
     }
 
     .dropdown-itens:hover {
-        transition: 0.3s all;
-        background-color: var(--fifty);
+        transition: 0.6s all ease;
+        background-color: rgba(255, 255, 255, 0.911);
+        border-radius: 10px;
 
         p {
-            color: var(--light);
+            color: var(--fifty);
         }
     }
 }
 
 .nav-toggle {
     @media (max-width: 990px) {
-        border-top: 0.1rem var(--gray) solid;
+        text-align: center;
+        padding-bottom: 20px;
+
     }
 
 
 }
+
 #toggle-nav {
     width: 15%;
     border: none;
+
 }
-#toggle-nav:focus {
-border: none;
+
+@keyframes rotateIcon {
+    0% {
+        transition: all 0.3s ease;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transition: all 0.3s ease;
+        transform: rotate(90deg);
+    }
 }
+
+.rotate .navbar-toggler {
+    box-shadow: none !important;
+}
+
+.rotate .navbar-toggler:not(.collapsed) {
+    filter: brightness(0) invert(1);
+}
+
+.rotate .navbar-toggler-icon {
+    transition: all 0.3s ease;
+    animation: rotateIcon 0.3s;
+    animation-fill-mode: forwards;
+    border: none;
+}
+
+//    background-color: var(--white);
+//backdrop-filter: blur(5px); /* Cambia el valor de '5px' según el nivel de desenfoque deseado */
+//-webkit-backdrop-filter: blur(5px); /* Para compatibilidad con navegadores basados en WebKit */

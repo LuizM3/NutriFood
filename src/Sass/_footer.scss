@@ -5,16 +5,16 @@
     height: 3em;
     background-color: var(--dark);
     display: flex;
-
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-family: var(--default-font);
 
-    #marca {
+    .ft-brand {
         display: flex;
-        justify-content: center;
         font-size: 1em;
-        padding: 0;
         color: var(--gray);
+        align-items: center;
+        justify-content: center;
+        margin: 0;
     }
 }
