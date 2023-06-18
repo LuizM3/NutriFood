@@ -3,13 +3,11 @@
 * {
     font-family: var(--default-font);
 
-    
-
     #btLogin:hover {
         transition: all 0.5s ease;
-       
     }
 }
+
 #ic-login {
     position: relative;
     top: -1.5px;
@@ -24,17 +22,15 @@
 #nbar {
     justify-content: space-around;
     height: 3em;
-
-
 }
 
 #logo {
     height: 140px;
-    width: 180px;
+    width: 140px;
     margin: 0;
     padding: 0;
     position: relative;
-    top: -10px;
+    top: -12px;
 }
 
 #link {
@@ -48,7 +44,6 @@
 }
 
 #btLogin {
-
     color: var(--light);
     background-color: var(--secundary);
     border: none;
@@ -59,51 +54,58 @@
     display: flex;
     width: 100%;
     text-align: center;
-    
 
     #btLogin:hover {
         background-color: var(--fifty);
     }
 }
 
+.me-auto,
+.me-auto2 {
+    align-items: center;
+    #nv-link {
+        padding: 5px;
+        color: var(--primary);
+    }
+}
+
 .dropdown {
+    
     #dropdown-divider {
         background-color: var(--light);
     }
 
     .dropdown-menu {
-
         background-color: var(--secundary);
         border: 1px var(--light);
-       
-        
-    }
 
-    .dropdown-itens {
-        flex-direction: column;
-        display: flex;
-       text-align: center;
-        align-items: center;
-        border-radius: 10px;
-       
-
-        p {
-            margin: 0px;
-            width: 200px; /* Largura máxima do parágrafo */
-  white-space: nowrap; /* Impede que o texto seja quebrado em várias linhas */
-  overflow: hidden; /* Oculta o conteúdo excedente */
-  text-overflow: ellipsis; /* Adiciona reticências (...) para indicar que o texto foi cortado */
+        #drp-link {
+            flex-direction: column;
+            display: flex;
+            text-align: center;
+            align-items: center;
             color: var(--light);
+            padding: 5px;
+           
         }
-    }
+        @media (max-width: 990px) {
+            #drp-link {
+               padding-left: 120px;
+               padding-right: 120px;
+            }
+            
+        }
+        @media (max-width: 280px) {
+            #drp-link {
+               padding-left: 80px;
+               padding-right: 80px;
+            }
+            
+        }
 
-    .dropdown-itens:hover {
-        transition: 0.6s all ease;
-        background-color: rgba(255, 255, 255, 0.911);
-        border-radius: 10px;
-
-        p {
-            color: var(--fifty);
+        #drp-link:hover {
+            background-color: var(--light);
+            color: var(--secundary);
         }
     }
 }
@@ -112,16 +114,12 @@
     @media (max-width: 990px) {
         text-align: center;
         padding-bottom: 20px;
-
     }
-
-
 }
 
 #toggle-nav {
     width: 15%;
     border: none;
-
 }
 
 @keyframes rotateIcon {

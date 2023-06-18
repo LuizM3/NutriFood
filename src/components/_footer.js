@@ -12,7 +12,7 @@ const rodaPe = () => {
                 <ion-icon name="logo-twitter" className="ic-footer"></ion-icon>
                 </Navbar.Brand>
                 <Navbar.Brand className="ft-brand">
-                    @nutrifood 
+                    @nutrify 
                     </Navbar.Brand>
 
                     <Navbar.Brand className="ft-brand">
