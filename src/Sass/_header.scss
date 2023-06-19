@@ -75,7 +75,10 @@
         background-color: var(--light);
     }
 
+
+    
     .dropdown-menu {
+        padding: 0;
         background-color: var(--secundary);
         border: 1px var(--light);
 
@@ -85,9 +88,11 @@
             text-align: center;
             align-items: center;
             color: var(--light);
-            padding: 5px;
+          
+            
            
         }
+
         @media (max-width: 990px) {
             #drp-link {
                padding-left: 120px;
@@ -152,3 +157,4 @@
 //    background-color: var(--white);
 //backdrop-filter: blur(5px); /* Cambia el valor de '5px' según el nivel de desenfoque deseado */
 //-webkit-backdrop-filter: blur(5px); /* Para compatibilidad con navegadores basados en WebKit */
+

@@ -3,10 +3,12 @@ import { Navbar, Nav, Button, Container, Image, NavDropdown } from 'react-bootst
 import logo from '../imagens/logo.png';
 import "../Sass/_header.scss";
 import { Link } from "react-router-dom";
+import Collapse from 'react-bootstrap/Collapse';
 
 
 const Header = () => {
     const [rotate, setRotate] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleToggle = () => {
         setRotate(prevRotate => !prevRotate);
@@ -37,14 +39,29 @@ const Header = () => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="responsive-navbar-nav" className="nav-toggle">
                         <Nav className="me-auto">
-                            <NavDropdown title="Cardápio" id="nav-dropdown" className="dropdown">
-                                <Link to="/cardapio/segunda" className="text-decoration-none" id='drp-link'>Segunda-feira</Link>
+                            <NavDropdown title="Cardápio" id="nav-dropdown" className="dropdown" onClick={() => setOpen(!open)}
+        aria-controls="example-collapse-text"
+        aria-expanded={open}
+        >
+
+<Collapse in={open}>
+
+<div id="example-collapse-text">
+<Link to="/cardapio/segunda" className="text-decoration-none" id='drp-link'>Segunda-feira</Link>
                                 <Link to="/cardapio/terca" className="text-decoration-none" id='drp-link'>Terça-feira</Link>
                                 <Link to="/cardapio/quarta" className="text-decoration-none" id='drp-link'>Quarta-feira</Link>
                                 <Link to="/cardapio/quinta" className="text-decoration-none" id='drp-link'>Quinta-feira</Link>
                                 <Link to="/cardapio/sexta" className="text-decoration-none" id='drp-link'>Sexta-feira</Link>
                                 <NavDropdown.Divider id="dropdown-divider" />
-                                <Link to="/cardapio" className="text-decoration-none" id='drp-link'>Ver mais</Link>
+                                <Link to="/cardapio" className="text-decoration-none" id='drp-link'>Ver mais</Link> 
+</div>
+  
+ 
+
+        
+
+      </Collapse>
+                                
                             </NavDropdown>
                             <Link to="/avaliacoes" className="text-decoration-none text-dark" id='nv-link'>Avaliações</Link>
                             <Link to="/sugestoes" className="text-decoration-none text-dark" id='nv-link'>Sugestões</Link>
