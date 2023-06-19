@@ -16,5 +16,12 @@
         align-items: center;
         justify-content: center;
         margin: 0;
+
+        a {
+            color: var(--gray);
+            font-size: 1.2em;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
     }
 }
