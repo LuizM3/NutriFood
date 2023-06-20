@@ -15,16 +15,16 @@ const Avaliacoes = () => {
 
   const handleNextClick = () => {
     if (opcaoSelecionada) {
-     
+
     } else {
-      
+
     }
   };
 
   return (
     <>
       <Container className="cont2">
-        
+
         <Row className="row">
           <Col id="pg-prev">
             <Pagination>
@@ -33,57 +33,57 @@ const Avaliacoes = () => {
             <ProgressBar now={progresso} />
           </Col>
         </Row>
-       
+
         <Row className="row">
-        <Col className="col-av">
-          
-          <Form className="formulario-av">
+          <Col className="col-av">
+
+            <Form className="formulario-av">
               <h3>Como estava a opção principal?</h3>
               {['radio'].map((type) => (
-        <div key={`inline-${type}`} className="mb-4">
-          <Form.Check
-            inline
-            label="Excelente"
-            name="group2"
-            type={type}
-            id={`inline-${type}-4`}
-            onChange={handleOpcaoChange}
-          />
-          <Form.Check
-            inline
-            label="Bom"
-            name="group2"
-            type={type}
-            id={`inline-${type}-5`}
-            onChange={handleOpcaoChange}
-          />
-          <Form.Check
-            inline
-            label="Normal"
-            name="group2"
-            type={type}
-            id={`inline-${type}-6`}
-            onChange={handleOpcaoChange}
-          />
-          <Form.Check
-            inline
-            label="Ruim"
-            name="group2"
-            type={type}
-            id={`inline-${type}-7`}
-            onChange={handleOpcaoChange}
-          />
-          <Form.Check
-            inline
-            label="Horrível"
-            name="group2"
-            type={type}
-            id={`inline-${type}-8`}
-            onChange={handleOpcaoChange}
-          />
-          
-        </div>
-      ))}
+                <div key={`inline-${type}`} className="mb-4">
+                  <Form.Check
+                    inline
+                    label="Excelente"
+                    name="group2"
+                    type={type}
+                    id={`inline-${type}-4`}
+                    onChange={handleOpcaoChange}
+                  />
+                  <Form.Check
+                    inline
+                    label="Bom"
+                    name="group2"
+                    type={type}
+                    id={`inline-${type}-5`}
+                    onChange={handleOpcaoChange}
+                  />
+                  <Form.Check
+                    inline
+                    label="Normal"
+                    name="group2"
+                    type={type}
+                    id={`inline-${type}-6`}
+                    onChange={handleOpcaoChange}
+                  />
+                  <Form.Check
+                    inline
+                    label="Ruim"
+                    name="group2"
+                    type={type}
+                    id={`inline-${type}-7`}
+                    onChange={handleOpcaoChange}
+                  />
+                  <Form.Check
+                    inline
+                    label="Horrível"
+                    name="group2"
+                    type={type}
+                    id={`inline-${type}-8`}
+                    onChange={handleOpcaoChange}
+                  />
+
+                </div>
+              ))}
 
             </Form>
           </Col>

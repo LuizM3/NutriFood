@@ -13,9 +13,9 @@ const SignUp = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Nome</Form.Label>
                             <Form.Control type="text" placeholder="Digite seu nome" />
-                            
+
                         </Form.Group>
-                        
+
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Endereço de email</Form.Label>
                             <Form.Control type="email" placeholder="Digite seu email" />
@@ -34,9 +34,9 @@ const SignUp = () => {
                         <Button type="submit" id="button-login-signup">
                             Cadastrar
                         </Button>
-                        
+
                     </Form>
-                    <Form><Link to="/login">Já possui conta? Faça login</Link></Form></Col>
+                        <Form><Link to="/login">Já possui conta? Faça login</Link></Form></Col>
                 </Row>
             </Container>
         </>

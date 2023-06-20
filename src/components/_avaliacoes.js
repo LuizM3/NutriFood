@@ -7,7 +7,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 let progresso = 0;
 const Avaliacoes = () => {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState(false);
-  
+
   const handleOpcaoChange = (event) => {
     setOpcaoSelecionada(event.target.checked);
     progresso += 12.5;
@@ -15,7 +15,7 @@ const Avaliacoes = () => {
 
   const handleNextClick = () => {
     if (opcaoSelecionada) {
-        
+
       // Avance para a próxima etapa
     } else {
       // Exiba uma mensagem de erro ou tome a ação apropriada
@@ -25,7 +25,7 @@ const Avaliacoes = () => {
   return (
     <>
       <Container className="cont2">
-        
+
         <Row className="row">
           <Col id="pg-prev">
             <Pagination>
@@ -33,14 +33,14 @@ const Avaliacoes = () => {
             </Pagination>
             <ProgressBar now={progresso} />
           </Col>
-          
+
         </Row>
-        
+
         <Row className="row">
           <Col className="col-av">
-          
+
             <Form className="formulario-av">
-            
+
 
               <h3>O que você escolheu hoje de principal?</h3>
               {['radio'].map((type) => (

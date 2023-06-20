@@ -8,6 +8,12 @@
     }
 }
 
+.navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: none;
+}
+
 #ic-login {
     position: relative;
     top: -1.5px;
@@ -47,13 +53,14 @@
     color: var(--light);
     background-color: var(--secundary);
     border: none;
-    border-radius: 1em;
+    border-radius: 0.7em;
     justify-content: center;
     align-items: center;
     padding: 0.8em 1em 0.8em 1em;
     display: flex;
     width: 100%;
     text-align: center;
+    box-shadow: 1.5px 1.5px 10px rgba(0, 0, 0, 0.2);
 
     #btLogin:hover {
         background-color: var(--fifty);
@@ -63,6 +70,7 @@
 .me-auto,
 .me-auto2 {
     align-items: center;
+
     #nv-link {
         padding: 5px;
         color: var(--primary);
@@ -70,17 +78,19 @@
 }
 
 .dropdown {
-    
+
     #dropdown-divider {
         background-color: var(--light);
     }
 
-
-    
     .dropdown-menu {
         padding: 0;
         background-color: var(--secundary);
-        border: 1px var(--light);
+        
+
+        a {
+            padding: 3px;
+        }
 
         #drp-link {
             flex-direction: column;
@@ -88,29 +98,27 @@
             text-align: center;
             align-items: center;
             color: var(--light);
-          
-            
-           
         }
 
         @media (max-width: 990px) {
             #drp-link {
-               padding-left: 120px;
-               padding-right: 120px;
+                padding-left: 120px;
+                padding-right: 120px;
             }
-            
         }
+
         @media (max-width: 280px) {
             #drp-link {
-               padding-left: 80px;
-               padding-right: 80px;
+                padding-left: 80px;
+                padding-right: 80px;
             }
-            
+
         }
 
         #drp-link:hover {
-            background-color: var(--light);
-            color: var(--secundary);
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 5px;
         }
     }
 }
@@ -123,8 +131,14 @@
 }
 
 #toggle-nav {
-    width: 15%;
+    box-shadow: 0;
     border: none;
+}
+
+.ic-nbar {
+    height: 1em;
+    width: 1em;
+    padding: 0;
 }
 
 @keyframes rotateIcon {
@@ -157,4 +171,3 @@
 //    background-color: var(--white);
 //backdrop-filter: blur(5px); /* Cambia el valor de '5px' según el nivel de desenfoque deseado */
 //-webkit-backdrop-filter: blur(5px); /* Para compatibilidad con navegadores basados en WebKit */
-

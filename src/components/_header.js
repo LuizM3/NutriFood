@@ -5,15 +5,12 @@ import "../Sass/_header.scss";
 import { Link } from "react-router-dom";
 import Collapse from 'react-bootstrap/Collapse';
 
-
 const Header = () => {
-    const [rotate, setRotate] = useState(false);
+    const [isToggled, setIsToggled] = useState(false);
     const [open, setOpen] = useState(false);
-
     const handleToggle = () => {
-        setRotate(prevRotate => !prevRotate);
+        setIsToggled(!isToggled);
     };
-
 
     return (
         <>
@@ -33,41 +30,43 @@ const Header = () => {
                         aria-controls="responsive-navbar-nav"
                         id="toggle-nav"
                         onClick={handleToggle}
-                        className={rotate ? 'rotate' : ''}
+                        className={isToggled ? 'active' : ''}
+                        style={{
+                            textDecoration: 'none',
+                            outline: '0',
+                            boxShadow: 'none'
+                        }}
                     >
-                        <span className="navbar-toggler-icon"></span>
+                        {isToggled ? (
+                            <ion-icon name="close-outline"></ion-icon>) : (
+                            <ion-icon name="reorder-two-outline"></ion-icon>
+                        )}
                     </Navbar.Toggle>
                     <Navbar.Collapse id="responsive-navbar-nav" className="nav-toggle">
                         <Nav className="me-auto">
                             <NavDropdown title="Cardápio" id="nav-dropdown" className="dropdown" onClick={() => setOpen(!open)}
-        aria-controls="example-collapse-text"
-        aria-expanded={open}
-        >
+                                aria-controls="example-collapse-text"
+                                aria-expanded={open}
+                            >
+                                <Collapse in={open}>
 
-<Collapse in={open}>
+                                    <div id="example-collapse-text">
+                                        <Link to="/cardapio/segunda" className="text-decoration-none" id='drp-link'>Segunda-feira</Link>
+                                        <Link to="/cardapio/terca" className="text-decoration-none" id='drp-link'>Terça-feira</Link>
+                                        <Link to="/cardapio/quarta" className="text-decoration-none" id='drp-link'>Quarta-feira</Link>
+                                        <Link to="/cardapio/quinta" className="text-decoration-none" id='drp-link'>Quinta-feira</Link>
+                                        <Link to="/cardapio/sexta" className="text-decoration-none" id='drp-link'>Sexta-feira</Link>
+                                        <NavDropdown.Divider id="dropdown-divider" />
+                                        <Link to="/cardapio" className="text-decoration-none" id='drp-link'>Ver mais</Link>
+                                    </div>
 
-<div id="example-collapse-text">
-<Link to="/cardapio/segunda" className="text-decoration-none" id='drp-link'>Segunda-feira</Link>
-                                <Link to="/cardapio/terca" className="text-decoration-none" id='drp-link'>Terça-feira</Link>
-                                <Link to="/cardapio/quarta" className="text-decoration-none" id='drp-link'>Quarta-feira</Link>
-                                <Link to="/cardapio/quinta" className="text-decoration-none" id='drp-link'>Quinta-feira</Link>
-                                <Link to="/cardapio/sexta" className="text-decoration-none" id='drp-link'>Sexta-feira</Link>
-                                <NavDropdown.Divider id="dropdown-divider" />
-                                <Link to="/cardapio" className="text-decoration-none" id='drp-link'>Ver mais</Link> 
-</div>
-  
- 
+                                </Collapse>
 
-        
-
-      </Collapse>
-                                
                             </NavDropdown>
                             <Link to="/avaliacoes" className="text-decoration-none text-dark" id='nv-link'>Avaliações</Link>
                             <Link to="/sugestoes" className="text-decoration-none text-dark" id='nv-link'>Sugestões</Link>
-
-
                         </Nav>
+
                         <Nav className='me-auto2'>
                             <Link to="/sobre" className="text-decoration-none text-dark" id='nv-link'>Sobre</Link>
                             <Link to="/contato" className="text-decoration-none text-dark" id='nv-link'>Contato</Link>
