@@ -9,11 +9,11 @@ const rodaPe = () => {
             <Navbar className="footer" static="bottom" id="footer" expand="sm">
                 <Navbar.Brand className="ft-brand">
 
-                    <Link to="https://www.instagram.com/bryanzuc.co/"><ion-icon name="logo-instagram" className="ic-footer"></ion-icon></Link>
+                    <Link to="https://www.instagram.com/bryanzuc.co/" target="_blank"><ion-icon name="logo-instagram" className="ic-footer"></ion-icon></Link>
 
-                    <Link to="https://www.facebook.com/profile.php?id=100087361385295/"><ion-icon name="logo-facebook" className="ic-footer"></ion-icon></Link>
+                    <Link to="https://www.facebook.com/profile.php?id=100087361385295/"  target="_blank"><ion-icon name="logo-facebook" className="ic-footer"></ion-icon></Link>
 
-                    <Link to="https://twitter.com/"><ion-icon name="logo-twitter" className="ic-footer"></ion-icon></Link>
+                    <Link to="https://twitter.com/"  target="_blank"><ion-icon name="logo-twitter" className="ic-footer"></ion-icon></Link>
                 </Navbar.Brand>
                 <Navbar.Brand className="ft-brand">
                     @nutrify
@@ -21,11 +21,11 @@ const rodaPe = () => {
 
                 <Navbar.Brand className="ft-brand">
 
-                    <Link to="https://github.com/bryantoken"><ion-icon name="logo-github" className="ic-footer"></ion-icon></Link>
+                    <Link to="https://github.com/bryantoken"  target="_blank"><ion-icon name="logo-github" className="ic-footer"></ion-icon></Link>
 
-                    <Link to="https://linkedin.com/in/bryanzucoborges"><ion-icon name="logo-linkedin" className="ic-footer"></ion-icon></Link>
+                    <Link to="https://linkedin.com/in/bryanzucoborges"  target="_blank"><ion-icon name="logo-linkedin" className="ic-footer"></ion-icon></Link>
 
-                    <Link to="https://www.paypal.com/"><ion-icon name="logo-paypal" className="ic-footer"></ion-icon></Link>
+                    <Link to="https://www.paypal.com/"  target="_blank"><ion-icon name="logo-paypal" className="ic-footer"></ion-icon></Link>
                 </Navbar.Brand>
             </Navbar>
         </>
