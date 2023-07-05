@@ -3,11 +3,9 @@ import { Navbar, Nav, Button, Container, Image, NavDropdown } from 'react-bootst
 import logo from '../imagens/logo.png';
 import "../Sass/_header.scss";
 import { Link } from "react-router-dom";
-import Collapse from 'react-bootstrap/Collapse';
 
 const Header = () => {
     const [isToggled, setIsToggled] = useState(false);
-    const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setIsToggled(!isToggled);
     };
@@ -44,13 +42,9 @@ const Header = () => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="responsive-navbar-nav" className="nav-toggle">
                         <Nav className="me-auto">
-                            <NavDropdown title="Cardápio" id="nav-dropdown" className="dropdown" onClick={() => setOpen(!open)}
-                                aria-controls="example-collapse-text"
-                                aria-expanded={open}
+                            <NavDropdown title="Cardápio" id="nav-dropdown" className="dropdown"
                             >
-                                <Collapse in={open}>
-
-                                    <div id="example-collapse-text">
+                                    <div>
                                         <Link to="/cardapio/segunda" className="text-decoration-none" id='drp-link'>Segunda-feira</Link>
                                         <Link to="/cardapio/terca" className="text-decoration-none" id='drp-link'>Terça-feira</Link>
                                         <Link to="/cardapio/quarta" className="text-decoration-none" id='drp-link'>Quarta-feira</Link>
@@ -59,8 +53,6 @@ const Header = () => {
                                         <NavDropdown.Divider id="dropdown-divider" />
                                         <Link to="/cardapio" className="text-decoration-none" id='drp-link'>Ver mais</Link>
                                     </div>
-
-                                </Collapse>
 
                             </NavDropdown>
                             <Link to="/avaliacoes" className="text-decoration-none text-dark" id='nv-link'>Avaliações</Link>

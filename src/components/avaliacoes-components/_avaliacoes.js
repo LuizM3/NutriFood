@@ -1,4 +1,4 @@
-import "../Sass/_avaliacoes.scss";
+import "../../Sass/_avaliacoes.scss";
 import React, { useState } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import Pagination from 'react-bootstrap/Pagination';
