@@ -17,29 +17,21 @@
 
     .row {
         justify-content: center;
-        display: block;
+                                     
 
-        .col-av {
 
-            .formulario-av {
-
-                height: 50%;
-            }
-        }
-
-        margin-bottom: 10%;
-        margin-top: 10%;
+        margin-bottom: 20px;
+        margin-top: 20px;
 
         #pg-prev {
             display: block;
-            padding: 20px;
+         
 
             ul {
                 justify-content: left;
                 align-items: center;
                 margin: 0;
                 padding: 0;
-                margin-bottom: 5px;
             }
 
 
@@ -47,7 +39,7 @@
 
         #pg-next {
             display: block;
-            padding: 20px;
+    
 
             ul {
 
@@ -55,7 +47,7 @@
                 align-items: center;
                 margin: 0;
                 padding: 0;
-                margin-bottom: 5px;
+           
             }
 
         }

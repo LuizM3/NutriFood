@@ -1,5 +1,5 @@
 import React from "react";
-import Avaliacoes from "../components/_avaliacoes";
+import Avaliacoes from "../../src/components/avaliacoes-components/_avaliation";
 import "../Sass/_bootstrap.scss";
 
 const Principal = () => {

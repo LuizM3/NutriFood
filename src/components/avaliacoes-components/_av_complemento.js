@@ -92,8 +92,7 @@ const Avaliacoes = () => {
             </Form>
           </Col>
         </Row>
-        <Row className="row">
-          <Col id="pg-next">
+       <Row>
             <Pagination>
               <Pagination.Next
                 href="/avaliacoes/principal/complemento/salada"
@@ -103,8 +102,7 @@ const Avaliacoes = () => {
                 Próximo
               </Pagination.Next>
             </Pagination>
-          </Col>
-        </Row>
+       </Row> 
       </Container>
     </>
   );
