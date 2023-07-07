@@ -1,83 +1,127 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Button, Container, Image, NavDropdown } from 'react-bootstrap';
-import logo from '../imagens/logo.png';
+import React, { useState } from "react";
+import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button } from "react-bootstrap";
+import { useMediaQuery } from 'react-responsive';
+import logo from "../imagens/logo.png";
 import "../Sass/_header.scss";
 import { Link } from "react-router-dom";
-import Collapse from 'react-bootstrap/Collapse';
 
 const Header = () => {
-    const [isToggled, setIsToggled] = useState(false);
-    const [open, setOpen] = useState(false);
-    const handleToggle = () => {
-        setIsToggled(!isToggled);
-    };
+  const [isToggled, setIsToggled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
+  const [show, setShow] = useState(false);
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    return (
-        <>
+  const isResponsive = useMediaQuery({ query: '(max-width: 768px)' });
 
-            <Navbar collapseOnSelect expand="lg" static="top" id="nav-bar-cnf">
-                <Container>
-                    <Navbar.Brand>
-                        <Navbar>
-                            <Container id="nbar">
-                                <Navbar.Brand>
-                                    <Link to="/" id="link"><Nav id="link"><Image src={logo} alt="Logo" fluid id="logo" /></Nav></Link>
-                                </Navbar.Brand>
-                            </Container>
-                        </Navbar>
-                    </Navbar.Brand>
-                    <Navbar.Toggle
-                        aria-controls="responsive-navbar-nav"
-                        id="toggle-nav"
-                        onClick={handleToggle}
-                        className={isToggled ? 'active' : ''}
-                        style={{
-                            textDecoration: 'none',
-                            outline: '0',
-                            boxShadow: 'none'
-                        }}
-                    >
-                        {isToggled ? (
-                            <ion-icon name="close-outline"></ion-icon>) : (
-                            <ion-icon name="reorder-two-outline"></ion-icon>
-                        )}
-                    </Navbar.Toggle>
-                    <Navbar.Collapse id="responsive-navbar-nav" className="nav-toggle">
-                        <Nav className="me-auto">
-                            <NavDropdown title="Cardápio" id="nav-dropdown" className="dropdown" onClick={() => setOpen(!open)}
-                                aria-controls="example-collapse-text"
-                                aria-expanded={open}
-                            >
-                                <Collapse in={open}>
+  return (
+    <>
+      <Navbar collapseOnSelect expand="lg" sticky="top" id="nav-bar-cnf">
+        <Container id="co">
+          <div>
+        {isResponsive ? (
+          <Navbar.Toggle 
+          aria-controls="offcanvas-navbar" 
+          as={ToggleButton} 
+          variant="outline-light" 
+          onClick={handleShow} 
+ style={{
+            textDecoration: "none",
+            outline: "0",
+            boxShadow: "none",
+          }}id="toggle-nav"
+               >
 
-                                    <div id="example-collapse-text">
-                                        <Link to="/cardapio/segunda" className="text-decoration-none" id='drp-link'>Segunda-feira</Link>
-                                        <Link to="/cardapio/terca" className="text-decoration-none" id='drp-link'>Terça-feira</Link>
-                                        <Link to="/cardapio/quarta" className="text-decoration-none" id='drp-link'>Quarta-feira</Link>
-                                        <Link to="/cardapio/quinta" className="text-decoration-none" id='drp-link'>Quinta-feira</Link>
-                                        <Link to="/cardapio/sexta" className="text-decoration-none" id='drp-link'>Sexta-feira</Link>
-                                        <NavDropdown.Divider id="dropdown-divider" />
-                                        <Link to="/cardapio" className="text-decoration-none" id='drp-link'>Ver mais</Link>
-                                    </div>
+          </Navbar.Toggle>
+        ) : (
+          
+          <Nav className="me-auto right">
+            
+            <div id="div-left-nav">
+            <Link to="/avaliacoes" className="text-decoration-none" id="nv-link">
+              Avaliações
+            </Link>
+            <Link to="/cardapio" className="text-decoration-none" id="nv-link">
+              Cardápio
+            </Link>
+            <Link to="/sugestoes" className="text-decoration-none" id="nv-link"style={{borderRight: "1px solid var(--gray)"}}>
+              Sugestões
+            </Link> 
+            </div>
+            <div id="div-right-nav">
+            <Link to="/contato" className="text-decoration-none" id="nv-link">
+                Contato
+              </Link>
+              <Link to="/sobre" className="text-decoration-none" id="nv-link">
+                Sobre
+              </Link>
+              <Link to="/login" className="text-decoration-none" style={{border: "none"}}>
+                <Button to="/login" size="sm" id="btLogin" className="py-2">
+                  <ion-icon name="person" id="ic-login"></ion-icon>Entrar
+                </Button>
+              </Link>
+          </div></Nav>
+          
+        )}
 
-                                </Collapse>
+        <Offcanvas 
+        show={show && isResponsive} 
+        onHide={handleClose} 
+        scroll={false} 
+        backdrop={false} 
+        placement="end" >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title><Link to="/" id="link">
+          <Nav id="link">
+            <Image src={logo} alt="Logo" fluid id="logo" />
+            {/* <span id="logo-name">Nutrify</span> */}
+          </Nav>
+        </Link>
+</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body className="offcanvas-body">
+            <Nav className="me-auto">
+              <Link to="/avaliacoes" className="text-decoration-none" id="nv-link">
+                Avaliações
+              </Link>
+              <Link to="/cardapio" className="text-decoration-none" id="nv-link">
+                Cardápio
+              </Link>
+              <Link to="/sugestoes" className="text-decoration-none" id="nv-link">
+                Sugestões
+              </Link><Link to="/contato" className="text-decoration-none" id="nv-link">
+                Contato
+              </Link>
+              <Link to="/sobre" className="text-decoration-none" id="nv-link">
+                Sobre
+              </Link>
+              <Link to="/login" className="text-decoration-none">
+                <Button to="/login" size="sm" id="btLogin" className="py-2">
+                  <ion-icon name="person" id="ic-login"></ion-icon>Entrar
+                </Button>
+              </Link>
+            </Nav>
+              
+          </Offcanvas.Body>
+        </Offcanvas>
 
-                            </NavDropdown>
-                            <Link to="/avaliacoes" className="text-decoration-none text-dark" id='nv-link'>Avaliações</Link>
-                            <Link to="/sugestoes" className="text-decoration-none text-dark" id='nv-link'>Sugestões</Link>
-                        </Nav>
+        <Nav className="left">
+        
+           
+           <Link to="/" id="link">  <Image src={logo} alt="Logo" fluid id="logo" ></Image>  </Link>
+       
+        </Nav>
+        </div>
+        </Container>
+      </Navbar>
+    </>
+  );
+  
+};
 
-                        <Nav className='me-auto2'>
-                            <Link to="/sobre" className="text-decoration-none text-dark" id='nv-link'>Sobre</Link>
-                            <Link to="/contato" className="text-decoration-none text-dark" id='nv-link'>Contato</Link>
-                            <Link to="/login" className="text-decoration-none text-white"><Button to="/login" size="sm" id="btLogin" className="py-2"><ion-icon name="person" id="ic-login"></ion-icon>Entrar</Button></Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-
-        </>
-
-    );
-}
 export default Header;
+

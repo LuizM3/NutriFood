@@ -1,0 +1,90 @@
+
+import React, { useState } from "react";
+import {
+  Navbar,
+  Nav,
+  Button,
+  Container,
+  Image,
+  NavDropdown,
+} from "react-bootstrap";
+import logo from "../imagens/logo.png";
+import "../Sass/_header.scss";
+import { Link } from "react-router-dom";
+
+const Header = () => {
+  const [isToggled, setIsToggled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
+
+  return (
+    <>
+      <Navbar collapseOnSelect expand="lg" sticky="top" id="nav-bar-cnf">
+     
+          <Link to="/" id="link">
+            <Nav id="link">
+              {/* <Image src={logo} alt="Logo" fluid id="logo" /> */}
+              <span id="logo-name">Nutrify</span>
+            </Nav>
+          </Link>
+       
+
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          id="toggle-nav"
+          onClick={handleToggle}
+          className={isToggled ? "active" : ""}
+          style={{
+            textDecoration: "none",
+            outline: "0",
+            boxShadow: "none",
+          }}
+        >
+          {isToggled ? (
+            <ion-icon name="close-outline"></ion-icon>
+          ) : (
+            <ion-icon name="reorder-two-outline"></ion-icon>
+          )}
+        </Navbar.Toggle>
+        <Navbar.Collapse id="responsive-navbar-nav" className="nav-toggle">
+          <Nav className="me-auto">
+            <Link
+              to="/avaliacoes"
+              className="text-decoration-none"
+              id="nv-link"
+            >
+              Avaliações
+            </Link>
+               <Link
+              to="/cardapio"
+              className="text-decoration-none"
+              id="nv-link"
+            >
+              Cardápio
+            </Link>
+            <Link to="/sugestoes" className="text-decoration-none" id="nv-link">
+              Sugestões
+            </Link>
+          </Nav>
+
+          <Nav className="me-auto2">
+            <Link to="/contato" className="text-decoration-none" id="nv-link">
+              Contato
+            </Link>
+            <Link to="/sobre" className="text-decoration-none" id="nv-link">
+              Sobre
+            </Link>
+            <Link to="/login" className="text-decoration-none">
+              <Button to="/login" size="sm" id="btLogin" className="py-2">
+                <ion-icon name="person" id="ic-login"></ion-icon>Entrar
+              </Button>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </>
+  );
+};
+export default Header;

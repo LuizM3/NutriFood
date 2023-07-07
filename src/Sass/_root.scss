@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
 :root {
 // root
-    --primary:#118d62;
-    --secundary: #699b6f;
+    --primary:#0cce6b;
+    --secundary: #363537;
     --tertiary: #57C4E5;
     --quarter: #8d14c5;
     --fifty:#295e52;
 // background
-    --light: #EDF2EF;
-    --dark: #212529;
-    --gray: #b6b6b6;
+    --white: #ffffff;
+    --light: #EAE8FF;
+    --dark: #0F110C;
+    --gray: #e1e1e1;
 // text-shadow
     --obrigatory: rgb(129, 0, 0);
     --error: #e71d36;

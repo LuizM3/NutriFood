@@ -71,7 +71,7 @@
     justify-content: center;
   }
 
-  @media (max-width: 990px) {
+  @media (max-width: 768px) {
     width: 100%;
     h2 {
      position:relative;
@@ -102,7 +102,7 @@
     }
   }
 
-  @media (max-width: 280px) {
+  @media (max-width: 320px) {
     width: 100%;
     h2 {
       position:relative;

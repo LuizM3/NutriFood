@@ -7,7 +7,9 @@ import { Container, Card, Button } from 'react-bootstrap';
 const Carrossel = () => {
   return (
     <>
+    <Container className='cont-main'>
 
+    </Container>
       <Carousel fade className='carousel'>
         <Carousel.Item id="day1">
           <h1 className='tittleCar'>

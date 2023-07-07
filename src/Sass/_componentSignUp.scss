@@ -24,13 +24,13 @@
     align-items: center;
   }
 
-  @media (max-width: 990px) {
+  @media (max-width: 768px) {
     width: 45vh;
     height: 90vh;
     padding: 0;
   }
 
-  @media (max-width: 280px) {
+  @media (max-width: 320px) {
     width: 40vh;
     height: 200vh;
   }

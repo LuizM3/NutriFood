@@ -1,7 +1,6 @@
 @import url(../Sass/_root.scss);
 
 h1 {
-
   .bt-car {
     border: 1px solid rgba(255, 255, 255, 0.386);
     border-radius: 4px;
@@ -14,13 +13,12 @@ h1 {
     /* Ajuste o valor conforme necessário para aumentar ou diminuir o brilho */
     position: relative;
     bottom: -10em;
-    background-color: var(--white);
+    background-color: none;
     backdrop-filter: blur(6px);
     /* Cambia el valor de '5px' según el nivel de desenfoque deseado */
     -webkit-backdrop-filter: blur(6px);
     /* Para compatibilidad con navegadores basados en WebKit */
     transition: all 0.5s ease;
-
   }
 
   .bt-car:hover {
@@ -28,13 +26,12 @@ h1 {
     padding: 1em 4em 1em 4em;
     background: none;
     border: 1px solid white;
-
   }
 }
 
-.carousel {
-  border-bottom: 0.0.5rem var(--gray) solid;
-}
+// .carousel {
+//   border-bottom: 0.5rem var(--gray) solid;
+// }
 
 .tittleCar {
   font-family: var(--default-font);
@@ -45,97 +42,32 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 #day1 {
   background: url("../imagens/c1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 90vh;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-
-  h1 {
-    color: var(--light);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-    bottom: -1em;
-
-  }
 }
 
 #day2 {
-
   background: url("../imagens/c2.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 90vh;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-
-  h1 {
-    color: var(--light);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-    bottom: -1em;
-  }
 }
 
 #day3 {
   background: url("../imagens/c3.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 90vh;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-
-  h1 {
-    color: var(--light);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-    bottom: -1em;
-  }
 }
 
 #day4 {
   background: url("../imagens/c4.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 90vh;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-
-  h1 {
-    color: var(--light);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-    bottom: -1em;
-  }
 }
 
 #day5 {
   background: url("../imagens/c5.jpg");
+}
+#day1,
+#day2,
+#day3,
+#day4,
+#day5 {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -145,7 +77,7 @@ h1 {
   align-items: center;
 
   h1 {
-    color: var(--light);
+    color: white;
     display: flex;
     justify-content: center;
     flex-direction: column;
