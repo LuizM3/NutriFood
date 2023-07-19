@@ -1,0 +1,83 @@
+@import url(root.scss);
+
+h1 {
+  .bt-car {
+    border: 1px solid rgba(255, 255, 255, 0.386);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    background: none;
+    filter: brightness(1.3);
+    /* Ajuste o valor conforme necessário para aumentar ou diminuir o brilho */
+    position: relative;
+    bottom: -10em;
+    background-color: none;
+    backdrop-filter: blur(6px);
+    /* Cambia el valor de '5px' según el nivel de desenfoque deseado */
+    -webkit-backdrop-filter: blur(6px);
+    /* Para compatibilidad con navegadores basados en WebKit */
+    transition: all 0.5s ease;
+  }
+
+  .bt-car:hover {
+    transition: all 0.5s ease;
+    padding: 1em 4em 1em 4em;
+    background: none;
+    border: 1px solid white;
+  }
+}
+
+.tittleCar {
+  font-family: var(--default-font);
+  color: rgb(246, 246, 246);
+  background-color: rgba(0, 0, 0, 0.508);
+  width: 100%;
+  height: 105vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#day1 {
+  background: url("../images/c1.jpg");
+}
+
+#day2 {
+  background: url("../images/c2.jpg");
+}
+
+#day3 {
+  background: url("../images/c3.jpg");
+}
+
+#day4 {
+  background: url("../images/c4.jpg");
+}
+
+#day5 {
+  background: url("../images/c5.jpg");
+}
+#day1,
+#day2,
+#day3,
+#day4,
+#day5 {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 90vh;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    bottom: -1em;
+  }
+}

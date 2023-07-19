@@ -1,0 +1,37 @@
+@import url(root.scss);
+
+.cont {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  color: var(--dark);
+  background-color: white;
+  border-radius: 1em;
+  height: 80.5vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vh;
+  border: 1px solid gray;
+
+  #button-login-sign {
+    background-color: var(--fifty);
+    border: none;
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    width: 45vh;
+    height: 90vh;
+    padding: 0;
+  }
+
+  @media (max-width: 320px) {
+    width: 40vh;
+    height: 200vh;
+  }
+}

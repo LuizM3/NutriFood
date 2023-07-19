@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+  // root
+  --primary: #0cce6b;
+  --secundary: #363537;
+  --tertiary: #57c4e5;
+  --quarter: #8d14c5;
+  --fifty: #295e52;
+  // background
+  --white: #ffffff;
+  --light: #eae8ff;
+  --dark: #0f110c;
+  --gray: #e1e1e1;
+  // text-shadow
+  --obrigatory: rgb(129, 0, 0);
+  --error: #e71d36;
+  --alert: blue;
+  --default-font: "Montserrat", sans-serif;
+  --color-font-gray: #747474;
+}
