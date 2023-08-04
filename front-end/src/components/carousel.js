@@ -2,12 +2,11 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../sass/carousel.scss";
 import "../sass/main.scss";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, Button, Stack } from "react-bootstrap";
 
 const CarouselConst = () => {
   return (
     <>
-      <Container className="cont-main"></Container>
       <Carousel fade className="carousel">
         <Carousel.Item id="day1">
           <h1 className="tittleCar">
@@ -45,7 +44,14 @@ const CarouselConst = () => {
         </Carousel.Item>
       </Carousel>
       {/* Divisão - para visualizar*/}
-      <Container id="container-main" className="d-md-flex gap-3">
+      <div id="container-div">
+      <Stack direction="horizontal" gap={3}>
+      <div className="p-2">a</div>
+      <div className="p-2 ms-auto">Second item</div>
+      <div className="p-2">Third item</div>
+    </Stack>
+      </div>
+      <div id="container-main" className="d-md-flex gap-3">
         <Card className="card">
           <Card.Header>Noticias</Card.Header>
           <Card.Body className="d-flex flex-column justify-content-around">
@@ -98,7 +104,7 @@ const CarouselConst = () => {
             <Button className="bt-more">Saiba mais</Button>
           </Card.Body>
         </Card>
-      </Container>
+      </div>
     </>
   );
 };

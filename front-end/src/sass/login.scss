@@ -1,19 +1,70 @@
 @import url(root.scss);
 
 .cont {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  // margin-top: 1.5em;
+  // margin-bottom: 1.5em;
   color: var(--dark);
-  background-color: white;
-  border-radius: 1em;
-  height: 80.5vh;
+  background-image: url(../images/ifes.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  // border-radius: 1em;
+  height: 77.7vh;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100vh;
-  border: 1px solid gray;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  // border: 1px solid gray;
+  // #bck {
+  //   width: 100%;
+  //   background-color:rgba(0, 0, 0, 0.293);
+  //   height: 100%;
+  //   position:fixed;
+  // }
+  #form-login {
+    width: 40em;
+    padding: 2em;
+    background-color: white;
+    box-sizing: border-box;
+    z-index: 1;
+    position: relative;
+    margin: 0;
+    border-radius: 0.5em;
+    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.2);
 
+    @media (max-width: 2560px) {
+      width: 60vh;
+      font-size: 2em;
+    }
+    @media (max-width: 1920px) {
+      width: 80vh;
+      font-size: 1em;
+    }
+    @media (max-width: 1440px) {
+      width: 80vh;
+      font-size: 1em;
+    }
+    @media (max-width: 1024px) {
+      width: 60vh;
+      font-size: 0.8em;
+    }
+    @media (max-width: 768px) {
+      width: 50vh;
+      font-size: 0.8em;
+    }
+    @media (max-width: 540px) {
+      width: 40vh;
+      font-size: 0.8em;
+    }
+    @media (max-width: 320px) {
+      width: 45vh;
+    }
+    @media (max-width: 280px) {
+      width: 40vh;
+      font-size: 0.8em;
+    }
+  }
   #button-login-sign {
     background-color: var(--fifty);
     border: none;
@@ -24,14 +75,28 @@
     align-items: center;
   }
 
-  @media (max-width: 768px) {
-    width: 45vh;
+  @media (max-width: 2560px) {
     height: 90vh;
-    padding: 0;
   }
-
+  @media (max-width: 1920px) {
+    height: 77.7vh;
+  }
+  @media (max-width: 1440px) {
+    height: 80vh;
+  }
+  @media (max-width: 1024px) {
+    height: 90vh;
+  }
+  @media (max-width: 768px) {
+    height: 80vh;
+  }
+  @media (max-width: 540px) {
+    height: 85vh;
+  }
   @media (max-width: 320px) {
-    width: 40vh;
-    height: 200vh;
+    height: 80vh;
+  }
+  @media (max-width: 280px) {
+    height: 80vh;
   }
 }

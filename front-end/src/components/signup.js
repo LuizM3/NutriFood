@@ -6,11 +6,11 @@ import React from "react";
 const SignUpConst = () => {
   return (
     <>
-      <Container className="cont">
+      <div className="cont">
         <Row>
           <Col>
             {" "}
-            <Form>
+            <Form id="form-login">
               <h2>Cadastro</h2>
               <Form.Group className="mb-3">
                 <Form.Label>Nome</Form.Label>
@@ -38,13 +38,14 @@ const SignUpConst = () => {
               <Button type="submit" id="button-login-signup">
                 Cadastrar
               </Button>
+              <div>
+                 <Link to="/login">Já possui conta? Faça login</Link>
+              </div>
             </Form>
-            <Form>
-              <Link to="/login">Já possui conta? Faça login</Link>
-            </Form>
+             
           </Col>
         </Row>
-      </Container>
+      </div>
     </>
   );
 };

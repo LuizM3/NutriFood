@@ -3,8 +3,8 @@ import {
   Container,
   Carousel,
   Form,
-  // Pagination,
   ProgressBar,
+  Nav
 } from "react-bootstrap";
 
 import "../sass/reviews.scss";
@@ -29,9 +29,10 @@ const ReviewsConst = () => {
 
   return (
     <>
-      <Container className="cont2">
+      <div className="cont2">
         {/* Barra de progresso */}
-        <ProgressBar now={progress} />
+
+        <ProgressBar now={progress}/>
 
         {/* Troca de página */}
         <Carousel
@@ -661,7 +662,7 @@ const ReviewsConst = () => {
             </Pagination.Next>
           </Pagination> */}
         </Carousel>
-      </Container>
+      </div>
     </>
   );
 };

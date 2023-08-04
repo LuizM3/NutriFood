@@ -10,7 +10,12 @@
   /* Posiciona a imagem no centro do elemento */
   background-color: var(--dark);
 }
-
+#container-div {
+  width: 100%;
+  align-items: center;
+  height: 105vh;
+  background-color: white;
+}
 #container-main {
   width: 100%;
   justify-content: space-between;
