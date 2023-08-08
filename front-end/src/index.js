@@ -7,7 +7,7 @@ import MainPage from "./views/MainPage";
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
 import reportWebVitals from "./reportWebVitals";
-
+import About from "./views/About"
 import Reviews from "./views/Reviews";
 
 createRoot(document.getElementById("root")).render(
@@ -19,6 +19,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<MainPage />} />{" "}
         <Route path="/login" element={<SignIn />} />{" "}
         <Route path="/sign-up" element={<SignUp />} />{" "}
+        <Route path="/about" element={<About />} /> {" "}
       </Routes>{" "}
       <Footer />
     </Router>{" "}
