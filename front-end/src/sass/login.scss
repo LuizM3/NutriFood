@@ -9,7 +9,6 @@
   background-repeat: no-repeat;
   background-position: center;
   // border-radius: 1em;
-  height: 77.7vh;
   overflow: hidden;
   align-items: center;
   justify-content: center;
@@ -76,27 +75,27 @@
   }
 
   @media (max-width: 2560px) {
-    height: 90vh;
+    height: 100vh;
   }
   @media (max-width: 1920px) {
-    height: 77.7vh;
+    height: 90vh;
   }
   @media (max-width: 1440px) {
-    height: 80vh;
+    height: 100vh;
   }
   @media (max-width: 1024px) {
     height: 90vh;
   }
   @media (max-width: 768px) {
-    height: 80vh;
+    height: 100vh;
   }
   @media (max-width: 540px) {
-    height: 85vh;
+    height: 100vh;
   }
   @media (max-width: 320px) {
-    height: 80vh;
+    height: 100vh;
   }
   @media (max-width: 280px) {
-    height: 80vh;
+    height: 100vh;
   }
 }
