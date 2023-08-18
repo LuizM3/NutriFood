@@ -65,7 +65,6 @@ const HeaderConst = () => {
                     to="/suggestions"
                     className="text-decoration-none"
                     id="nv-link"
-                    style={{ borderRight: "1px solid var(--gray)" }}
                   >
                     Sugestões
                   </Link>

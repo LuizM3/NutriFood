@@ -1,22 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Didact+Gothic&family=Lexend:wght@100;900&display=swap');
+h2, h3, h4, h5, h6 {
+  font-family: Arial, sans-serif;
+}
+* {
+line-height: 30px;
+}
 :root {
   // root
   --primary: #0cce6b;
   --secundary: #363537;
   --tertiary: #0a1e10;
   --quarter: #00e462;
-  --fifty: #295e52;
+  --fifty: #1a1a1a;
   // background
   --white: #ffffff;
-  --light: #eae8ff;
+  --light: #f2f2f2;
   --dark: #0f110c;
   --gray: #e1e1e1;
   // text-shadow
   --obrigatory: rgb(129, 0, 0);
   --error: #e71d36;
   --alert: blue;
-  --default-font: "Montserrat", sans-serif;
+  --default-font:'Quicksand', sans-serif;
   --color-font-gray: #747474;
 }

@@ -10,33 +10,33 @@ const CarouselConst = () => {
     <>
       <Carousel fade className="carousel">
         <Carousel.Item id="day1">
-          <h1 className="tittleCar">Bem-vindo</h1>
+          <h1 className="tittleCar">Bem-vindo </h1>
         </Carousel.Item>
 
         <Carousel.Item id="day2">
           <h1 className="tittleCar">
-            Avalie nossa comida
+           <p> Avalie nossa comida</p>
             <Button className="bt-car">Saiba mais</Button>
           </h1>
         </Carousel.Item>
 
         <Carousel.Item id="day3">
           <h1 className="tittleCar">
-            Sugira uma refeição
+           <p> Sugira uma refeição</p>
             <Button className="bt-car">Saiba mais</Button>
           </h1>
         </Carousel.Item>
 
         <Carousel.Item id="day4">
           <h1 className="tittleCar">
-            Cardápio do dia
+            <p>Cardápio do dia</p>
             <Button className="bt-car">Saiba mais</Button>
           </h1>
         </Carousel.Item>
 
         <Carousel.Item id="day5">
           <h1 className="tittleCar">
-            Contate-nos
+            <p>Contate-nos </p>
             <Button className="bt-car">Saiba mais</Button>
           </h1>
         </Carousel.Item>
@@ -75,7 +75,10 @@ const CarouselConst = () => {
           </div>
         </Stack>
       </div>
+
+      {/* Noticias */}
       <div id="container-main" className="d-md-flex gap-3">
+
         <Card className="card">
           <Card.Header>Noticias</Card.Header>
           <Card.Body className="d-flex flex-column justify-content-around">
@@ -93,6 +96,8 @@ const CarouselConst = () => {
             <Button className="bt-more">Saiba mais</Button>
           </Card.Body>
         </Card>
+
+       
         <Card className="card">
           <Card.Header>Noticias</Card.Header>
           <Card.Body className="d-flex flex-column justify-content-around">

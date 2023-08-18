@@ -59,7 +59,7 @@
   width: 100%;
   font-size: medium;
   display: flex;
-  height: 5em;
+  height: 6em;
   justify-content: space-evenly;
 
   #co {
@@ -117,7 +117,7 @@
           display: flex;
           a {
             width: 100%;
-            border-left: 1px solid var(--light);
+           
           }
         }
       }
@@ -159,7 +159,23 @@
   align-items: center;
   #nv-link {
     padding: 5px;
-    color: var(--dark);
+    transition: all 0.5s ease;
+    color: rgb(82, 82, 82);
+  }
+  #nv-link:hover {
+    transition: all 0.1s ease;
+ color: rgb(0, 0, 0);
+ font-weight: 600;
+  }
+  #nv-link:active {
+    color: black;
+    transition: all 0.5s ease;
+ font-weight: 600;
+  }#nv-link:focus {
+    color: black;
+    transition: all 0.5s ease;
+ font-weight: 600;
+    
   }
 }
 
