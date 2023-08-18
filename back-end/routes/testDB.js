@@ -1,15 +1,17 @@
-var connection = require("../db") 
+var connection = require("../db");
 var express = require('express');
 var router = express.Router();
 
 router.get('/', function (req, res) {
-    let answer = "";
-    connection.query('SELECT * FROM users', (error, results) => {
-      if (error) throw error;
-      res.json(results);
-      answer = results;
+    connection.query('SELECT email FROM users', (error, results) => {
+        if (error) {
+            res.status(500).json({ error: 'An error occurred' }); // Enviar um status de erro em caso de falha na consulta
+        } else {
+            const emails = results.map(result => result.email.replace(/"/g, ''));
+            const concatenatedEmails = emails.join(', ');
+            res.send(concatenatedEmails);
+        }
     });
-    res.send(answer);
 });
 
 module.exports = router;
