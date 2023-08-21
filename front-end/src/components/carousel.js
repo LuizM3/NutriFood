@@ -115,7 +115,7 @@ const CarouselConst = () => {
             <Button className="bt-more">Saiba mais</Button>
           </Card.Body>
         </Card>
-
+      
         <Card className="card">
           <Card.Header>Noticias</Card.Header>
           <Card.Body className="d-flex flex-column justify-content-around">
