@@ -10,7 +10,9 @@ const CarouselConst = () => {
     <>
       <Carousel fade className="carousel">
         <Carousel.Item id="day1">
-          <h1 className="tittleCar">Bem-vindo </h1>
+          <h1 className="tittleCar">
+            <p>Bem-vindo</p>
+            </h1>
         </Carousel.Item>
 
         <Carousel.Item id="day2">
@@ -82,7 +84,8 @@ const CarouselConst = () => {
         <Card className="card">
           <Card.Header>Noticias</Card.Header>
           <Card.Body className="d-flex flex-column justify-content-around">
-            <Card.Title>Notícias do mundo nutricional</Card.Title>
+           <div id="hed"><Card.Title>Notícias do mundo nutricional</Card.Title></div> 
+            <div id="tex">
             <Card.Text>
               Recentemente, surgiram várias notícias interessantes no campo da
               nutrição, trazendo insights e descobertas surpreendentes. Uma nova
@@ -92,7 +95,7 @@ const CarouselConst = () => {
               risco de desenvolver condições como ansiedade e depressão. Além
               disso, cientistas descobriram uma ligação fascinante entre a
               nutrição e a saúde do cérebro.
-            </Card.Text>
+            </Card.Text></div>
             <Button className="bt-more">Saiba mais</Button>
           </Card.Body>
         </Card>
@@ -101,7 +104,8 @@ const CarouselConst = () => {
         <Card className="card">
           <Card.Header>Noticias</Card.Header>
           <Card.Body className="d-flex flex-column justify-content-around">
-            <Card.Title>Notícias do mundo nutricional</Card.Title>
+           <div id="hed"><Card.Title>Notícias do mundo nutricional</Card.Title></div> 
+            <div id="tex">
             <Card.Text>
               Recentemente, surgiram várias notícias interessantes no campo da
               nutrição, trazendo insights e descobertas surpreendentes. Uma nova
@@ -111,7 +115,7 @@ const CarouselConst = () => {
               risco de desenvolver condições como ansiedade e depressão. Além
               disso, cientistas descobriram uma ligação fascinante entre a
               nutrição e a saúde do cérebro.
-            </Card.Text>
+            </Card.Text></div>
             <Button className="bt-more">Saiba mais</Button>
           </Card.Body>
         </Card>
@@ -119,7 +123,8 @@ const CarouselConst = () => {
         <Card className="card">
           <Card.Header>Noticias</Card.Header>
           <Card.Body className="d-flex flex-column justify-content-around">
-            <Card.Title>Alimentação diversificada</Card.Title>
+          <div id="hed"><Card.Title>Alimentação diversificada</Card.Title></div>
+            <div id="tex">
             <Card.Text>
               Uma notícia interessante é o crescente reconhecimento dos
               benefícios dos alimentos fermentados para a saúde digestiva.
@@ -129,7 +134,7 @@ const CarouselConst = () => {
               intestinal, melhorar a digestão, aumentar a absorção de nutrientes
               e fortalecer o sistema imunológico. Essas descobertas destacam a
               importância de uma alimentação equilibrada e diversificada.
-            </Card.Text>
+            </Card.Text></div>
             <Button className="bt-more">Saiba mais</Button>
           </Card.Body>
         </Card>

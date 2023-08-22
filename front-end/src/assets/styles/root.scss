@@ -2,8 +2,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Didact+Gothic&family=Lexend:wght@100;900&display=swap');
 h2, h3, h4, h5, h6 {
   font-family: Arial, sans-serif;
+  display: flex;
+  font-size:x-large !important;
+  justify-content: center;
+  align-items: center;
 }
 * {
+    @media (max-width: 2560px) {
+      font-size: x-large;
+    }
+    @media (max-width: 1920px) {
+      font-size:medium;
+    }
+    @media (max-width: 1440px) {
+      font-size: medium;
+    }
+    @media (max-width: 1024px) {
+      font-size: medium;
+    }
+    @media (max-width: 768px) {
+      font-size: medium;
+    }
+    @media (max-width: 540px) {
+      font-size: medium;
+    }
+    @media (max-width: 320px) {
+      font-size: small;
+    }
+    @media (max-width: 280px) {
+    font-size: small;
+    }
 line-height: 30px;
 }
 :root {
