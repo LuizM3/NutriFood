@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "../components/carousel";
-import "../sass/bootstrap.scss";
+import "../assets/styles/bootstrap.scss";
 
 const MainPage = () => {
   return (

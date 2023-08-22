@@ -7,7 +7,7 @@ import {
   Nav
 } from "react-bootstrap";
 
-import "../sass/reviews.scss";
+import "../assets/styles/reviews.scss";
 const ReviewsConst = () => {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState(false);
   // const [opcaoSelecionada, setOpcaoSelecionada] = useState(false);

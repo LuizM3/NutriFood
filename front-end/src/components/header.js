@@ -9,8 +9,8 @@ import {
   Button,
 } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
-import logo from "../images/logo.png";
-import "../sass/header.scss";
+import logo from "../assets/images/logo.png";
+import "../assets/styles/header.scss";
 import { Link } from "react-router-dom";
 
 const HeaderConst = () => {

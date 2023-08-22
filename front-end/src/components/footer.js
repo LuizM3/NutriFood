@@ -1,5 +1,5 @@
 import React from "react";
-import "../sass/footer.scss";
+import "../assets/styles/footer.scss";
 import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

@@ -1,7 +1,6 @@
 import React from "react";
 import SignUpComp from "../components/signup";
-import "../sass/bootstrap.scss";
-
+import "../assets/styles/bootstrap.scss";
 const SignUp = () => {
   return (
     <>

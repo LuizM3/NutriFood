@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import "../sass/carousel.scss";
-import "../sass/main.scss";
+import "../assets/styles/carousel.scss";
+import "../assets/styles/main.scss";
 import { Container, Card, Button, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

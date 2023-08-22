@@ -1,6 +1,6 @@
 import React from "react";
 import SignInComp from "../components/signin";
-import "../sass/bootstrap.scss";
+import "../assets/styles/bootstrap.scss";
 
 const SignIn = () => {
   return (

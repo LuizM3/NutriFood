@@ -1,6 +1,6 @@
 import React from "react";
 import ReviewsComp from "../components/reviews";
-import "../sass/bootstrap.scss";
+import "../assets/styles/bootstrap.scss";
 
 const Reviews = () => {
   return (
