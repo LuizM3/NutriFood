@@ -1,6 +1,6 @@
 import "../assets/styles/login.scss";
 import { Row, Col, Form, Button, Modal} from "react-bootstrap";
-import { Link, redirect } from "react-router-dom";
+import { Link} from "react-router-dom";
 import React, { useState } from "react";
 
 const SignUpConst = () => {
