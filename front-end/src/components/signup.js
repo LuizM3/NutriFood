@@ -1,6 +1,6 @@
 import "../assets/styles/login.scss";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Row, Col, Form, Button, Modal} from "react-bootstrap";
+import { Link, redirect } from "react-router-dom";
 import React, { useState } from "react";
 
 const SignUpConst = () => {
@@ -9,13 +9,21 @@ const SignUpConst = () => {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
+ const [successModal, setSuccessModal] = useState(false);
+ const [errorModal, setErrorModal] = useState(false);
+ const [passcheckModal, setPasscheckModal] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (senha !== confirmarSenha) {
-      alert("As senhas não coincidem")
+      setPasscheckModal(true);
       return;
     }
+    if (senha === "" || email === "" || nome === "") {
+      setErrorModal(true);
+      return;
+    }    
 
     try {
       const response = await fetch("http://localhost:9000/signup", {
@@ -27,9 +35,10 @@ const SignUpConst = () => {
       });
 
       if (response.ok) {
-        alert("Cadastro concluído")
+        setSuccessModal(true); // Exibe o modal
+        
       } else {
-        alert("Erro!")
+        setErrorModal(true);
       }
     } catch (error) {
       console.error("Erro ao enviar requisição:", error);
@@ -38,6 +47,45 @@ const SignUpConst = () => {
 
   return (
     <>
+     <Modal show={successModal} onHide={() => setSuccessModal(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Sucesso!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Cadastro concluído</Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary" onClick={() => setSuccessModal(false)}>
+          Fechar
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
+
+
+     <Modal show={errorModal} onHide={() => setErrorModal(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Erro!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Erro ao cadastrar usuário</Modal.Body>
+      <Modal.Footer>
+        <Button variant="danger" onClick={() => setErrorModal(false)}>
+          Fechar
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
+
+     <Modal show={passcheckModal} onHide={() => setPasscheckModal(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Erro!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Erro na confirmação de senha, por favor tente novamente</Modal.Body>
+      <Modal.Footer>
+        <Button variant="danger" onClick={() => setPasscheckModal(false)}>
+          Fechar
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
       <div className="cont">
         <Row>
           <Col>
