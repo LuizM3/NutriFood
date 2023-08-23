@@ -12,7 +12,7 @@ const SignUpConst = () => {
  const [successModal, setSuccessModal] = useState(false);
  const [errorModal, setErrorModal] = useState(false);
  const [passcheckModal, setPasscheckModal] = useState(false);
-
+ // teste
   const handleSubmit = async (e) => {
     e.preventDefault();
 
