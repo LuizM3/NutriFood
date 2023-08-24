@@ -9,6 +9,7 @@ const signupRouter = require("./routes/signup"); // Importe o arquivo signup.js
 const app = express();
 const testAPIRouter = require("./routes/testAPI");
 const testDBRouter = require("./routes/testDB");
+const signinRouter = require("./routes/signin");
 
 app.use(cors());
 app.use(logger("dev"));
@@ -21,7 +22,9 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/testDB", testDBRouter);
-app.use("/signup", signupRouter); // Use a rota /signup para o arquivo signup.js
+app.use("/signup", signupRouter); 
+app.use("/signin", signinRouter);
+// Use a rota /signup para o arquivo signup.js
 
 // Resto do seu código...
 
