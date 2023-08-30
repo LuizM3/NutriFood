@@ -28,10 +28,7 @@ const LoginConst = () => {
         const data = await response.json();
 
         if (data.message === "Login") {
-          setTimeout(() => {
-            setSuccessModal(true);
-          }, 3000);
-
+          console.log("Token feito");
           setTimeout(() => {
             setSpinnerModal(true);
           }, 1000);
@@ -55,9 +52,10 @@ const LoginConst = () => {
 
   return (
     <>
-      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)}>
+      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal">
         <Modal.Body>
           <Spinner
+            variant="light"
             animation="border"
             role="status"
             show={spinnerModal}
@@ -69,18 +67,18 @@ const LoginConst = () => {
       </Modal>
 
       <Modal show={successModal} onHide={() => setSuccessModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sucesso!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Login concluído</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => setSuccessModal(false)}>
+        <Modal.Body>
+          Login concluído
+        </Modal.Body>
+        {/* <Modal.Body>Login concluído</Modal.Body> */}
+        {/* <Modal.Footer> */}
+          {/* <Button variant="primary" onClick={() => setSuccessModal(false)}>
             Fechar
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
 
-      <Modal show={errorModal} onHide={() => setErrorModal(false)}>
+      <Modal show={errorModal} onHide={() => setErrorModal(false)}className="modal">
         <Modal.Header closeButton>
           <Modal.Title>Erro!</Modal.Title>
         </Modal.Header>

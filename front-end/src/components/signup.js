@@ -47,8 +47,8 @@ const SignUpConst = () => {
 
   return (
     <>
-     <Modal show={successModal} onHide={() => setSuccessModal(false)}>
-      <Modal.Header closeButton>
+     <Modal show={successModal} onHide={() => setSuccessModal(false)}className="modal">
+      <Modal.Header>
         <Modal.Title>Sucesso!</Modal.Title>
       </Modal.Header>
       <Modal.Body>Cadastro concluído</Modal.Body>
@@ -61,7 +61,7 @@ const SignUpConst = () => {
 
 
 
-     <Modal show={errorModal} onHide={() => setErrorModal(false)}>
+     <Modal show={errorModal} onHide={() => setErrorModal(false)}className="modal">
       <Modal.Header closeButton>
         <Modal.Title>Erro!</Modal.Title>
       </Modal.Header>
@@ -74,7 +74,7 @@ const SignUpConst = () => {
     </Modal>
 
 
-     <Modal show={passcheckModal} onHide={() => setPasscheckModal(false)}>
+     <Modal show={passcheckModal} onHide={() => setPasscheckModal(false)}className="modal">
       <Modal.Header closeButton>
         <Modal.Title>Erro!</Modal.Title>
       </Modal.Header>

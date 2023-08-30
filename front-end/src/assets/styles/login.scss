@@ -98,3 +98,27 @@
     height: 100vh;
   }
 }
+
+.modal-dialog {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.modal-content {
+  height: 25vh;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent !important;
+  border: none;
+  margin-top: 30vh;
+}
+.modal-body {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.spinner-border {
+  width: 3em;
+  height: 3em;
+}

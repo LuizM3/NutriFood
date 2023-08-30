@@ -11,6 +11,9 @@ const testAPIRouter = require("./routes/testAPI");
 const testDBRouter = require("./routes/testDB");
 const signinRouter = require("./routes/signin");
 
+require("dotenv-safe").config();
+const jwt = require("jsonwebtoken");
+
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
@@ -22,12 +25,11 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/testDB", testDBRouter);
-app.use("/signup", signupRouter); 
+app.use("/signup", signupRouter);
 app.use("/signin", signinRouter);
 // Use a rota /signup para o arquivo signup.js
 
 // Resto do seu código...
-
 // Trate o erro 404
 app.use(function (req, res, next) {
   next(createError(404));
