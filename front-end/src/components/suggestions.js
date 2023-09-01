@@ -22,7 +22,7 @@ const AboutConst = () => {
         <Row className="row">
           <Col>
             <Form id="form-login">
-            <div><h2>Quem somos ?</h2></div>
+            <div><h2>Quem somos?</h2></div>
             <p></p>
             </Form>
           </Col>

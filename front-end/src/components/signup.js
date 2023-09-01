@@ -8,44 +8,67 @@ const SignUpConst = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
+    const [emailError, setEmailError] = useState("");
 
  const [successModal, setSuccessModal] = useState(false);
  const [errorModal, setErrorModal] = useState(false);
  const [passcheckModal, setPasscheckModal] = useState(false);
  // teste
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    if (senha !== confirmarSenha) {
-      setPasscheckModal(true);
-      return;
-    }
-    if (senha === "" || email === "" || nome === "") {
-      setErrorModal(true);
-      return;
-    }    
+        if (senha !== confirmarSenha) {
+            setPasscheckModal(true);
+            return;
+        }
+        if (senha === "" || email === "" || nome === "") {
+            setErrorModal(true);
+            return;
+        }
 
-    try {
-      const response = await fetch("http://localhost:9000/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ nome, email, senha }),
-      });
+        // Verifique se o email já foi inserido pelo usuário
+        const isEmailUnique = await checkEmailUniqueness(email);
 
-      if (response.ok) {
-        setSuccessModal(true); // Exibe o modal
-        
-      } else {
-        setErrorModal(true);
-      }
-    } catch (error) {
-      console.error("Erro ao enviar requisição:", error);
-    }
-  };
+        if (!isEmailUnique) {
+            setErrorModal(true);
+            setEmailError("Este email já está cadastrado.");
+            return;
+        }
 
-  return (
+        try {
+            const response = await fetch("http://localhost:9000/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ nome, email, senha }),
+            });
+
+            if (response.ok) {
+                setSuccessModal(true); // Exibe o modal
+            } else {
+                setErrorModal(true);
+            }
+        } catch (error) {
+            console.error("Erro ao enviar requisição:", error);
+        }
+    };
+
+    const checkEmailUniqueness = async (email) => {
+        try {
+            const response = await fetch(`http://localhost:9000/check-email?email=${email}`);
+
+            if (response.ok) {
+                const data = await response.json();
+                return data.isUnique;
+            }
+        } catch (error) {
+            console.error("Erro ao verificar email:", error);
+        }
+        return false;
+    };
+
+    return (
     <>
      <Modal show={successModal} onHide={() => setSuccessModal(false)}className="modal">
       <Modal.Header>
@@ -59,23 +82,26 @@ const SignUpConst = () => {
       </Modal.Footer>
     </Modal>
 
-
-
-     <Modal show={errorModal} onHide={() => setErrorModal(false)}className="modal">
-      <Modal.Header closeButton>
-        <Modal.Title>Erro!</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>Erro ao cadastrar usuário</Modal.Body>
-      <Modal.Footer>
-        <Button variant="danger" onClick={() => setErrorModal(false)}>
-          Fechar
-        </Button>
-      </Modal.Footer>
-    </Modal>
-
+        <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal">
+            <Modal.Header >
+                <Modal.Title>Erro!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {emailError ? (
+                    emailError
+                ) : (
+                    "Erro ao cadastrar usuário"
+                )}
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="danger" onClick={() => setErrorModal(false)}>
+                    Fechar
+                </Button>
+            </Modal.Footer>
+        </Modal>
 
      <Modal show={passcheckModal} onHide={() => setPasscheckModal(false)}className="modal">
-      <Modal.Header closeButton>
+      <Modal.Header >
         <Modal.Title>Erro!</Modal.Title>
       </Modal.Header>
       <Modal.Body>Erro na confirmação de senha, por favor tente novamente</Modal.Body>
@@ -138,7 +164,7 @@ const SignUpConst = () => {
                  <Link to="/login">Já possui conta? Faça login</Link>
               </div>
             </Form>
-             
+
           </Col>
         </Row>
       </div>

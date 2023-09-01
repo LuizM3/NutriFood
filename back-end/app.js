@@ -12,6 +12,7 @@ const signinRouter = require("./routes/signin");
 const signupRouter = require("./routes/signup");
 const indexRouter = require("./routes/index");
 const suggestionsRouter = require("./routes/suggestions");
+const checkEmailRouter = require('./routes/checkEmail'); // Importe o arquivo checkEmail.js
 
 app.set("view engine", "ejs"); // Configurar o mecanismo de visualização para EJS
 app.set("views", path.join(__dirname, "views")); // Definir o diretório das visualizações
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use('/check-email', checkEmailRouter);
 app.use("/", indexRouter);
 app.use("/testDB", testDBRouter);
 app.use("/signup", signupRouter);
