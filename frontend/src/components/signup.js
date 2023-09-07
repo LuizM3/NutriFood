@@ -60,15 +60,12 @@ const SignUpConst = () => {
             });
 
             if (response.ok) {
-                // Se o envio for bem-sucedido, exiba o modal de sucesso
                 setSuccessModal(true);
             } else {
-                // Se houver um erro no envio, exiba o modal de erro
                 setErrorModal(true);
             }
         } catch (error) {
             console.error("Erro ao enviar dados:", error);
-            // Exiba o modal de erro em caso de erro
             setErrorModal(true);
         }
     };
