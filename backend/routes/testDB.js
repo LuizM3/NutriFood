@@ -24,6 +24,7 @@ router.get("/", (req, res) => {
         expiresIn: 300,
       })
       res.send(token);
+
 });
  
 module.exports = router;

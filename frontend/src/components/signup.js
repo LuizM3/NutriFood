@@ -1,19 +1,24 @@
 import "../assets/styles/login.scss";
-import { Row, Col, Form, Button, Modal} from "react-bootstrap";
-import { Link} from "react-router-dom";
+
+import {Row, Col, Form, Button, Modal, Carousel, ModalTitle, ModalBody} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
 const SignUpConst = () => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
-    const [emailError, setEmailError] = useState("");
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [confirmarSenha, setConfirmarSenha] = useState("");
 
- const [successModal, setSuccessModal] = useState(false);
- const [errorModal, setErrorModal] = useState(false);
- const [passcheckModal, setPasscheckModal] = useState(false);
- // teste
+    const [emailError, setEmailError] = useState("");
+    const [formModal, setFormModal] = useState(false);
+    const [successModal, setSuccessModal] = useState(false);
+    const [errorModal, setErrorModal] = useState(false);
+    const [passcheckModal, setPasscheckModal] = useState(false);
+
+    const [coletaPreenchida, setColetaPreenchida] = useState(false);
+    const [dadosColeta, setDadosColeta] = useState("");
+  
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,31 +31,50 @@ const SignUpConst = () => {
             return;
         }
 
-        // Verifique se o email já foi inserido pelo usuário
+
         const isEmailUnique = await checkEmailUniqueness(email);
 
         if (!isEmailUnique) {
-            setErrorModal(true);
             setEmailError("Este email já está cadastrado.");
+            setErrorModal(true);
             return;
         }
 
+        setColetaPreenchida(true);
+        setFormModal(true);
+    };
+
+    const handleColetaSubmit = async () => {
+        setSuccessModal(true);
+
+        const dadosCompletos = {
+            nome,
+            email,
+            senha
+        };
+
         try {
-            const response = await fetch("http://localhost:9000/signup", {
+            const response = await fetch(`http://localhost:9000/signup`, {
+
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ nome, email, senha }),
+
+                body: JSON.stringify(dadosCompletos),
             });
 
             if (response.ok) {
-                setSuccessModal(true); // Exibe o modal
+                setSuccessModal(true);
+
             } else {
                 setErrorModal(true);
             }
         } catch (error) {
-            console.error("Erro ao enviar requisição:", error);
+
+            console.error("Erro ao enviar dados:", error);
+            setErrorModal(true);
+
         }
     };
 
@@ -70,13 +94,133 @@ const SignUpConst = () => {
 
     return (
     <>
-     <Modal show={successModal} onHide={() => setSuccessModal(false)}className="modal">
+
+        <Modal show={formModal} onHide={() => setFormModal(false)} className="modal" backdrop="static">
+            <Modal.Header>
+                <Modal.Title>
+                    Coleta de usuário
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form>
+                    <h5>
+                        1. Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
+                        <span id="asterisco">*</span>
+                    </h5>
+                    <p>Marque apenas uma opção.</p>
+
+                    {["radio"].map((type) => (
+                        <div key={`inline-${type}`} className="mb-3">
+                            <Form.Check
+                                inline
+                                label="Aluno do ensino médio"
+                                name="group1"
+                                type={type}
+                                id={`inline-${type}-1`}
+                            />
+                            <Form.Check
+                                inline
+                                label="Aluno da graduação"
+                                name="group1"
+                                type={type}
+                                id={`inline-${type}-2`}
+                            />
+                            <Form.Check
+                                inline
+                                label="Servidor, docente ou tercerizado"
+                                name="group1"
+                                type={type}
+                                id={`inline-${type}-3`}
+                            />
+                        </div>
+                    ))}
+                </Form>
+                <Form>
+                    <h5>
+                        2. Qual refeição você realiza no restaurante institucional?
+                        <span id="asterisco">*</span>
+                    </h5>
+                    <p>Marque todas que se aplicam.</p>
+                    {["checkbox"].map((type) => (
+                        <div key={`inline-${type}`} className="mb-4">
+                            <Form.Check
+                                inline
+                                label="Café da manhã"
+                                name="group2"
+                                type={type}
+                                id={`inline-${type}-4`}
+                            />
+                            <Form.Check
+                                inline
+                                label="Almoço"
+                                name="group2"
+                                type={type}
+                                id={`inline-${type}-5`}
+                            />
+                            <Form.Check
+                                inline
+                                label="Lanche da tarde"
+                                name="group2"
+                                type={type}
+                                id={`inline-${type}-6`}
+                            />
+                            <Form.Check
+                                inline
+                                label="Jantar"
+                                name="group2"
+                                type={type}
+                                id={`inline-${type}-7`}
+                            />
+                        </div>
+                    ))}
+                </Form>
+
+                <Form>
+                    <h5>
+                        3. Você é vegetariano?<span id="asterisco">*</span>
+                    </h5>
+                    <p>Marque apenas uma opção.</p>
+                    {["radio"].map((type) => (
+                        <div key={`inline-${type}`} className="mb-4">
+                            <Form.Check
+                                inline
+                                label="Sim"
+                                name="group3"
+                                type={type}
+                                id={`inline-${type}-9`}
+                            />
+                            <Form.Check
+                                inline
+                                label="Não"
+                                name="group3"
+                                type={type}
+                                id={`inline-${type}-10`}
+                            />
+                        </div>
+                    ))}
+                </Form>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => { handleColetaSubmit(); setFormModal(false); }}>
+                Enviar
+                </Button>
+            </Modal.Footer>
+        </Modal>
+
+
+
+
+
+        <Modal show={successModal} onHide={() => setSuccessModal(false)} className="modal">
+
       <Modal.Header>
         <Modal.Title>Sucesso!</Modal.Title>
       </Modal.Header>
       <Modal.Body>Cadastro concluído</Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={() => setSuccessModal(false)}>
+
+          <Button variant="primary" onClick={() => setSuccessModal(false)}>
+
           Fechar
         </Button>
       </Modal.Footer>

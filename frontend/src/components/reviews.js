@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import {
-  Container,
+
   Carousel,
   Form,
-  ProgressBar,
-  Nav
+  ProgressBar
+
 } from "react-bootstrap";
 
 import "../assets/styles/reviews.scss";
 const ReviewsConst = () => {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState(false);
-  // const [opcaoSelecionada, setOpcaoSelecionada] = useState(false);
 
   const [progress, setProgress] = useState(0);
 
@@ -43,116 +42,7 @@ const ReviewsConst = () => {
           wrap={false} // Desabilita o loop do carrossel
           className="car"
         >
-          <Carousel.Item className="car-item">
-            <h2>Coleta de Usuário</h2>
-            <Form className="formulario-av">
-              <h5>
-                1. Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
-                <span id="asterisco">*</span>
-              </h5>
-              <p>Marque apenas uma opção.</p>
-
-              {["radio"].map((type) => (
-                <div key={`inline-${type}`} className="mb-3">
-                  <Form.Check
-                    inline
-                    label="Aluno do ensino médio"
-                    name="group1"
-                    type={type}
-                    id={`inline-${type}-1`}
-                    onChange={handleOpcaoChange}
-                  />
-                  <Form.Check
-                    inline
-                    label="Aluno da graduação"
-                    name="group1"
-                    type={type}
-                    id={`inline-${type}-2`}
-                    onChange={handleOpcaoChange}
-                  />
-                  <Form.Check
-                    inline
-                    label="Servidor, docente ou tercerizado"
-                    name="group1"
-                    type={type}
-                    id={`inline-${type}-3`}
-                    onChange={handleOpcaoChange}
-                  />
-                </div>
-              ))}
-            </Form>
-            <Form className="formulario-av">
-              <h5>
-                2. Qual refeição você realiza no restaurante institucional?
-                <span id="asterisco">*</span>
-              </h5>
-              <p>Marque todas que se aplicam.</p>
-              {["checkbox"].map((type) => (
-                <div key={`inline-${type}`} className="mb-4">
-                  <Form.Check
-                    inline
-                    label="Café da manhã"
-                    name="group2"
-                    type={type}
-                    id={`inline-${type}-4`}
-                    onChange={handleOpcaoChange}
-                  />
-                  <Form.Check
-                    inline
-                    label="Almoço"
-                    name="group2"
-                    type={type}
-                    id={`inline-${type}-5`}
-                    onChange={handleOpcaoChange}
-                  />
-                  <Form.Check
-                    inline
-                    label="Lanche da tarde"
-                    name="group2"
-                    type={type}
-                    id={`inline-${type}-6`}
-                    onChange={handleOpcaoChange}
-                  />
-                  <Form.Check
-                    inline
-                    label="Jantar"
-                    name="group2"
-                    type={type}
-                    id={`inline-${type}-7`}
-                    onChange={handleOpcaoChange}
-                  />
-                </div>
-              ))}
-            </Form>
-
-            <Form className="formulario-av">
-              <h5>
-                3. Você é vegetariano?<span id="asterisco">*</span>
-              </h5>
-              <p>Marque apenas uma opção.</p>
-              {["radio"].map((type) => (
-                <div key={`inline-${type}`} className="mb-4">
-                  <Form.Check
-                    inline
-                    label="Sim"
-                    name="group3"
-                    type={type}
-                    id={`inline-${type}-9`}
-                    onChange={handleOpcaoChange}
-                  />
-                  <Form.Check
-                    inline
-                    label="Não"
-                    name="group3"
-                    type={type}
-                    id={`inline-${type}-10`}
-                    onChange={handleOpcaoChange}
-                  />
-                </div>
-              ))}
-            </Form>
-          </Carousel.Item>
-          <Carousel.Item className="car-item">
+         
             <h2>Coleta da avaliação</h2>
             <Form className="formulario-av">
               <h6>

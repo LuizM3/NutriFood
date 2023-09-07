@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken");
 //   res.send("OK");
 // });
 
+
 router.post("/", async (req, res) => {
   const { email, senha } = req.body;
 
@@ -22,9 +23,11 @@ router.post("/", async (req, res) => {
       } else {
         if (results.length > 0) {
           const token = jwt.sign({ email }, process.env.SECRET, {
+
             expiresIn: 300,
           });
           res.set("x-access-token", token);
+
           return res.json({ auth: true, token: token });
         } else {
           res.status(401).json({ message: "Invalid credentials" });
