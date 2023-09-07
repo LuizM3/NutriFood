@@ -27,7 +27,7 @@ const LoginConst = () => {
       if (response.ok) {
         const data = await response.json();
 
-        if (data.message == "Login") {
+        if (data.message === "Login") {
 
           
           console.log("Token feito");
