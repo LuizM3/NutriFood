@@ -2,9 +2,11 @@ var connection = require("../db");
 var express = require("express");
 var router = express.Router();
 
-router.get("/", function (req, res) {
-    res.send("oi");
-});
+
+// router.get("/", function (req, res) {
+//     res.send("oi");
+// });
+
 
 router.post("/", async (req, res) => {
     const { nome, email, senha } = req.body;

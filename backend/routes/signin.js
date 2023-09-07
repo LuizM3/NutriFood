@@ -2,7 +2,14 @@ var connection = require("../db");
 var express = require("express");
 var router = express.Router();
 
+require("dotenv").config();
+
 const jwt = require("jsonwebtoken");
+
+// router.get("/", function (req, res) {
+//   res.send("OK");
+// });
+
 
 router.post("/", async (req, res) => {
   const { email, senha } = req.body;
@@ -16,9 +23,11 @@ router.post("/", async (req, res) => {
       } else {
         if (results.length > 0) {
           const token = jwt.sign({ email }, process.env.SECRET, {
-            expiresIn: 20,
+
+            expiresIn: 300,
           });
-          res.status(200).json({ message: "Login" });
+          res.set("x-access-token", token);
+
           return res.json({ auth: true, token: token });
         } else {
           res.status(401).json({ message: "Invalid credentials" });

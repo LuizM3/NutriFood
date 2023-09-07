@@ -1,9 +1,11 @@
 // No arquivo verifyJWT.js
 const jwt = require("jsonwebtoken");
 
-function verifyJWT(req, res, next) {
-  const token = req.headers.authorization; // Obtenha o token do header (ou de onde você o está passando)
+require('dotenv').config();
 
+function verifyJWT(req, res, next) {
+  const token = req.headers['x-access-token']; // Obtenha o token do header (ou de onde você o está passando)
+  
   if (!token) {
     return res.status(401).json({ message: "Token missing" });
   }

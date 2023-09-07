@@ -27,7 +27,9 @@ const LoginConst = () => {
       if (response.ok) {
         const data = await response.json();
 
-        if (data.message === "Login") {
+        if (data.message == "Login") {
+
+          
           console.log("Token feito");
           setTimeout(() => {
             setSpinnerModal(true);
@@ -40,6 +42,9 @@ const LoginConst = () => {
         } else {
           // Credenciais inválidas
           setErrorModal(true);
+
+          alert("1");
+
         }
       } else {
         // Tratar outros erros

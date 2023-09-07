@@ -1,4 +1,5 @@
 import "../assets/styles/login.scss";
+
 import {Row, Col, Form, Button, Modal, Carousel, ModalTitle, ModalBody} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -17,6 +18,7 @@ const SignUpConst = () => {
 
     const [coletaPreenchida, setColetaPreenchida] = useState(false);
     const [dadosColeta, setDadosColeta] = useState("");
+  
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,6 +30,7 @@ const SignUpConst = () => {
             setErrorModal(true);
             return;
         }
+
 
         const isEmailUnique = await checkEmailUniqueness(email);
 
@@ -52,21 +55,26 @@ const SignUpConst = () => {
 
         try {
             const response = await fetch(`http://localhost:9000/signup`, {
+
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+
                 body: JSON.stringify(dadosCompletos),
             });
 
             if (response.ok) {
                 setSuccessModal(true);
+
             } else {
                 setErrorModal(true);
             }
         } catch (error) {
+
             console.error("Erro ao enviar dados:", error);
             setErrorModal(true);
+
         }
     };
 
@@ -86,6 +94,7 @@ const SignUpConst = () => {
 
     return (
     <>
+
         <Modal show={formModal} onHide={() => setFormModal(false)} className="modal" backdrop="static">
             <Modal.Header>
                 <Modal.Title>
@@ -203,12 +212,15 @@ const SignUpConst = () => {
 
 
         <Modal show={successModal} onHide={() => setSuccessModal(false)} className="modal">
+
       <Modal.Header>
         <Modal.Title>Sucesso!</Modal.Title>
       </Modal.Header>
       <Modal.Body>Cadastro concluído</Modal.Body>
       <Modal.Footer>
+
           <Button variant="primary" onClick={() => setSuccessModal(false)}>
+
           Fechar
         </Button>
       </Modal.Footer>

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import {
+
   Carousel,
   Form,
-  ProgressBar,
+  ProgressBar
+
 } from "react-bootstrap";
 
 import "../assets/styles/reviews.scss";
@@ -40,7 +42,7 @@ const ReviewsConst = () => {
           wrap={false} // Desabilita o loop do carrossel
           className="car"
         >
-          <Carousel.Item className="car-item">
+         
             <h2>Coleta da avaliação</h2>
             <Form className="formulario-av">
               <h6>
