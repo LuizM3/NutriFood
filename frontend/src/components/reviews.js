@@ -42,7 +42,7 @@ const ReviewsConst = () => {
           wrap={false} // Desabilita o loop do carrossel
           className="car"
         >
-         
+        <Carousel.Item> 
             <h2>Coleta da avaliação</h2>
             <Form className="formulario-av">
               <h6>
