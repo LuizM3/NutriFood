@@ -19,8 +19,7 @@ const AboutConst = () => {
   return (
     <>
       <div className="cont">
-        <Row className="row">
-          <Col>
+       
             <Form id="form-login">
               <div>
                 <h2>Github</h2>
@@ -66,8 +65,7 @@ const AboutConst = () => {
                 </p>
               </div>
             </Form>
-          </Col>
-        </Row>
+         
       </div>
     </>
   );

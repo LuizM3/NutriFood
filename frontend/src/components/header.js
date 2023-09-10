@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  Image,
-  Offcanvas,
-  ToggleButton,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button, Figure } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
-import logo from "../assets/images/logo.png";
-import "../assets/styles/header.scss";
 import { Link } from "react-router-dom";
+import "../assets/styles/header.scss";
+
+const logo = require("../assets/images/logo.png");
 
 const HeaderConst = () => {
+
   const [isToggled, setIsToggled] = useState(false);
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
@@ -21,155 +15,224 @@ const HeaderConst = () => {
   };
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = (event) => {
+    setShow(false);
+  };
+
   const handleShow = () => setShow(true);
 
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
+
     <>
-      <Navbar collapseOnSelect expand="lg" sticky="top" id="nav-bar-cnf">
-        <Container id="co">
-          <div>
-            {isResponsive ? (
-              <Navbar.Toggle
-                aria-controls="offcanvas-navbar"
-                as={ToggleButton}
-                variant="outline-light"
-                onClick={handleShow}
-                style={{
-                  textDecoration: "none",
-                  outline: "0",
-                  boxShadow: "none",
-                }}
-                id="toggle-nav"
-              ></Navbar.Toggle>
-            ) : (
-              <Nav className="me-auto right">
-                <div id="div-left-nav">
-                  <Link
-                    to="/reviews"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Avaliações
-                  </Link>
-                  <Link
-                    to="/menu"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Cardápio
-                  </Link>
-                  <Link
-                    to="/suggestions"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Sugestões
-                  </Link>
-                </div>
-                <div id="div-right-nav">
-                  <Link
-                    to="/contact"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Contato
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Sobre
-                  </Link>
-                  <Link
-                    to="/login"
-                    className="text-decoration-none"
-                    style={{ border: "none" }}
-                  >
-                    <Button to="/login" size="sm" id="btLogin" className="py-2">
-                      <ion-icon name="person" id="ic-login"></ion-icon>Entrar
-                    </Button>
-                  </Link>
-                </div>
-              </Nav>
-            )}
+      <Navbar sticky="top" className="flex-nowrap">
+        <Container>
+          <Navbar.Brand className="d-flex align-items-center">
+            <Nav className="me-auto">
+              <Nav.Link>
+                <Link to="/" className="text-decoration-none">
+                  <Figure>
+                    <Figure.Image
+                      
+                      src={logo}
+                    />
+                  </Figure>
+                </Link>
 
-            <Offcanvas
-              show={show && isResponsive}
-              onHide={handleClose}
-              scroll={false}
-              backdrop={false}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title>
-                  <Link to="/" id="link">
-                    <Nav id="link">
-                      <Image src={logo} alt="Logo" fluid id="logo" />
-                      {/* <span id="logo-name">Nutrify</span> */}
-                    </Nav>
-                  </Link>
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body className="offcanvas-body">
-                <Nav className="me-auto">
-                  <Link
-                    to="/reviews"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Avaliações
-                  </Link>
-                  <Link
-                    to="/menu"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Cardápio
-                  </Link>
-                  <Link
-                    to="/suggestions"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Sugestões
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Contato
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="text-decoration-none"
-                    id="nv-link"
-                  >
-                    Sobre
-                  </Link>
-                  <Link to="/login" className="text-decoration-none">
-                    <Button to="/login" size="sm" id="btLogin" className="py-2">
-                      <ion-icon name="person" id="ic-login"></ion-icon>Entrar
-                    </Button>
-                  </Link>
-                </Nav>
-              </Offcanvas.Body>
-            </Offcanvas>
-
-            <Nav className="left">
-              <Link to="/" id="link">
-                {" "}
-                <Image src={logo} alt="Logo" fluid id="logo"></Image>{" "}
-              </Link>
+              </Nav.Link>
             </Nav>
-          </div>
+            <Nav className="me-auto">
+              <Nav.Link>
+                <Link to="/" className="text-decoration-none">
+                <h2>Nutrifood </h2>
+                </Link>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Brand>
+
+          <Navbar.Brand className="d-flex align-items-center">
+            <Nav className="me-auto">
+              <Nav.Link>
+                <Link to="/reviews" className="text-decoration-none">
+                  Avaliações
+                </Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link
+                  to="/menu"
+                  className="text-decoration-none"
+                >
+                  Cardápio
+                </Link>
+              </Nav.Link>
+
+              <Nav.Link>
+                <Link to="/suggestions" className="text-decoration-none">
+                  Sugestões
+                </Link>
+              </Nav.Link>
+            </Nav>
+
+          </Navbar.Brand>
+          <Navbar.Brand className="d-flex align-items-center">
+            <Nav className="me-auto">
+              <Nav.Link>
+
+                <Link to="/contact" className="text-decoration-none">
+                  Contato
+                </Link>
+              </Nav.Link>
+
+              <Nav.Link>
+                <Link to="/about" className="text-decoration-none">
+                  Sobre
+                </Link>
+              </Nav.Link>
+            
+
+            </Nav>
+            <Nav className="me-auto">
+                <Nav.Link>
+                <Link to="/login" className="text-decoration-none">
+                  <Button to="/login">
+                    <ion-icon name="person"></ion-icon>Entrar
+                  </Button>
+                </Link>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Brand>
         </Container>
       </Navbar>
     </>
+
+
+    // <>
+    //   <Navbar collapseOnSelect fixed="top">
+    //       <div>
+    //         {isResponsive ? (
+    //           <Navbar.Toggle
+    //             aria-controls="offcanvas-navbar"
+    //             as={ToggleButton}
+    //             variant="outline-light"
+    //             onClick={handleShow}
+    //             style={{
+    //               textDecoration: "none",
+    //               outline: "0",
+    //               boxShadow: "none",
+    //             }}
+    //             id="toggle-nav"
+    //           ></Navbar.Toggle>
+    //         ) : (
+    //           <Nav className="d-flex bg-body-white">
+    //             <div>
+    //               
+    //             </div>
+    //             <div>
+    //               <Link
+    //                 to="/contact"
+    //                 className="text-decoration-none"
+
+    //               >
+    //                 Contato
+    //               </Link>
+    //               <Link
+    //                 to="/about"
+    //                 className="text-decoration-none"
+
+    //               >
+    //                 Sobre
+    //               </Link>
+    //               <Link
+    //                 to="/login"
+    //                 className="text-decoration-none"
+    //                 style={{ border: "none" }}
+    //               >
+    //                 <Button to="/login">
+    //                   <ion-icon name="person"></ion-icon>Entrar
+    //                 </Button>
+    //               </Link>
+    //             </div>
+    //           </Nav>
+    //         )}
+
+    //         <Offcanvas
+    //           show={show && isResponsive}
+    //           onHide={handleClose}
+    //           scroll={false}
+    //           backdrop={false}
+    //           placement="end"
+    //         >
+    //           <Offcanvas.Header closeButton>
+    //             <Offcanvas.Title>
+    //               <Link to="/">
+    //                 <Nav>
+    //                   <Image src={logo} alt="Logo" fluid/>
+    //                 </Nav>
+    //               </Link>
+    //             </Offcanvas.Title>
+    //           </Offcanvas.Header>
+    //           <Offcanvas.Body>
+    //             <Nav>
+    //               <Link
+    //                 to="/reviews"
+    //                 className="text-decoration-none"
+
+    //               >
+    //                 Avaliações
+    //               </Link>
+    //               <Link
+    //                 to="/menu"
+    //                 className="text-decoration-none"
+
+    //               >
+    //                 Cardápio
+    //               </Link>
+    //               <Link
+    //                 to="/suggestions"
+    //                 className="text-decoration-none"
+
+    //               >
+    //                 Sugestões
+    //               </Link>
+    //               <Link
+    //                 to="/contact"
+    //                 className="text-decoration-none"
+
+    //               >
+    //                 Contato
+    //               </Link>
+    //               <Link
+    //                 to="/about"
+    //                 className="text-decoration-none"
+
+    //               >
+    //                 Sobre
+    //               </Link>
+    //               <Link to="/login" className="text-decoration-none">
+    //                 <Button to="/login">
+    //                   <ion-icon name="person"></ion-icon>Entrar
+    //                 </Button>
+    //               </Link>
+    //             </Nav>
+    //           </Offcanvas.Body>
+    //         </Offcanvas>
+
+    //         <div>
+    //           <Link to="/">
+    //             <Figure>
+    //               <Figure.Image
+    //                 width={256}
+    //                 height={256}
+    //                 alt="171x180"
+    //                 src={logo}
+    //               />
+    //             </Figure>
+    //           </Link>
+    //         </div>
+    //       </div>
+    //   </Navbar>
+    // </>
   );
 };
 

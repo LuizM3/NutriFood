@@ -9,7 +9,7 @@ import SignUp from "./views/SignUp";
 import reportWebVitals from "./reportWebVitals";
 import About from "./views/About"
 import Reviews from "./views/Reviews";
-
+import Contact from "./views/Contact";
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
@@ -20,6 +20,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<SignIn />} />{" "}
         <Route path="/sign-up" element={<SignUp />} />{" "}
         <Route path="/about" element={<About />} /> {" "}
+        <Route path="/contact" element={<Contact />} /> {" "}
       </Routes>{" "}
       <Footer />
     </Router>{" "}

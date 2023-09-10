@@ -1,6 +1,6 @@
 import "../assets/styles/login.scss";
 import { Modal, Row, Col, Form, Button, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,7 @@ const LoginConst = () => {
 
         if (data.message === "Login") {
 
-          
+
           console.log("Token feito");
           setTimeout(() => {
             setSpinnerModal(true);
@@ -75,15 +75,10 @@ const LoginConst = () => {
         <Modal.Body>
           Login concluído
         </Modal.Body>
-        {/* <Modal.Body>Login concluído</Modal.Body> */}
-        {/* <Modal.Footer> */}
-          {/* <Button variant="primary" onClick={() => setSuccessModal(false)}>
-            Fechar
-          </Button>
-        </Modal.Footer> */}
+
       </Modal>
 
-      <Modal show={errorModal} onHide={() => setErrorModal(false)}className="modal">
+      <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal">
         <Modal.Header closeButton>
           <Modal.Title>Erro!</Modal.Title>
         </Modal.Header>
@@ -96,43 +91,63 @@ const LoginConst = () => {
       </Modal>
 
       <div className="cont">
-        <Row className="row">
-          <Col>
-            <Form id="form-login" onSubmit={handleSubmit}>
-              <h2>Login</h2>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Endereço de email</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Digite seu email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Form.Text className="text-muted">
-                  Nós nunca iremos compartilhar seu email com terceiros
-                </Form.Text>
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Senha</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Digite sua senha"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Lembrar de mim" />
-              </Form.Group>
+        <div id="in-cont">
+          <Form id="form-login" onSubmit={handleSubmit}>
+            <h2>Login</h2>
+            <section className="mb-4">
+              <div className="in-section">
+                <Form.Group className="mb-3">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Label>Senha</Form.Label>
+                </Form.Group>
+              </div>
+              <div id="linha-vertical"></div>
+              <div className="in-section">
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    type="email"
+                    placeholder="Digite seu email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  /> <Form.Control
+                    type="password"
+                    placeholder="Digite sua senha"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                  /> 
+                </Form.Group>
+              </div>
+            </section> 
+            {/* <Form.Check type="checkbox" label="Lembrar de mim" /> */}
+            <div id="div-btn"> <div id="div-btn">
+              <Link to="/sign-up">Cadastre-se agora</Link>
+            </div>
               <Button type="submit" id="button-login-signup">
                 Entrar
               </Button>
-              <div>
-                <Link to="/sign-up">Não tem conta? Cadastre-se agora</Link>
-              </div>{" "}
-            </Form>
-          </Col>
-        </Row>
+            </div>
+
+           
+          </Form>
+
+
+
+        </div>
+
+
+        {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+
+
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+
+        </Form.Group>
+        {" "} */}
+
       </div>
     </>
   );
