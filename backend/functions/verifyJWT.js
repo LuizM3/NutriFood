@@ -1,6 +1,5 @@
 // No arquivo verifyJWT.js
 const jwt = require("jsonwebtoken");
-
 require('dotenv').config();
 
 function verifyJWT(req, res, next) {

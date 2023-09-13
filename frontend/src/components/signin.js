@@ -42,9 +42,6 @@ const LoginConst = () => {
         } else {
           // Credenciais inválidas
           setErrorModal(true);
-
-          alert("1");
-
         }
       } else {
         // Tratar outros erros

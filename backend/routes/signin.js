@@ -6,11 +6,6 @@ require("dotenv").config();
 
 const jwt = require("jsonwebtoken");
 
-// router.get("/", function (req, res) {
-//   res.send("OK");
-// });
-
-
 router.post("/", async (req, res) => {
   const { email, senha } = req.body;
 
@@ -22,13 +17,10 @@ router.post("/", async (req, res) => {
         res.status(500).json({ error: "An error occurred" }); // Enviar um status de erro em caso de falha na consulta
       } else {
         if (results.length > 0) {
-          const token = jwt.sign({ email }, process.env.SECRET, {
+          const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: 300, });
 
-            expiresIn: 300,
-          });
           res.set("x-access-token", token);
-
-          return res.json({ auth: true, token: token });
+          return res.json({ auth: true, token: token, message: "Login" });
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }
@@ -38,7 +30,3 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
-
-// const bcrypt = require("bcrypt");
-//   const hashedPassword = await bcrypt.hash(senha, 10);
-// require("dotenv-safe").config();
