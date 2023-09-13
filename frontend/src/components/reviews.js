@@ -633,7 +633,7 @@ const ReviewsConst = () => {
                 />
               </div>
             ))}<Button type="submit" id="button-login-signup">
-              Entrar
+              Enviar
             </Button>
           </Form>
 

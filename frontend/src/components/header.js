@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button, Figure } from "react-bootstrap";
+import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button, Figure, Row, Col } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import "../assets/styles/header.scss";
@@ -26,82 +26,141 @@ const HeaderConst = () => {
   return (
 
     <>
-      <Navbar sticky="top" className="flex-nowrap">
-        <Container>
-          <Navbar.Brand className="d-flex align-items-center">
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/" className="text-decoration-none">
-                  <Figure>
-                    <Figure.Image
-                      
-                      src={logo}
-                    />
-                  </Figure>
-                </Link>
+      <Navbar sticky="top" className="flex-nowrap" collapseOnSelect>
+        <Container id="nav-cont">
+          {isResponsive ? (
+            <Row> <Col></Col>
+              <Col>
+              <Figure>
+                <Figure.Image src={logo} width={64} height={64} id="sun">
 
-              </Nav.Link>
-            </Nav>
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/" className="text-decoration-none">
-                <h2>Nutrifood </h2>
-                </Link>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Brand>
+                </Figure.Image>
+              </Figure>
+              </Col>
+              <Col id="col-toggle"><Navbar.Toggle
+                aria-controls="offcanvas-navbar"
+                as={ToggleButton}
+                variant="outline-light"
+                onClick={handleShow}
+                style={{
+                  textDecoration: "none",
+                  outline: "0",
+                  boxShadow: "none",
+                }}
+                id="toggle-nav"
+              ></Navbar.Toggle></Col>
 
-          <Navbar.Brand className="d-flex align-items-center">
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/reviews" className="text-decoration-none">
-                  Avaliações
-                </Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link
-                  to="/menu"
-                  className="text-decoration-none"
-                >
-                  Cardápio
-                </Link>
-              </Nav.Link>
+            </Row>
 
-              <Nav.Link>
-                <Link to="/suggestions" className="text-decoration-none">
-                  Sugestões
-                </Link>
-              </Nav.Link>
-            </Nav>
-
-          </Navbar.Brand>
-          <Navbar.Brand className="d-flex align-items-center">
-            <Nav className="me-auto">
-              <Nav.Link>
-
-                <Link to="/contact" className="text-decoration-none">
-                  Contato
-                </Link>
-              </Nav.Link>
-
-              <Nav.Link>
-                <Link to="/about" className="text-decoration-none">
-                  Sobre
-                </Link>
-              </Nav.Link>
-            
-
-            </Nav>
-            <Nav className="me-auto">
+          ) : (
+            <><Navbar.Brand className="d-flex align-items-center">
+              <Nav className="me-auto">
                 <Nav.Link>
-                <Link to="/login" className="text-decoration-none">
-                  <Button to="/login">
-                    <ion-icon name="person"></ion-icon>Entrar
-                  </Button>
+                  <Link to="/" className="text-decoration-none">
+                    <Figure>
+                      <Figure.Image
+
+                        src={logo} />
+                    </Figure>
+                  </Link>
+
+                </Nav.Link>
+              </Nav>
+              <Nav className="me-auto">
+                <Nav.Link>
+                  <Link to="/" className="text-decoration-none">
+                    <h2>Nutrifood </h2>
+                  </Link>
+                </Nav.Link>
+              </Nav>
+            </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
+                <Nav className="me-auto">
+                  <Nav.Link>
+                    <Link to="/reviews" className="text-decoration-none">
+                      Avaliações
+                    </Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link
+                      to="/menu"
+                      className="text-decoration-none"
+                    >
+                      Cardápio
+                    </Link>
+                  </Nav.Link>
+
+                  <Nav.Link>
+                    <Link to="/suggestions" className="text-decoration-none">
+                      Sugestões
+                    </Link>
+                  </Nav.Link>
+                </Nav>
+
+              </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
+                <Nav className="me-auto">
+                  <Nav.Link>
+
+                    <Link to="/contact" className="text-decoration-none">
+                      Contato
+                    </Link>
+                  </Nav.Link>
+
+                  <Nav.Link>
+                    <Link to="/about" className="text-decoration-none">
+                      Sobre
+                    </Link>
+                  </Nav.Link>
+
+
+                </Nav>
+                <Nav className="me-auto">
+                  <Nav.Link>
+                    <Link to="/login" className="text-decoration-none">
+                      <Button to="/login">
+                        <ion-icon name="person"></ion-icon>Entrar
+                      </Button>
+                    </Link>
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Brand></>
+          )}
+
+          <Offcanvas
+            show={show && isResponsive}
+            onHide={handleClose}
+            scroll={false}
+            backdrop={false}
+            placement="end"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>
+                <Link to="/">
+
                 </Link>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Brand>
+                <Row>
+                  <Col>
+                  
+              <Figure>
+                <Figure.Image src={logo} width={64} height={64} id="sun">
+
+                </Figure.Image>
+              </Figure>
+                  </Col>
+                  <Col>
+              <Nav className="me-auto">
+                <Nav.Link>
+                  <Link to="/" className="text-decoration-none">
+                    <h2>nutrifood </h2>
+                  </Link>
+                </Nav.Link>
+              </Nav>
+                  </Col>
+                </Row>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+
+
+          </Offcanvas>
         </Container>
       </Navbar>
     </>
@@ -110,6 +169,7 @@ const HeaderConst = () => {
     // <>
     //   <Navbar collapseOnSelect fixed="top">
     //       <div>
+
     //         {isResponsive ? (
     //           <Navbar.Toggle
     //             aria-controls="offcanvas-navbar"
