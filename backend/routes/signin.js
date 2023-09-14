@@ -19,14 +19,12 @@ router.post("/", async (req, res) => {
         if (results.length > 0) {
           const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: 300, });
 
-          connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email], 
+          connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email],
           (error, results) => {
             if(error){
               res.status(500).json({ message: "erro" });
             }
-            else{
               res.status(200).json({ token, message: "Login"});
-            }
           });
         } else {
           res.status(401).json({ message: "Invalid credentials" });
@@ -35,5 +33,15 @@ router.post("/", async (req, res) => {
     }
   );
 });
+
+// const getName = (token) => {
+//   connection.query("SELECT nome FROM token = ?", [token], (error, result) => {
+//     if(error){
+//       return res.status(500).json({ message: "Erro"});
+//     }
+
+//     return res.status(200).json({message:"sucess", nome: result})
+//   })
+// };
 
 module.exports = router;

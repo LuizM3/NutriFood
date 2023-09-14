@@ -6,7 +6,7 @@ import "../assets/styles/header.scss";
 
 const logo = require("../assets/images/logo.png");
 
-const HeaderConst = () => {
+const HeaderConst =  () => {
 
   const [isToggled, setIsToggled] = useState(false);
   const [open, setOpen] = useState(false);

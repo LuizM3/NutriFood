@@ -6,12 +6,12 @@ const cors = require("cors");
 
 const app = express();
 
-const jwt = require("jsonwebtoken");
 const testDBRouter = require("./routes/testDB");
 const signinRouter = require("./routes/signin");
 const signupRouter = require("./routes/signup");
 const indexRouter = require("./routes/index");
 const suggestionsRouter = require("./routes/suggestions");
+const verifyTokenRouter = require("./routes/verifyToken");
 const checkEmailRouter = require('./routes/checkEmail'); // Importe o arquivo checkEmail.js
 
 app.set("view engine", "ejs"); // Configurar o mecanismo de visualização para EJS
@@ -27,5 +27,6 @@ app.use("/", indexRouter);
 app.use("/testDB", testDBRouter);
 app.use("/signup", signupRouter);
 app.use("/signin", signinRouter);
+app.use("/verifyToken", verifyTokenRouter);
 app.use("/suggestions", suggestionsRouter);
 module.exports = app;
