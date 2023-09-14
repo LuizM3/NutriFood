@@ -19,8 +19,15 @@ router.post("/", async (req, res) => {
         if (results.length > 0) {
           const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: 300, });
 
-          res.set("x-access-token", token);
-          return res.json({ auth: true, token: token, message: "Login" });
+          connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email], 
+          (error, results) => {
+            if(error){
+              res.status(500).json({ message: "erro" });
+            }
+            else{
+              res.status(200).json({ token, message: "Login"});
+            }
+          });
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }

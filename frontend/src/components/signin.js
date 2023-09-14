@@ -26,19 +26,15 @@ const LoginConst = () => {
 
       if (response.ok) {
         const data = await response.json();
+        const token = data.token;
 
         if (data.message === "Login") {
-
-
-          console.log("Token feito");
           setTimeout(() => {
             setSpinnerModal(true);
           }, 1000);
 
-          setTimeout(() => {
-            navigate("/");
-          }, 6000); // Atraso de 5 segundos (5000 milissegundos)
-          // Login bem-sucedido
+          setTimeout(() => { navigate("/" + token) }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
+
         } else {
           // Credenciais inválidas
           setErrorModal(true);
