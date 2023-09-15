@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/styles/carousel.scss";
 import "../assets/styles/main.scss";
-import { Container, Accordion, Button, Stack, Col, Row, Figure, Image } from "react-bootstrap";
+import { Container, Accordion, Button, Stack, Col, Row, Figure, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
 const apiKey = "61c379021f8b42b3bda1cfd5ddff9255";
-const pageSize = 20;
-const apiUrl = `https://newsapi.org/v2/everything?q=nutrição&from=2023-08-14&pageSize=${pageSize}&sortBy=publishedAt&apiKey=${apiKey}`;
+const pageSize = 6;
+const apiUrl = `https://newsapi.org/v2/everything?q=nutrition&from=2023-08-14&pageSize=${pageSize}&sortBy=publishedAt&apiKey=${apiKey}`;
 
 
 const CarouselConst = () => {
-const land = require('../assets/images/land.png');
+  const land = require('../assets/images/land.png');
   const island = require("../assets/images/island.png");
   const sun = require("../assets/images/sun.png");
-
+  const quote = require("../assets/images/quote.png");
   const [noticias, setNoticias] = useState([]);
 
   useEffect(() => {
@@ -68,48 +68,48 @@ const land = require('../assets/images/land.png');
       <div id="div-w-cont">
         <Container id="who-cont">
 
-        <Stack direction="horizontal" gap={3}>
+          <Stack direction="horizontal" gap={3}>
 
-          <div className="p-2">
-            <h1>Quem somos</h1>
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The
-            point of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here,
-            content here', making it look like readable English. Many desktop
-            publishing packages and web page editors now use Lorem Ipsum as
-            their default model text, and a search for 'lorem ipsum' will
-            uncover many web sites still in their infancy. Various versions
-            have evolved over the years, sometimes by accident, sometimes on
-            purpose (injected humour and the like). Lorem Ipsum is simply
-            dummy text of the printing and typese
-            centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum <div id="item-block3">
-              <Link to="https://santateresa.ifes.edu.br/" id="link-land">
-                <Button id="button-land">Visite o campus</Button>
-              </Link>
+            <div className="p-2">
+              <h1>Quem somos</h1>
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a more-or-less normal
+              distribution of letters, as opposed to using 'Content here,
+              content here', making it look like readable English. Many desktop
+              publishing packages and web page editors now use Lorem Ipsum as
+              their default model text, and a search for 'lorem ipsum' will
+              uncover many web sites still in their infancy. Various versions
+              have evolved over the years, sometimes by accident, sometimes on
+              purpose (injected humour and the like). Lorem Ipsum is simply
+              dummy text of the printing and typese
+              centuries, but also the leap into electronic typesetting,
+              remaining essentially unchanged. It was popularised in the 1960s
+              with the release of Letraset sheets containing Lorem Ipsum <div id="item-block3">
+                <Link to="https://santateresa.ifes.edu.br/" id="link-land">
+                  <Button id="button-land">Visite o campus</Button>
+                </Link>
+              </div>
             </div>
-          </div>
-          
-          <div className="p-2">
-            <Figure className="parallax">
-              <Figure.Image src={sun} width={256} height={256} id="sun"></Figure.Image>
-              <Figure.Image width={1024} height={1024} alt="171x180" src={island} id="island" />
-            </Figure>
 
-          </div>
+            <div className="p-2">
+              <Figure className="parallax">
+                <Figure.Image src={sun} width={256} height={256} id="sun"></Figure.Image>
+                <Figure.Image width={1024} height={1024} alt="171x180" src={island} id="island" />
+              </Figure>
 
-        </Stack>
+            </div>
 
-      </Container>
+          </Stack>
+
+        </Container>
       </div>
-      
+
       <div id="div-f-cont">
         {/* <Image src={decorPaper}>
 
       </Image> */}
-        <Container className="acord-cont">
+        <Container className="land-cont">
           <section>
             <Row>
               <div>
@@ -134,54 +134,111 @@ const land = require('../assets/images/land.png');
         </Container>
       </div>
       <div>
-        <Container>
+        <Container className="acord-cont">
           <section>
             <Row>
-              <Accordion>
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header>Accordion Item #1</Accordion.Header>
-                  <Accordion.Body>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-
-                  </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="1">
-                  <Accordion.Header>Accordion Item #2</Accordion.Header>
-                  <Accordion.Body>
-
-                  </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="2">
-                  <Accordion.Header>Accordion Item #2</Accordion.Header>
-                  <Accordion.Body>
-
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="3">
-                  <Accordion.Header>Accordion Item #2</Accordion.Header>
-                  <Accordion.Body>
-
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="4">
-                  <Accordion.Header>Accordion Item #2</Accordion.Header>
-                  <Accordion.Body>
-
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
+              <h1>
+                Cardápio do dia
+              </h1>
             </Row>
+            <Row>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Café da manhã</th>
+                    <th>Almoço</th>
+                    <th>Lanche da tarde</th>
+                    <th>Janta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Pão sírio</td>
+                    <td>Carne suína</td>
+                    <td>Bolo de cenoura</td>
+                    <td>Churrasco misto</td>
+                  </tr>
+                  <tr>
+                    <td>Goiaba</td>
+                    <td>Arroz, feijão, batata cozida e polenta </td>
+                    <td>Banana</td>
+                    <td>	Arroz, feijão e cenoura cozida</td>
+                  </tr>
+                  <tr>
+                    <td>Suco de maçã</td>
+                    <td>Suco de uva</td>
+                    <td>Achocolatado</td>
+                    <td>Suco de limão</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Row>
+
           </section>
         </Container>
       </div>
 
+      <div id="div-r-ac">
+        <Container className="acord-cont" id="acord-id">
+          <section>
+            <Row>
+              <Col><Row>
+              <h1>Perguntas frequentes</h1>
+              <p>Com dúvida em mais alguma coisa? Tente nos contatar</p>
+            </Row> <Row>
+                <Figure>
+                 
+                    <Figure.Image src={quote} />
+                </Figure>
+            </Row>
+            
+          </Col>
+
+        </Row>
+        <Row>
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>O que é o projeto Nutrifood?</Accordion.Header>
+              <Accordion.Body>
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
 
-      {/* Noticias */}
-      <Container className="main columns news-cont">
+              </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>Como o site começou?</Accordion.Header>
+              <Accordion.Body>
+
+              </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>Qual a finalidade do projeto?</Accordion.Header>
+              <Accordion.Body>
+
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header>Quem são os tutores?</Accordion.Header>
+              <Accordion.Body>
+
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header>Quem são os integrantes?</Accordion.Header>
+              <Accordion.Body>
+
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Row>
+      </section>
+    </Container >
+      </div >
+
+  {/* Noticias */ }
+  <Container Container className = "main columns news-cont" >
         <div id="news-title">
           <h1>Últimas notícias</h1>
         </div>
@@ -204,9 +261,9 @@ const land = require('../assets/images/land.png');
             </Col>
           ))}
         </Row>
-      </Container>
+        </Container>
+      </>
 
-    </>
   );
 };
 
