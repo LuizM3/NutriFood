@@ -65,42 +65,35 @@ const CarouselConst = () => {
           </h1>
         </Carousel.Item>
       </Carousel>
-      <div id="div-w-cont">
-        <Container id="who-cont">
 
-          <Stack direction="horizontal" gap={3}>
 
-            <div className="p-2">
-              <h1>Quem somos</h1>
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters, as opposed to using 'Content here,
-              content here', making it look like readable English. Many desktop
-              publishing packages and web page editors now use Lorem Ipsum as
-              their default model text, and a search for 'lorem ipsum' will
-              uncover many web sites still in their infancy. Various versions
-              have evolved over the years, sometimes by accident, sometimes on
-              purpose (injected humour and the like). Lorem Ipsum is simply
-              dummy text of the printing and typese
-              centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged. It was popularised in the 1960s
-              with the release of Letraset sheets containing Lorem Ipsum <div id="item-block3">
-                <Link to="https://santateresa.ifes.edu.br/" id="link-land">
-                  <Button id="button-land">Visite o campus</Button>
-                </Link>
-              </div>
-            </div>
+      <div id="div-l-cont">
+        <Container>
+<section><Row id="as">
 
-            <div className="p-2">
               <Figure className="parallax">
-                <Figure.Image src={sun} width={256} height={256} id="sun"></Figure.Image>
-                <Figure.Image width={1024} height={1024} alt="171x180" src={island} id="island" />
+                <Figure.Image src={sun}/>
+                <Figure.Image src={island}/>
               </Figure>
 
-            </div>
+  </Row>
+  <Row>
+    <div>
+      <h1>
+      Quem somos?
+      </h1>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+    </div>
+  </Row>
+  
+</section>
+                
+             
+          
 
-          </Stack>
+
 
         </Container>
       </div>
@@ -124,7 +117,7 @@ const CarouselConst = () => {
             <Row>
 
               <Figure>
-                <Figure.Image src={land} class="animated-image" />
+                <Figure.Image src={land} className="animated-image" />
               </Figure>
 
             </Row>
@@ -162,7 +155,7 @@ const CarouselConst = () => {
                     <td>Goiaba</td>
                     <td>Arroz, feijão, batata cozida e polenta </td>
                     <td>Banana</td>
-                    <td>	Arroz, feijão e cenoura cozida</td>
+                    <td>Arroz, feijão e cenoura cozida</td>
                   </tr>
                   <tr>
                     <td>Suco de maçã</td>
@@ -238,7 +231,7 @@ const CarouselConst = () => {
       </div >
 
   {/* Noticias */ }
-  <Container Container className = "main columns news-cont" >
+  <Container className = "main columns news-cont" >
         <div id="news-title">
           <h1>Últimas notícias</h1>
         </div>

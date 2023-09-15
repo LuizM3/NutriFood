@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button, Figure, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import "../assets/styles/header.scss";
@@ -27,7 +27,7 @@ const HeaderConst = () => {
 
     <>
       <Navbar sticky="top" className="flex-nowrap" collapseOnSelect>
-        <Container id="nav-cont">
+        <Container id="nav-cont"data-test="links">
           {isResponsive ? (
             <Row> <Col></Col>
               <Col>
@@ -56,7 +56,7 @@ const HeaderConst = () => {
             <><Navbar.Brand className="d-flex align-items-center">
               <Nav className="me-auto">
                 <div className="div-link">
-                  <Link to="/" className="text-decoration-none">
+                  <Link to="/" className="text-decoration-none" href="#">
                     <Figure>
                       <Figure.Image
 
@@ -68,7 +68,7 @@ const HeaderConst = () => {
               </Nav>
               <Nav className="me-auto">
                 <div className="div-link">
-                  <Link to="/" className="text-decoration-none">
+                  <Link to="/" className="text-decoration-none" data-test="">
                     <h2>Nutrifood </h2>
                   </Link>
                 </div>
@@ -117,7 +117,11 @@ const HeaderConst = () => {
                   <div className="div-link">
                     <Link to="/login" className="text-decoration-none">
                       <Button to="/login">
-                        <ion-icon name="person"></ion-icon>Entrar
+                        <ion-icon name="person"></ion-icon>
+                        <span>
+
+                        Entrar
+                        </span>
                       </Button>
                     </Link>
                   </div>

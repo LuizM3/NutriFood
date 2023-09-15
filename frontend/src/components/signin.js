@@ -57,7 +57,7 @@ const LoginConst = () => {
 
   return (
     <>
-      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal">
+      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" data-test="links">
         <Modal.Body>
           <Spinner
             variant="light"
@@ -71,14 +71,14 @@ const LoginConst = () => {
         </Modal.Body>
       </Modal>
 
-      <Modal show={successModal} onHide={() => setSuccessModal(false)}>
+      <Modal show={successModal} onHide={() => setSuccessModal(false)} data-test="links">
         <Modal.Body>
           Login concluído
         </Modal.Body>
 
       </Modal>
 
-      <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal">
+      <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
         <Modal.Header closeButton>
           <Modal.Title>Erro!</Modal.Title>
         </Modal.Header>
@@ -90,7 +90,7 @@ const LoginConst = () => {
         </Modal.Footer>
       </Modal>
 
-      <div className="cont">
+      <div className="cont" data-test="links">
         <div id="in-cont">
           <Form id="form-login" onSubmit={handleSubmit}>
             <h2>Login</h2>
@@ -108,16 +108,18 @@ const LoginConst = () => {
                     type="email"
                     placeholder="Digite seu email"
                     value={email}
+                    data-test="form-email"
                     onChange={(e) => setEmail(e.target.value)}
                   /> <Form.Control
                     type="password"
                     placeholder="Digite sua senha"
                     value={senha}
+                    data-test="form-pass"
                     onChange={(e) => setSenha(e.target.value)}
-                  /> 
+                  />
                 </Form.Group>
               </div>
-            </section> 
+            </section>
             {/* <Form.Check type="checkbox" label="Lembrar de mim" /> */}
             <div id="div-btn"> <div id="div-btn">
               <Link to="/sign-up">Cadastre-se agora</Link>
@@ -127,7 +129,7 @@ const LoginConst = () => {
               </Button>
             </div>
 
-           
+
           </Form>
 
 
