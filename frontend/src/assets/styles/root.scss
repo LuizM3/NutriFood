@@ -1,17 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Didact+Gothic&family=Lexend:wght@100;900&display=swap');
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  font-size: x-large !important;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
+@media(max-width: 768px){
+  h1 {
+    font-size: medium;
+  }
 }
 
 * {
@@ -363,12 +355,11 @@ body {
   --tertiary: #0a1e10;
   --quarter: #0e9956;
   --fifty: #1a1a1a;
-  // background
   --white: #ffffff;
   --light: #fafafa;
   --dark: #0f110c;
+  --lgray: #e9ecef;
   --gray: rgb(0 0 0 / 65%);
-  // text-shadow
   --obrigatory: rgb(129, 0, 0);
   --error: #e71d36;
   --alert: blue;

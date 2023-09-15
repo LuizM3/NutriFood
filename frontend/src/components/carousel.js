@@ -1,48 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/styles/carousel.scss";
 import "../assets/styles/main.scss";
-import { Container, Card, Button, Stack, Col, Row, Figure, Nav } from "react-bootstrap";
+import { Container, Accordion, Button, Stack, Col, Row, Figure, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const news1 = require("../assets/images/news/1.jpg");
-const news2 = require("../assets/images/news/2.jpg");
-const news3 = require("../assets/images/news/3.webp");
-const news4 = require("../assets/images/news/4.jpeg");
-const articles = [
-  {
-    title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
-    imageSrc: news1,
-    content:
-      "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
-    author: "IFES Santa Teresa",
-    comments: "223 visualizações",
-    link: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/"
-  },
-  {
-    title: '"Só deu tempo de retirar as malas", diz professor do Ifes sobre ônibus incendiado em Santa Teresa',
-    imageSrc: news2,
-    content:
-    "O professor Robson Meirelles era um dos funcionários do Instituto Federal do Espírito Santo (Ifes) que estavam dentro de um ônibus que pegou...",
-    author: "IFES Santa Teresa",
-    comments: "90 visualizações",
-    link: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/"
-  },
-  {
-    title: "Produção de milho do Ifes apresenta resultados acima da média nacional",
-    imageSrc: news3,
-    content:
-      "Com um rendimento médio de 50 toneladas por hectare, a produção de milho do Instituto Federal do Espírito Santo (Ifes) Campus Santa Teresa...",
-    author: "IFES Santa Teresa",
-    comments: "45 visualizações",
-    link: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/"
-  },
-];
+
+const apiKey = "61c379021f8b42b3bda1cfd5ddff9255";
+const pageSize = 20;
+const apiUrl = `https://newsapi.org/v2/everything?q=nutrição&from=2023-08-14&pageSize=${pageSize}&sortBy=publishedAt&apiKey=${apiKey}`;
 
 
-const island = require("../assets/images/island.png");
-const sun = require("../assets/images/sun.png");
 const CarouselConst = () => {
+const land = require('../assets/images/land.png');
+  const island = require("../assets/images/island.png");
+  const sun = require("../assets/images/sun.png");
+
+  const [noticias, setNoticias] = useState([]);
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          setNoticias(data.articles);
+        }
+      })
+      .catch((error) => console.error("Erro ao buscar notícias:", error));
+  }, []);
   return (
     <>
       <Carousel fade className="carousel">
@@ -80,12 +65,13 @@ const CarouselConst = () => {
           </h1>
         </Carousel.Item>
       </Carousel>
-      <Container>
+      <div id="div-w-cont">
+        <Container id="who-cont">
 
         <Stack direction="horizontal" gap={3}>
 
           <div className="p-2">
-            <h2>Quem somos</h2>
+            <h1>Quem somos</h1>
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The
             point of using Lorem Ipsum is that it has a more-or-less normal
@@ -105,17 +91,11 @@ const CarouselConst = () => {
               </Link>
             </div>
           </div>
+          
           <div className="p-2">
-            <Figure className="parallax"><Figure.Image src={sun} width={256} height={256} id="sun"></Figure.Image>
-              <Figure.Image
-                width={1024}
-                height={1024}
-                alt="171x180"
-                src={island}
-                id="island"
-              />
-
-
+            <Figure className="parallax">
+              <Figure.Image src={sun} width={256} height={256} id="sun"></Figure.Image>
+              <Figure.Image width={1024} height={1024} alt="171x180" src={island} id="island" />
             </Figure>
 
           </div>
@@ -123,71 +103,108 @@ const CarouselConst = () => {
         </Stack>
 
       </Container>
+      </div>
+      
+      <div id="div-f-cont">
+        {/* <Image src={decorPaper}>
+
+      </Image> */}
+        <Container className="acord-cont">
+          <section>
+            <Row>
+              <div>
+                <h1>Sabor e Saúde em Cada Prato</h1>
+                <p>
+                  Bem-vindo ao nosso mundo de nutrição e bem-estar. Desfrute de refeições deliciosas que também são boas para você. Descubra um cardápio diversificado, com opções frescas e saudáveis, preparadas com ingredientes de qualidade. Compartilhe suas sugestões para melhorarmos ainda mais. Explore agora!
+                </p>
+              </div>
+
+            </Row>
+
+            <Row>
+
+              <Figure>
+                <Figure.Image src={land} class="animated-image" />
+              </Figure>
+
+            </Row>
+          </section>
+
+
+        </Container>
+      </div>
+      <div>
+        <Container>
+          <section>
+            <Row>
+              <Accordion>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>Accordion Item #1</Accordion.Header>
+                  <Accordion.Body>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+
+                  </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>Accordion Item #2</Accordion.Header>
+                  <Accordion.Body>
+
+                  </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>Accordion Item #2</Accordion.Header>
+                  <Accordion.Body>
+
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>Accordion Item #2</Accordion.Header>
+                  <Accordion.Body>
+
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="4">
+                  <Accordion.Header>Accordion Item #2</Accordion.Header>
+                  <Accordion.Body>
+
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </Row>
+          </section>
+        </Container>
+      </div>
+
+
+
       {/* Noticias */}
       <Container className="main columns news-cont">
-        <Row xs={1} md={2} className="g-4">
-          {articles.map((article, idx) => (
-            <section className="column main-columns" key={idx}>
-
-              <div className="columns">
-                <div className="column nested-column">
-                  <a className="article" href={article.link}>
-
-                    <Figure className="article-image is-3by2 ">
-                      <Figure.Image src={article.imageSrc}>
-
-                      </Figure.Image>
-
-                    </Figure>
-                    <div className="article-body">
-                      <h2 className="article-title">
-                        {article.title}
-                      </h2>
-                      <p className="article-content">
-                        {article.content}
-                      </p>
-                      <footer className="article-info">
-                        <span>{article.author}</span>
-                        <span>{article.comments}</span>
-                      </footer>
-                    </div>
-                    
-                  </a>
+        <div id="news-title">
+          <h1>Últimas notícias</h1>
+        </div>
+        <Row xs={1} md={2} lg={3}>
+          {noticias.map((noticia, idx) => (
+            <Col key={idx} className="column main-columns">
+              <Link to={noticia.url} className="article">
+                <Figure className="article-image is-3by2">
+                  <Figure.Image src={noticia.urlToImage} />
+                </Figure>
+                <div className="article-body">
+                  <h2 className="article-title">{noticia.title}</h2>
+                  <p className="article-content">{noticia.description}</p>
+                  <footer className="article-info">
+                    <span>{noticia.author}</span>
+                    <span>{noticia.name}</span>
+                  </footer>
                 </div>
-              </div>
-            </section>
+              </Link>
+            </Col>
           ))}
         </Row>
-    
       </Container>
-      {/* Notícias */}
-      {/* <Container id="news-cont">
-        <Stack> */}
-      {/* <Row xs={1} md={2} className="g-4">
-            {cardData.map((card, idx) => (
-              <Col key={idx}>
-                <Card>
-                  <Card.Img variant="top" src={card.imageSrc} />
-                  <Card.Body>
-                    <Card.Title>{card.title}</Card.Title>
-                    <Card.Text>{card.description}<Link to={card.link}>
-                      <Button>Saiba mais</Button>
-                    </Link></Card.Text>
-                  </Card.Body>
-
-
-                </Card>
-              </Col>
-            ))}
-          </Row> */}
-
-
-      {/* </Stack>
-
-      </Container> */}
-
-
-
 
     </>
   );

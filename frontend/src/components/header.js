@@ -55,7 +55,7 @@ const HeaderConst = () => {
           ) : (
             <><Navbar.Brand className="d-flex align-items-center">
               <Nav className="me-auto">
-                <Nav.Link>
+                <div className="div-link">
                   <Link to="/" className="text-decoration-none">
                     <Figure>
                       <Figure.Image
@@ -64,63 +64,63 @@ const HeaderConst = () => {
                     </Figure>
                   </Link>
 
-                </Nav.Link>
+                </div>
               </Nav>
               <Nav className="me-auto">
-                <Nav.Link>
+                <div className="div-link">
                   <Link to="/" className="text-decoration-none">
                     <h2>Nutrifood </h2>
                   </Link>
-                </Nav.Link>
+                </div>
               </Nav>
             </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
                 <Nav className="me-auto">
-                  <Nav.Link>
+                  <div className="div-link">
                     <Link to="/reviews" className="text-decoration-none">
                       Avaliações
                     </Link>
-                  </Nav.Link>
-                  <Nav.Link>
+                  </div>
+                  <div className="div-link">
                     <Link
                       to="/menu"
                       className="text-decoration-none"
                     >
                       Cardápio
                     </Link>
-                  </Nav.Link>
+                  </div>
 
-                  <Nav.Link>
+                  <div className="div-link">
                     <Link to="/suggestions" className="text-decoration-none">
                       Sugestões
                     </Link>
-                  </Nav.Link>
+                  </div>
                 </Nav>
 
               </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
                 <Nav className="me-auto">
-                  <Nav.Link>
+                  <div className="div-link">
 
                     <Link to="/contact" className="text-decoration-none">
                       Contato
                     </Link>
-                  </Nav.Link>
+                  </div>
 
-                  <Nav.Link>
+                  <div className="div-link">
                     <Link to="/about" className="text-decoration-none">
                       Sobre
                     </Link>
-                  </Nav.Link>
+                  </div>
 
 
                 </Nav>
                 <Nav className="me-auto">
-                  <Nav.Link>
+                  <div className="div-link">
                     <Link to="/login" className="text-decoration-none">
                       <Button to="/login">
                         <ion-icon name="person"></ion-icon>Entrar
                       </Button>
                     </Link>
-                  </Nav.Link>
+                  </div>
                 </Nav>
               </Navbar.Brand></>
           )}
@@ -148,11 +148,11 @@ const HeaderConst = () => {
                   </Col>
                   <Col>
               <Nav className="me-auto">
-                <Nav.Link>
+                <div className="div-link">
                   <Link to="/" className="text-decoration-none">
                     <h2>nutrifood </h2>
                   </Link>
-                </Nav.Link>
+                </div>
               </Nav>
                   </Col>
                 </Row>
