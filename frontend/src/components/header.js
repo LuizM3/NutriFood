@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button, Figure } from "react-bootstrap";
+import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button, Figure, Form } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "../assets/styles/header.scss";
 
 const logo = require("../assets/images/logo.png");
 
-const HeaderConst =  () => {
+const HeaderConst = () => {
 
   const [isToggled, setIsToggled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -23,6 +23,31 @@ const HeaderConst =  () => {
 
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
 
+  const Verify = () => {
+    const [searchParams] = useSearchParams();
+    const tokenVerify = searchParams.get("token");
+
+    return tokenVerify;
+  };
+
+  const token = Verify();
+
+  const GetName = async () => {
+
+    try {
+      const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
+      if (resp.ok) {
+        const data = await resp.json();
+        const validation = await data.validation; //validação do token
+
+      }
+    } catch (error) {
+      console.error("Erro ao enviar requisição:", error);
+    }
+  };
+
+  const Name = GetName();
+
   return (
 
     <>
@@ -31,12 +56,10 @@ const HeaderConst =  () => {
           <Navbar.Brand className="d-flex align-items-center">
             <Nav className="me-auto">
               <Nav.Link>
-                <Link to="/" className="text-decoration-none">
+                <Link to={"/?token=" + token} className="text-decoration-none">
                   <Figure>
                     <Figure.Image
-                      
-                      src={logo}
-                    />
+                      src={logo}/>
                   </Figure>
                 </Link>
 
@@ -44,8 +67,8 @@ const HeaderConst =  () => {
             </Nav>
             <Nav className="me-auto">
               <Nav.Link>
-                <Link to="/" className="text-decoration-none">
-                <h2>Nutrifood </h2>
+                <Link to={"/?token=" + token} className="text-decoration-none">
+                  <h2>Nutrifood </h2>
                 </Link>
               </Nav.Link>
             </Nav>
@@ -54,21 +77,19 @@ const HeaderConst =  () => {
           <Navbar.Brand className="d-flex align-items-center">
             <Nav className="me-auto">
               <Nav.Link>
-                <Link to="/reviews" className="text-decoration-none">
+                <Link to={"/reviews?token=" + token} className="text-decoration-none">
                   Avaliações
                 </Link>
               </Nav.Link>
               <Nav.Link>
                 <Link
-                  to="/menu"
-                  className="text-decoration-none"
-                >
+                  to={"/menu?token=" + token} className="text-decoration-none">
                   Cardápio
                 </Link>
               </Nav.Link>
 
               <Nav.Link>
-                <Link to="/suggestions" className="text-decoration-none">
+                <Link to={"/suggestions?token=" + token} className="text-decoration-none">
                   Sugestões
                 </Link>
               </Nav.Link>
@@ -78,22 +99,20 @@ const HeaderConst =  () => {
           <Navbar.Brand className="d-flex align-items-center">
             <Nav className="me-auto">
               <Nav.Link>
-
-                <Link to="/contact" className="text-decoration-none">
+                <Link to={"/contact?token=" + token} className="text-decoration-none">
                   Contato
                 </Link>
               </Nav.Link>
 
               <Nav.Link>
-                <Link to="/about" className="text-decoration-none">
+                <Link to={"/about?token=" + token} className="text-decoration-none">
                   Sobre
                 </Link>
               </Nav.Link>
-            
-
             </Nav>
+
             <Nav className="me-auto">
-                <Nav.Link>
+              <Nav.Link>
                 <Link to="/login" className="text-decoration-none">
                   <Button to="/login">
                     <ion-icon name="person"></ion-icon>Entrar
@@ -106,133 +125,6 @@ const HeaderConst =  () => {
       </Navbar>
     </>
 
-
-    // <>
-    //   <Navbar collapseOnSelect fixed="top">
-    //       <div>
-    //         {isResponsive ? (
-    //           <Navbar.Toggle
-    //             aria-controls="offcanvas-navbar"
-    //             as={ToggleButton}
-    //             variant="outline-light"
-    //             onClick={handleShow}
-    //             style={{
-    //               textDecoration: "none",
-    //               outline: "0",
-    //               boxShadow: "none",
-    //             }}
-    //             id="toggle-nav"
-    //           ></Navbar.Toggle>
-    //         ) : (
-    //           <Nav className="d-flex bg-body-white">
-    //             <div>
-    //               
-    //             </div>
-    //             <div>
-    //               <Link
-    //                 to="/contact"
-    //                 className="text-decoration-none"
-
-    //               >
-    //                 Contato
-    //               </Link>
-    //               <Link
-    //                 to="/about"
-    //                 className="text-decoration-none"
-
-    //               >
-    //                 Sobre
-    //               </Link>
-    //               <Link
-    //                 to="/login"
-    //                 className="text-decoration-none"
-    //                 style={{ border: "none" }}
-    //               >
-    //                 <Button to="/login">
-    //                   <ion-icon name="person"></ion-icon>Entrar
-    //                 </Button>
-    //               </Link>
-    //             </div>
-    //           </Nav>
-    //         )}
-
-    //         <Offcanvas
-    //           show={show && isResponsive}
-    //           onHide={handleClose}
-    //           scroll={false}
-    //           backdrop={false}
-    //           placement="end"
-    //         >
-    //           <Offcanvas.Header closeButton>
-    //             <Offcanvas.Title>
-    //               <Link to="/">
-    //                 <Nav>
-    //                   <Image src={logo} alt="Logo" fluid/>
-    //                 </Nav>
-    //               </Link>
-    //             </Offcanvas.Title>
-    //           </Offcanvas.Header>
-    //           <Offcanvas.Body>
-    //             <Nav>
-    //               <Link
-    //                 to="/reviews"
-    //                 className="text-decoration-none"
-
-    //               >
-    //                 Avaliações
-    //               </Link>
-    //               <Link
-    //                 to="/menu"
-    //                 className="text-decoration-none"
-
-    //               >
-    //                 Cardápio
-    //               </Link>
-    //               <Link
-    //                 to="/suggestions"
-    //                 className="text-decoration-none"
-
-    //               >
-    //                 Sugestões
-    //               </Link>
-    //               <Link
-    //                 to="/contact"
-    //                 className="text-decoration-none"
-
-    //               >
-    //                 Contato
-    //               </Link>
-    //               <Link
-    //                 to="/about"
-    //                 className="text-decoration-none"
-
-    //               >
-    //                 Sobre
-    //               </Link>
-    //               <Link to="/login" className="text-decoration-none">
-    //                 <Button to="/login">
-    //                   <ion-icon name="person"></ion-icon>Entrar
-    //                 </Button>
-    //               </Link>
-    //             </Nav>
-    //           </Offcanvas.Body>
-    //         </Offcanvas>
-
-    //         <div>
-    //           <Link to="/">
-    //             <Figure>
-    //               <Figure.Image
-    //                 width={256}
-    //                 height={256}
-    //                 alt="171x180"
-    //                 src={logo}
-    //               />
-    //             </Figure>
-    //           </Link>
-    //         </div>
-    //       </div>
-    //   </Navbar>
-    // </>
   );
 };
 

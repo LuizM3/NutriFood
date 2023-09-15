@@ -1,6 +1,6 @@
 import "../assets/styles/login.scss";
 import { Modal, Row, Col, Form, Button, Spinner } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -37,8 +37,7 @@ const LoginConst = () => {
           const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
           if(resp.ok){
             const data =  await resp.json();
-            const nome = await data.name;
-            alert(nome);
+            const validation = await data.validation; //validação do token
           }
         } else {
           // Credenciais inválidas
