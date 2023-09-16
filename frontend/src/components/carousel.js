@@ -6,9 +6,9 @@ import { Container, Accordion, Button, Stack, Col, Row, Figure, Table } from "re
 import { Link } from "react-router-dom";
 
 
-const apiKey = "61c379021f8b42b3bda1cfd5ddff9255";
+const apiKey = "eedb530eb8a34cd2b4049d1be24cde1a";
 const pageSize = 6;
-const apiUrl = `https://newsapi.org/v2/everything?q=nutrition&from=2023-08-14&pageSize=${pageSize}&sortBy=publishedAt&apiKey=${apiKey}`;
+const apiUrl = `https://newsapi.org/v2/everything?q=news&from=2023-08-14&pageSize=${pageSize}&sortBy=publishedAt&apiKey=${apiKey}`;
 
 
 const CarouselConst = () => {
@@ -16,21 +16,76 @@ const CarouselConst = () => {
   const island = require("../assets/images/island.png");
   const sun = require("../assets/images/sun.png");
   const quote = require("../assets/images/quote.png");
-  const [noticias, setNoticias] = useState([]);
-
-  useEffect(() => {
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "ok") {
-          setNoticias(data.articles);
-        }
-      })
-      .catch((error) => console.error("Erro ao buscar notícias:", error));
-  }, []);
+  // const [noticias, setNoticias] = useState([]);
+  const noticias = [
+    {
+      url: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/",
+      urlToImage: "https://www.guiaviagensbrasil.com/imagens/Imagem%20do%20mar%20calma%20e%20belo%20da%20Praia%20da%20Engenhoca-Itacar%C3%A9-Bahia-BA.jpg",
+      title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
+      description:
+        "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
+      author: "IFES Santa Teresa",
+      name: "Teste"
+    },
+    {
+      url: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/",
+      urlToImage: "https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg",
+      title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
+      description:
+        "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
+      author: "IFES Santa Teresa",
+      name: "Teste"
+    },
+    {
+      url: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/",
+      urlToImage: "https://static.vecteezy.com/ti/fotos-gratis/t2/22653879-fantasia-ilha-com-cachoeiras-3d-ilustracao-elementos-do-isto-imagem-mobiliado-de-nasa-generativo-ai-gratis-foto.jpg",
+      title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
+      description:
+        "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
+      author: "IFES Santa Teresa",
+      name: "Teste"
+    },
+    {
+      url: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/",
+      urlToImage: "https://www.guiaviagensbrasil.com/imagens/Imagem%20do%20mar%20calma%20e%20belo%20da%20Praia%20da%20Engenhoca-Itacar%C3%A9-Bahia-BA.jpg",
+      title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
+      description:
+        "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
+      author: "IFES Santa Teresa",
+      name: "Teste"
+    },
+    {
+      url: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/",
+      urlToImage: "https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg",
+      title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
+      description:
+        "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
+      author: "IFES Santa Teresa",
+      name: "Teste"
+    },
+    {
+      url: "https://conexaosafra.com/graos/producao-de-milho-do-ifes-apresenta-resultados-acima-da-media-nacional/",
+      urlToImage: "https://static.vecteezy.com/ti/fotos-gratis/t2/22653879-fantasia-ilha-com-cachoeiras-3d-ilustracao-elementos-do-isto-imagem-mobiliado-de-nasa-generativo-ai-gratis-foto.jpg",
+      title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
+      description:
+        "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
+      author: "IFES Santa Teresa",
+      name: "Teste"
+    },
+  ];
+  // useEffect(() => {
+  //   fetch(apiUrl)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data.status === "ok") {
+  //         setNoticias(data.articles);
+  //       }
+  //     })
+  //     .catch((error) => console.error("Erro ao buscar notícias:", error));
+  // }, []);
   return (
     <>
-      <Carousel fade className="carousel">
+      {/* <Carousel className="carousel">
         <Carousel.Item id="day1">
           <h1 className="tittleCar">
             <p>Bem-vindo</p>
@@ -64,34 +119,69 @@ const CarouselConst = () => {
             <Button className="bt-car">Saiba mais</Button>
           </h1>
         </Carousel.Item>
+      </Carousel> */}
+
+      <Carousel slide={true} interval={950} >
+        <Carousel.Item id="day1">
+
+          <h1 className="tittleCar">
+            <p>Bem-vindo</p>
+          </h1>
+        </Carousel.Item>
+        <Carousel.Item id="day2">
+   
+          <h1 className="tittleCar">
+            <p> Avalie nossa comida</p>
+            <Button className="bt-car">Saiba mais</Button>
+          </h1>
+
+        </Carousel.Item>
+        <Carousel.Item id="day3">
+          <h1 className="tittleCar">
+            <p> Sugira uma refeição</p>
+            <Button className="bt-car">Saiba mais</Button>
+          </h1>
+        </Carousel.Item>
+
+        <Carousel.Item id="day4">
+          <h1 className="tittleCar">
+            <p>Cardápio do dia</p>
+            <Button className="bt-car">Saiba mais</Button>
+          </h1>
+        </Carousel.Item>
+
+        <Carousel.Item id="day5">
+          <h1 className="tittleCar">
+            <p>Contate-nos </p>
+            <Button className="bt-car">Saiba mais</Button>
+          </h1>
+        </Carousel.Item>
       </Carousel>
-
-
       <div id="div-l-cont">
         <Container>
-<section><Row id="as">
+          <section><Row id="as">
 
-              <Figure className="parallax">
-                <Figure.Image src={sun}/>
-                <Figure.Image src={island}/>
-              </Figure>
+            <Figure className="parallax">
+              <Figure.Image src={sun} />
+              <Figure.Image src={island} />
+            </Figure>
 
-  </Row>
-  <Row>
-    <div>
-      <h1>
-      Quem somos?
-      </h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-      </p>
-    </div>
-  </Row>
-  
-</section>
-                
-             
-          
+          </Row>
+            <Row>
+              <div>
+                <h1>
+                  Quem somos?
+                </h1>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+              </div>
+            </Row>
+
+          </section>
+
+
+
 
 
 
@@ -176,62 +266,62 @@ const CarouselConst = () => {
           <section>
             <Row>
               <Col><Row>
-              <h1>Perguntas frequentes</h1>
-              <p>Com dúvida em mais alguma coisa? Tente nos contatar</p>
-            </Row> <Row>
-                <Figure>
-                 
+                <h1>Perguntas frequentes</h1>
+                <p>Com dúvida em mais alguma coisa? Tente nos contatar</p>
+              </Row> <Row>
+                  <Figure>
+
                     <Figure.Image src={quote} />
-                </Figure>
+                  </Figure>
+                </Row>
+
+              </Col>
+
             </Row>
-            
-          </Col>
-
-        </Row>
-        <Row>
-          <Accordion>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>O que é o projeto Nutrifood?</Accordion.Header>
-              <Accordion.Body>
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            <Row>
+              <Accordion>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>O que é o projeto Nutrifood?</Accordion.Header>
+                  <Accordion.Body>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
 
-              </Accordion.Body>
-            </Accordion.Item>
+                  </Accordion.Body>
+                </Accordion.Item>
 
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Como o site começou?</Accordion.Header>
-              <Accordion.Body>
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>Como o site começou?</Accordion.Header>
+                  <Accordion.Body>
 
-              </Accordion.Body>
-            </Accordion.Item>
+                  </Accordion.Body>
+                </Accordion.Item>
 
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>Qual a finalidade do projeto?</Accordion.Header>
-              <Accordion.Body>
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>Qual a finalidade do projeto?</Accordion.Header>
+                  <Accordion.Body>
 
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
-              <Accordion.Header>Quem são os tutores?</Accordion.Header>
-              <Accordion.Body>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>Quem são os tutores?</Accordion.Header>
+                  <Accordion.Body>
 
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="4">
-              <Accordion.Header>Quem são os integrantes?</Accordion.Header>
-              <Accordion.Body>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="4">
+                  <Accordion.Header>Quem são os integrantes?</Accordion.Header>
+                  <Accordion.Body>
 
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </Row>
-      </section>
-    </Container >
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </Row>
+          </section>
+        </Container >
       </div >
 
-  {/* Noticias */ }
-  <Container className = "main columns news-cont" >
+      {/* Noticias */}
+      <Container className="main columns news-cont" >
         <div id="news-title">
           <h1>Últimas notícias</h1>
         </div>
@@ -254,8 +344,8 @@ const CarouselConst = () => {
             </Col>
           ))}
         </Row>
-        </Container>
-      </>
+      </Container>
+    </>
 
   );
 };

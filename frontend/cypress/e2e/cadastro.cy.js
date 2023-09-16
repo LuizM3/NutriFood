@@ -16,8 +16,6 @@ describe('signin page', () => {
 
     cy.getByData("links").find("a").contains('Nutrifood').click()
     cy.getByData("links").find("a").contains('Avaliações').click()
-    cy.getByData("links").find("a").contains('Cardápio').click()
-    cy.getByData("links").find("a").contains('Sugestões').click()
     cy.getByData("links").find("a").contains('Contato').click()
     cy.getByData("links").find("a").contains('Sobre').click()
     cy.getByData("links").find("a").contains('Entrar').click()
@@ -29,17 +27,16 @@ describe('signin page', () => {
     cy.getByData("form-nome").type(randomNome)
     cy.getByData("form-email").type(randomEmail + "@gmail.com")
     cy.getByData("form-pass").type(randomPass)
-    cy.getByData("form-passcheck").type(randomPass + 1)
+    cy.getByData("form-passc").type(randomPass + 1)
     cy.getByData("cadastrar").click()
 
-    cy.wait(2000)
     cy.getByData("links").find("button").contains('Fechar').click()
     cy.reload();
 
     cy.getByData("form-nome").type(randomNome)
     cy.getByData("form-email").type(randomEmail + "@gmail.com")
     cy.getByData("form-pass").type(randomPass)
-    cy.getByData("form-passcheck").type(randomPass)
+    cy.getByData("form-passc").type(randomPass)
     cy.getByData("cadastrar").click()
 
     cy.get("#inline-radio-1").click()
@@ -59,7 +56,7 @@ describe('signin page', () => {
     cy.getByData("form-nome").type(randomNome)
     cy.getByData("form-email").type(randomEmail + "@gmail.com")
     cy.getByData("form-pass").type(randomPass)
-    cy.getByData("form-passcheck").type(randomPass)
+    cy.getByData("form-passc").type(randomPass)
     cy.getByData("cadastrar").click()
     cy.wait(2000)
 

@@ -91,7 +91,7 @@ const LoginConst = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div id="div-z-cont">
+      <div id="div-z-cont" data-test="links">
         <Container className="login-cont">
           <section>
             <Row>

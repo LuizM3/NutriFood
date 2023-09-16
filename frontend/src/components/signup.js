@@ -291,7 +291,7 @@ const SignUpConst = () => {
                 </Modal.Footer>
             </Modal>
 
-            <div id="div-z-cont">
+            <div id="div-z-cont" data-test="links">
                 <Container className="login-cont">
                     <section>
                         <Row>
@@ -344,7 +344,7 @@ const SignUpConst = () => {
                                             /> <Form.Control
                                                 type="password"
                                                 placeholder="Confirmar senha"
-                                                data-test="form-passcheck"
+                                                data-test="form-passc"
                                                 value={confirmarSenha}
                                                 onChange={(e) => setConfirmarSenha(e.target.value)}
                                             />

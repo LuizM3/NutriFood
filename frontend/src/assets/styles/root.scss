@@ -34,7 +34,6 @@
 }
 
 #form-login {
-
   #div-arrow {
     width: 300px;
 
@@ -58,20 +57,21 @@
     }
 
     @media(max-width:540px) {
-      width: 75%;
-      height: 75%;
+      width: 85%;
+      height: 85%;
 
     }
   }
 
-  @media(max-width: 375px) {
+
+  @media(max-width: 540px){
     padding: 0 !important;
     border: none;
     transition: all 0.5s;
   }
 
   @media(max-width: 768px) {
-    padding: 48px 40px 36px;
+    padding: 36px 48px;
   }
 
   input {
@@ -90,7 +90,7 @@
     color: var(--primary);
   }
 
-  padding: 48px 120px 36px;
+  padding:36px 120px;
   min-height: 500px;
 
   margin: 0 auto;

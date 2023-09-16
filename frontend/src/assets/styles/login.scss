@@ -6,6 +6,9 @@
 
 #div-z-cont {
   height: 100%;
+  @media(max-width:540px){
+    height: 80%;
+  }
   box-sizing: inherit;
   display: flex;
   
