@@ -5,7 +5,6 @@ import Header from "../components/header";
 const SignIn = () => {
   return (
     <>
-      
       <SignInComp />
     </>
   );

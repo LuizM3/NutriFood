@@ -1,11 +1,12 @@
 import "../assets/styles/login.scss";
 
-import { Form, Button, Modal, Container, Spinner } from "react-bootstrap";
+import { Form, Button, Modal, Container, Spinner, Row, Figure } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
+const arrow = require("../assets/images/left-arrow.png");
+const logo = require("../assets/images/logo.png");
 const SignUpConst = () => {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
@@ -51,8 +52,8 @@ const SignUpConst = () => {
     };
 
     const handleColetaSubmit = async () => {
-        
-  
+
+
 
         const dadosCompletos = {
             nome,
@@ -82,7 +83,7 @@ const SignUpConst = () => {
                 setTimeout(() => {
                     navigate("/login");
                 }, 4000);
-                
+
 
             } else {
                 setErrorModal(true);
@@ -289,67 +290,92 @@ const SignUpConst = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <div className="cont">
+
+            <div id="div-z-cont">
+                <Container className="login-cont">
+                    <section>
+                        <Row>
+
+                            <Form id="form-login" onSubmit={handleSubmit}>
+                                <div id="div-arrow">
+                                    <Link to="/" id="arrow">
+                                        <Figure>
+                                            <Figure.Image src={arrow}></Figure.Image>
+                                        </Figure>
+                                    </Link>
+                                </div>
+
+                                <div id="div-form-l">
+                                    <Figure>
+                                        <Figure.Image src={logo} />
+                                    </Figure>
+                                    <h1>Cadastro de usuário</h1>
+
+                                    <div className="in-section">
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Insira seus dados pessoais abaixo</Form.Label>
+                                        </Form.Group>
+                                    </div>
+                                    
+                                    <div className="in-section">
+                                        <Form.Group className="mb-3">
+                                            <Form.Control
+                                                type="text"
+                                                aria-label="Nome"
+                                                placeholder="Nome"
+                                                autocomplete="username"
+                                                autocapitalize="Nome"
+                                                value={nome}
+                                                data-test="form-nome"
+                                                onChange={(e) => setNome(e.target.value)}
+                                            />
+                                            <Form.Control
+                                                type="email"
+                                                placeholder="Email"
+                                                value={email}
+                                                data-test="form-email"
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            /><Form.Control
+                                                type="password"
+                                                placeholder="Senha"
+                                                value={senha}
+                                                data-test="form-pass"
+                                                onChange={(e) => setSenha(e.target.value)}
+                                            /> <Form.Control
+                                                type="password"
+                                                placeholder="Confirmar senha"
+                                                data-test="form-passcheck"
+                                                value={confirmarSenha}
+                                                onChange={(e) => setConfirmarSenha(e.target.value)}
+                                            />
+                                        </Form.Group>
+
+                                    </div>
+
+                                    <div id="div-btn">
+                                        <Link to="/login">Fazer login</Link>
+                                        <Button type="submit" id="button-login-signup" data-test="cadastrar">
+                                            Cadastrar
+                                        </Button>
+                                    </div>
+
+                                </div>
+
+
+
+                            </Form>
+                        </Row>
+                    </section>
+                </Container>
+            </div>
+
+
+            {/* <div className="cont">
                 <div id="in-cont">
 
-                    <Form id="form-login" onSubmit={handleSubmit}>
-                        <h2>Cadastro de usuário</h2>
-                        <section className="mb-4">
-                            <div className="in-section">
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Nome</Form.Label>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Label>Senha</Form.Label>
-                                    <Form.Label>Confirmar senha</Form.Label>
-                                </Form.Group>
-                            </div>
-                            <div id="linha-vertical"></div>
-                            <div className="in-section">
-                                <Form.Group className="mb-3">
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Nome"
-                                        value={nome}
-                                        data-test="form-nome"
-                                        onChange={(e) => setNome(e.target.value)}
-                                    /> <Form.Control
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        data-test="form-email"
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    /><Form.Control
-                                        type="password"
-                                        placeholder="Senha"
-                                        value={senha}
-                                        data-test="form-pass"
-                                        onChange={(e) => setSenha(e.target.value)}
-                                    /> <Form.Control
-                                        type="password"
-                                        placeholder="Confirmar senha"
-                                        data-test="form-passcheck"
-                                        value={confirmarSenha}
-                                        onChange={(e) => setConfirmarSenha(e.target.value)}
-                                    />
-                                </Form.Group>
-
-                            </div>
-                        </section>
-                        <div id="div-btn">
-                            <div id="div-btn" >
-                                <Link to="/login">Fazer login</Link>
-                            </div>
-                            <Button type="submit" id="button-login-signup" data-test="cadastrar">
-                                Cadastrar
-                            </Button>
-                        </div>
-
-
-
-                    </Form>
                 </div>
-               
-            </div >
+
+            </div > */}
         </>
     );
 };
