@@ -21,9 +21,11 @@ describe('signin page', () => {
     cy.getByData("links").find("a").contains('Entrar').click()
     cy.getByData("links").find("a").contains('Cadastre-se agora').click()
 
+    cy.wait(2000)
     cy.getByData("cadastrar").click()
     cy.getByData("links").find("button").contains('Fechar').click()
 
+    cy.wait(2000)
     cy.getByData("form-nome").type(randomNome)
     cy.getByData("form-email").type(randomEmail + "@gmail.com")
     cy.getByData("form-pass").type(randomPass)
@@ -33,6 +35,7 @@ describe('signin page', () => {
     cy.getByData("links").find("button").contains('Fechar').click()
     cy.reload();
 
+    cy.wait(2000)
     cy.getByData("form-nome").type(randomNome)
     cy.getByData("form-email").type(randomEmail + "@gmail.com")
     cy.getByData("form-pass").type(randomPass)
@@ -42,6 +45,7 @@ describe('signin page', () => {
     cy.get("#inline-radio-1").click()
     cy.get("#inline-checkbox-4").click()
 
+    cy.wait(2000)
     cy.get("#inline-radio-9").click()
     cy.getByData("links").find("button").contains('Enviar').click()
     cy.wait(2000)
