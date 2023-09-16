@@ -1,6 +1,6 @@
 import "../assets/styles/login.scss";
 
-import { Form, Button, Modal, Container } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
@@ -9,6 +9,10 @@ const SignUpConst = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
+
+    const [vinculoAoIfes, setVinculoAoIfes] = useState("");
+    let [vegetariano, setVegetariano] = useState("");
+    let [refeicoes, setRefeicoes] = useState([]);
 
     const [emailError, setEmailError] = useState("");
     const [formModal, setFormModal] = useState(false);
@@ -31,7 +35,6 @@ const SignUpConst = () => {
             return;
         }
 
-
         const isEmailUnique = await checkEmailUniqueness(email);
 
         if (!isEmailUnique) {
@@ -47,11 +50,44 @@ const SignUpConst = () => {
     const handleColetaSubmit = async () => {
         setSuccessModal(true);
 
+        if(vegetariano == "true"){
+            vegetariano = Boolean("true");
+        } else if (vegetariano == "false") {
+            vegetariano = Boolean("false");
+        };
+
+        let objetoRefeicoes = {
+            cafeDaManha: false,
+            almoco: false,
+            lancheDaTarde: false,
+            jantar: false
+        }
+
+        for (let i = 0; i < refeicoes.length; i++) {
+            
+            if(refeicoes[i] == 1){
+                objetoRefeicoes.cafeDaManha = true;
+                
+            } else if(refeicoes[i] == 2){
+                objetoRefeicoes.almoco = true;
+                
+            }else if(refeicoes[i] == 3){
+                objetoRefeicoes.lancheDaTarde = true;
+                
+            }else if(refeicoes[i] == 4){
+                objetoRefeicoes.jantar = true;
+            }
+        }
+        
         const dadosCompletos = {
             nome,
             email,
-            senha
+            senha,
+            vinculoAoIfes,
+            objetoRefeicoes,
+            vegetariano
         };
+
 
         try {
             const response = await fetch(`http://localhost:9000/signup`, {
@@ -62,11 +98,11 @@ const SignUpConst = () => {
                 },
 
                 body: JSON.stringify(dadosCompletos),
+
             });
 
             if (response.ok) {
                 setSuccessModal(true);
-
             } else {
                 setErrorModal(true);
             }
@@ -92,6 +128,23 @@ const SignUpConst = () => {
         return false;
     };
 
+    const handleVinculoChange = (e) => {
+        setVinculoAoIfes(e.target.value);
+    };
+
+    const handleVegetarianoChange = (e) => {
+        setVegetariano(e.target.value);
+    };
+
+    const handleRefeicoes = (e) => {
+        const value = e.target.value;
+        if (e.target.checked) {
+            setRefeicoes([...refeicoes, value]);
+        } else {
+            setRefeicoes(refeicoes.filter((refeicao) => refeicao !== value));
+        }
+    };
+
     return (
         <>
 
@@ -107,30 +160,48 @@ const SignUpConst = () => {
                             Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
                             <span id="asterisco">*</span>
                         </h5>
-                        <p>Marque apenas uma opção.</p>
 
                         {["radio"].map((type) => (
                             <div key={`inline-${type}`} className="mb-3">
                                 <Form.Check
                                     inline
                                     label="Aluno do ensino médio"
-                                    name="group1"
+                                    name="vinculoAoIfes"
                                     type={type}
                                     id={`inline-${type}-1`}
+                                    value={"AM"}
+                                    checked={vinculoAoIfes === "AM"}
+                                    onChange={handleVinculoChange}
                                 />
                                 <Form.Check
                                     inline
                                     label="Aluno da graduação"
-                                    name="group1"
+                                    name="vinculoAoIfes"
                                     type={type}
                                     id={`inline-${type}-2`}
+                                    value={"AG"}
+                                    checked={vinculoAoIfes === "AG"}
+                                    onChange={handleVinculoChange}
                                 />
                                 <Form.Check
                                     inline
                                     label="Servidor, docente ou tercerizado"
-                                    name="group1"
+                                    name="vinculoAoIfes"
                                     type={type}
                                     id={`inline-${type}-3`}
+                                    value={"SDT"}
+                                    checked={vinculoAoIfes === "SDT"}
+                                    onChange={handleVinculoChange}
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Outro"
+                                    name="vinculoAoIfes"
+                                    type={type}
+                                    id={`inline-${type}-4`}
+                                    value={"Outro"}
+                                    checked={vinculoAoIfes === "Outro"}
+                                    onChange={handleVinculoChange}
                                 />
                             </div>
                         ))}
@@ -146,30 +217,38 @@ const SignUpConst = () => {
                                 <Form.Check
                                     inline
                                     label="Café da manhã"
-                                    name="group2"
+                                    name="refeicoes"
                                     type={type}
                                     id={`inline-${type}-4`}
+                                    value={1}
+                                    onChange={handleRefeicoes}
                                 />
                                 <Form.Check
                                     inline
                                     label="Almoço"
-                                    name="group2"
+                                    name="refeicoes"
                                     type={type}
                                     id={`inline-${type}-5`}
+                                    value={2}
+                                    onChange={handleRefeicoes}
                                 />
                                 <Form.Check
                                     inline
                                     label="Lanche da tarde"
-                                    name="group2"
+                                    name="refeicoes"
                                     type={type}
                                     id={`inline-${type}-6`}
+                                    value={3}
+                                    onChange={handleRefeicoes}
                                 />
                                 <Form.Check
                                     inline
                                     label="Jantar"
-                                    name="group2"
+                                    name="refeicoes"
                                     type={type}
                                     id={`inline-${type}-7`}
+                                    value={4}
+                                    onChange={handleRefeicoes}
                                 />
                             </div>
                         ))}
@@ -179,22 +258,29 @@ const SignUpConst = () => {
                         <h5>
                             Você é vegetariano?<span id="asterisco">*</span>
                         </h5>
-                        <p>Marque apenas uma opção.</p>
+
                         {["radio"].map((type) => (
                             <div key={`inline-${type}`} className="mb-4">
                                 <Form.Check
                                     inline
                                     label="Sim"
-                                    name="group3"
+                                    name="vegetariano"
                                     type={type}
                                     id={`inline-${type}-9`}
+                                    value={true}
+                                    checked={vegetariano === "true"}
+                                    onChange={handleVegetarianoChange}
                                 />
+                                <br></br>
                                 <Form.Check
                                     inline
                                     label="Não"
-                                    name="group3"
+                                    name="vegetariano"
                                     type={type}
                                     id={`inline-${type}-10`}
+                                    value={false}
+                                    checked={vegetariano === "false"}
+                                    onChange={handleVegetarianoChange}
                                 />
                             </div>
                         ))}
@@ -207,10 +293,6 @@ const SignUpConst = () => {
                 </Modal.Footer>
             </Modal>
 
-
-
-
-
             <Modal show={successModal} onHide={() => setSuccessModal(false)} className="modal">
 
                 <Modal.Header>
@@ -220,7 +302,6 @@ const SignUpConst = () => {
                 <Modal.Footer>
 
                     <Button variant="primary" onClick={() => setSuccessModal(false)}>
-
                         Fechar
                     </Button>
                 </Modal.Footer>
@@ -299,8 +380,8 @@ const SignUpConst = () => {
                         </section>
                         <div id="div-btn">
                             <div id="div-btn">
-                            <Link to="/login">Fazer login</Link>
-                        </div>
+                                <Link to="/login">Fazer login</Link>
+                            </div>
                             <Button type="submit" id="button-login-signup">
                                 Cadastrar
                             </Button>

@@ -2,14 +2,13 @@ var connection = require("../db");
 var express = require("express");
 var router = express.Router();
 
-
-// router.get("/", function (req, res) {
-//     res.send("oi");
-// });
-
-
 router.post("/", async (req, res) => {
-    const { nome, email, senha } = req.body;
+    const { nome, email, senha, vinculoAoIfes, objetoRefeicoes, vegetariano } = req.body;
+
+    const cafeDaManha = objetoRefeicoes.cafeDaManha;
+    const almoco = objetoRefeicoes.almoco;
+    const lancheDaTarde = objetoRefeicoes.lancheDaTarde;
+    const jantar = objetoRefeicoes.jantar;
 
 // Verifique se o email já está cadastrado
     connection.query(
@@ -24,8 +23,8 @@ router.post("/", async (req, res) => {
             } else {
                 // O email não está cadastrado, insira-o no banco de dados
                 connection.query(
-                    "INSERT INTO users (nome, email, senha) VALUES (?, ?, ?)",
-                    [nome, email, senha],
+                    "INSERT INTO users (nome, email, senha, VinculoAoIfes, cafeDaManha, almoco, lancheDaTarde, jantar, vegetariano) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    [nome, email, senha, vinculoAoIfes, cafeDaManha, almoco, lancheDaTarde, jantar,vegetariano],
                     (error, results) => {
                         if (error) {
                             res.status(500).json({ error: "Um erro ocorreu" });

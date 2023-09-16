@@ -32,21 +32,21 @@ const HeaderConst = () => {
 
   const token = Verify();
 
-  const GetName = async () => {
+  if (token){
+    const GetName = async () => {
 
-    try {
-      const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
-      if (resp.ok) {
-        const data = await resp.json();
-        const validation = await data.validation; //validação do token
-
+      try {
+        const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
+        if (resp.ok) {
+          const data = await resp.json();
+          const validation = await data.validation; //validação do token
+  
+        }
+      } catch (error) {
+        console.error("Erro ao enviar requisição:", error);
       }
-    } catch (error) {
-      console.error("Erro ao enviar requisição:", error);
-    }
-  };
-
-  const Name = GetName();
+    };
+  }
 
   return (
 
