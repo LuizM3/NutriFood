@@ -64,7 +64,7 @@
   }
 
 
-  @media(max-width: 540px){
+  @media(max-width: 540px) {
     padding: 0 !important;
     border: none;
     transition: all 0.5s;
@@ -82,13 +82,13 @@
   }
 
   .form-control:focus {
-    
-    
     transition: all 0.5s;
     box-shadow: none;
     border-color: var(--primary);
-    color: var(--primary);
+   
   }
+
+  
 
   padding:36px 120px;
   min-height: 500px;
@@ -391,8 +391,8 @@ body {
 }
 
 :root {
-  // root
-  --primary: #0cce6b;
+
+  --primary: #1acf8a;
   --secundary: #363537;
   --tertiary: #0a1e10;
   --quarter: #0e9956;

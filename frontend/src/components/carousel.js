@@ -85,41 +85,6 @@ const CarouselConst = () => {
   // }, []);
   return (
     <>
-      {/* <Carousel className="carousel">
-        <Carousel.Item id="day1">
-          <h1 className="tittleCar">
-            <p>Bem-vindo</p>
-          </h1>
-        </Carousel.Item>
-
-        <Carousel.Item id="day2">
-          <h1 className="tittleCar">
-            <p> Avalie nossa comida</p>
-            <Button className="bt-car">Saiba mais</Button>
-          </h1>
-        </Carousel.Item>
-
-        <Carousel.Item id="day3">
-          <h1 className="tittleCar">
-            <p> Sugira uma refeição</p>
-            <Button className="bt-car">Saiba mais</Button>
-          </h1>
-        </Carousel.Item>
-
-        <Carousel.Item id="day4">
-          <h1 className="tittleCar">
-            <p>Cardápio do dia</p>
-            <Button className="bt-car">Saiba mais</Button>
-          </h1>
-        </Carousel.Item>
-
-        <Carousel.Item id="day5">
-          <h1 className="tittleCar">
-            <p>Contate-nos </p>
-            <Button className="bt-car">Saiba mais</Button>
-          </h1>
-        </Carousel.Item>
-      </Carousel> */}
 
       <Carousel slide={true} interval={950} >
         <Carousel.Item id="day1">
@@ -129,7 +94,7 @@ const CarouselConst = () => {
           </h1>
         </Carousel.Item>
         <Carousel.Item id="day2">
-   
+
           <h1 className="tittleCar">
             <p> Avalie nossa comida</p>
             <Button className="bt-car">Saiba mais</Button>
@@ -173,18 +138,18 @@ const CarouselConst = () => {
                   Quem somos?
                 </h1>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                  O Restaurante Institucional(RI) do Ifes Campus Santa Teresa tem o objetivo de fornecer
+                  refeições equilibradas e adequadas às necessidades nutricionais dos estudantes, segundo
+                  os princípios dietéticos preconizados pelas normas de alimentação definidas pelo Ministério
+                  da Educação, e com observância das normas gerais de higiene sanitária para a produção
+                  da alimentação. Somos mais do que um restaurante; somos uma jornada gastronómica
+                  dedicada à nutrição consciente e ao prazer de comer bem. Nossa paixão pela saúde e
+                  bem-estar é o nosso ingrediente secreto.
                 </p>
               </div>
             </Row>
 
           </section>
-
-
-
-
-
-
         </Container>
       </div>
 
@@ -283,8 +248,17 @@ const CarouselConst = () => {
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>O que é o projeto Nutrifood?</Accordion.Header>
                   <Accordion.Body>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
+                    <p>
+                      O projeto nutrifood é um projeto criado pelos alunos Bryan Zucoloto, Ruan Pablo, Luiz
+                      Felipe, Filipe Kiefer, Alex Brandão e Heitor Poleze; do terceiro ano, do curso de informática
+                      para a internet no campus IFES Santa Teresa. No terceiro ano do curso, todos os alunos
+                      devem desenvolver um projeto e apresentar a fim de demonstrar seus conhecimentos
+                      adquiridos ao longo do curso. Nós do projeto nutrifood aproveitamos essa oportunidade
+                      para desenvolver algo que ajude a nossa comunidade, não apenas um projeto para passar
+                      de ano, a partir dessa mentalidade decidimos desenvolver um site nutricional do restaurante
+                      institucional do campus.
+                    </p>
 
                   </Accordion.Body>
                 </Accordion.Item>
@@ -292,6 +266,15 @@ const CarouselConst = () => {
                 <Accordion.Item eventKey="1">
                   <Accordion.Header>Como o site começou?</Accordion.Header>
                   <Accordion.Body>
+                    <p>
+                      Ao pensarmos sobre o projeto, todos entramos de acordo que queríamos algo que ajudasse
+                      nossa comunidade e então analisamos nossas possibilidades, que numa primeira conversa
+                      foram muitas, após algumas reuniões e com a ajuda dos orientadores fomos encaminhados
+                      a nutricionista do campus que tinha algumas dificuldades na captação de dados sobre o
+                      restaurante e as avaliações sobre as refeições realizadas no mesmo. Ao entendermos as
+                      preocupações da nutricionista foi-se decidido embarcar nessa aventura e começamos a
+                      desenvolver a primeira versão do site em uso atualmente.
+                    </p>
 
                   </Accordion.Body>
                 </Accordion.Item>
@@ -299,12 +282,39 @@ const CarouselConst = () => {
                 <Accordion.Item eventKey="2">
                   <Accordion.Header>Qual a finalidade do projeto?</Accordion.Header>
                   <Accordion.Body>
+                    <p>
+                      O projeto começou a partir das necessidades da nutricionista do IFES, que precisava
+                      realizar diversas pesquisas e apresentar ao final do ano a fim de manter a funcionalidade do
+                      restaurante institucional, pesquisas essas que se dividiam em muitas subseções que eram
+                      muito difícil de unir e apresentar ao fim do ano. Tendo conhecimento dessas necessidades e
+                      somando necessidades que nós como alunos tínhamos como por exemplo: saber o
+                      cardápio diários e semanais, uma forma de conseguir se comunicar com a direção do
+                      restaurante e outras demandas, pensamos a criação desse projeto que reúne tanto as
+                      necessidades da direção na captação e análise de dados como a dos alunos na
+                      visualização e transmissão de informações a respeito da sua alimentação.
+
+                    </p>
 
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="3">
                   <Accordion.Header>Quem são os tutores?</Accordion.Header>
                   <Accordion.Body>
+
+                    <p>
+                      Professor Milton
+                    </p>
+                    <p>
+                      Professor Fábio Bigati (colocar uma foto e uma breve fala sobre a história dele)
+                      idade, formação e uma breve fala sobre sua experiência profissional.
+                      professor da área técnica.
+                    </p>
+                    <p>
+                      Professor Filipe Ribeiro (colocar uma foto e uma breve fala sobre a história dele)
+                      idade, formação e uma breve fala sobre sua experiência profissional.
+                      professor da área básica.
+                    </p>
+
 
                   </Accordion.Body>
                 </Accordion.Item>

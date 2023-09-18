@@ -62,13 +62,15 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: #80ed99;
-    background-image: linear-gradient(rgba(128, 237, 153, 0.8), rgba(45, 218, 85, 0.321));
+    // background-color: #80ed99;
+    // background-image: linear-gradient(rgba(128, 237, 153, 0.8), rgba(45, 218, 85, 0.321));
 
+    background-color:rgb(0, 130, 124);
   }
 
-  background-color:#80ed99;
-  background-image: linear-gradient(rgba(128, 237, 153, 0.8), rgba(45, 218, 86, 0.321));
+    background-color:rgb(0, 130, 124);
+  // background-color:#80ed99;
+  // background-image: linear-gradient(rgba(128, 237, 153, 0.8), rgba(45, 218, 86, 0.321));
 }
 
 .acord-cont {
@@ -239,7 +241,7 @@
   }
 
   h1 {
-    color: #c7f9cc;
+    color: #f3f3f3;
     text-align: justify;
     font-weight: 500;
   }
@@ -272,11 +274,11 @@
     }
   }
 
-  background-color: #588157;
+  background-color: var(--primary);
 }
 
 .land-cont {
-  background-color: #588157;
+  background-color: var(--primary);
   height: 100vh;
   display: flex;
   align-items: center;
