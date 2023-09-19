@@ -1,9 +1,13 @@
 import "../assets/styles/login.scss";
-import { Modal, Row, Col, Form, Button, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+
+import { Modal, Row, Figure, Form, Button, Spinner, Container, Col } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const arrow = require("../assets/images/left-arrow.png");
+const logo = require("../assets/images/logo.png");
 const LoginConst = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -54,7 +58,7 @@ const LoginConst = () => {
 
   return (
     <>
-      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal">
+      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" data-test="links">
         <Modal.Body>
           <Spinner
             variant="light"
@@ -68,14 +72,14 @@ const LoginConst = () => {
         </Modal.Body>
       </Modal>
 
-      <Modal show={successModal} onHide={() => setSuccessModal(false)}>
+      <Modal show={successModal} onHide={() => setSuccessModal(false)} data-test="links">
         <Modal.Body>
           Login concluído
         </Modal.Body>
 
       </Modal>
 
-      <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal">
+      <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
         <Modal.Header closeButton>
           <Modal.Title>Erro!</Modal.Title>
         </Modal.Header>
@@ -86,53 +90,75 @@ const LoginConst = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <div id="div-z-cont" data-test="links">
+        <Container className="login-cont">
+          <section>
+            <Row>
+              <Form id="form-login" onSubmit={handleSubmit}>
+                <div id="div-arrow">
+                  <Link to="/" id="arrow">
+                    <Figure>
+                      <Figure.Image src={arrow}></Figure.Image>
+                    </Figure>
+                  </Link>
+                </div>
+                <div id="div-form-l">
+                  <Figure>
+                    <Figure.Image src={logo} />
+                  </Figure>
+                  <h1>Login</h1>
+ <div className="in-section">
+                  <Form.Group className="mb-3">
+                    <Form.Label>Insira seus dados de login</Form.Label>
 
-      <div className="cont">
-        <div id="in-cont">
-          <Form id="form-login" onSubmit={handleSubmit}>
-            <h2>Login</h2>
-            <section className="mb-4">
-              <div className="in-section">
-                <Form.Group className="mb-3">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Label>Senha</Form.Label>
-                </Form.Group>
-              </div>
-              <div id="linha-vertical"></div>
-              <div className="in-section">
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="email"
-                    placeholder="Digite seu email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  /> <Form.Control
-                    type="password"
-                    placeholder="Digite sua senha"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                  /> 
-                </Form.Group>
-              </div>
-            </section> 
-            {/* <Form.Check type="checkbox" label="Lembrar de mim" /> */}
-            <div id="div-btn"> <div id="div-btn">
-              <Link to="/sign-up">Cadastre-se agora</Link>
-            </div>
-              <Button type="submit" id="button-login-signup">
-                Entrar
-              </Button>
-            </div>
+                  </Form.Group>
+                </div>
 
-           
-          </Form>
+                <div className="in-section">
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="email"
+                      placeholder="Digite seu email"
+                      value={email}
+                      data-test="form-email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    /> 
+                    <Form.Control
+                      type="password"
+                      placeholder="Digite sua senha"
+                      value={senha}
+                      data-test="form-pass"
+                      onChange={(e) => setSenha(e.target.value)}
+                    />
+                  </Form.Group>
+                </div>
+
+                <div id="div-btn">
+                  <Link to="/sign-up">Cadastre-se agora</Link>
+                  <Button type="submit" id="button-login-signup">
+                    Entrar
+                  </Button>
+                </div>
+                </div>
+
+               
 
 
+              </Form>
 
-        </div>
+            </Row>
+          </section>
+        </Container>
+
+      </div>
 
 
-        {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+
+
+
+
+
+      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
 
 
 
@@ -145,7 +171,7 @@ const LoginConst = () => {
         </Form.Group>
         {" "} */}
 
-      </div>
+
     </>
   );
 };

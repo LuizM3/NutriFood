@@ -1,15 +1,96 @@
 @import url(root.scss);
 
+#root {
+  height: 100vh !important;
+}
+
+#div-z-cont {
+  height: 100%;
+  @media(max-width:540px){
+    height: 80%;
+  }
+  box-sizing: inherit;
+  display: flex;
+  
+#arrow {
+  justify-content: left;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  .figure {
+    width: 25px;
+    display: flex;
+
+    align-items: center;
+  }
+
+}
+
+  section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media(max-width: 768px) {
+      flex-direction: column;
+
+      #as {
+        order: 2;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    }
+  }
+
+  p {
+    text-align: justify;
+
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  h1 {
+
+    font-size: xx-large;
+    color: var(--gray);
+    text-align: center;
+    font-weight: 100;
+  }
+
+  .row {
+    @media(max-width: 768px) {
+      width: 100%;
+      height: 100%;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+
+  }
+
+  background-color: white;
+}
+
 .modal-dialog {
   justify-content: center;
   align-items: center;
   display: flex;
 }
+
 .modal-content {
   align-items: center;
   border: none;
 
 }
+
 .modal-body {
   justify-content: center;
   align-items: center;

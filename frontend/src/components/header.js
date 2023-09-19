@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Image, Offcanvas, ToggleButton, Button, Figure, Form } from "react-bootstrap";
+
+import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Form } from "react-bootstrap";
+
 import { useMediaQuery } from "react-responsive";
 import { Link, useSearchParams } from "react-router-dom";
 import "../assets/styles/header.scss";
@@ -51,77 +53,279 @@ const HeaderConst = () => {
   return (
 
     <>
-      <Navbar sticky="top" className="flex-nowrap">
-        <Container>
-          <Navbar.Brand className="d-flex align-items-center">
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to={"/?token=" + token} className="text-decoration-none">
-                  <Figure>
-                    <Figure.Image
-                      src={logo}/>
-                  </Figure>
-                </Link>
 
-              </Nav.Link>
-            </Nav>
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to={"/?token=" + token} className="text-decoration-none">
-                  <h2>Nutrifood </h2>
-                </Link>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Brand>
+      <Navbar sticky="top" className="flex-nowrap" collapseOnSelect>
+        <div id="nav-cont" data-test="links">
+          {isResponsive ? (
+            <Row> <Col></Col>
+              <Col>
+                <Figure>
+                  <Figure.Image src={logo} width={64} height={64} id="sun">
 
-          <Navbar.Brand className="d-flex align-items-center">
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to={"/reviews?token=" + token} className="text-decoration-none">
-                  Avaliações
-                </Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link
-                  to={"/menu?token=" + token} className="text-decoration-none">
-                  Cardápio
-                </Link>
-              </Nav.Link>
+                  </Figure.Image>
+                </Figure>
+              </Col>
+              <Col id="col-toggle"><Navbar.Toggle
+                aria-controls="offcanvas-navbar"
+                as={ToggleButton}
+                variant="outline-light"
+                onClick={handleShow}
+                style={{
+                  textDecoration: "none",
+                  outline: "0",
+                  boxShadow: "none",
+                }}
+                id="toggle-nav"
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <polyline
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    points="2 12, 16 12"
+                    class="globalnav-menutrigger-bread globalnav-menutrigger-bread-bottom"
+                  >
+                    <animate
+                      attributeName="points"
+                      keyTimes="0;0.5;1"
+                      dur="0.24s"
+                      begin="indefinite"
+                      fill="freeze"
+                      calcMode="spline"
+                      keySplines="0.42, 0, 1, 1;0, 0, 0.58, 1"
+                      values=" 2 12, 16 12; 2 9, 16 9; 3.5 15, 15 3.5"
+                    ></animate>
+                    <animate
+                      attributeName="points"
+                      keyTimes="0;0.5;1"
+                      dur="0.24s"
+                      begin="indefinite"
+                      fill="freeze"
+                      calcMode="spline"
+                      keySplines="0.42, 0, 1, 1;0, 0, 0.58, 1"
+                      values=" 3.5 15, 15 3.5; 2 9, 16 9; 2 12, 16 12"
+                    ></animate>
+                  </polyline>
+                  <polyline
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    points="2 5, 16 5"
+                    class="globalnav-menutrigger-bread globalnav-menutrigger-bread-top"
+                  >
+                    <animate
+                      attributeName="points"
+                      keyTimes="0;0.5;1"
+                      dur="0.24s"
+                      begin="indefinite"
+                      fill="freeze"
+                      calcMode="spline"
+                      keySplines="0.42, 0, 1, 1;0, 0, 0.58, 1"
+                      values=" 2 5, 16 5; 2 9, 16 9; 3.5 3.5, 15 15"
+                    ></animate>
+                    <animate
+                      attributeName="points"
+                      keyTimes="0;0.5;1"
+                      dur="0.24s"
+                      begin="indefinite"
+                      fill="freeze"
+                      calcMode="spline"
+                      keySplines="0.42, 0, 1, 1;0, 0, 0.58, 1"
+                      values=" 3.5 3.5, 15 15; 2 9, 16 9; 2 5, 16 5"
+                    ></animate>
+                  </polyline>
+                </svg>
+              </Navbar.Toggle></Col>
 
-              <Nav.Link>
-                <Link to={"/suggestions?token=" + token} className="text-decoration-none">
-                  Sugestões
-                </Link>
-              </Nav.Link>
-            </Nav>
 
-          </Navbar.Brand>
-          <Navbar.Brand className="d-flex align-items-center">
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to={"/contact?token=" + token} className="text-decoration-none">
-                  Contato
-                </Link>
-              </Nav.Link>
+            </Row>
 
-              <Nav.Link>
-                <Link to={"/about?token=" + token} className="text-decoration-none">
-                  Sobre
-                </Link>
-              </Nav.Link>
-            </Nav>
+          ) : (
+            <><Navbar.Brand className="d-flex align-items-center">
+              <Nav className="me-auto">
+                <div className="div-link">
+                  <Link to={"/?token=" + token} className="text-decoration-none" href="#">
+                    <Figure>
+                      <Figure.Image
 
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/login" className="text-decoration-none">
-                  <Button to="/login">
-                    <ion-icon name="person"></ion-icon>Entrar
-                  </Button>
+                        src={logo} />
+                    </Figure>
+                  </Link>
+
+                </div>
+              </Nav>
+              <Nav className="me-auto">
+                <div className="div-link">
+                  <Link  to={"/?token=" + token} className="text-decoration-none" data-test="">
+                    <h2>Nutrifood </h2>
+                  </Link>
+                </div>
+              </Nav>
+            </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
+                <Nav className="me-auto">
+                  <div className="div-link">
+                    <Link to={"/reviews?token=" + token} className="text-decoration-none">
+                      Avaliações
+                    </Link>
+                  </div>
+                  <div className="div-link">
+                    <Link
+                     to={"/menu?token=" + token}
+                      className="text-decoration-none"
+                    >
+                      Cardápio
+                    </Link>
+                  </div>
+
+                  <div className="div-link">
+                    <Link to={"/suggestions?token=" + token} className="text-decoration-none">
+                      Sugestões
+                    </Link>
+                  </div>
+                </Nav>
+
+              </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
+                <Nav className="me-auto">
+                  <div className="div-link">
+
+                    <Link to={"/contact?token=" + token} className="text-decoration-none">
+                      Contato
+                    </Link>
+                  </div>
+
+                  <div className="div-link">
+                    <Link to="/about" className="text-decoration-none">
+                      Sobre
+                    </Link>
+                  </div>
+
+
+                </Nav>
+                <Nav className="me-auto">
+                  <div className="div-link">
+                    <Link to="/login" className="text-decoration-none">
+                      <Button to="/login">
+                        <ion-icon name="person"></ion-icon>
+                        <span>
+
+                          Entrar
+                        </span>
+                      </Button>
+                    </Link>
+                  </div>
+                </Nav>
+              </Navbar.Brand></>
+          )}
+
+          <Offcanvas
+            show={show && isResponsive}
+            onHide={handleClose}
+            scroll={false}
+            backdrop={false}
+            placement="top"
+          >
+            <Offcanvas.Header closeButton>
+
+              <Offcanvas.Title>
+
+              </Offcanvas.Title>  <Offcanvas.Title>
+                <Link to="/">
+
+
                 </Link>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Brand>
-        </Container>
+                <Row>
+                  <Col>
+
+                    <Figure>
+                      <Figure.Image src={logo} width={64} height={64} id="sun">
+
+                      </Figure.Image>
+                    </Figure>
+                  </Col>
+
+                </Row>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <div id="off-body">
+                <Container>
+                  <section>
+                    <Row id="r-div">
+                      <ListGroup>
+                        <ListGroup.Item>
+                          <Row>
+                            <Link to="/reviews" className="text-decoration-none">
+                              <h1>
+                                Avaliações
+                              </h1>
+                            </Link>
+                          </Row>
+
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <Row>
+                            <Link
+                              to="/menu"
+                              className="text-decoration-none"
+                            >
+                              <h1>
+
+                                Cardápio
+                              </h1>
+                            </Link>
+                          </Row>
+                        </ListGroup.Item>
+                        <ListGroup.Item><Row>
+                          <Link to="/suggestions" className="text-decoration-none">
+                            <h1>
+
+                              Sugestões
+                            </h1>
+                          </Link>
+                        </Row></ListGroup.Item>
+                        <ListGroup.Item><Row>
+                          <Link to="/contact" className="text-decoration-none">
+                            <h1>
+
+                              Contato
+                            </h1>
+                          </Link>
+                        </Row></ListGroup.Item>
+                        <ListGroup.Item><Row>
+                          <Link to="/about" className="text-decoration-none">
+                            <h1>
+
+                              Sobre
+                            </h1>
+                          </Link>
+                        </Row></ListGroup.Item>
+
+
+                      </ListGroup>
+
+                      <Row id="r-b">
+                        <Link to="/login" className="text-decoration-none">
+                          <Button to="/login">
+                            <ion-icon name="person"></ion-icon>
+                            <span>
+
+                              Entrar
+                            </span>
+                          </Button>
+                        </Link>
+                      </Row>
+                    </Row>
+                  </section>
+                </Container>
+              </div>
+            </Offcanvas.Body>
+
+          </Offcanvas>
+        </div>
       </Navbar>
     </>
 

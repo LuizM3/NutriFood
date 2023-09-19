@@ -13,7 +13,6 @@ import Contact from "./views/Contact";
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
-      <Header />
       <Routes>
         <Route path="/review" element={<Reviews />} />{" "}
         <Route path="/" element={<MainPage />} />{" "}
@@ -22,7 +21,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/about" element={<About />} /> {" "}
         <Route path="/contact" element={<Contact />} /> {" "}
       </Routes>{" "}
-      <Footer />
     </Router>{" "}
   </React.StrictMode>
 );

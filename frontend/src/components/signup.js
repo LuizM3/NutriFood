@@ -1,29 +1,41 @@
 import "../assets/styles/login.scss";
 
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal, Container, Spinner, Row, Figure } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+const arrow = require("../assets/images/left-arrow.png");
+const logo = require("../assets/images/logo.png");
 const SignUpConst = () => {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
 
+
+    const [spinnerModal, setSpinnerModal] = useState(false);
+
     const [vinculoAoIfes, setVinculoAoIfes] = useState("");
     let [vegetariano, setVegetariano] = useState("");
     let [refeicoes, setRefeicoes] = useState([]);
-
     const [emailError, setEmailError] = useState("");
+
     const [formModal, setFormModal] = useState(false);
     const [successModal, setSuccessModal] = useState(false);
     const [errorModal, setErrorModal] = useState(false);
+    const [emailErrorModal, setEmailErrorModal] = useState(false);
     const [passcheckModal, setPasscheckModal] = useState(false);
 
     const [coletaPreenchida, setColetaPreenchida] = useState(false);
     const [dadosColeta, setDadosColeta] = useState("");
 
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
+
+
+
         e.preventDefault();
 
         if (senha !== confirmarSenha) {
@@ -38,8 +50,7 @@ const SignUpConst = () => {
         const isEmailUnique = await checkEmailUniqueness(email);
 
         if (!isEmailUnique) {
-            setEmailError("Este email já está cadastrado.");
-            setErrorModal(true);
+            setEmailErrorModal(true);
             return;
         }
 
@@ -48,7 +59,8 @@ const SignUpConst = () => {
     };
 
     const handleColetaSubmit = async () => {
-        setSuccessModal(true);
+
+
 
         if(vegetariano == "true"){
             vegetariano = Boolean("true");
@@ -102,7 +114,20 @@ const SignUpConst = () => {
             });
 
             if (response.ok) {
-                setSuccessModal(true);
+
+                setTimeout(() => {
+                    setSpinnerModal(true);
+                }, 1000);
+
+                setTimeout(() => {
+                    setSuccessModal(true);
+                }, 2000);
+                setTimeout(() => {
+                    navigate("/login");
+                }, 4000);
+
+
+
             } else {
                 setErrorModal(true);
             }
@@ -148,7 +173,20 @@ const SignUpConst = () => {
     return (
         <>
 
-            <Modal show={formModal} onHide={() => setFormModal(false)} className="modal" backdrop="static">
+            <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" data-test="links">
+                <Modal.Body>
+                    <Spinner
+                        variant="light"
+                        animation="border"
+                        role="status"
+                        show={spinnerModal}
+                        onHide={() => setSpinnerModal(false)}
+                    >
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </Modal.Body>
+            </Modal>
+            <Modal show={formModal} onHide={() => setFormModal(false)} className="modal" backdrop="static" data-test="links">
                 <Modal.Header>
                     <Modal.Title>
                         Coleta de usuário
@@ -293,7 +331,13 @@ const SignUpConst = () => {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={successModal} onHide={() => setSuccessModal(false)} className="modal">
+
+
+
+
+
+            <Modal show={successModal} onHide={() => setSuccessModal(false)} className="modal" data-test="links">
+
 
                 <Modal.Header>
                     <Modal.Title>Sucesso!</Modal.Title>
@@ -301,22 +345,14 @@ const SignUpConst = () => {
                 <Modal.Body>Cadastro concluído</Modal.Body>
                 <Modal.Footer>
 
-                    <Button variant="primary" onClick={() => setSuccessModal(false)}>
-                        Fechar
-                    </Button>
                 </Modal.Footer>
             </Modal>
-
-            <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal">
+            <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
                 <Modal.Header >
                     <Modal.Title>Erro!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {emailError ? (
-                        emailError
-                    ) : (
-                        "Erro ao cadastrar usuário"
-                    )}
+                    Erro ao enviar requisição
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={() => setErrorModal(false)}>
@@ -324,10 +360,23 @@ const SignUpConst = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-            <Modal show={passcheckModal} onHide={() => setPasscheckModal(false)} className="modal">
+            <Modal show={emailErrorModal} onHide={() => setEmailErrorModal(false)} className="modal" data-test="links">
                 <Modal.Header >
-                    <Modal.Title>Erro!</Modal.Title>
+                    <Modal.Title>Erro</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Este email já está cadastrado
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={() => setEmailErrorModal(false)}>
+                        Fechar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={passcheckModal} onHide={() => setPasscheckModal(false)} className="modal" data-test="links">
+                <Modal.Header >
+                    <Modal.Title>Erro</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Erro na confirmação de senha, por favor tente novamente</Modal.Body>
                 <Modal.Footer>
@@ -336,120 +385,92 @@ const SignUpConst = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <div className="cont">
+
+            <div id="div-z-cont" data-test="links">
+                <Container className="login-cont">
+                    <section>
+                        <Row>
+
+                            <Form id="form-login" onSubmit={handleSubmit}>
+                                <div id="div-arrow">
+                                    <Link to="/" id="arrow">
+                                        <Figure>
+                                            <Figure.Image src={arrow}></Figure.Image>
+                                        </Figure>
+                                    </Link>
+                                </div>
+
+                                <div id="div-form-l">
+                                    <Figure>
+                                        <Figure.Image src={logo} />
+                                    </Figure>
+                                    <h1>Cadastro de usuário</h1>
+
+                                    <div className="in-section">
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Insira seus dados pessoais abaixo</Form.Label>
+                                        </Form.Group>
+                                    </div>
+                                    
+                                    <div className="in-section">
+                                        <Form.Group className="mb-3">
+                                            <Form.Control
+                                                type="text"
+                                                aria-label="Nome"
+                                                placeholder="Nome"
+                                                autocomplete="username"
+                                                autocapitalize="Nome"
+                                                value={nome}
+                                                data-test="form-nome"
+                                                onChange={(e) => setNome(e.target.value)}
+                                            />
+                                            <Form.Control
+                                                type="email"
+                                                placeholder="Email"
+                                                value={email}
+                                                data-test="form-email"
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            /><Form.Control
+                                                type="password"
+                                                placeholder="Senha"
+                                                value={senha}
+                                                data-test="form-pass"
+                                                onChange={(e) => setSenha(e.target.value)}
+                                            /> <Form.Control
+                                                type="password"
+                                                placeholder="Confirmar senha"
+                                                data-test="form-passc"
+                                                value={confirmarSenha}
+                                                onChange={(e) => setConfirmarSenha(e.target.value)}
+                                            />
+                                        </Form.Group>
+
+                                    </div>
+
+                                    <div id="div-btn">
+                                        <Link to="/login">Fazer login</Link>
+                                        <Button type="submit" id="button-login-signup" data-test="cadastrar">
+                                            Cadastrar
+                                        </Button>
+                                    </div>
+
+                                </div>
+
+
+
+                            </Form>
+                        </Row>
+                    </section>
+                </Container>
+            </div>
+
+
+            {/* <div className="cont">
                 <div id="in-cont">
 
-                    <Form id="form-login" onSubmit={handleSubmit}>
-                        <h2>Cadastro de usuário</h2>
-                        <section className="mb-4">
-                            <div className="in-section">
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Nome</Form.Label>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Label>Senha</Form.Label>
-                                    <Form.Label>Confirmar senha</Form.Label>
-                                </Form.Group>
-                            </div>
-                            <div id="linha-vertical"></div>
-                            <div className="in-section">
-                                <Form.Group className="mb-3">
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Nome"
-                                        value={nome}
-                                        onChange={(e) => setNome(e.target.value)}
-                                    /> <Form.Control
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    /><Form.Control
-                                        type="password"
-                                        placeholder="Senha"
-                                        value={senha}
-                                        onChange={(e) => setSenha(e.target.value)}
-                                    /> <Form.Control
-                                        type="password"
-                                        placeholder="Confirmar senha"
-                                        value={confirmarSenha}
-                                        onChange={(e) => setConfirmarSenha(e.target.value)}
-                                    />
-                                </Form.Group>
-
-                            </div>
-                        </section>
-                        <div id="div-btn">
-                            <div id="div-btn">
-                                <Link to="/login">Fazer login</Link>
-                            </div>
-                            <Button type="submit" id="button-login-signup">
-                                Cadastrar
-                            </Button>
-                        </div>
-
-
-
-                    </Form>
                 </div>
-                {/* <Carousel id="carousel-form">
-                    <Carousel.Item onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Cadastro de usuário</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Nome"
-                                value={nome}
-                                onChange={(e) => setNome(e.target.value)}
-                            /> <div id="div-btn">
-                                <Link to="/login">Já possui conta? Faça login</Link>
-                            </div>
-                        </Form.Group>
 
-
-                    </Carousel.Item>
-                    <Carousel.Item>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-
-                        </Form.Group
-                        >
-
-                    </Carousel.Item>
-                    <Carousel.Item>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Senha</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Senha"
-                                value={senha}
-                                onChange={(e) => setSenha(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                           
-                            <Form.Control
-                                type="password"
-                                placeholder="Confirmar senha"
-                                value={confirmarSenha}
-                                onChange={(e) => setConfirmarSenha(e.target.value)}
-                            /> <div id="div-btn">
-                                <Button type="submit" id="button-login-signup">
-                                    Cadastrar
-                                </Button>
-                            </div>
-
-                        </Form.Group>
-                    </Carousel.Item>
-                </Carousel> */}
-            </div >
+            </div > */}
         </>
     );
 };
