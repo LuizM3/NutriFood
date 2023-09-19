@@ -3,7 +3,7 @@ const router = express.Router();
 const connection = require('../db');
 
 router.get('/', (req, res) => {
-    const { email } = req.query;
+    const { email } = req.params;
 
     // Verifique se o email já está cadastrado
     connection.query(

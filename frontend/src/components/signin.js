@@ -1,6 +1,8 @@
 import "../assets/styles/login.scss";
-import { Modal, Row, Figure, Form, Button, Spinner, Container } from "react-bootstrap";
+
+import { Modal, Row, Figure, Form, Button, Spinner, Container, Col } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -28,25 +30,22 @@ const LoginConst = () => {
 
       if (response.ok) {
         const data = await response.json();
+        const token = data.token;
 
         if (data.message === "Login") {
-
-
-          console.log("Token feito");
           setTimeout(() => {
             setSpinnerModal(true);
           }, 1000);
 
-          setTimeout(() => {
-            navigate("/");
-          }, 6000); // Atraso de 5 segundos (5000 milissegundos)
-          // Login bem-sucedido
+          setTimeout(() => { navigate("/?token=" + token) }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
+          const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
+          if(resp.ok){
+            const data =  await resp.json();
+            const validation = await data.validation; //validação do token
+          }
         } else {
           // Credenciais inválidas
           setErrorModal(true);
-
-          alert("1");
-
         }
       } else {
         // Tratar outros erros

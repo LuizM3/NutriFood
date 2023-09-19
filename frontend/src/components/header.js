@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup } from "react-bootstrap";
+
+import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Form } from "react-bootstrap";
+
 import { useMediaQuery } from "react-responsive";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "../assets/styles/header.scss";
 
 const logo = require("../assets/images/logo.png");
@@ -23,9 +25,35 @@ const HeaderConst = () => {
 
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
 
+  const Verify = () => {
+    const [searchParams] = useSearchParams();
+    const tokenVerify = searchParams.get("token");
+
+    return tokenVerify;
+  };
+
+  const token = Verify();
+
+  if (token){
+    const GetName = async () => {
+
+      try {
+        const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
+        if (resp.ok) {
+          const data = await resp.json();
+          const validation = await data.validation; //validação do token
+  
+        }
+      } catch (error) {
+        console.error("Erro ao enviar requisição:", error);
+      }
+    };
+  }
+
   return (
 
     <>
+
       <Navbar sticky="top" className="flex-nowrap" collapseOnSelect>
         <div id="nav-cont" data-test="links">
           {isResponsive ? (
@@ -120,7 +148,7 @@ const HeaderConst = () => {
             <><Navbar.Brand className="d-flex align-items-center">
               <Nav className="me-auto">
                 <div className="div-link">
-                  <Link to="/" className="text-decoration-none" href="#">
+                  <Link to={"/?token=" + token} className="text-decoration-none" href="#">
                     <Figure>
                       <Figure.Image
 
@@ -132,7 +160,7 @@ const HeaderConst = () => {
               </Nav>
               <Nav className="me-auto">
                 <div className="div-link">
-                  <Link to="/" className="text-decoration-none" data-test="">
+                  <Link  to={"/?token=" + token} className="text-decoration-none" data-test="">
                     <h2>Nutrifood </h2>
                   </Link>
                 </div>
@@ -140,13 +168,13 @@ const HeaderConst = () => {
             </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
                 <Nav className="me-auto">
                   <div className="div-link">
-                    <Link to="/reviews" className="text-decoration-none">
+                    <Link to={"/reviews?token=" + token} className="text-decoration-none">
                       Avaliações
                     </Link>
                   </div>
                   <div className="div-link">
                     <Link
-                      to="/menu"
+                     to={"/menu?token=" + token}
                       className="text-decoration-none"
                     >
                       Cardápio
@@ -154,7 +182,7 @@ const HeaderConst = () => {
                   </div>
 
                   <div className="div-link">
-                    <Link to="/suggestions" className="text-decoration-none">
+                    <Link to={"/suggestions?token=" + token} className="text-decoration-none">
                       Sugestões
                     </Link>
                   </div>
@@ -164,7 +192,7 @@ const HeaderConst = () => {
                 <Nav className="me-auto">
                   <div className="div-link">
 
-                    <Link to="/contact" className="text-decoration-none">
+                    <Link to={"/contact?token=" + token} className="text-decoration-none">
                       Contato
                     </Link>
                   </div>
@@ -206,6 +234,7 @@ const HeaderConst = () => {
 
               </Offcanvas.Title>  <Offcanvas.Title>
                 <Link to="/">
+
 
                 </Link>
                 <Row>
@@ -299,6 +328,7 @@ const HeaderConst = () => {
         </div>
       </Navbar>
     </>
+
   );
 };
 
