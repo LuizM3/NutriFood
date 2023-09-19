@@ -11,7 +11,7 @@ const AboutConst = () => {
           <section>
             <Row>
 
-              <Col sm={12} md={4}>
+              <Col sm={12} md={4} className="order-flex">
                 <Row>
                   <Row className="p-0 t-div mt-2">
                     <Col md={12} className="d-flex justify-content-center">
@@ -32,12 +32,12 @@ const AboutConst = () => {
                 <Row id="d-r">
                   <Row>
                     <Row className="r-r">
-                      <Col md={4} className="c-col">
+                      <Col md={4} xs={2}className="c-col">
                         <div>
                           <ion-icon name="location"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} className="">
+                      <Col md={8} xs={10}className="">
                         <Link to="https://maps.app.goo.gl/BQ8z8Rw6EkLQN9iS8">Rodovia ES-080, Km 93 s/n, Santa Teresa - ES, 29660-000
                         </Link>
 
@@ -45,12 +45,12 @@ const AboutConst = () => {
                     </Row>
 
                     <Row className="r-r">
-                      <Col md={4} className="c-col">
+                      <Col md={4} xs={2}className="c-col">
                         <div>
                           <ion-icon name="call"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} className="" >
+                      <Col md={8} xs={10}className="" >
 
                         <Link to="">
                           (27) 3259-7878
@@ -58,12 +58,12 @@ const AboutConst = () => {
                       </Col>
                     </Row>
                     <Row className="r-r">
-                      <Col md={4} className="c-col">
+                      <Col md={4} xs={2}className="c-col">
                         <div>
                           <ion-icon name="paper-plane"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} className="">
+                      <Col md={8} xs={10}className="">
                         <Link>
 
                           suporte@ifes.edu
@@ -71,12 +71,12 @@ const AboutConst = () => {
                       </Col>
                     </Row>
                     <Row className="r-r">
-                      <Col md={4} className="c-col">
+                      <Col md={4} xs={2}className="c-col">
                         <div>
                           <ion-icon name="earth"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} className="">
+                      <Col md={8} xs={10}className="">
                         <Link to="www.ifes.edu.br">
                           www.ifes.edu.br
                         </Link>
@@ -87,7 +87,7 @@ const AboutConst = () => {
                 </Row>
 
               </Col>
-              <Col sm={12} md={8} className="col-c">
+              <Col sm={12} md={8} className="col-c order-flex-2">
                 <Row className="mb-3 mt-2">
 
                   <h1>Contate-nos</h1>
@@ -103,7 +103,7 @@ const AboutConst = () => {
                           controlId="floating"
                           label="Nome completo"
 
-                        > <Form.Control type="name" /></FloatingLabel>
+                        > <Form.Control type="name" placeholder="Nome completo" /></FloatingLabel>
 
                       </Form.Group>
                       <Form.Group as={Col} controlId="formGridEmail">
@@ -111,29 +111,30 @@ const AboutConst = () => {
                           controlId="floatingInput"
                           label="Email"
 
-                        ><Form.Control type="email" /></FloatingLabel>
+                        ><Form.Control type="email" placeholder="Email"/></FloatingLabel>
 
                       </Form.Group>
                     </Row>
 
-                    <Form.Group className="mb-3" controlId="formGridText">
+                    <Form.Group as={Col}className="mb-3" controlId="formGridText">
                       <FloatingLabel
                         controlId="floatingTextarea"
                         label="Assunto"
 
-                      >  <Form.Control
+                      >  <Form.Control placeholder="Assunto"
                       /></FloatingLabel>
 
 
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGridAddress2">
+                    <Form.Group className="mb-3" as={Col}controlId="formGridAddress2">
                       <FloatingLabel
                         controlId="floatingTextarea"
                         label="Mensagem"
 
                       >  <Form.Control
                           as="textarea"
+                          placeholder="Mensagem"
                           style={{ height: '100px' }}
                         /></FloatingLabel>
 
@@ -155,101 +156,6 @@ const AboutConst = () => {
           </section>
         </Container>
       </div>
-      {/* <div>
-        <Container>
-          <section>
-
-            <Row className="d-flex">
-              <Col sm={12} md={4}>
-              <Row>
-                <h1>Contate-nos</h1>
-                  <p>Venha aqui para sla</p>
-              </Row>
-                  
-                  <Row>
-                    <Row>
-                      <Col>
-                        Figure
-                      </Col>
-                      <Col>
-                        Endereço
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        Figure
-                      </Col>
-                      <Col>
-                        Telefone
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        Figure
-                      </Col>
-                      <Col>
-                        Email
-                      </Col>
-                    </Row>
-
-                    <Row>
-                      <Col>
-                        Figure
-                      </Col>
-                      <Col>
-                        Instagram
-                      </Col>
-                    </Row>
-                  </Row>
-
-              </Col>
-
-              <Col sm={12} md={8}>
-                  <Row className="mb-3">
-
-                    <h1>Contate-nos</h1>
-                  </Row>
-                  <Row className="mb-3" md={10}>
-                    <Form>
-                      <Row className="mb-3">
-
-                        <Form.Group as={Col} controlId="formGridName" md={8}>
-                          <Form.Label>Nome completo</Form.Label>
-                          <Form.Control type="name" placeholder="Nome" />
-                        </Form.Group>
-                        <Form.Group as={Col} controlId="formGridEmail">
-                          <Form.Label>Endereço de email</Form.Label>
-                          <Form.Control type="email" placeholder="Email" />
-                        </Form.Group>
-                      </Row>
-
-                      <Form.Group className="mb-3" controlId="formGridText">
-                        <Form.Label>Assunto</Form.Label>
-                        <Form.Control placeholder="Assunto" />
-                      </Form.Group>
-
-                      <Form.Group className="mb-3" controlId="formGridAddress2">
-                        <Form.Label>Mensagem</Form.Label>
-                       <Form.Control
-                            as="textarea"
-                            placeholder="Mensagem"
-                            style={{ height: '100px' }}
-                          />
-                      </Form.Group>
-
-                     
-
-                      <Button variant="primary" type="submit">
-                        Submit
-                      </Button>
-                    </Form>
-                  </Row>
-              </Col>
-            </Row>
-
-          </section>
-        </Container>
-      </div> */}
     </>
   );
 };

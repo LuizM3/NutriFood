@@ -1,9 +1,10 @@
 #div-c {
     .form-control {
-    border: none;
-    border-bottom: 1px solid rgb(211, 211, 211);
-    border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgb(211, 211, 211);
+        border-radius: 0;
     }
+
 
 
     display: flex;
@@ -17,6 +18,11 @@
     .container {
         box-shadow: 10px 10px 15px #c6c6c64a;
 
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
         margin: 5rem 15rem !important;
 
 
@@ -27,6 +33,7 @@
 
         @media(max-width: 768px) {
             box-shadow: none;
+            margin: 0 !important;
         }
     }
 }
@@ -118,4 +125,54 @@ a {
 
 .col-c {
     padding: 0px 50px;
+}
+
+
+.order-flex {
+    padding: 0;
+    order: 0;
+
+    @media(max-width: 768px) {
+        order: 1;
+        width: 50%;
+        margin: 0 !important;
+        padding: 0 !important;
+
+    }
+
+    @media(max-width: 576px) {
+        width: 100%;
+    }
+}
+
+.container {
+    padding: 0;
+    margin: 0;
+
+    @media(max-width: 768px) {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+.order-flex-2 {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media(max-width: 768px) {
+        width: 50%;
+        padding: 0;
+    }
+
+    @media(max-width:576px) {
+        form{
+        }
+        padding-bottom: 10%;
+        padding-top: 10%;
+        padding: 25px;
+        width: 100%;
+    }
 }
