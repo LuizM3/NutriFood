@@ -6,6 +6,7 @@
 --           PRIMARY KEY (`id`)                                                                  
 --         ) ENGINE=InnoDB;
 
+DROP TABLE users;
 CREATE TABLE `users` (                                                               
     `id` int(11) NOT NULL AUTO_INCREMENT,                                              
     `nome` varchar(255) NOT NULL,                                                      
@@ -19,4 +20,6 @@ CREATE TABLE `users` (
     `jantar` varchar(4) DEFAULT NULL,                                                  
     `vegetariano` varchar(4) DEFAULT NULL,                                             
     PRIMARY KEY (`id`)                                                                 
-) ENGINE=InnoDB
+) ENGINE=InnoDB;
+
+SELECT * FROM users;

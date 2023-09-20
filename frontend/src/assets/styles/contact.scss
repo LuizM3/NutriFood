@@ -145,15 +145,15 @@ a {
     }
 }
 
-.container {
-    padding: 0;
-    margin: 0;
+// .container {
+//     padding: 0;
+//     margin: 0;
 
-    @media(max-width: 768px) {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-}
+//     @media(max-width: 768px) {
+//         padding: 0 !important;
+//         margin: 0 !important;
+//     }
+// }
 
 .order-flex-2 {
     padding: 25px;
@@ -168,8 +168,8 @@ a {
     }
 
     @media(max-width:576px) {
-        form{
-        }
+        form {}
+
         padding-bottom: 10%;
         padding-top: 10%;
         padding: 25px;

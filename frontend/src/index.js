@@ -14,7 +14,7 @@ createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/review" element={<Reviews />} />{" "}
+        <Route path="/reviews" element={<Reviews />} />{" "}
         <Route path="/" element={<MainPage />} />{" "}
         <Route path="/login" element={<SignIn />} />{" "}
         <Route path="/sign-up" element={<SignUp />} />{" "}

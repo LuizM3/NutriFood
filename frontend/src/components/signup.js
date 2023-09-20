@@ -4,24 +4,22 @@ import { Form, Button, Modal, Container, Spinner, Row, Figure } from "react-boot
 
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const arrow = require("../assets/images/left-arrow.png");
 const logo = require("../assets/images/logo.png");
 const SignUpConst = () => {
+
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
-
-
-    const [spinnerModal, setSpinnerModal] = useState(false);
-
     const [vinculoAoIfes, setVinculoAoIfes] = useState("");
     let [vegetariano, setVegetariano] = useState("");
     let [refeicoes, setRefeicoes] = useState([]);
-    const [emailError, setEmailError] = useState("");
 
+    const [emailError, setEmailError] = useState("");
+    const [spinnerModal, setSpinnerModal] = useState(false);
     const [formModal, setFormModal] = useState(false);
     const [successModal, setSuccessModal] = useState(false);
     const [errorModal, setErrorModal] = useState(false);
@@ -32,6 +30,7 @@ const SignUpConst = () => {
     const [dadosColeta, setDadosColeta] = useState("");
 
     const navigate = useNavigate();
+    // Aqui começa a função de handleSubmit
     const handleSubmit = async (e) => {
 
 
@@ -57,12 +56,22 @@ const SignUpConst = () => {
         setColetaPreenchida(true);
         setFormModal(true);
     };
+    // Aqui termina a função
+    const Verify = () => {
+        const [searchParams] = useSearchParams();
+        const tokenVerify = searchParams.get("token");
+
+        return tokenVerify;
+    };
+
+    const token = Verify();
+    // if (token) { 
+
+    // }
 
     const handleColetaSubmit = async () => {
 
-
-
-        if(vegetariano == "true"){
+        if (vegetariano == "true") {
             vegetariano = Boolean("true");
         } else if (vegetariano == "false") {
             vegetariano = Boolean("false");
@@ -75,22 +84,22 @@ const SignUpConst = () => {
             jantar: false
         }
 
-        for (let i = 0; i < refeicoes.length; i++) {
-            
-            if(refeicoes[i] == 1){
+        for (const element of refeicoes) {
+
+            if (element == 1) {
                 objetoRefeicoes.cafeDaManha = true;
-                
-            } else if(refeicoes[i] == 2){
+
+            } else if (element == 2) {
                 objetoRefeicoes.almoco = true;
-                
-            }else if(refeicoes[i] == 3){
+
+            } else if (element == 3) {
                 objetoRefeicoes.lancheDaTarde = true;
-                
-            }else if(refeicoes[i] == 4){
+
+            } else if (element == 4) {
                 objetoRefeicoes.jantar = true;
             }
         }
-        
+
         const dadosCompletos = {
             nome,
             email,
@@ -99,7 +108,6 @@ const SignUpConst = () => {
             objetoRefeicoes,
             vegetariano
         };
-
 
         try {
             const response = await fetch(`http://localhost:9000/signup`, {
@@ -393,7 +401,7 @@ const SignUpConst = () => {
 
                             <Form id="form-login" onSubmit={handleSubmit}>
                                 <div id="div-arrow">
-                                    <Link to="/" id="arrow">
+                                    <Link to={"/?token=" + token} id="arrow">
                                         <Figure>
                                             <Figure.Image src={arrow}></Figure.Image>
                                         </Figure>
@@ -411,7 +419,7 @@ const SignUpConst = () => {
                                             <Form.Label>Insira seus dados pessoais abaixo</Form.Label>
                                         </Form.Group>
                                     </div>
-                                    
+
                                     <div className="in-section">
                                         <Form.Group className="mb-3">
                                             <Form.Control
@@ -448,7 +456,9 @@ const SignUpConst = () => {
                                     </div>
 
                                     <div id="div-btn">
-                                        <Link to="/login">Fazer login</Link>
+                                        <Link
+                                            to={"/login?token=" + token}
+                                        >Fazer login</Link>
                                         <Button type="submit" id="button-login-signup" data-test="cadastrar">
                                             Cadastrar
                                         </Button>

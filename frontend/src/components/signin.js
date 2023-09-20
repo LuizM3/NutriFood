@@ -4,11 +4,20 @@ import { Modal, Row, Figure, Form, Button, Spinner, Container, Col } from "react
 import { Link, useHistory } from "react-router-dom";
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams} from "react-router-dom";
 
 const arrow = require("../assets/images/left-arrow.png");
 const logo = require("../assets/images/logo.png");
 const LoginConst = () => {
+  const Verify = () => {
+    const [searchParams] = useSearchParams();
+    const tokenVerify = searchParams.get("token");
+
+    return tokenVerify;
+  };
+
+  const token = Verify();
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -39,8 +48,8 @@ const LoginConst = () => {
 
           setTimeout(() => { navigate("/?token=" + token) }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
           const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
-          if(resp.ok){
-            const data =  await resp.json();
+          if (resp.ok) {
+            const data = await resp.json();
             const validation = await data.validation; //validação do token
           }
         } else {
@@ -96,7 +105,9 @@ const LoginConst = () => {
             <Row>
               <Form id="form-login" onSubmit={handleSubmit}>
                 <div id="div-arrow">
-                  <Link to="/" id="arrow">
+                  <Link
+                    to={"/?token=" + token}
+                    id="arrow" >
                     <Figure>
                       <Figure.Image src={arrow}></Figure.Image>
                     </Figure>
@@ -107,41 +118,44 @@ const LoginConst = () => {
                     <Figure.Image src={logo} />
                   </Figure>
                   <h1>Login</h1>
- <div className="in-section">
-                  <Form.Group className="mb-3">
-                    <Form.Label>Insira seus dados de login</Form.Label>
+                  <div className="in-section">
+                    <Form.Group className="mb-3">
+                      <Form.Label>Insira seus dados de login</Form.Label>
 
-                  </Form.Group>
+                    </Form.Group>
+                  </div>
+
+                  <div className="in-section">
+                    <Form.Group className="mb-3">
+                      <Form.Control
+                        type="email"
+                        placeholder="Digite seu email"
+                        value={email}
+                        data-test="form-email"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <Form.Control
+                        type="password"
+                        placeholder="Digite sua senha"
+                        value={senha}
+                        data-test="form-pass"
+                        onChange={(e) => setSenha(e.target.value)}
+                      />
+                    </Form.Group>
+                  </div>
+
+                  <div id="div-btn">
+                    <Link
+                      // to="/sign-up"
+                      to={"/sign-up?token=" + token}
+                    >Cadastre-se agora</Link>
+                    <Button type="submit" id="button-login-signup">
+                      Entrar
+                    </Button>
+                  </div>
                 </div>
 
-                <div className="in-section">
-                  <Form.Group className="mb-3">
-                    <Form.Control
-                      type="email"
-                      placeholder="Digite seu email"
-                      value={email}
-                      data-test="form-email"
-                      onChange={(e) => setEmail(e.target.value)}
-                    /> 
-                    <Form.Control
-                      type="password"
-                      placeholder="Digite sua senha"
-                      value={senha}
-                      data-test="form-pass"
-                      onChange={(e) => setSenha(e.target.value)}
-                    />
-                  </Form.Group>
-                </div>
 
-                <div id="div-btn">
-                  <Link to="/sign-up">Cadastre-se agora</Link>
-                  <Button type="submit" id="button-login-signup">
-                    Entrar
-                  </Button>
-                </div>
-                </div>
-
-               
 
 
               </Form>

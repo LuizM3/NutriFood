@@ -34,7 +34,7 @@ const HeaderConst = () => {
 
   const token = Verify();
 
-  if (token){
+  if (token) {
     const GetName = async () => {
 
       try {
@@ -42,7 +42,7 @@ const HeaderConst = () => {
         if (resp.ok) {
           const data = await resp.json();
           const validation = await data.validation; //validação do token
-  
+
         }
       } catch (error) {
         console.error("Erro ao enviar requisição:", error);
@@ -160,7 +160,7 @@ const HeaderConst = () => {
               </Nav>
               <Nav className="me-auto">
                 <div className="div-link">
-                  <Link  to={"/?token=" + token} className="text-decoration-none" data-test="">
+                  <Link to={"/?token=" + token} className="text-decoration-none" data-test="">
                     <h2>Nutrifood </h2>
                   </Link>
                 </div>
@@ -174,7 +174,7 @@ const HeaderConst = () => {
                   </div>
                   <div className="div-link">
                     <Link
-                     to={"/menu?token=" + token}
+                      to={"/menu?token=" + token}
                       className="text-decoration-none"
                     >
                       Cardápio
@@ -198,7 +198,7 @@ const HeaderConst = () => {
                   </div>
 
                   <div className="div-link">
-                    <Link to="/about" className="text-decoration-none">
+                    <Link to={"/about?token=" + token} className="text-decoration-none">
                       Sobre
                     </Link>
                   </div>
@@ -207,11 +207,10 @@ const HeaderConst = () => {
                 </Nav>
                 <Nav className="me-auto">
                   <div className="div-link">
-                    <Link to="/login" className="text-decoration-none">
-                      <Button to="/login">
+                    <Link to={"/login?token=" + token} className="text-decoration-none">
+                      <Button>
                         <ion-icon name="person"></ion-icon>
                         <span>
-
                           Entrar
                         </span>
                       </Button>
@@ -258,7 +257,7 @@ const HeaderConst = () => {
                       <ListGroup>
                         <ListGroup.Item>
                           <Row>
-                            <Link to="/reviews" className="text-decoration-none">
+                            <Link to={"/reviews?token=" + token} className="text-decoration-none">
                               <h1>
                                 Avaliações
                               </h1>
@@ -269,7 +268,7 @@ const HeaderConst = () => {
                         <ListGroup.Item>
                           <Row>
                             <Link
-                              to="/menu"
+                              to={"/menu?token=" + token}
                               className="text-decoration-none"
                             >
                               <h1>
@@ -280,7 +279,9 @@ const HeaderConst = () => {
                           </Row>
                         </ListGroup.Item>
                         <ListGroup.Item><Row>
-                          <Link to="/suggestions" className="text-decoration-none">
+                          <Link
+                            to={"/suggestions?token=" + token}
+                            className="text-decoration-none">
                             <h1>
 
                               Sugestões
@@ -288,7 +289,9 @@ const HeaderConst = () => {
                           </Link>
                         </Row></ListGroup.Item>
                         <ListGroup.Item><Row>
-                          <Link to="/contact" className="text-decoration-none">
+                          <Link
+                            to={"/contact?token=" + token}
+                            className="text-decoration-none">
                             <h1>
 
                               Contato
@@ -296,7 +299,10 @@ const HeaderConst = () => {
                           </Link>
                         </Row></ListGroup.Item>
                         <ListGroup.Item><Row>
-                          <Link to="/about" className="text-decoration-none">
+                          <Link
+                            to={"/about?token=" + token}
+                            className="text-decoration-none">
+
                             <h1>
 
                               Sobre
@@ -308,8 +314,11 @@ const HeaderConst = () => {
                       </ListGroup>
 
                       <Row id="r-b">
-                        <Link to="/login" className="text-decoration-none">
-                          <Button to="/login">
+                        <Link
+                          to={"/login?token=" + token}
+                          className="text-decoration-none">
+
+                          <Button>
                             <ion-icon name="person"></ion-icon>
                             <span>
 
