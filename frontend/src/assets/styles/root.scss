@@ -1,6 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Didact+Gothic&family=Lexend:wght@100;900&display=swap');
 
+@media(max-width: 768px) {
+  .logo-tog {
+    display: none !important;
+  }
+}
+
+.login-cont {
+  section {
+    .row {
+      align-items: start !important;
+
+    }
+  }
+}
+
 ::selection {
   background: var(--primary);
   color: #fff;
@@ -49,11 +64,11 @@
 
   #div-form-l {
     width: 300px;
-    height: 450px;
+    // height: 400px;
 
     @media(max-width: 375px) {
-      width: 100% !important;
-      height: 100% !important;
+      width: 90% !important;
+      height: 90% !important;
     }
 
     @media(max-width:540px) {
@@ -71,7 +86,7 @@
   }
 
   @media(max-width: 768px) {
-    padding: 36px 48px;
+    padding: 0px 48px;
   }
 
   input {
@@ -85,15 +100,16 @@
     transition: all 0.5s;
     box-shadow: none;
     border-color: var(--primary);
-   
+
   }
 
-  
 
-  padding:36px 120px;
+
+  padding:0px 120px;
   min-height: 500px;
 
-  margin: 0 auto;
+  margin: 0;
+  margin-top: 20px;
   border: 1px solid #dadce0;
 
   .figure {
@@ -407,4 +423,80 @@ body {
   --alert: blue;
   --default-font: 'Quicksand', sans-serif;
   --color-font-gray: #747474;
+}
+
+.spinner-border {
+  color: #1acf8a !important;
+}
+
+.spinner-modal {
+  .modal {
+    --bs-modal-width: 100vw !important;
+  }
+
+  .modal-dialog {
+    justify-content: center !important;
+    display: flex !important;
+
+  }
+
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.modal {
+  display: flex !important;
+  flex-direction: column;
+  width: 100vw !important;
+  justify-content: start;
+  align-items: center !important;
+  padding: 0 !important;
+
+  .modal-body {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+
+    .row {
+      width: 100%;
+    }
+  }
+
+  form {
+    width: 100%;
+
+    .form-check {
+      width: 100%;
+    }
+  }
+
+  .modal-dialog {
+    max-width: 100%;
+    margin: 20px;
+    width: 100% !important;
+
+    @media(max-width: 540px) {
+      margin: 0;
+    }
+  }
+
+  width: 100% !important;
+
+  .modal-content {
+    padding: 20px;
+    width: 500px !important;
+
+    @media(max-width: 540px) {
+      width: 100% !important;
+      border-radius: 0;
+    }
+  }
 }

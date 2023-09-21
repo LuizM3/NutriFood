@@ -71,11 +71,12 @@ const SignUpConst = () => {
 
     const handleColetaSubmit = async () => {
 
-        if (vegetariano == "true") {
-            vegetariano = Boolean("true");
-        } else if (vegetariano == "false") {
-            vegetariano = Boolean("false");
-        };
+        if (vegetariano === "true") {
+            vegetariano = true;
+        }
+        if (vegetariano === "false") {
+            vegetariano = false;
+        }
 
         let objetoRefeicoes = {
             cafeDaManha: false,
@@ -181,10 +182,10 @@ const SignUpConst = () => {
     return (
         <>
 
-            <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" data-test="links">
+            <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" backdrop="static" data-test="links">
                 <Modal.Body>
                     <Spinner
-                        variant="light"
+
                         animation="border"
                         role="status"
                         show={spinnerModal}
@@ -308,6 +309,7 @@ const SignUpConst = () => {
                         {["radio"].map((type) => (
                             <div key={`inline-${type}`} className="mb-4">
                                 <Form.Check
+                                    xs={12}
                                     inline
                                     label="Sim"
                                     name="vegetariano"
@@ -400,13 +402,13 @@ const SignUpConst = () => {
                         <Row>
 
                             <Form id="form-login" onSubmit={handleSubmit}>
-                                <div id="div-arrow">
+                                {/* <div id="div-arrow">
                                     <Link to={"/?token=" + token} id="arrow">
                                         <Figure>
                                             <Figure.Image src={arrow}></Figure.Image>
                                         </Figure>
                                     </Link>
-                                </div>
+                                </div> */}
 
                                 <div id="div-form-l">
                                     <Figure>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Form } from "react-bootstrap";
+import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Modal } from "react-bootstrap";
 
 import { useMediaQuery } from "react-responsive";
 import { Link, useSearchParams } from "react-router-dom";
@@ -9,6 +9,9 @@ import "../assets/styles/header.scss";
 const logo = require("../assets/images/logo.png");
 
 const HeaderConst = () => {
+
+ 
+  const [userName, setUserName] = useState("");
 
   const [isToggled, setIsToggled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -28,21 +31,25 @@ const HeaderConst = () => {
   const Verify = () => {
     const [searchParams] = useSearchParams();
     const tokenVerify = searchParams.get("token");
-
     return tokenVerify;
   };
 
   const token = Verify();
 
+
   if (token) {
     const GetName = async () => {
-
       try {
         const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
         if (resp.ok) {
           const data = await resp.json();
-          const validation = await data.validation; //validação do token
-
+          const nome = await data.nome; 
+          console.log(nome);
+          // const validation = await data.validation;
+          // if (validation === true) {
+          //   setUserName(nome);
+          //   console.log(nome);
+          // }
         }
       } catch (error) {
         console.error("Erro ao enviar requisição:", error);
@@ -60,7 +67,7 @@ const HeaderConst = () => {
             <Row> <Col></Col>
               <Col>
                 <Figure>
-                  <Figure.Image src={logo} width={64} height={64} id="sun">
+                  <Figure.Image src={logo} width={64} height={64}>
 
                   </Figure.Image>
                 </Figure>
@@ -207,14 +214,19 @@ const HeaderConst = () => {
                 </Nav>
                 <Nav className="me-auto">
                   <div className="div-link">
-                    <Link to={"/login?token=" + token} className="text-decoration-none">
+                    {userName ? (
                       <Button>
                         <ion-icon name="person"></ion-icon>
-                        <span>
-                          Entrar
-                        </span>
+                        <span>{userName}</span>
                       </Button>
-                    </Link>
+                    ) : (
+                      <Link to={"/login?token=" + token} className="text-decoration-none">
+                        <Button>
+                          <ion-icon name="person"></ion-icon>
+                          <span>Entrar</span>
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </Nav>
               </Navbar.Brand></>
@@ -322,7 +334,6 @@ const HeaderConst = () => {
                             <ion-icon name="person"></ion-icon>
                             <span>
 
-                              Entrar
                             </span>
                           </Button>
                         </Link>

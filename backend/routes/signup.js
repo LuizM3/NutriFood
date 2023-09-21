@@ -10,6 +10,7 @@ router.post("/", async (req, res) => {
     const lancheDaTarde = objetoRefeicoes.lancheDaTarde;
     const jantar = objetoRefeicoes.jantar;
 
+    console.log(vegetariano);
 // Verifique se o email já está cadastrado
     connection.query(
         "SELECT * FROM users WHERE email = ?",

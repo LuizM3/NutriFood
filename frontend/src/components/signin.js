@@ -67,10 +67,9 @@ const LoginConst = () => {
 
   return (
     <>
-      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" data-test="links">
+      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal spinner-modal" backdrop="static" data-test="links">
         <Modal.Body>
           <Spinner
-            variant="light"
             animation="border"
             role="status"
             show={spinnerModal}
@@ -89,7 +88,7 @@ const LoginConst = () => {
       </Modal>
 
       <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Erro!</Modal.Title>
         </Modal.Header>
         <Modal.Body>Erro ao fazer login</Modal.Body>
@@ -104,7 +103,7 @@ const LoginConst = () => {
           <section>
             <Row>
               <Form id="form-login" onSubmit={handleSubmit}>
-                <div id="div-arrow">
+                {/* <div id="div-arrow">
                   <Link
                     to={"/?token=" + token}
                     id="arrow" >
@@ -112,9 +111,9 @@ const LoginConst = () => {
                       <Figure.Image src={arrow}></Figure.Image>
                     </Figure>
                   </Link>
-                </div>
+                </div> */}
                 <div id="div-form-l">
-                  <Figure>
+                  <Figure className="logo-tog">
                     <Figure.Image src={logo} />
                   </Figure>
                   <h1>Login</h1>

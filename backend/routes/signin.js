@@ -20,12 +20,13 @@ router.post("/", async (req, res) => {
           const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: 300, });
 
           connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email],
-          (error, results) => {
-            if(error){
-              res.status(500).json({ message: "erro" });
-            }
-              res.status(200).json({ token, message: "Login"});
-          });
+            (error, results) => {
+              if (error) {
+                res.status(500).json({ message: "erro" });
+              }
+              res.status(200).json({ token, message: "Login" });
+             
+            });
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }
