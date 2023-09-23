@@ -10,7 +10,7 @@ const logo = require("../assets/images/logo.png");
 
 const HeaderConst = () => {
 
- 
+
   const [userName, setUserName] = useState("");
 
   const [isToggled, setIsToggled] = useState(false);
@@ -36,20 +36,20 @@ const HeaderConst = () => {
 
   const token = Verify();
 
+  // let validation;
+  // let nome;
 
   if (token) {
     const GetName = async () => {
       try {
         const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
         if (resp.ok) {
+          // nome = await data.nome;
+          // validation = await data.validation;
           const data = await resp.json();
-          const nome = await data.nome; 
+          const validation = await data.validation;
+          const nome = await data.nome;
           console.log(nome);
-          // const validation = await data.validation;
-          // if (validation === true) {
-          //   setUserName(nome);
-          //   console.log(nome);
-          // }
         }
       } catch (error) {
         console.error("Erro ao enviar requisição:", error);
@@ -57,11 +57,21 @@ const HeaderConst = () => {
     };
   }
 
+  // console.log(validation);
+
+  // const ShowName = () => {
+  //   if (validation === true) {
+  //     return <span>{nome}</span>;
+  //   } else {
+  //     return <span>Entrar</span>;
+  //   }
+  // }
+
   return (
 
     <>
 
-      <Navbar sticky="top" className="flex-nowrap" collapseOnSelect>
+      <Navbar fixed="top" className="flex-nowrap" collapseOnSelect>
         <div id="nav-cont" data-test="links">
           {isResponsive ? (
             <Row> <Col></Col>
@@ -88,11 +98,11 @@ const HeaderConst = () => {
                   <polyline
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="1.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     points="2 12, 16 12"
-                    class="globalnav-menutrigger-bread globalnav-menutrigger-bread-bottom"
+                    className="globalnav-menutrigger-bread globalnav-menutrigger-bread-bottom"
                   >
                     <animate
                       attributeName="points"
@@ -118,11 +128,11 @@ const HeaderConst = () => {
                   <polyline
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="1.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     points="2 5, 16 5"
-                    class="globalnav-menutrigger-bread globalnav-menutrigger-bread-top"
+                    className="globalnav-menutrigger-bread globalnav-menutrigger-bread-top"
                   >
                     <animate
                       attributeName="points"
@@ -214,19 +224,14 @@ const HeaderConst = () => {
                 </Nav>
                 <Nav className="me-auto">
                   <div className="div-link">
-                    {userName ? (
+                    <Link to={"/login?token=" + token} className="text-decoration-none">
                       <Button>
                         <ion-icon name="person"></ion-icon>
-                        <span>{userName}</span>
+                        {/* <GetName />
+                         <ShowName /> */}
+                        Entrar
                       </Button>
-                    ) : (
-                      <Link to={"/login?token=" + token} className="text-decoration-none">
-                        <Button>
-                          <ion-icon name="person"></ion-icon>
-                          <span>Entrar</span>
-                        </Button>
-                      </Link>
-                    )}
+                    </Link>
                   </div>
                 </Nav>
               </Navbar.Brand></>

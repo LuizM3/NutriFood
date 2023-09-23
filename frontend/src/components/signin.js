@@ -4,7 +4,7 @@ import { Modal, Row, Figure, Form, Button, Spinner, Container, Col } from "react
 import { Link, useHistory } from "react-router-dom";
 
 import React, { useState } from "react";
-import { useNavigate, useSearchParams} from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const arrow = require("../assets/images/left-arrow.png");
 const logo = require("../assets/images/logo.png");

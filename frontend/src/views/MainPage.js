@@ -7,9 +7,9 @@ import Footer from "../components/footer";
 const MainPage = () => {
   return (
     <>
-    <Header/>
+      <Header />
       <Carousel />
-      <Footer/>
+      <Footer />
     </>
   );
 };

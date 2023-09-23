@@ -32,52 +32,52 @@ const AboutConst = () => {
                 <Row id="d-r">
                   <Row>
                     <Row className="r-r">
-                      <Col md={4} xs={2}className="c-col">
+                      <Col md={4} xs={2} className="c-col">
                         <div>
                           <ion-icon name="location"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} xs={10}className="">
-                        <Link to="https://maps.app.goo.gl/BQ8z8Rw6EkLQN9iS8">Rodovia ES-080, Km 93 s/n, Santa Teresa - ES, 29660-000
+                      <Col md={8} xs={10} className="">
+                        <Link to="https://maps.app.goo.gl/BQ8z8Rw6EkLQN9iS8" target="blank">Rodovia ES-080, Km 93 s/n, Santa Teresa - ES, 29660-000
                         </Link>
 
                       </Col>
                     </Row>
 
                     <Row className="r-r">
-                      <Col md={4} xs={2}className="c-col">
+                      <Col md={4} xs={2} className="c-col">
                         <div>
                           <ion-icon name="call"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} xs={10}className="" >
+                      <Col md={8} xs={10} className="" >
 
-                        <Link to="">
+                        <Link to="" target="blank">
                           (27) 3259-7878
                         </Link>
                       </Col>
                     </Row>
                     <Row className="r-r">
-                      <Col md={4} xs={2}className="c-col">
+                      <Col md={4} xs={2} className="c-col">
                         <div>
                           <ion-icon name="paper-plane"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} xs={10}className="">
-                        <Link>
+                      <Col md={8} xs={10} className="">
+                        <Link target="blank">
 
                           suporte@ifes.edu
                         </Link>
                       </Col>
                     </Row>
                     <Row className="r-r">
-                      <Col md={4} xs={2}className="c-col">
+                      <Col md={4} xs={2} className="c-col">
                         <div>
                           <ion-icon name="earth"></ion-icon>
                         </div>
                       </Col>
-                      <Col md={8} xs={10}className="">
-                        <Link to="www.ifes.edu.br">
+                      <Col md={8} xs={10} className="">
+                        <Link to="" target="blank">
                           www.ifes.edu.br
                         </Link>
                       </Col>
@@ -111,23 +111,23 @@ const AboutConst = () => {
                           controlId="floatingInput"
                           label="Email"
 
-                        ><Form.Control type="email" placeholder="Email"/></FloatingLabel>
+                        ><Form.Control type="email" placeholder="Email" /></FloatingLabel>
 
                       </Form.Group>
                     </Row>
 
-                    <Form.Group as={Col}className="mb-3" controlId="formGridText">
+                    <Form.Group as={Col} className="mb-3" controlId="formGridText">
                       <FloatingLabel
                         controlId="floatingTextarea"
                         label="Assunto"
 
                       >  <Form.Control placeholder="Assunto"
-                      /></FloatingLabel>
+                        /></FloatingLabel>
 
 
                     </Form.Group>
 
-                    <Form.Group className="mb-3" as={Col}controlId="formGridAddress2">
+                    <Form.Group className="mb-3" as={Col} controlId="formGridAddress2">
                       <FloatingLabel
                         controlId="floatingTextarea"
                         label="Mensagem"

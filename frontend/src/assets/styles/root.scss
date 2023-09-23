@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Didact+Gothic&family=Lexend:wght@100;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', sans-serif;
+}
 
 @media(max-width: 768px) {
   .logo-tog {
@@ -10,7 +20,7 @@
 .login-cont {
   section {
     .row {
-      align-items: start !important;
+      align-items: center !important;
 
     }
   }
@@ -35,6 +45,7 @@
 
 * {
   scroll-behavior: smooth;
+  font-family: 'Raleway', sans-serif !important;
 }
 
 .btn {
@@ -49,6 +60,8 @@
 }
 
 #form-login {
+  margin-top: 80px !important;
+
   #div-arrow {
     width: 300px;
 
@@ -87,6 +100,7 @@
 
   @media(max-width: 768px) {
     padding: 0px 48px;
+    border: none;
   }
 
   input {
@@ -175,9 +189,6 @@
       width: 50%;
     }
   }
-
-
-
 }
 
 .form-check-input:checked {
@@ -231,7 +242,6 @@
 html,
 body {
 
-  // height: 100vh !important;
   margin: 0;
   padding: 0;
 }
@@ -252,6 +262,7 @@ body {
   overflow: hidden;
   display: flex;
   width: 70%;
+  z-index: 0;
   flex-direction: column;
 
   form {
@@ -388,19 +399,24 @@ body {
 }
 
 #progress-nav {
-  width: 50vw;
+ 
   position: fixed;
-  margin: 14vh;
-  height: 2em;
-  border-radius: 10em;
+  // margin: 14vh;
+  // height: 2em;
+  // border-radius: 10em;
+    z-index: 1;
+   
 
   .container {
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+    // width: 100%;
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     #progress-bar {
-      width: 100%;
+      width: 50%;
+      height: 20px;
       border-radius: 10em;
     }
   }
@@ -414,13 +430,11 @@ body {
   --quarter: #0e9956;
   --fifty: #1a1a1a;
   --white: #ffffff;
-  --light: #fafafa;
-  --dark: #0f110c;
+  --light: #babfc4;
+  --light2: #838c95;
+  --dark: #232629;
   --lgray: #e9ecef;
   --gray: rgb(0 0 0 / 65%);
-  --obrigatory: rgb(129, 0, 0);
-  --error: #e71d36;
-  --alert: blue;
   --default-font: 'Quicksand', sans-serif;
   --color-font-gray: #747474;
 }
@@ -488,7 +502,6 @@ body {
     }
   }
 
-  width: 100% !important;
 
   .modal-content {
     padding: 20px;

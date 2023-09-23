@@ -15,7 +15,9 @@ router.get("/", (req, res) => {
         
         if(result.length > 0){
             validation = true;
-            const user = result[0];         
+            const user = result[0];     
+            console.log(validation);
+            console.log(user);    
             return res.status(200).json({ validation, user });
         }
     });

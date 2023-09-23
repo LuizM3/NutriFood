@@ -54,7 +54,6 @@ describe('signin page', () => {
 
     cy.get("#button-login-signup").click()
     cy.wait(2000)
-    cy.getByData("links").find("button").contains('Fechar').click()
     cy.getByData("links").find("a").contains('Cadastre-se agora').click()
 
     cy.getByData("form-nome").type(randomNome)

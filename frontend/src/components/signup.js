@@ -411,7 +411,7 @@ const SignUpConst = () => {
                                 </div> */}
 
                                 <div id="div-form-l">
-                                    <Figure>
+                                    <Figure className="logo-tog">
                                         <Figure.Image src={logo} />
                                     </Figure>
                                     <h1>Cadastro de usuário</h1>

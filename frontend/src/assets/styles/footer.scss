@@ -1,7 +1,47 @@
 @import url(root.scss);
 
-.container {
+.d-footer {
+    color: #838c95;
+  .row {
+    align-items: center;
+  }
+
+  .col {
+    align-items: center;
+    justify-content: center;
+  }
+
+  background-color: #232629;
+}
+
+.footer {
+  h6 {
+    color: #babfc4;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: small;
+
+  }
+
+  #logo-footer {
+    margin: 0;
+
+    img {
+      margin: 0;
+    }
+  }
+
+  .comunidade {}
+
+  .container {
+    .row {
+      text-align: justify;
+    }
+  }
+
   a {
-    color: var(--gray);
+    font-size: small;
+    color: #838c95;
+    font-weight: 100 !important;
   }
 }

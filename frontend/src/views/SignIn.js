@@ -5,7 +5,7 @@ import Header from "../components/header";
 const SignIn = () => {
   return (
     <>
-      <Header/>
+      <Header />
       <SignInComp />
     </>
   );

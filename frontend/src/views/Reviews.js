@@ -7,9 +7,9 @@ import Footer from "../components/footer";
 const Reviews = () => {
   return (
     <>
-    <Header/>
+      <Header />
       <ReviewsComp />
-      <Footer/>
+      
     </>
   );
 };

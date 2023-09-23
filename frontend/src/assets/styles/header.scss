@@ -84,9 +84,9 @@
 }
 
 .navbar {
-
+  display: flexbox;
+  z-index: 900000000;
   transition: all 0.5s;
-
   .hydrated {
     font-size: 1em !important;
   }
@@ -283,6 +283,7 @@
   align-items: center !important;
   display: flex !important;
   padding: 0 !important;
+  border-bottom: 1px solid var(--lgray);
 
   @media(max-width: 768px) {
     padding: 16px !important;

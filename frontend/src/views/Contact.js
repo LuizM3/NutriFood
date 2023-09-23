@@ -7,9 +7,9 @@ import Footer from "../components/footer";
 const Contact = () => {
   return (
     <>
-    <Header/>
+      <Header />
       <ContactComp />
-      <Footer/>
+      <Footer />
     </>
   );
 };
