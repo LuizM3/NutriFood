@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Modal } from "react-bootstrap";
+import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup} from "react-bootstrap";
 
 import { useMediaQuery } from "react-responsive";
 import { Link, useSearchParams } from "react-router-dom";
@@ -333,9 +333,9 @@ const HeaderConst = () => {
                       <Row id="r-b">
                         <Link
                           to={"/login?token=" + token}
-                          className="text-decoration-none">
+                          className="text-decoration-none justify-content-center align-items-center d-flex">
 
-                          <Button>
+                          <Button className="w-50 h-25">
                             <ion-icon name="person"></ion-icon>
                             <span>
 

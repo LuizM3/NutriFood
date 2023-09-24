@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "bad-words": "^3.0.4",
     "bootstrap": "^5.2.3",
     "gerador-nome": "^0.0.5",
     "google-fonts": "^1.0.0",

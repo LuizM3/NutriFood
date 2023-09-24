@@ -30,10 +30,8 @@ const SignUpConst = () => {
     const [dadosColeta, setDadosColeta] = useState("");
 
     const navigate = useNavigate();
-    // Aqui começa a função de handleSubmit
+
     const handleSubmit = async (e) => {
-
-
 
         e.preventDefault();
 
@@ -47,16 +45,21 @@ const SignUpConst = () => {
         }
 
         const isEmailUnique = await checkEmailUniqueness(email);
-
+        
         if (!isEmailUnique) {
             setEmailErrorModal(true);
             return;
         }
+        // const tes = await verifyServer();
+        // if(!tes){
+        //     console.log("CERTOOOO");
+        //     return;
+        // }
 
         setColetaPreenchida(true);
         setFormModal(true);
     };
-    // Aqui termina a função
+
     const Verify = () => {
         const [searchParams] = useSearchParams();
         const tokenVerify = searchParams.get("token");
@@ -65,9 +68,6 @@ const SignUpConst = () => {
     };
 
     const token = Verify();
-    // if (token) { 
-
-    // }
 
     const handleColetaSubmit = async () => {
 
@@ -161,6 +161,32 @@ const SignUpConst = () => {
         }
         return false;
     };
+    // const verifyServer = async () => {
+    //     try {
+    //         const response = await fetch("http://localhost:9000/testDB", {
+    //             method: "GET",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //         });
+
+    //         if (response.ok) {
+    //            console.log("Backend funcionando");
+    //         } else {
+    //             setErrorModal(true);
+    //             console.log("Backend com problema")
+    //         }
+    //     } catch (error) {
+    //         console.error("Erro ao enviar dados:", error);
+    //         setErrorModal(true);
+    //     }
+    // };
+
+
+
+
+
+
 
     const handleVinculoChange = (e) => {
         setVinculoAoIfes(e.target.value);
@@ -341,28 +367,21 @@ const SignUpConst = () => {
                 </Modal.Footer>
             </Modal>
 
-
-
-
-
-
             <Modal show={successModal} onHide={() => setSuccessModal(false)} className="modal" data-test="links">
-
-
                 <Modal.Header>
-                    <Modal.Title>Sucesso!</Modal.Title>
+                    <Modal.Title>Sucesso</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Cadastro concluído</Modal.Body>
                 <Modal.Footer>
-
                 </Modal.Footer>
             </Modal>
+
             <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
                 <Modal.Header >
-                    <Modal.Title>Erro!</Modal.Title>
+                    <Modal.Title>Erro</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Erro ao enviar requisição
+                    Erro ao cadastrar usuário
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={() => setErrorModal(false)}>
@@ -370,6 +389,7 @@ const SignUpConst = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
             <Modal show={emailErrorModal} onHide={() => setEmailErrorModal(false)} className="modal" data-test="links">
                 <Modal.Header >
                     <Modal.Title>Erro</Modal.Title>
@@ -402,14 +422,6 @@ const SignUpConst = () => {
                         <Row>
 
                             <Form id="form-login" onSubmit={handleSubmit}>
-                                {/* <div id="div-arrow">
-                                    <Link to={"/?token=" + token} id="arrow">
-                                        <Figure>
-                                            <Figure.Image src={arrow}></Figure.Image>
-                                        </Figure>
-                                    </Link>
-                                </div> */}
-
                                 <div id="div-form-l">
                                     <Figure className="logo-tog">
                                         <Figure.Image src={logo} />
@@ -428,8 +440,8 @@ const SignUpConst = () => {
                                                 type="text"
                                                 aria-label="Nome"
                                                 placeholder="Nome"
-                                                autocomplete="username"
-                                                autocapitalize="Nome"
+                                                autoComplete="username"
+                                                autoCapitalize="Nome"
                                                 value={nome}
                                                 data-test="form-nome"
                                                 onChange={(e) => setNome(e.target.value)}
@@ -467,22 +479,11 @@ const SignUpConst = () => {
                                     </div>
 
                                 </div>
-
-
-
                             </Form>
                         </Row>
                     </section>
                 </Container>
             </div>
-
-
-            {/* <div className="cont">
-                <div id="in-cont">
-
-                </div>
-
-            </div > */}
         </>
     );
 };

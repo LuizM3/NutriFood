@@ -56,7 +56,6 @@ h6 {
   align-items: center !important;
   justify-content: center !important;
   display: flex !important;
-  width: 8vw;
 }
 
 #form-login {
@@ -255,17 +254,65 @@ body {
   display: flex;
 }
 
+// *********************REVIEWS*********************
 .cont2 {
-  padding: 5em;
+  .rate {
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  .rate:not(:checked)>input {
+    position: absolute;
+    top: -9999px;
+  }
+
+  .rate:not(:checked)>label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 3em;
+    color: #ccc;
+  }
+
+  .rate:not(:checked)>label:before {
+    content: ' ★ ';
+  }
+
+  .rate>input:checked~label {
+    color: #ffd23f;
+  }
+
+  .rate:not(:checked)>label:hover,
+  .rate:not(:checked)>label:hover~label {
+    color: #ffd23f;
+  }
+
+  .rate>input:checked+label:hover,
+  .rate>input:checked+label:hover~label,
+  .rate>input:checked~label:hover,
+  .rate>input:checked~label:hover~label,
+  .rate>label:hover~input:checked~label {
+    color: #ffaa00;
+  }
+
+  padding-top: 5em;
+  padding-bottom: 2em;
   color: var(--dark);
   background-color: white;
   overflow: hidden;
   display: flex;
-  width: 70%;
+  width: 100%;
   z-index: 0;
   flex-direction: column;
 
   form {
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -273,88 +320,106 @@ body {
     margin-top: 4vh;
 
 
-    #inline-radio-5:checked,
-    #inline-radio-5:hover {
-      background-image: url(../images/5.png) !important;
-      background-color: transparent !important;
-      opacity: 1;
-      box-shadow: none;
-    }
+    // #inline-radio-5:checked,
+    // #inline-radio-5:hover {
+    //   background-image: url(../images/star.png) !important;
+    //   background-color: transparent !important;
+    //   opacity: 1;
+    //   box-shadow: none;
+    //   filter: grayscale(0);
+    // }
 
-    #inline-radio-5 {
-      width: 3em;
-      border: none;
-      background-image: url(../images/5.png) !important;
-      height: 3em;
-      opacity: 0.5;
-    }
+    // #inline-radio-5 {
+    //   width: 3em;
+    //   border: none;
+    //   background-image: url(../images/star.png) !important;
+    //   height: 3em;
+    //   opacity: 0.5;
+    //   filter: grayscale(100%);
+    // }
 
-    #inline-radio-4 {
-      width: 3em;
-      height: 3em;
-      border: none;
-      background-image: none;
-      background-image: url(../images/4.png) !important;
-      opacity: 0.5;
-    }
+    // #inline-radio-4 {
+    //   width: 3em;
+    //   height: 3em;
+    //   border: none;
+    //   background-image: none;
+    //   background-image: url(../images/star.png) !important;
+    //   opacity: 0.5;
+    //   filter: grayscale(100%);
+    // }
 
-    #inline-radio-4:checked,
-    #inline-radio-4:hover {
-      background-image: url(../images/4.png) !important;
-      background-color: transparent !important;
-      opacity: 1;
-      box-shadow: none;
-    }
+    // #inline-radio-4:checked,
+    // #inline-radio-4:hover {
+    //   background-image: url(../images/star.png) !important;
+    //   background-color: transparent !important;
+    //   opacity: 1;
+    //   box-shadow: none;
+    //   filter: grayscale(0%);
+    // }
 
-    #inline-radio-3 {
-      width: 3em;
-      border: none;
-      height: 3em;
-      opacity: 0.5;
-      background-image: url(../images/3.png) !important;
-    }
+    // #inline-radio-3 {
+    //   width: 3em;
+    //   border: none;
+    //   height: 3em;
+    //   opacity: 0.5;
+    //   background-image: url(../images/star.png) !important;
 
-    #inline-radio-3:checked,
-    #inline-radio-3:hover {
-      background-image: url(../images/3.png) !important;
-      background-color: transparent !important;
-      opacity: 1;
-      box-shadow: none;
-    }
+    //   filter: grayscale(100%);
+    // }
 
-    #inline-radio-2 {
-      width: 3em;
-      height: 3em;
-      border: none;
-      opacity: 0.5;
-      background-image: url(../images/1.png) !important;
-    }
+    // #inline-radio-3:checked,
+    // #inline-radio-3:hover {
+    //   background-image: url(../images/star.png) !important;
+    //   background-color: transparent !important;
+    //   opacity: 1;
+    //   box-shadow: none;
 
-    #inline-radio-2:checked,
-    #inline-radio-2:hover {
-      background-image: url(../images/1.png) !important;
-      background-color: transparent !important;
-      opacity: 1;
-      box-shadow: none;
-    }
+    //   filter: grayscale(0);
+    // }
 
-    #inline-radio-1 {
-      width: 3em;
-      border: none;
-      background-image: url(../images/2.png) !important;
-      opacity: 0.5;
-      height: 3em;
-    }
+    // #inline-radio-2 {
+    //   width: 3em;
+    //   height: 3em;
+    //   border: none;
+    //   opacity: 0.5;
+    //   background-image: url(../images/star.png) !important;
+    //   filter: grayscale(100%);
+    // }
 
-    #inline-radio-1:hover,
-    #inline-radio-1:checked {
-      background-image: url(../images/2.png) !important;
-      background-color: transparent !important;
-      opacity: 1;
-      box-shadow: none;
-    }
+    // #inline-radio-2:checked,
+    // #inline-radio-2:hover {
+    //   background-image: url(../images/star.png) !important;
+    //   background-color: transparent !important;
+    //   opacity: 1;
+    //   box-shadow: none;
+    //   filter: grayscale(0);
+
+
+    // }
+
+    // #inline-radio-1 {
+    //   width: 3em;
+    //   border: none;
+    //   background-image: url(../images/star.png) !important;
+    //   opacity: 0.5;
+    //   height: 3em;
+
+    //   filter: grayscale(100%);
+    // }
+
+    // #inline-radio-1:hover,
+    // #inline-radio-1:checked {
+    //   background-image: url(../images/star.png) !important;
+    //   background-color: transparent !important;
+    //   opacity: 1;
+    //   box-shadow: none;
+
+    //   filter: grayscale(0);
+    // }
   }
 }
+
+// ******************************************
 
 * {
   @media (max-width: 2560px) {
@@ -399,13 +464,13 @@ body {
 }
 
 #progress-nav {
- 
+
   position: fixed;
   // margin: 14vh;
   // height: 2em;
   // border-radius: 10em;
-    z-index: 1;
-   
+  z-index: 1;
+
 
   .container {
     // width: 100%;

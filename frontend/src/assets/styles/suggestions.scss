@@ -1,0 +1,16 @@
+.s-container {
+    margin-top:120px;
+    @media(max-width: 768px){
+        margin-top: 120px;
+    }
+    form{
+        @media(max-width: 375px){
+            margin: 0 !important;
+        }
+    }
+
+    .alert {
+        position: fixed;
+        z-index: 200;
+    }
+}

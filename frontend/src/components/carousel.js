@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/styles/carousel.scss";
 import "../assets/styles/main.scss";
-import { Container, Accordion, Button, Stack, Col, Row, Figure, Table } from "react-bootstrap";
+import { Container, Accordion, Button, Col, Row, Figure, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
@@ -16,7 +16,6 @@ const CarouselConst = () => {
   const island = require("../assets/images/island.png");
   const sun = require("../assets/images/sun.png");
   const quote = require("../assets/images/quote.png");
-  // const [noticias, setNoticias] = useState([]);
   const noticias = [
     {
       url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsantateresa.ifes.edu.br%2Findex.php%2Fnoticias%2F17707-ifes-campus-santa-teresa-recebe-a-visita-de-alunos-da-escola-eeefm-joao-neiva&psig=AOvVaw3GTZRKM0newvCzGvuqQJuJ&ust=1695515166403000&source=images&cd=vfe&opi=89978449&ved=0CBIQjhxqGAoTCIi3l6u8v4EDFQAAAAAdAAAAABCnAQ",
@@ -73,6 +72,7 @@ const CarouselConst = () => {
       name: "Teste"
     },
   ];
+  // const [noticias, setNoticias] = useState([]);
   // useEffect(() => {
   //   fetch(apiUrl)
   //     .then((response) => response.json())

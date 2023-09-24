@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Form, Row, Container, Col, Button, FloatingLabel } from "react-bootstrap";
 import "../assets/styles/contact.scss";
 import { Link } from "react-router-dom";

@@ -1,12 +1,11 @@
 import "../assets/styles/login.scss";
 
-import { Modal, Row, Figure, Form, Button, Spinner, Container, Col } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Modal, Row, Figure, Form, Button, Spinner, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-const arrow = require("../assets/images/left-arrow.png");
 const logo = require("../assets/images/logo.png");
 const LoginConst = () => {
   const Verify = () => {
@@ -69,12 +68,7 @@ const LoginConst = () => {
     <>
       <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal spinner-modal" backdrop="static" data-test="links">
         <Modal.Body>
-          <Spinner
-            animation="border"
-            role="status"
-            show={spinnerModal}
-            onHide={() => setSpinnerModal(false)}
-          >
+          <Spinner animation="border" role="status" show={spinnerModal} onHide={() => setSpinnerModal(false)}>
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </Modal.Body>
@@ -84,12 +78,11 @@ const LoginConst = () => {
         <Modal.Body>
           Login concluído
         </Modal.Body>
-
       </Modal>
 
       <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
         <Modal.Header>
-          <Modal.Title>Erro!</Modal.Title>
+          <Modal.Title>Erro</Modal.Title>
         </Modal.Header>
         <Modal.Body>Erro ao fazer login</Modal.Body>
         <Modal.Footer>
@@ -98,29 +91,24 @@ const LoginConst = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
       <div id="div-z-cont" data-test="links">
         <Container className="login-cont">
           <section>
             <Row>
+
               <Form id="form-login" onSubmit={handleSubmit}>
-                {/* <div id="div-arrow">
-                  <Link
-                    to={"/?token=" + token}
-                    id="arrow" >
-                    <Figure>
-                      <Figure.Image src={arrow}></Figure.Image>
-                    </Figure>
-                  </Link>
-                </div> */}
+
                 <div id="div-form-l">
+
                   <Figure className="logo-tog">
                     <Figure.Image src={logo} />
                   </Figure>
+
                   <h1>Login</h1>
                   <div className="in-section">
                     <Form.Group className="mb-3">
                       <Form.Label>Insira seus dados de login</Form.Label>
-
                     </Form.Group>
                   </div>
 
@@ -144,47 +132,19 @@ const LoginConst = () => {
                   </div>
 
                   <div id="div-btn">
-                    <Link
-                      // to="/sign-up"
-                      to={"/sign-up?token=" + token}
-                    >Cadastre-se agora</Link>
+                    <Link to={"/sign-up?token=" + token}>Cadastre-se agora</Link>
                     <Button type="submit" id="button-login-signup">
                       Entrar
                     </Button>
                   </div>
+
                 </div>
 
-
-
-
               </Form>
-
             </Row>
           </section>
         </Container>
-
       </div>
-
-
-
-
-
-
-
-      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-
-
-
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-
-        </Form.Group>
-        {" "} */}
-
-
     </>
   );
 };
