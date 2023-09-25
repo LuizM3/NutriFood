@@ -98,8 +98,9 @@ const SuggestionsConst = () => {
   const [suggestion3, setSuggestion3] = useState("");
   const [suggestion4, setSuggestion4] = useState("");
   const [suggestion5, setSuggestion5] = useState("");
-  const [showAlert, setShowAlert] = useState(true); // Estado para controlar a exibição do alert
-
+  const [showAlert, setShowAlert] = useState(false); // Estado para controlar a exibição do alert
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+  const [showErrorAlert, setErrorAlert] = useState(false);
   const handleSuggestionChange = (event) => {
     setSuggestion(event.target.value);
   };
@@ -117,7 +118,16 @@ const SuggestionsConst = () => {
   };
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
+    if (suggestion === "" || suggestion2 === "" || suggestion3 === "" || suggestion4 === "" || suggestion5 === "") {
+      setErrorAlert(true);
+      setTimeout(() => {
+        setErrorAlert(false);
+      }, 5000);
+      return;
+    }
+
 
     // instância do filtro
     const filter = new Filter();
@@ -132,25 +142,50 @@ const SuggestionsConst = () => {
     ) {
       // Se contiver linguagem imprópria, mostre o alert
       setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+
+
       console.log("Linguagem imprópria");
+    
     } else {
       // Aqui,enviar a sugestão para o backend
+      setShowAlertSuccess(true);
+      setTimeout(() => {
+        setShowAlertSuccess(false);
+      }, 5000);
+      console.log("Sucesso em enviar sugestão")
     }
+   
   };
 
   return (
     <>
-      <Container className="s-container justify-content-center align-items-center d-flex flex-column">{showAlert && (
-        <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
-          <Alert.Heading>Linguagem imprópria detectada!</Alert.Heading>
-          {/* <p>
-                Sua sugestão contém linguagem imprópria. Por favor, revise sua mensagem antes de enviar.
-              </p> */}
-        </Alert>
-      )}
+      <Row className="position-fixed alert-row">
+        {showAlert && (
+          <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setShowAlert(false)}>
+            Linguagem imprópria detectada!
+
+          </Alert>
+        )}  {showAlertSuccess && (
+          <Alert variant="success" className="align-items-center d-flex fade" onClose={() => setShowAlertSuccess(false)}>
+            Sugestão enviada com sucesso!
+          </Alert>
+        )}
+        {showErrorAlert && (
+          <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setErrorAlert(false)}>
+            Erro ao enviar sugestão
+          </Alert>
+        )}
+
+      </Row>
+      <Container className="s-container justify-content-center align-items-center d-flex flex-column">
         <Row className="mt-5 d-flex justify-content-center align-items-center text-center" md={12}>
 
-          <Col lg={8} md={12} xl={6}>
+
+          <Col lg={8} md={12} xl={6} className="d-flex flex-column align-items-center">
+
             <h2>Coleta de sugestões</h2>
             <Form className="m-5" onSubmit={handleSubmit}>
               <Row>

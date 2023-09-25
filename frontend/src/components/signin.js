@@ -1,6 +1,7 @@
 import "../assets/styles/login.scss";
+import "../assets/styles/suggestions.scss";
 
-import { Modal, Row, Figure, Form, Button, Spinner, Container } from "react-bootstrap";
+import { Modal, Row, Figure, Form, Button, Spinner, Container, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import React, { useState } from "react";
@@ -23,9 +24,20 @@ const LoginConst = () => {
   const [spinnerModal, setSpinnerModal] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
-
+  const [showPassAlert, setShowPassAlert] = useState(false); // Estado para controlar a exibição do alert
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+  const [showErrorAlert, setErrorAlert] = useState(false);
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    if (senha === "" || email === "") {
+      setErrorAlert(true);
+      setTimeout(() => {
+        setErrorAlert(false);
+      }, 5000);
+      return;
+    }
+
 
     try {
       const response = await fetch("http://localhost:9000/signin", {
@@ -41,6 +53,10 @@ const LoginConst = () => {
         const token = data.token;
 
         if (data.message === "Login") {
+          setShowAlertSuccess(true);
+          setTimeout(() => {
+            setShowAlertSuccess(false);
+          }, 5000);
           setTimeout(() => {
             setSpinnerModal(true);
           }, 1000);
@@ -53,11 +69,17 @@ const LoginConst = () => {
           }
         } else {
           // Credenciais inválidas
-          setErrorModal(true);
+          setShowPassAlert(true);
+          setTimeout(() => {
+            setShowPassAlert(false);
+          }, 5000);
         }
       } else {
         // Tratar outros erros
-        setErrorModal(true);
+        setErrorAlert(true);
+        setTimeout(() => {
+          setErrorAlert(false);
+        }, 5000);
       }
     } catch (error) {
       console.error("Erro ao enviar requisição:", error);
@@ -66,6 +88,7 @@ const LoginConst = () => {
 
   return (
     <>
+
       <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal spinner-modal" backdrop="static" data-test="links">
         <Modal.Body>
           <Spinner animation="border" role="status" show={spinnerModal} onHide={() => setSpinnerModal(false)}>
@@ -74,13 +97,13 @@ const LoginConst = () => {
         </Modal.Body>
       </Modal>
 
-      <Modal show={successModal} onHide={() => setSuccessModal(false)} data-test="links">
+      {/* <Modal show={successModal} onHide={() => setSuccessModal(false)} data-test="links">
         <Modal.Body>
           Login concluído
         </Modal.Body>
-      </Modal>
+      </Modal> */}
 
-      <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
+      {/* <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
         <Modal.Header>
           <Modal.Title>Erro</Modal.Title>
         </Modal.Header>
@@ -90,8 +113,25 @@ const LoginConst = () => {
             Fechar
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
+      <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
+        {showPassAlert && (
+          <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setShowPassAlert(false)}>
+            Usuário inválido ou senha!
 
+          </Alert>
+        )}  {showAlertSuccess && (
+          <Alert variant="success" className="align-items-center d-flex fade" onClose={() => setShowAlertSuccess(false)}>
+            Login bem-sucedido
+          </Alert>
+        )}
+        {showErrorAlert && (
+          <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setErrorAlert(false)}>
+            Erro ao enviar requisição
+          </Alert>
+        )}
+
+      </Row>
       <div id="div-z-cont" data-test="links">
         <Container className="login-cont">
           <section>

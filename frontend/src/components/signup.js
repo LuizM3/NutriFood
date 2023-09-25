@@ -1,6 +1,6 @@
 import "../assets/styles/login.scss";
 
-import { Form, Button, Modal, Container, Spinner, Row, Figure } from "react-bootstrap";
+import { Form, Button, Modal, Container, Spinner, Row, Figure, Alert } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -8,6 +8,18 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 const arrow = require("../assets/images/left-arrow.png");
 const logo = require("../assets/images/logo.png");
+
+const passwordValidator = require('password-validator');
+const schema = new passwordValidator();
+// Add properties to it
+schema
+    .is().min(8)                                    // Minimum length 8
+    .is().max(100)                                  // Maximum length 100
+    .has().uppercase()                              // Must have uppercase letters
+    .has().lowercase()                              // Must have lowercase letters
+    .has().digits(2)                                // Must have at least 2 digits
+    .has().not().spaces()                           // Should not have spaces
+    .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 const SignUpConst = () => {
 
     const [nome, setNome] = useState("");
@@ -15,39 +27,69 @@ const SignUpConst = () => {
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [vinculoAoIfes, setVinculoAoIfes] = useState("");
+    const [termo, setTermo] = useState(false);
     let [vegetariano, setVegetariano] = useState("");
     let [refeicoes, setRefeicoes] = useState([]);
 
     const [emailError, setEmailError] = useState("");
     const [spinnerModal, setSpinnerModal] = useState(false);
     const [formModal, setFormModal] = useState(false);
-    const [successModal, setSuccessModal] = useState(false);
-    const [errorModal, setErrorModal] = useState(false);
-    const [emailErrorModal, setEmailErrorModal] = useState(false);
-    const [passcheckModal, setPasscheckModal] = useState(false);
+    const [termoModal, setTermoModal] = useState(false);
+    const [showPassAlert, setShowPassAlert] = useState(false); // Estado para controlar a exibição do alert
+    const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+    const [showErrorAlert, setErrorAlert] = useState(false);
+    const [showCampoAlert, setCampoAlert] = useState(false);
+    const [showWrongPAlert, setWrongPAlert] = useState(false);
+    const [showEmailAlert, setEmailAlert] = useState(false);
 
     const [coletaPreenchida, setColetaPreenchida] = useState(false);
     const [dadosColeta, setDadosColeta] = useState("");
 
     const navigate = useNavigate();
-
+    // const handleAceitarTermos = () => {
+    //     setTermo(!termo); // Inverte o valor do estado
+    // };
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
         if (senha !== confirmarSenha) {
-            setPasscheckModal(true);
+            setShowPassAlert(true);
+            setTimeout(() => {
+                setShowPassAlert(false);
+            }, 5000);
+            return;
+        }
+        if (schema.validate(senha) === false) {
+
+            setWrongPAlert(true);
+            setTimeout(() => {
+                setWrongPAlert(false);
+            }, 5000);
             return;
         }
         if (senha === "" || email === "" || nome === "") {
-            setErrorModal(true);
+            setCampoAlert(true);
+            setTimeout(() => {
+                setCampoAlert(false);
+            }, 5000);
             return;
         }
 
+        // if (termo(false)) {
+        //     setCampoAlert(true);
+        //     setTimeout(() => {
+        //         setCampoAlert(false);
+        //     }, 5000);
+        //     return;
+        // }
         const isEmailUnique = await checkEmailUniqueness(email);
-        
+
         if (!isEmailUnique) {
-            setEmailErrorModal(true);
+            setEmailAlert(true);
+            setTimeout(() => {
+                setEmailAlert(false);
+            }, 5000);
             return;
         }
         // const tes = await verifyServer();
@@ -123,14 +165,14 @@ const SignUpConst = () => {
             });
 
             if (response.ok) {
-
+                setShowAlertSuccess(true);
+                setTimeout(() => {
+                    setShowAlertSuccess(false);
+                }, 5000);
                 setTimeout(() => {
                     setSpinnerModal(true);
                 }, 1000);
 
-                setTimeout(() => {
-                    setSuccessModal(true);
-                }, 2000);
                 setTimeout(() => {
                     navigate("/login");
                 }, 4000);
@@ -138,12 +180,18 @@ const SignUpConst = () => {
 
 
             } else {
-                setErrorModal(true);
+                setErrorAlert(true);
+                setTimeout(() => {
+                    setErrorAlert(false);
+                }, 5000);
             }
         } catch (error) {
 
             console.error("Erro ao enviar dados:", error);
-            setErrorModal(true);
+            setErrorAlert(true);
+            setTimeout(() => {
+                setErrorAlert(false);
+            }, 5000);
 
         }
     };
@@ -207,7 +255,37 @@ const SignUpConst = () => {
 
     return (
         <>
-
+            <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
+                {showPassAlert && (
+                    <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setShowPassAlert(false)}>
+                        As senhas não são iguais!
+                    </Alert>
+                )}  {showAlertSuccess && (
+                    <Alert variant="success" className="align-items-center d-flex fade" onClose={() => setShowAlertSuccess(false)}>
+                        Cadastro bem-sucedido!
+                    </Alert>
+                )}
+                {showCampoAlert && (
+                    <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setCampoAlert(false)}>
+                        Preencha todos os campos!
+                    </Alert>
+                )}
+                {showErrorAlert && (
+                    <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setErrorAlert(false)}>
+                        Erro ao enviar requisição!
+                    </Alert>
+                )}
+                {showEmailAlert && (
+                    <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setEmailAlert(false)}>
+                        Email já cadastrado!
+                    </Alert>
+                )}
+                {showWrongPAlert && (
+                    <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setWrongPAlert(false)}>
+                        A senha digitada precisa atender os requisitos
+                    </Alert>
+                )}
+            </Row>
             <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" backdrop="static" data-test="links">
                 <Modal.Body>
                     <Spinner
@@ -221,6 +299,93 @@ const SignUpConst = () => {
                     </Spinner>
                 </Modal.Body>
             </Modal>
+
+            <Modal show={termoModal} onHide={() => setTermoModal(false)} className="modal" backdrop="static" data-test="links">
+                <Modal.Body>
+
+                    <h2>TERMOS DE USO</h2>
+
+                    <h3>1. Aceitação dos Termos de Uso</h3>
+                    <p>
+                        Bem-vindo ao [Nome do Seu Site]! Ao acessar ou usar nosso site, você
+                        concorda em cumprir e ficar vinculado a estes Termos de Uso. Se você não
+                        concordar com algum destes termos, por favor, não utilize o nosso site.
+                    </p>
+
+                    <h3>2. Uso Autorizado</h3>
+                    <p>
+                        Você concorda em utilizar nosso site apenas para fins legais e de acordo
+                        com estes Termos de Uso. Você não deve usar nosso site de forma que
+                        possa causar danos, prejudicar ou interferir com o funcionamento normal
+                        do site.
+                    </p>
+
+                    <h3>3. Informações de Conta</h3>
+                    <p>
+                        Ao utilizar nosso site, você é responsável por manter a confidencialidade
+                        de suas informações de conta, incluindo nome de usuário e senha. Você
+                        concorda em nos notificar imediatamente sobre qualquer uso não
+                        autorizado de sua conta.
+                    </p>
+
+                    <h3>4. Direitos de Propriedade Intelectual</h3>
+                    <p>
+                        Nosso site e seu conteúdo, incluindo texto, gráficos, logotipos, imagens
+                        e software, são protegidos por leis de direitos autorais e outras leis de
+                        propriedade intelectual. Você não deve reproduzir, distribuir, modificar
+                        ou criar obras derivadas com base em nosso conteúdo, a menos que tenha
+                        permissão expressa.
+                    </p>
+
+                    <h3>5. Links para Outros Sites</h3>
+                    <p>
+                        Nosso site pode conter links para sites de terceiros que não controlamos.
+                        Não somos responsáveis pelo conteúdo ou pelas práticas de privacidade
+                        desses sites.
+                    </p>
+
+                    <h3>6. Isenção de Garantias</h3>
+                    <p>
+                        Nosso site é fornecido "como está" e "conforme disponível". Não fazemos
+                        garantias de qualquer tipo quanto à sua precisão, confiabilidade ou
+                        disponibilidade.
+                    </p>
+
+                    <h3>7. Limitação de Responsabilidade</h3>
+                    <p>
+                        Em nenhuma circunstância seremos responsáveis por danos diretos,
+                        indiretos, incidentais, especiais, consequentes ou punitivos decorrentes
+                        do uso ou incapacidade de uso do nosso site.
+                    </p>
+
+                    <h3>8. Modificações nos Termos de Uso</h3>
+                    <p>
+                        Reservamo-nos o direito de modificar estes Termos de Uso a qualquer
+                        momento, e é sua responsabilidade verificar periodicamente se houve
+                        alterações. O uso continuado do site após tais alterações constituirá sua
+                        aceitação dos Termos de Uso revisados.
+                    </p>
+
+                    <h3>9. Encerramento de Conta</h3>
+                    <p>
+                        Reservamo-nos o direito de encerrar ou suspender sua conta a qualquer
+                        momento, sem aviso prévio, por qualquer motivo.
+                    </p>
+
+                    <h3>10. Lei Aplicável</h3>
+                    <p>
+                        Estes Termos de Uso serão regidos e interpretados de acordo com as leis
+                        do [seu país/estado], sem levar em consideração suas disposições de
+                        conflito de leis.</p>
+                </Modal.Body>
+                <Modal.Footer>
+
+                    <Button variant="primary" onClick={() => { setTermoModal(false) }}>
+                        Fechar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
             <Modal show={formModal} onHide={() => setFormModal(false)} className="modal" backdrop="static" data-test="links">
                 <Modal.Header>
                     <Modal.Title>
@@ -367,54 +532,6 @@ const SignUpConst = () => {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={successModal} onHide={() => setSuccessModal(false)} className="modal" data-test="links">
-                <Modal.Header>
-                    <Modal.Title>Sucesso</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Cadastro concluído</Modal.Body>
-                <Modal.Footer>
-                </Modal.Footer>
-            </Modal>
-
-            <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
-                <Modal.Header >
-                    <Modal.Title>Erro</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Erro ao cadastrar usuário
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={() => setErrorModal(false)}>
-                        Fechar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-            <Modal show={emailErrorModal} onHide={() => setEmailErrorModal(false)} className="modal" data-test="links">
-                <Modal.Header >
-                    <Modal.Title>Erro</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Este email já está cadastrado
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={() => setEmailErrorModal(false)}>
-                        Fechar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-            <Modal show={passcheckModal} onHide={() => setPasscheckModal(false)} className="modal" data-test="links">
-                <Modal.Header >
-                    <Modal.Title>Erro</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Erro na confirmação de senha, por favor tente novamente</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={() => setPasscheckModal(false)}>
-                        Fechar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
 
             <div id="div-z-cont" data-test="links">
                 <Container className="login-cont">
@@ -467,6 +584,19 @@ const SignUpConst = () => {
                                             />
                                         </Form.Group>
 
+                                    </div>
+                                    <div className="d-flex justify-content-left align-items-center flex-row mb-1">
+                                        <Form.Group controlId="formBasicCheckbox" id="termosDeUso" className="d-flex flex-row align-items-center justify-content-center">
+                                            <Form.Check type="checkbox" className="t-uso"
+                                            // value={termo}
+                                            // checked={termo} // Defina a propriedade checked com o valor de termo diretamente
+                                            // onChange={handleAceitarTermos} // Atualize o estado termo quando o checkbox muda 
+                                            />
+                                            <Form.Label for="termosDeUso" className="m-0">
+                                                Concordo com os <Link onClick={() => { setTermoModal(true); }}>Termos de Uso</Link>
+                                            </Form.Label>
+
+                                        </Form.Group>
                                     </div>
 
                                     <div id="div-btn">
