@@ -1,13 +1,11 @@
 import "../assets/styles/login.scss";
-
 import { Form, Button, Modal, Container, Spinner, Row, Figure, Alert } from "react-bootstrap";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import React, { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
 
-const arrow = require("../assets/images/left-arrow.png");
 const logo = require("../assets/images/logo.png");
+
+// Aqui começa o password-validator
 
 const passwordValidator = require('password-validator');
 const schema = new passwordValidator();
@@ -20,7 +18,16 @@ schema
     .has().digits(2)                                // Must have at least 2 digits
     .has().not().spaces()                           // Should not have spaces
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
+
+// Aqui começa o código do signup
+
 const SignUpConst = () => {
+
+    // Criando constante navigate
+
+    const navigate = useNavigate();
+
+    // Setando constantes e funcões
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
@@ -28,46 +35,37 @@ const SignUpConst = () => {
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [vinculoAoIfes, setVinculoAoIfes] = useState("");
     const [termo, setTermo] = useState(false);
-    let [vegetariano, setVegetariano] = useState("");
-    let [refeicoes, setRefeicoes] = useState([]);
 
-    const [emailError, setEmailError] = useState("");
+    // const [emailError, setEmailError] = useState("");
+
+    // Modais
+
     const [spinnerModal, setSpinnerModal] = useState(false);
     const [formModal, setFormModal] = useState(false);
     const [termoModal, setTermoModal] = useState(false);
-    const [showPassAlert, setShowPassAlert] = useState(false); // Estado para controlar a exibição do alert
+
+    // Alerts
+
+    const [showTermoAlert, setTermoAlert] = useState(false);
+    const [showPassAlert, setShowPassAlert] = useState(false);
     const [showAlertSuccess, setShowAlertSuccess] = useState(false);
     const [showErrorAlert, setErrorAlert] = useState(false);
     const [showCampoAlert, setCampoAlert] = useState(false);
     const [showWrongPAlert, setWrongPAlert] = useState(false);
     const [showEmailAlert, setEmailAlert] = useState(false);
 
+    // Coletas de usuário
+
     const [coletaPreenchida, setColetaPreenchida] = useState(false);
     const [dadosColeta, setDadosColeta] = useState("");
+    let [vegetariano, setVegetariano] = useState("");
+    let [refeicoes, setRefeicoes] = useState([]);
 
-    const navigate = useNavigate();
-    // const handleAceitarTermos = () => {
-    //     setTermo(!termo); // Inverte o valor do estado
-    // };
+
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
-        if (senha !== confirmarSenha) {
-            setShowPassAlert(true);
-            setTimeout(() => {
-                setShowPassAlert(false);
-            }, 5000);
-            return;
-        }
-        if (schema.validate(senha) === false) {
-
-            setWrongPAlert(true);
-            setTimeout(() => {
-                setWrongPAlert(false);
-            }, 5000);
-            return;
-        }
         if (senha === "" || email === "" || nome === "") {
             setCampoAlert(true);
             setTimeout(() => {
@@ -76,15 +74,40 @@ const SignUpConst = () => {
             return;
         }
 
-        // if (termo(false)) {
-        //     setCampoAlert(true);
+        if (schema.validate(senha) === false) {
+
+            setWrongPAlert(true);
+            setTimeout(() => {
+                setWrongPAlert(false);
+            }, 5000);
+            return;
+        }
+        if (senha !== confirmarSenha) {
+            setShowPassAlert(true);
+            setTimeout(() => {
+                setShowPassAlert(false);
+            }, 5000);
+            return;
+        }
+
+        if (termo === false) {
+            // Se o termo não foi aceito (termo === false)
+            setTermoAlert(true);
+            setTimeout(() => {
+                setTermoAlert(false);
+            }, 5000);
+            return;
+        }
+
+        const isEmailUnique = await checkEmailUniqueness(email);
+        // const isConnectionVerify = await checkConnection();
+        // if (!isConnectionVerify) {
+        //     setErrorAlert(true);
         //     setTimeout(() => {
-        //         setCampoAlert(false);
+        //         setErrorAlert(false);
         //     }, 5000);
         //     return;
         // }
-        const isEmailUnique = await checkEmailUniqueness(email);
-
         if (!isEmailUnique) {
             setEmailAlert(true);
             setTimeout(() => {
@@ -209,6 +232,20 @@ const SignUpConst = () => {
         }
         return false;
     };
+
+    // const checkConnection = async () => {
+    //     try {
+    //         const response = await fetch(`http://localhost:9000/testDB`);
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             return data.isConnection;
+    //         }
+    //     } catch (error) {
+    //         console.error("Erro ao verificar email:", error);
+    //     }
+    //     return false;
+    // };
+
     // const verifyServer = async () => {
     //     try {
     //         const response = await fetch("http://localhost:9000/testDB", {
@@ -231,11 +268,6 @@ const SignUpConst = () => {
     // };
 
 
-
-
-
-
-
     const handleVinculoChange = (e) => {
         setVinculoAoIfes(e.target.value);
     };
@@ -255,6 +287,9 @@ const SignUpConst = () => {
 
     return (
         <>
+
+            {/* Alerts */}
+
             <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
                 {showPassAlert && (
                     <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setShowPassAlert(false)}>
@@ -285,20 +320,24 @@ const SignUpConst = () => {
                         A senha digitada precisa atender os requisitos
                     </Alert>
                 )}
+                {showTermoAlert && (
+                    <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setTermoAlert(false)}>
+                        Leia e concorde com os Termos de Uso
+                    </Alert>
+                )}
             </Row>
+
+            {/* Modal spinner */}
+
             <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal" backdrop="static" data-test="links">
                 <Modal.Body>
-                    <Spinner
-
-                        animation="border"
-                        role="status"
-                        show={spinnerModal}
-                        onHide={() => setSpinnerModal(false)}
-                    >
+                    <Spinner animation="border" role="status" show={spinnerModal} onHide={() => setSpinnerModal(false)}>
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
                 </Modal.Body>
             </Modal>
+
+            {/* Modal termo de uso */}
 
             <Modal show={termoModal} onHide={() => setTermoModal(false)} className="modal" backdrop="static" data-test="links">
                 <Modal.Body>
@@ -379,12 +418,13 @@ const SignUpConst = () => {
                         conflito de leis.</p>
                 </Modal.Body>
                 <Modal.Footer>
-
                     <Button variant="primary" onClick={() => { setTermoModal(false) }}>
                         Fechar
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+            {/* Modal de coleta de usuário */}
 
             <Modal show={formModal} onHide={() => setFormModal(false)} className="modal" backdrop="static" data-test="links">
                 <Modal.Header>
@@ -393,6 +433,7 @@ const SignUpConst = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+
                     <Form>
                         <h5>
                             Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
@@ -532,11 +573,14 @@ const SignUpConst = () => {
                 </Modal.Footer>
             </Modal>
 
+            {/* Aqui começa o container de cadastro */}
 
             <div id="div-z-cont" data-test="links">
                 <Container className="login-cont">
                     <section>
                         <Row>
+
+                            {/* Formulario de cadastro */}
 
                             <Form id="form-login" onSubmit={handleSubmit}>
                                 <div id="div-form-l">
@@ -588,9 +632,8 @@ const SignUpConst = () => {
                                     <div className="d-flex justify-content-left align-items-center flex-row mb-1">
                                         <Form.Group controlId="formBasicCheckbox" id="termosDeUso" className="d-flex flex-row align-items-center justify-content-center">
                                             <Form.Check type="checkbox" className="t-uso"
-                                            // value={termo}
-                                            // checked={termo} // Defina a propriedade checked com o valor de termo diretamente
-                                            // onChange={handleAceitarTermos} // Atualize o estado termo quando o checkbox muda 
+                                                value={termo}
+                                                onChange={(e) => setTermo(e.target.value)}
                                             />
                                             <Form.Label for="termosDeUso" className="m-0">
                                                 Concordo com os <Link onClick={() => { setTermoModal(true); }}>Termos de Uso</Link>
@@ -610,6 +653,9 @@ const SignUpConst = () => {
 
                                 </div>
                             </Form>
+
+                            {/* *************************** */}
+
                         </Row>
                     </section>
                 </Container>

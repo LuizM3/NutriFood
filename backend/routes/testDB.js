@@ -3,15 +3,17 @@ var express = require('express');
 var router = express.Router();
 
 router.get("/", (req, res) => {
-  connection.query('SELECT email FROM users;', (error, results) => {
-    if (error) {
-      res.status(500).json({ error: error }); // Enviar um status de erro em caso de falha na consulta
-    } else {
-      const emails = results.map(result => result.email.replace(/"/g, ''));
-      const concatenatedEmails = emails.join(', ');
-      res.send(concatenatedEmails);
-    }
-  });
+
+  connection.query('SELECT email FROM users;',
+    (error, results) => {
+      if (error) {
+        res.status(500).json({ error: 'An error occured' }); // Enviar um status de erro em caso de falha na consulta
+      } else {
+        const emails = results.map(result => result.email.replace(/"/g, ''));
+        const concatenatedEmails = emails.join(', ');
+        res.send(concatenatedEmails);
+      }
+    });
 })
 
 module.exports = router;
