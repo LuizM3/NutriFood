@@ -7,12 +7,24 @@ import {
   Navbar,
   Button,
   Row,
+  Alert,
+  Col
 } from "react-bootstrap";
 
 const ReviewsConst = () => {
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+  const [showErrorAlert, setErrorAlert] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState({
     group1: null,
-    group2: null
+    group2: null,
+    group3: null,
+    group4: null,
+    group5: null,
+    group6: null,
+    group7: null,
+    group8: null,
+    group9: null,
+    group10: null
   });
 
 
@@ -121,11 +133,71 @@ const ReviewsConst = () => {
     ).length;
     return (selectedCount / 10) * 100;
   };
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    if (
+      selectedOptions.group1 === null ||
+      selectedOptions.group2 === null ||
+      selectedOptions.group3 === null ||
+      selectedOptions.group4 === null ||
+      selectedOptions.group5 === null ||
+      selectedOptions.group6 === null ||
+      selectedOptions.group7 === null ||
+      selectedOptions.group8 === null ||
+      selectedOptions.group9 === null ||
+      selectedOptions.group10 === null
+
+    ) {
+      setErrorAlert(true);
+      setTimeout(() => {
+        setErrorAlert(false);
+      }, 5000);
+      return;
+    } else {
+
+      setShowAlertSuccess(true);
+      setTimeout(() => {
+        setShowAlertSuccess(false);
+      }, 5000);
+
+      // Enviar dados ao banco de dadaos aqui pq depois anula os campos
+
+
+      // Limpeza de campos após sucesso e envio ao banco
+      selectedOptions.group1 = null;
+      selectedOptions.group2 = null;
+      selectedOptions.group3 = null;
+      selectedOptions.group4 = null;
+      selectedOptions.group5 = null;
+      selectedOptions.group6 = null;
+      selectedOptions.group7 = null;
+      selectedOptions.group8 = null;
+      selectedOptions.group9 = null;
+      selectedOptions.group10 = null;
+      return;
+
+    }
+  }
 
   const progress = calculateProgress();
   return (
     <>
-      <Container className="h-100">
+      <Row className="position-fixed alert-row rev-cont">
+
+        {showAlertSuccess && (
+          <Alert variant="success" className="align-items-center d-flex fade" onClose={() => setShowAlertSuccess(false)}>
+            Sugestão enviada com sucesso!
+          </Alert>
+        )}
+        {showErrorAlert && (
+          <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setErrorAlert(false)}>
+            Erro ao enviar sugestão
+          </Alert>
+        )}
+
+      </Row>
+      <Container className="h-100 cont-s">
         <Row className="overflow-scroll w-100 mt-5 scroll-row overflow-x-hidden">
           <Container className="">
             <Navbar id="progress-nav">
@@ -134,662 +206,694 @@ const ReviewsConst = () => {
               </Container>
             </Navbar>
             <div className="cont2 mt-2 justify-content-center align-items-center">
+              <Form
 
-              <Form> <h2>Coleta da avaliação</h2>
+                onSubmit={handleSubmit}
+              >
+                <Row> <h2>Coleta da avaliação</h2>
+                </Row>
+                <Row className="d-flex justify-content-center align-items-center">
+                  <Col md={6}>
+                  <h5>
+                    Dentre os pontos abordados abaixo, qual a sua avaliação em
+                    relação ao Restaurante Institucional?
+                  </h5>
+                  </Col>
+                  
+                </Row>
+                <Row>
+
+                  <h5>Apresentação das preparações</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group1`}
+                        name="group1"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange(e, "group1")}
+                        checked={selectedOptions.group1 === `star5_group1`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group1" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group1`}
+                        name="group1"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange(e, "group1")}
+                        checked={selectedOptions.group1 === `star4_group1`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group1" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group1`}
+                        name="group1"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange(e, "group1")}
+                        checked={selectedOptions.group1 === `star3_group1`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group1" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group1`}
+                        name="group1"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange(e, "group1")}
+                        checked={selectedOptions.group1 === `star2_group1`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group1" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group1`}
+                        name="group1"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange(e, "group1")}
+                        checked={selectedOptions.group1 === `star1_group1`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group1" title="text"></label>
+
+
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+
+                  <h5>Variedade do cardápio</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group2`}
+                        name="group2"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange2(e, "group2")}
+                        checked={selectedOptions.group2 === `star5_group2`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group2" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group2`}
+                        name="group2"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange2(e, "group2")}
+                        checked={selectedOptions.group2 === `star4_group2`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group2" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group2`}
+                        name="group2"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange2(e, "group2")}
+                        checked={selectedOptions.group2 === `star3_group2`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group2" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group2`}
+                        name="group2"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange2(e, "group2")}
+                        checked={selectedOptions.group2 === `star2_group2`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group2" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group2`}
+                        name="group2"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange2(e, "group2")}
+                        checked={selectedOptions.group2 === `star1_group2`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group2" title="text"></label>
+
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+                  <h5>Sabor das refeições</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group3`}
+                        name="group3"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange3(e, "group3")}
+                        checked={selectedOptions.group3 === `star5_group3`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group3" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group3`}
+                        name="group3"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange3(e, "group3")}
+                        checked={selectedOptions.group3 === `star4_group3`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group3" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group3`}
+                        name="group3"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange3(e, "group3")}
+                        checked={selectedOptions.group3 === `star3_group3`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group3" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group3`}
+                        name="group3"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange3(e, "group3")}
+                        checked={selectedOptions.group3 === `star2_group3`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group3" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group3`}
+                        name="group3"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange3(e, "group3")}
+                        checked={selectedOptions.group3 === `star1_group3`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group3" title="text"></label>
+
+                    </div>
+                  ))
+                  }
+                </Row>
+                <Row>
+                  <h5>Sabor do suco</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group4`}
+                        name="group4"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange4(e, "group4")}
+                        checked={selectedOptions.group4 === `star5_group4`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group4" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group4`}
+                        name="group4"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange4(e, "group4")}
+                        checked={selectedOptions.group4 === `star4_group4`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group4" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group4`}
+                        name="group4"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange4(e, "group4")}
+                        checked={selectedOptions.group4 === `star3_group4`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group4" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group4`}
+                        name="group4"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange4(e, "group4")}
+                        checked={selectedOptions.group4 === `star2_group4`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group4" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group4`}
+                        name="group4"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange4(e, "group4")}
+                        checked={selectedOptions.group4 === `star1_group4`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group4" title="text"></label>
+
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+                  <h5>Sabor da sobremesa</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group5`}
+                        name="group5"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange5(e, "group5")}
+                        checked={selectedOptions.group5 === `star5_group5`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group5" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group5`}
+                        name="group5"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange5(e, "group5")}
+                        checked={selectedOptions.group5 === `star4_group5`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group5" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group5`}
+                        name="group5"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange5(e, "group5")}
+                        checked={selectedOptions.group5 === `star3_group5`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group5" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group5`}
+                        name="group5"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange5(e, "group5")}
+                        checked={selectedOptions.group5 === `star2_group5`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group5" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group5`}
+                        name="group5"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange5(e, "group5")}
+                        checked={selectedOptions.group5 === `star1_group5`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group5" title="text"></label>
+
+
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+                  <h5>Temperatura dos alimentos</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group6`}
+                        name="group6"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange6(e, "group6")}
+                        checked={selectedOptions.group6 === `star5_group6`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group6" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group6`}
+                        name="group6"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange6(e, "group6")}
+                        checked={selectedOptions.group6 === `star4_group6`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group6" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group6`}
+                        name="group6"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange6(e, "group6")}
+                        checked={selectedOptions.group6 === `star3_group6`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group6" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group6`}
+                        name="group6"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange6(e, "group6")}
+                        checked={selectedOptions.group6 === `star2_group6`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group6" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group6`}
+                        name="group6"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange6(e, "group6")}
+                        checked={selectedOptions.group6 === `star1_group6`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group6" title="text"></label>
+
+
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+                  <h5>Atendimento dos funcionários</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group7`}
+                        name="group7"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange7(e, "group7")}
+                        checked={selectedOptions.group7 === `star5_group7`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group7" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group7`}
+                        name="group7"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange7(e, "group7")}
+                        checked={selectedOptions.group7 === `star4_group7`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group7" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group7`}
+                        name="group7"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange7(e, "group7")}
+                        checked={selectedOptions.group7 === `star3_group7`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group7" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group7`}
+                        name="group7"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange7(e, "group7")}
+                        checked={selectedOptions.group7 === `star2_group7`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group7" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group7`}
+                        name="group7"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange7(e, "group7")}
+                        checked={selectedOptions.group7 === `star1_group7`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group7" title="text"></label>
+
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+                  <h5>
+                    Higiene do restaurante
+                  </h5>
+                </Row>
+                <Row>
+
+                  (buffet, mesas, cadeiras, pisos, pratos, bandejas e talheres)
+
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group8`}
+                        name="group8"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange8(e, "group8")}
+                        checked={selectedOptions.group8 === `star5_group8`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group8" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group8`}
+                        name="group8"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange8(e, "group8")}
+                        checked={selectedOptions.group8 === `star4_group8`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group8" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group8`}
+                        name="group8"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange8(e, "group8")}
+                        checked={selectedOptions.group8 === `star3_group8`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group8" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group8`}
+                        name="group8"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange8(e, "group8")}
+                        checked={selectedOptions.group8 === `star2_group8`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group8" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group8`}
+                        name="group8"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange8(e, "group8")}
+                        checked={selectedOptions.group8 === `star1_group8`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group8" title="text"></label>
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+                  <h5>Temperatura do ambiente</h5>
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+                      <input
+                        type={type}
+                        id={`star5_group9`}
+                        name="group9"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange9(e, "group9")}
+                        checked={selectedOptions.group9 === `star5_group9`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group9" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group9`}
+                        name="group9"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange9(e, "group9")}
+                        checked={selectedOptions.group9 === `star4_group9`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group9" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group9`}
+                        name="group9"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange9(e, "group9")}
+                        checked={selectedOptions.group9 === `star3_group9`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group9" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group9`}
+                        name="group9"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange9(e, "group9")}
+                        checked={selectedOptions.group9 === `star2_group9`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group9" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group9`}
+                        name="group9"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange9(e, "group9")}
+                        checked={selectedOptions.group9 === `star1_group9`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group9" title="text"></label>
+                    </div>
+                  ))}
+                </Row>
+                <Row>
+                  <h5>
+                    Tempo de espera para preparar o prato
+                  </h5>
+                </Row>
+                <Row>
+                  (sem considerar fila)
+                </Row>
+                <Row>
+                  {["radio"].map((type) => (
+                    <div key={`inline-${type}`} className="rate">
+
+                      <input
+                        type={type}
+                        id={`star5_group10`}
+                        name="group10"
+                        value="5"
+                        onChange={(e) => handleOpcaoChange10(e, "group10")}
+                        checked={selectedOptions.group10 === `star5_group10`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star5_group10" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star4_group10`}
+                        name="group10"
+                        value="4"
+                        onChange={(e) => handleOpcaoChange10(e, "group10")}
+                        checked={selectedOptions.group10 === `star4_group10`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star4_group10" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star3_group10`}
+                        name="group10"
+                        value="3"
+                        onChange={(e) => handleOpcaoChange10(e, "group10")}
+                        checked={selectedOptions.group10 === `star3_group10`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star3_group10" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star2_group10`}
+                        name="group10"
+                        value="2"
+                        onChange={(e) => handleOpcaoChange10(e, "group10")}
+                        checked={selectedOptions.group10 === `star2_group10`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star2_group10" title="text"></label>
+
+                      <input
+                        type={type}
+                        id={`star1_group10`}
+                        name="group10"
+                        value="1"
+                        onChange={(e) => handleOpcaoChange10(e, "group10")}
+                        checked={selectedOptions.group10 === `star1_group10`}
+                        className="radio-input"
+                      />
+                      <label htmlFor="star1_group10" title="text"></label>
+
+
+                    </div>
+                  ))}
+
+                </Row>
+                <Row>
+
+                  <Button type="submit" className="btn-reviews">
+                    Enviar
+                  </Button>
+                </Row>
               </Form>
-              <Form>
-                <h5>
-                  Dentre os pontos abordados abaixo, qual a sua avaliação em
-                  relação ao Restaurante Institucional?
-                </h5>
-              </Form>
-              <Form>
-
-                <h5>Apresentação das preparações</h5>
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group1`}
-                      name="group1"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange(e, "group1")}
-                      checked={selectedOptions.group1 === `star5_group1`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group1" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group1`}
-                      name="group1"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange(e, "group1")}
-                      checked={selectedOptions.group1 === `star4_group1`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group1" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group1`}
-                      name="group1"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange(e, "group1")}
-                      checked={selectedOptions.group1 === `star3_group1`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group1" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group1`}
-                      name="group1"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange(e, "group1")}
-                      checked={selectedOptions.group1 === `star2_group1`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group1" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group1`}
-                      name="group1"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange(e, "group1")}
-                      checked={selectedOptions.group1 === `star1_group1`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group1" title="text"></label>
 
 
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>Variedade do cardápio</h5>
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group2`}
-                      name="group2"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange2(e, "group2")}
-                      checked={selectedOptions.group2 === `star5_group2`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group2" title="text"></label>
+            </div>
+          </Container>
 
-                    <input
-                      type={type}
-                      id={`star4_group2`}
-                      name="group2"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange2(e, "group2")}
-                      checked={selectedOptions.group2 === `star4_group2`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group2" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group2`}
-                      name="group2"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange2(e, "group2")}
-                      checked={selectedOptions.group2 === `star3_group2`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group2" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group2`}
-                      name="group2"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange2(e, "group2")}
-                      checked={selectedOptions.group2 === `star2_group2`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group2" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group2`}
-                      name="group2"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange2(e, "group2")}
-                      checked={selectedOptions.group2 === `star1_group2`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group2" title="text"></label>
-
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>Sabor das refeições</h5>
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group3`}
-                      name="group3"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange3(e, "group3")}
-                      checked={selectedOptions.group3 === `star5_group3`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group3" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group3`}
-                      name="group3"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange3(e, "group3")}
-                      checked={selectedOptions.group3 === `star4_group3`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group3" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group3`}
-                      name="group3"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange3(e, "group3")}
-                      checked={selectedOptions.group3 === `star3_group3`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group3" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group3`}
-                      name="group3"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange3(e, "group3")}
-                      checked={selectedOptions.group3 === `star2_group3`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group3" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group3`}
-                      name="group3"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange3(e, "group3")}
-                      checked={selectedOptions.group3 === `star1_group3`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group3" title="text"></label>
-
-                  </div>
-                ))
-                }
-              </Form>
-              <Form>
-                <h5>Sabor do suco</h5>
-
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group4`}
-                      name="group4"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange4(e, "group4")}
-                      checked={selectedOptions.group4 === `star5_group4`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group4" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group4`}
-                      name="group4"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange4(e, "group4")}
-                      checked={selectedOptions.group4 === `star4_group4`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group4" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group4`}
-                      name="group4"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange4(e, "group4")}
-                      checked={selectedOptions.group4 === `star3_group4`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group4" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group4`}
-                      name="group4"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange4(e, "group4")}
-                      checked={selectedOptions.group4 === `star2_group4`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group4" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group4`}
-                      name="group4"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange4(e, "group4")}
-                      checked={selectedOptions.group4 === `star1_group4`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group4" title="text"></label>
-
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>Sabor da sobremesa</h5>
-
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group5`}
-                      name="group5"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange5(e, "group5")}
-                      checked={selectedOptions.group5 === `star5_group5`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group5" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group5`}
-                      name="group5"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange5(e, "group5")}
-                      checked={selectedOptions.group5 === `star4_group5`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group5" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group5`}
-                      name="group5"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange5(e, "group5")}
-                      checked={selectedOptions.group5 === `star3_group5`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group5" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group5`}
-                      name="group5"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange5(e, "group5")}
-                      checked={selectedOptions.group5 === `star2_group5`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group5" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group5`}
-                      name="group5"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange5(e, "group5")}
-                      checked={selectedOptions.group5 === `star1_group5`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group5" title="text"></label>
-
-
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>Temperatura dos alimentos</h5>
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group6`}
-                      name="group6"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange6(e, "group6")}
-                      checked={selectedOptions.group6 === `star5_group6`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group6" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group6`}
-                      name="group6"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange6(e, "group6")}
-                      checked={selectedOptions.group6 === `star4_group6`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group6" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group6`}
-                      name="group6"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange6(e, "group6")}
-                      checked={selectedOptions.group6 === `star3_group6`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group6" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group6`}
-                      name="group6"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange6(e, "group6")}
-                      checked={selectedOptions.group6 === `star2_group6`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group6" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group6`}
-                      name="group6"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange6(e, "group6")}
-                      checked={selectedOptions.group6 === `star1_group6`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group6" title="text"></label>
-
-
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>Atendimento dos funcionários</h5>
-
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group7`}
-                      name="group7"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange7(e, "group7")}
-                      checked={selectedOptions.group7 === `star5_group7`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group7" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group7`}
-                      name="group7"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange7(e, "group7")}
-                      checked={selectedOptions.group7 === `star4_group7`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group7" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group7`}
-                      name="group7"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange7(e, "group7")}
-                      checked={selectedOptions.group7 === `star3_group7`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group7" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group7`}
-                      name="group7"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange7(e, "group7")}
-                      checked={selectedOptions.group7 === `star2_group7`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group7" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group7`}
-                      name="group7"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange7(e, "group7")}
-                      checked={selectedOptions.group7 === `star1_group7`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group7" title="text"></label>
-
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>
-                  Higiene do restaurante
-                </h5>
-         
-                <p>
-                         (buffet, mesas, cadeiras, pisos, pratos, bandejas e talheres)
-                </p>
-
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group8`}
-                      name="group8"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange8(e, "group8")}
-                      checked={selectedOptions.group8 === `star5_group8`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group8" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group8`}
-                      name="group8"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange8(e, "group8")}
-                      checked={selectedOptions.group8 === `star4_group8`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group8" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group8`}
-                      name="group8"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange8(e, "group8")}
-                      checked={selectedOptions.group8 === `star3_group8`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group8" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group8`}
-                      name="group8"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange8(e, "group8")}
-                      checked={selectedOptions.group8 === `star2_group8`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group8" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group8`}
-                      name="group8"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange8(e, "group8")}
-                      checked={selectedOptions.group8 === `star1_group8`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group8" title="text"></label>
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>Temperatura do ambiente</h5>
-
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-                    <input
-                      type={type}
-                      id={`star5_group9`}
-                      name="group9"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange9(e, "group9")}
-                      checked={selectedOptions.group9 === `star5_group9`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group9" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group9`}
-                      name="group9"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange9(e, "group9")}
-                      checked={selectedOptions.group9 === `star4_group9`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group9" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group9`}
-                      name="group9"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange9(e, "group9")}
-                      checked={selectedOptions.group9 === `star3_group9`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group9" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group9`}
-                      name="group9"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange9(e, "group9")}
-                      checked={selectedOptions.group9 === `star2_group9`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group9" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group9`}
-                      name="group9"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange9(e, "group9")}
-                      checked={selectedOptions.group9 === `star1_group9`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group9" title="text"></label>
-                  </div>
-                ))}
-              </Form>
-              <Form>
-                <h5>
-                  Tempo de espera para preparar o prato
-                </h5>
-                (sem considerar fila)
-                {["radio"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 rate">
-
-                    <input
-                      type={type}
-                      id={`star5_group10`}
-                      name="group10"
-                      value="5"
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `star5_group10`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star5_group10" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star4_group10`}
-                      name="group10"
-                      value="4"
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `star4_group10`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star4_group10" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star3_group10`}
-                      name="group10"
-                      value="3"
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `star3_group10`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star3_group10" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star2_group10`}
-                      name="group10"
-                      value="2"
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `star2_group10`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star2_group10" title="text"></label>
-
-                    <input
-                      type={type}
-                      id={`star1_group10`}
-                      name="group10"
-                      value="1"
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `star1_group10`}
-                      className="radio-input"
-                    />
-                    <label htmlFor="star1_group10" title="text"></label>
-
-
-                  </div>
-                ))}
-                <Button type="submit" id="button-login-signup">
-                  Enviar
-                </Button>
-              </Form>
-
-            </div></Container>
-
-        </Row>
-      </Container>
+        </Row >
+      </Container >
     </>
   );
 };

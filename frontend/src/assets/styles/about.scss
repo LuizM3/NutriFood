@@ -1,30 +1,9 @@
-.row-top {
-    // height: 60px;
-}
-.row{
-  
-.col {
-    
-}
-div::-webkit-scrollbar {
-  width: 5px !important;               /* width of the entire scrollbar */
-}
-
-div::-webkit-scrollbar-track {
-background-color: transparent;
-}
-
-div::-webkit-scrollbar-thumb {
-  border-radius: 20px;   
-  background-color: var(--lgray);
-  /* roundness of the scroll thumb */
-}
-    
-}
 
 .r-about {
-    height: 100vh;
-    @media(max-width: 768px){
-
-    }
+  p{
+    text-align: justify;
+  }
+  
+  margin-top: 120px;
+  
 }

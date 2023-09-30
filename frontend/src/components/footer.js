@@ -1,10 +1,18 @@
 import React from "react";
 import "../assets/styles/footer.scss";
 import { Figure, Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const logo = require("../assets/images/logo.png");
 const FooterConst = () => {
+  const Verify = () => {
+    const [searchParams] = useSearchParams();
+    const tokenVerify = searchParams.get("token");
+
+    return tokenVerify;
+  };
+
+  const token = Verify();
   return (
     <>
       <div className="w-100 justify-content-center d-flex m-0 d-footer flex-column align-items-center text-center">
@@ -27,13 +35,15 @@ const FooterConst = () => {
 
               </Col>
               <Col md={12} xs={12} sm={4}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link className="text-decoration-none" data-test=""
+                to="https://santateresa.ifes.edu.br"
+                 >
                   Visite o campus
-                </Link>
+                </Link> 
               </Col>
               <Col md={12} xs={12} sm={4}>
 
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to="https://santateresa.ifes.edu.br/index.php/noticias" className="text-decoration-none" data-test="">
                   Notícias
                 </Link>
               </Col>
@@ -43,23 +53,25 @@ const FooterConst = () => {
               <Col md={12} sm={4}><h6>Referências</h6></Col>
 
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link 
+                  to={"/reviews?token=" + token}
+                className="text-decoration-none" data-test="">
                   Avaliações
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
 
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to={"/menu?token=" + token} className="text-decoration-none" data-test="">
                   Cardápio
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to={"/suggestions?token=" + token} className="text-decoration-none" data-test="">
                   Sugestões
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to={"/contact?token" + token}className="text-decoration-none" data-test="">
                   Contate-nos
                 </Link>
               </Col>
@@ -69,24 +81,24 @@ const FooterConst = () => {
             <Row md={12}>
               <Col md={12} sm={4}><h6>Referências</h6></Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to={"/about?token" + token} className="text-decoration-none" data-test="">
                   Sobre
                 </Link>
               </Col>
 
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to={"/sign-up?token=" + token} className="text-decoration-none" data-test="">
                   Cadastre-se
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to={"/?token=" + token} className="text-decoration-none" data-test="">
                   Dúvidas
                 </Link>
               </Col>
 
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to={"/?token=" + token} className="text-decoration-none" data-test="">
                   API
                 </Link>
               </Col>
@@ -95,7 +107,7 @@ const FooterConst = () => {
 
               <Col md={12} sm={4} className="comunidade"><h6>Comunidade</h6></Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to="https://github.com/LuizM3/NutriFood" className="text-decoration-none" data-test="">
                   {/* <ion-icon name="logo-github"></ion-icon> */}
                   Github
                   <ion-icon name="open-outline"></ion-icon>
@@ -103,14 +115,14 @@ const FooterConst = () => {
               </Col>
               <Col md={12} xs={12} sm={2}>
 
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to="https://www.instagram.com" className="text-decoration-none" data-test="">
                   {/* <ion-icon name="logo-instagram"></ion-icon> */}
                   Instagram
                   <ion-icon name="open-outline"></ion-icon>
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to="https://web.facebook.com/?locale=pt_BR&_rdc=1&_rdr" className="text-decoration-none" data-test="">
                   {/* <ion-icon name="logo-facebook"></ion-icon> */}
                   Facebook
                   <ion-icon name="open-outline"></ion-icon>
@@ -120,19 +132,19 @@ const FooterConst = () => {
 
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="/" className="text-decoration-none" data-test="">
+                <Link to="https://www.paypal.com/br/home" className="text-decoration-none" data-test="">
                   {/* <ion-icon name="logo-paypal"></ion-icon> */}
                   Paypal
                   <ion-icon name="open-outline"></ion-icon>
                 </Link>
               </Col>
             </Row>
-            
+
           </Row>
-          
+
         </Container>
-        <p style={{fontSize:"small"}}>
-        ©2023 Nutrifood – Todos os direitos reservados.
+        <p style={{ fontSize: "small" }}>
+          ©2023 Nutrifood – Todos os direitos reservados.
         </p>
       </div>
 

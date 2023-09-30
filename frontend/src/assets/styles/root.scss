@@ -256,7 +256,15 @@ body {
 
 // *********************REVIEWS*********************
 .cont2 {
+  form {
+    .row {
+    padding: 20px 0px;
+    }
+  }
   .rate {
+    background-color: var(--lgray);
+    padding: 20px;
+    border-radius: 20px;
     label {
       display: flex;
       align-items: center;
@@ -593,4 +601,10 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* roundness of the scroll thumb */
+}
+.rev-cont {
+  margin-top: 100px !important;
+}
+.btn-reviews{
+  padding: 10px 40px !important;
 }

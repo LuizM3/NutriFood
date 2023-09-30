@@ -7,26 +7,29 @@
 #div-z-cont {
   // margin-top: 80px !important;
   height: 100%;
-  @media(max-width:540px){
+
+  @media(max-width:540px) {
     height: 80%;
   }
+
   box-sizing: inherit;
   display: flex;
-  
-#arrow {
-  justify-content: left;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  .figure {
+
+  #arrow {
+    justify-content: left;
     width: 25px;
+    height: 25px;
     display: flex;
-
     align-items: center;
-  }
 
-}
+    .figure {
+      width: 25px;
+      display: flex;
+
+      align-items: center;
+    }
+
+  }
 
   section {
     width: 100%;
@@ -101,4 +104,92 @@
 .spinner-border {
   width: 3em;
   height: 3em;
+}
+
+// Aqui é a parte da coleta
+
+.coleta-modal {
+  .form-check-input {
+    box-shadow: none !important;
+    &::after {
+      box-shadow: none !important;
+    }
+  }
+  label {
+    margin: 0;
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .row {
+    margin: 0;
+  }
+
+  .modal-content {
+    padding: 0;
+    margin-top: 80px;
+    width: 70vw;
+
+    @media(min-width: 1200px) {
+      margin-top: 10px;
+      width: 45vw !important;
+    }
+
+    @media(max-width: 768px) {
+      margin: 0 !important;
+      border-radius: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  .modal-dialog {
+    @media(max-width: 768px) {
+      margin: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  .col-md-12 {
+    .row-coleta {
+      margin: 20px !important;
+      background-color: var(--lgray);
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      justify-content: center;
+      display: flex;
+
+    }
+  }
+
+  .form-check {
+
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form-check-input {
+      // width: ;
+      margin-right: 20px;
+    }
+  }
+}
+
+.modal-content {
+  border-radius: 20px !important;
+}
+.cancelar::after{
+background-color: red;
 }
