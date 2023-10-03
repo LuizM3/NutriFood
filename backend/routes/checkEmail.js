@@ -12,6 +12,9 @@ router.get('/', (req, res) => {
         (error, results) => {
             if (error) {
                 res.status(500).json({ error: 'An error occurred' });
+
+                const isNotUnique = results.length === 0;
+                res.json({ isNotUnique });
             } else {
                 const isUnique = results.length === 0;
                 res.json({ isUnique });
