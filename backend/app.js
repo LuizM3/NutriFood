@@ -7,6 +7,7 @@ const cors = require("cors");
 const app = express();
 
 const testDBRouter = require("./routes/testDB");
+const reviewsRouter = require("./routes/reviews");
 const signinRouter = require("./routes/signin");
 const signupRouter = require("./routes/signup");
 const indexRouter = require("./routes/index");
@@ -27,6 +28,8 @@ app.use("/", indexRouter);
 app.use("/testDB", testDBRouter);
 app.use("/signup", signupRouter);
 app.use("/signin", signinRouter);
+app.use("/reviews", reviewsRouter);
 app.use("/verifyToken", verifyTokenRouter);
 app.use("/suggestions", suggestionsRouter);
+
 module.exports = app;

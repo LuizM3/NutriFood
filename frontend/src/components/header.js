@@ -32,7 +32,12 @@ const HeaderConst = () => {
 
   const token = Verify();
 
-   if (token) {
+  // const nome = localStorage.getItem("nome");
+
+  // let validation;
+  // let nome;
+
+  if (token) {
     const GetName = async () => {
       try {
         const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);

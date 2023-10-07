@@ -138,7 +138,7 @@ const ReviewsConst = () => {
     ).length;
     return (selectedCount / 10) * 100;
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
 
     event.preventDefault();
     if (
@@ -166,8 +166,218 @@ const ReviewsConst = () => {
         setShowAlertSuccess(false);
       }, 5000);
 
-      // Enviar dados ao banco de dadaos aqui pq depois anula os campos
 
+      if (selectedOptions.group1) {
+        switch (selectedOptions.group1) {
+          case "star5_group1":
+            selectedOptions.group1 = 5;
+            break;
+          case "star4_group1":
+            selectedOptions.group1 = 4;
+            break;
+          case "star3_group1":
+            selectedOptions.group1 = 3;
+            break;
+          case "star2_group1":
+            selectedOptions.group1 = 2;
+            break;
+          case "star1_group1":
+            selectedOptions.group1 = 1;
+        }
+      }
+
+      if (selectedOptions.group2) {
+        switch (selectedOptions.group2) {
+          case "star5_group2":
+            selectedOptions.group2 = 5;
+            break;
+          case "star4_group2":
+            selectedOptions.group2 = 4;
+            break;
+          case "star3_group2":
+            selectedOptions.group2 = 3;
+            break;
+          case "star2_group2":
+            selectedOptions.group2 = 2;
+            break;
+          case "star1_group2":
+            selectedOptions.group2 = 1;
+        }
+      }
+
+      if (selectedOptions.group3) {
+        switch (selectedOptions.group3) {
+          case "star5_group3":
+            selectedOptions.group3 = 5;
+            break;
+          case "star4_group3":
+            selectedOptions.group3 = 4;
+            break;
+          case "star3_group3":
+            selectedOptions.group3 = 3;
+            break;
+          case "star2_group3":
+            selectedOptions.group3 = 2;
+            break;
+          case "star1_group3":
+            selectedOptions.group3 = 1;
+        }
+      }
+
+      if (selectedOptions.group4) {
+        switch (selectedOptions.group4) {
+          case "star5_group4":
+            selectedOptions.group4 = 5;
+            break;
+          case "star4_group4":
+            selectedOptions.group4 = 4;
+            break;
+          case "star3_group4":
+            selectedOptions.group4 = 3;
+            break;
+          case "star2_group4":
+            selectedOptions.group4 = 2;
+            break;
+          case "star1_group4":
+            selectedOptions.group4 = 1;
+        }
+      }
+
+      if (selectedOptions.group5) {
+        switch (selectedOptions.group5) {
+          case "star5_group5":
+            selectedOptions.group5 = 5;
+            break;
+          case "star4_group5":
+            selectedOptions.group5 = 4;
+            break;
+          case "star3_group5":
+            selectedOptions.group5 = 3;
+            break;
+          case "star2_group5":
+            selectedOptions.group5 = 2;
+            break;
+          case "star1_group5":
+            selectedOptions.group5 = 1;
+        }
+      }
+
+      if (selectedOptions.group6) {
+        switch (selectedOptions.group6) {
+          case "star5_group6":
+            selectedOptions.group6 = 5;
+            break;
+          case "star4_group6":
+            selectedOptions.group6 = 4;
+            break;
+          case "star3_group6":
+            selectedOptions.group6 = 3;
+            break;
+          case "star2_group6":
+            selectedOptions.group6 = 2;
+            break;
+          case "star1_group6":
+            selectedOptions.group6 = 1;
+        }
+      }
+
+      if (selectedOptions.group7) {
+        switch (selectedOptions.group7) {
+          case "star5_group7":
+            selectedOptions.group7 = 5;
+            break;
+          case "star4_group7":
+            selectedOptions.group7 = 4;
+            break;
+          case "star3_group7":
+            selectedOptions.group7 = 3;
+            break;
+          case "star2_group7":
+            selectedOptions.group7 = 2;
+            break;
+          case "star1_group7":
+            selectedOptions.group7 = 1;
+        }
+      }
+
+      if (selectedOptions.group8) {
+        switch (selectedOptions.group8) {
+          case "star5_group8":
+            selectedOptions.group8 = 5;
+            break;
+          case "star4_group8":
+            selectedOptions.group8 = 4;
+            break;
+          case "star3_group8":
+            selectedOptions.group8 = 3;
+            break;
+          case "star2_group8":
+            selectedOptions.group8 = 2;
+            break;
+          case "star1_group8":
+            selectedOptions.group8 = 1;
+        }
+      }
+
+      if (selectedOptions.group9) {
+        switch (selectedOptions.group9) {
+          case "star5_group9":
+            selectedOptions.group9 = 5;
+            break;
+          case "star4_group9":
+            selectedOptions.group9 = 4;
+            break;
+          case "star3_group9":
+            selectedOptions.group9 = 3;
+            break;
+          case "star2_group9":
+            selectedOptions.group9 = 2;
+            break;
+          case "star1_group9":
+            selectedOptions.group9 = 1;
+        }
+      }
+
+      if (selectedOptions.group10) {
+        switch (selectedOptions.group10) {
+          case "star5_group10":
+            selectedOptions.group10 = 5;
+            break;
+          case "star4_group10":
+            selectedOptions.group10 = 4;
+            break;
+          case "star3_group10":
+            selectedOptions.group10 = 3;
+            break;
+          case "star2_group10":
+            selectedOptions.group10 = 2;
+            break;
+          case "star1_group10":
+            selectedOptions.group10 = 1;
+        }
+      }
+
+      const group1 = selectedOptions.group1;
+      const group2 = selectedOptions.group2;
+      const group3 = selectedOptions.group3;
+      const group4 = selectedOptions.group4;
+      const group5 = selectedOptions.group5;
+      const group6 = selectedOptions.group6;
+      const group7 = selectedOptions.group7;
+      const group8 = selectedOptions.group8;
+      const group9 = selectedOptions.group9;
+      const group10 = selectedOptions.group10;
+
+      const idUsuario = Number(localStorage.getItem("id"));
+      // Enviar dados ao banco de dadaos aqui pq depois anula os campos
+      
+      const response = await fetch("http://localhost:9000/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ group1, group2, group3, group4, group5, group6, group7, group8, group9, group10, idUsuario }),
+      });
 
       // Limpeza de campos após sucesso e envio ao banco
       selectedOptions.group1 = null;
@@ -222,12 +432,12 @@ const ReviewsConst = () => {
                 </Row>
                 <Row className="d-flex justify-content-center align-items-center">
                   <Col md={6}>
-                  <h5>
-                    Dentre os pontos abordados abaixo, qual a sua avaliação em
-                    relação ao Restaurante Institucional?
-                  </h5>
+                    <h5>
+                      Dentre os pontos abordados abaixo, qual a sua avaliação em
+                      relação ao Restaurante Institucional?
+                    </h5>
                   </Col>
-                  
+
                 </Row>
                 <Row>
 
@@ -290,7 +500,6 @@ const ReviewsConst = () => {
                         className="radio-input"
                       />
                       <label htmlFor="star1_group1" title="text"></label>
-
 
                     </div>
                   ))}

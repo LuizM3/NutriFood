@@ -22,13 +22,10 @@ router.post("/", async (req, res) => {
           const match = await bcrypt.compare(senha, user.senha);
           if (match) {
             const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: 300 });
-            // Atualiza o token no banco de dados (se necessário)
-            // connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email], (error, updateResult) => {
-            //   if (error) {
-            //     res.status(500).json({ message: "erro" });
-            //   }
-            // });
-            res.status(200).json({ token, message: "Login" });
+            const nome = user.nome;
+            const id = user.id;
+
+            res.status(200).json({ token, nome, id, message: "Login" });
           } else {
             res.status(401).json({ message: "Invalid credentials" });
           }
