@@ -10,7 +10,6 @@ import reportWebVitals from "./reportWebVitals";
 import About from "./views/About"
 import Menu from "./views/Menu"
 import Reviews from "./views/Reviews";
-import Contact from "./views/Contact";
 import Suggestions from "./views/Suggestions";
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -21,7 +20,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<SignIn />} />{" "}
         <Route path="/sign-up" element={<SignUp />} />{" "}
         <Route path="/about" element={<About />} /> {" "}
-        <Route path="/contact" element={<Contact />} /> {" "}
         <Route path="/menu" element={<Menu/>} /> {" "}
         <Route path="/suggestions" element={<Suggestions />} /> {" "}
 

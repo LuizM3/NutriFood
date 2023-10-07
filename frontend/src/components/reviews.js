@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-
   Container,
   Form,
   ProgressBar,
@@ -12,6 +11,12 @@ import {
 } from "react-bootstrap";
 
 const ReviewsConst = () => {
+  // const [showCont, setShowCont] = useState(false);
+  // const [redirect, setRedirect] = useState(false);
+  // if(!localStorage.getItem('token')){
+  //   setShowCont(false);
+  //   setRedirect(true);
+  // }
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState({
@@ -409,7 +414,10 @@ const ReviewsConst = () => {
       </Row>
       <Container className="h-100 cont-s">
         <Row className="overflow-scroll w-100 mt-5 scroll-row overflow-x-hidden">
-          <Container className="">
+          <Container className="" 
+          
+          // show={showCont} onHide={() => setShowCont(false)}
+          >
             <Navbar id="progress-nav">
               <Container className="mt-2">
                 <ProgressBar now={progress} id="progress-bar" />
@@ -1108,43 +1116,3 @@ const ReviewsConst = () => {
 };
 
 export default ReviewsConst;
-{/* <Form.Check
-                      inline
-                      name="group10"
-                      type={type}
-                      id={`inline-${type}-1`}
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `inline-${type}-1`}
-                    />
-                    <Form.Check
-                      inline
-                      name="group10"
-                      type={type}
-                      id={`inline-${type}-2`}
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `inline-${type}-2`}
-                    />
-                    <Form.Check
-                      inline
-                      name="group10"
-                      type={type}
-                      id={`inline-${type}-3`}
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `inline-${type}-3`}
-                    />
-                    <Form.Check
-                      inline
-                      name="group10"
-                      type={type}
-                      id={`inline-${type}-4`}
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `inline-${type}-4`}
-                    />
-                    <Form.Check
-                      inline
-                      name="group10"
-                      type={type}
-                      id={`inline-${type}-5`}
-                      onChange={(e) => handleOpcaoChange10(e, "group10")}
-                      checked={selectedOptions.group10 === `inline-${type}-5`}
-                    /> */}

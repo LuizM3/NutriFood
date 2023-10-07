@@ -1,5 +1,6 @@
 .offcanvas-body {
   .container {
+    padding: 0;
     height: 100%;
   }
 
@@ -20,11 +21,7 @@
 
   }
 
-  .container {
-    padding: 0;
-  }
-
-  #r-b {
+    #r-b {
     display: flex;
     align-items: end;
 
@@ -184,7 +181,13 @@
   }
 }
 
-
+.offcanvas-body{
+  .row {
+    a {
+      text-align: center;
+    }
+  }
+}
 
 .offcanvas {
   transition: all 0.5s;

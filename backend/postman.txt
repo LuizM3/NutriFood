@@ -1,0 +1,13 @@
+{
+    "nome": "usuario",
+    "email": "usuario@gmail.com",
+    "senha": "1234",
+    "vinculoAoIfes": 1,
+    "objetoRefeicoes": {
+        "cafeDaManha": 1,
+        "almoco": 1,
+        "lancheDaTarde": 1,
+        "jantar": 1
+    },
+    "vegetariano":1
+}

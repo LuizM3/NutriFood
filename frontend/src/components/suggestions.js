@@ -1,96 +1,7 @@
-// import React from "react";
-// import { Form, Row, Col, Container, Button, FloatingLabel } from "react-bootstrap";
-// import "../assets/styles/suggestions.scss";
-
-// const AboutConst = () => {
-
-//   return (
-//     <>
-//       <Container className="s-container  justify-content-center align-items-center d-flex">
-
-//         <Row className="mt-5 d-flex justify-content-center align-items-center text-center" md={12}>
-//           <Col lg={8} md={12} xl={6}>
-//             <h2>
-//               Coleta de sugestões
-//             </h2>
-//             <Form className="m-5">
-//               <Row>
-//                 <Col md={12} className="mb-3">
-//                   <Form.Group>
-//                     <Form.Label>Quais pontos você acha que precisam ser melhorados para aumentar a sua satisfação com as refeições do RI?</Form.Label>
-//                     <Form.Control
-//                       as="textarea"
-//                       placeholder="Escreva aqui"
-//                       style={{ height: '100px' }}
-//                     />
-//                   </Form.Group>
-
-//                 </Col>
-//                 <Col md={12}className="mb-3"><Form.Group>
-//                   <Form.Label>Você tem alguma sugestão para obter melhorias propostas na questão anterior?</Form.Label>
-//                   <Form.Control
-//                     as="textarea"
-//                     placeholder="Escreva aqui"
-//                     style={{ height: '100px' }}
-//                   />
-//                 </Form.Group>
-
-//                 </Col>
-
-//                 <Col md={12}className="mb-3"><Form.Group>
-//                   <Form.Label>Qual o ponto positivo do restaurante que você destacaria?</Form.Label>
-
-//                   <Form.Control
-//                     as="textarea"
-//                     placeholder="Escreva aqui"
-//                     style={{ height: '100px' }}
-//                   />
-//                 </Form.Group>
-//                 </Col>
-//                 <Col md={12}className="mb-3"> <Form.Group>
-//                   <Form.Label>Qual a sua preparação preferida do almoço/jantar?</Form.Label>
-//                   <Form.Control
-//                     as="textarea"
-//                     placeholder="Escreva aqui"
-//                     style={{ height: '100px' }}
-//                   />
-//                 </Form.Group>
-//                 </Col>
-//                 <Col md={12}className="mb-3">  <Form.Group><Form.Label>
-//                   Qual sua preparação do café da manhã/lanche da tarde?
-//                 </Form.Label>
-//                   <Form.Control
-//                     as="textarea"
-//                     placeholder="Escreva aqui"
-//                     style={{ height: '100px' }}
-//                   />
-//                 </Form.Group>
-//                 </Col>
-//                 <Col className="d-flex justify-content-center mb-3" md={12}>
-//                   <Button variant="primary" type="submit" className="w-50">
-//                     Submit
-//                   </Button>
-//                 </Col>
-
-
-
-
-//               </Row>
-
-//             </Form>
-//           </Col>
-//         </Row>
-
-//       </Container>
-//     </>
-//   );
-// };
-
-// export default AboutConst;
 import React, { useState } from "react";
 import { Form, Row, Col, Container, Button, Alert } from "react-bootstrap";
 import "../assets/styles/suggestions.scss";
-import Filter from "bad-words";// biblioteca bad-words
+import Filter from "bad-words";
 
 const SuggestionsConst = () => {
   const [suggestion, setSuggestion] = useState("");
@@ -98,7 +9,8 @@ const SuggestionsConst = () => {
   const [suggestion3, setSuggestion3] = useState("");
   const [suggestion4, setSuggestion4] = useState("");
   const [suggestion5, setSuggestion5] = useState("");
-  const [showAlert, setShowAlert] = useState(false); // Estado para controlar a exibição do alert
+  const [showAlert, setShowAlert] = useState(false); 
+  // Estado para controlar a exibição do alert
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
   const handleSuggestionChange = (event) => {

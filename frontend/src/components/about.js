@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Container, Col, Row, Tab, Nav, Offcanvas, Button } from "react-bootstrap";
+import React from "react";
+import { Container, Col, Row } from "react-bootstrap";
 import "../assets/styles/about.scss";
-import { Link } from "react-router-dom";
 
 const AboutConst = () => {
 
