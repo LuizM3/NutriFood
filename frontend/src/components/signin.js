@@ -1,11 +1,8 @@
 import "../assets/styles/login.scss";
 import "../assets/styles/suggestions.scss";
-
 import { Modal, Row, Figure, Form, Button, Spinner, Container, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate, useSearchParams} from "react-router-dom";
 import React, { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
 
 const logo = require("../assets/images/logo.png");
 const LoginConst = () => {
@@ -22,8 +19,6 @@ const LoginConst = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [spinnerModal, setSpinnerModal] = useState(false);
-  const [successModal, setSuccessModal] = useState(false);
-  const [errorModal, setErrorModal] = useState(false);
   const [showPassAlert, setShowPassAlert] = useState(false); // Estado para controlar a exibição do alert
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);

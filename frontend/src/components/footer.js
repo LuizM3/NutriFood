@@ -65,14 +65,15 @@ const FooterConst = () => {
                   Cardápio
                 </Link>
               </Col>
+             
               <Col md={12} xs={12} sm={2}>
-                <Link to={"/suggestions?token=" + token} className="text-decoration-none" data-test="">
-                  Sugestões
+                <Link to={"/sign-up?token=" + token} className="text-decoration-none" data-test="">
+                  Cadastre-se
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to={"/contact?token" + token}className="text-decoration-none" data-test="">
-                  Contate-nos
+                <Link className="text-decoration-none" data-test="">
+                 Login
                 </Link>
               </Col>
 
@@ -84,13 +85,12 @@ const FooterConst = () => {
                 <Link to={"/about?token" + token} className="text-decoration-none" data-test="">
                   Sobre
                 </Link>
-              </Col>
-
-              <Col md={12} xs={12} sm={2}>
-                <Link to={"/sign-up?token=" + token} className="text-decoration-none" data-test="">
-                  Cadastre-se
+              </Col> <Col md={12} xs={12} sm={2}>
+                <Link to={"/suggestions?token=" + token} className="text-decoration-none" data-test="">
+                  Sugestões
                 </Link>
               </Col>
+
               <Col md={12} xs={12} sm={2}>
                 <Link to={"/?token=" + token} className="text-decoration-none" data-test="">
                   Dúvidas

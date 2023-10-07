@@ -99,12 +99,6 @@ const SignUpConst = () => {
             return;
         }
 
-
-        // const tes = await verifyServer();
-        // if(!tes){
-        //     console.log("CERTOOOO");
-        //     return;
-        // }
         const isEmailUnique = await checkEmailUniqueness(email);
         if (!isEmailUnique) {
             setEmailAlert(true);
@@ -144,12 +138,6 @@ const SignUpConst = () => {
 
         for (const element of refeicoes) {
 
-            // if(element == 0) { 
-            // setErrorAlert(true);
-            // setTimeout(() => {
-            //     setErrorAlert(false);
-            // }, 5000);
-            // } 
             if (element == 1) {
                 objetoRefeicoes.cafeDaManha = true;
 
@@ -164,7 +152,6 @@ const SignUpConst = () => {
             }
         }
 
-        
         const dadosCompletos = {
             nome,
             email,
@@ -232,41 +219,6 @@ const SignUpConst = () => {
         }
         return false;
     };
-
-    // const checkConnection = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:9000/testDB`);
-    //         if (response.ok) {
-    //             const data = await response.json();
-    //             return data.isConnection;
-    //         }
-    //     } catch (error) {
-    //         console.error("Erro ao verificar email:", error);
-    //     }
-    //     return false;
-    // };
-
-    // const verifyServer = async () => {
-    //     try {
-    //         const response = await fetch("http://localhost:9000/testDB", {
-    //             method: "GET",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //         });
-
-    //         if (response.ok) {
-    //            console.log("Backend funcionando");
-    //         } else {
-    //             setErrorModal(true);
-    //             console.log("Backend com problema")
-    //         }
-    //     } catch (error) {
-    //         console.error("Erro ao enviar dados:", error);
-    //         setErrorModal(true);
-    //     }
-    // };
-
 
     const handleVinculoChange = (e) => {
         setVinculoAoIfes(e.target.value);

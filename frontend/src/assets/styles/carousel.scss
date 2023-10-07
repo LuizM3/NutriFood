@@ -39,13 +39,13 @@ h1 {
 }
 
 .tittleCar {
-  margin-top: 80px !important;
+  // margin-top: 80px !important;
   font-family: var(--default-font);
   color: rgb(246, 246, 246);
   background-color: rgba(0, 0, 0, 0.508);
   width: 100%;
   height: 90vh;
-  margin: 0;
+  margin: 80px 0 0 0;
   display: flex;
   justify-content: center;
   align-items: center;

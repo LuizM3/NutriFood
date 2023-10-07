@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup} from "react-bootstrap";
-
 import { useMediaQuery } from "react-responsive";
 import { Link, useSearchParams } from "react-router-dom";
 import "../assets/styles/header.scss";
@@ -10,9 +8,7 @@ const logo = require("../assets/images/logo.png");
 
 const HeaderConst = () => {
 
-
   const [userName, setUserName] = useState("");
-
   const [isToggled, setIsToggled] = useState(false);
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
@@ -36,16 +32,11 @@ const HeaderConst = () => {
 
   const token = Verify();
 
-  // let validation;
-  // let nome;
-
-  if (token) {
+   if (token) {
     const GetName = async () => {
       try {
         const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
         if (resp.ok) {
-          // nome = await data.nome;
-          // validation = await data.validation;
           const data = await resp.json();
           const validation = await data.validation;
           const nome = await data.nome;
@@ -56,16 +47,6 @@ const HeaderConst = () => {
       }
     };
   }
-
-  // console.log(validation);
-
-  // const ShowName = () => {
-  //   if (validation === true) {
-  //     return <span>{nome}</span>;
-  //   } else {
-  //     return <span>Entrar</span>;
-  //   }
-  // }
 
   return (
 
@@ -207,12 +188,7 @@ const HeaderConst = () => {
 
               </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
                 <Nav className="me-auto">
-                  <div className="div-link">
-
-                    <Link to={"/contact?token=" + token} className="text-decoration-none">
-                      Contato
-                    </Link>
-                  </div>
+                  
 
                   <div className="div-link">
                     <Link to={"/about?token=" + token} className="text-decoration-none">
@@ -305,16 +281,7 @@ const HeaderConst = () => {
                             </h1>
                           </Link>
                         </Row></ListGroup.Item>
-                        <ListGroup.Item><Row>
-                          <Link
-                            to={"/contact?token=" + token}
-                            className="text-decoration-none">
-                            <h1>
-
-                              Contato
-                            </h1>
-                          </Link>
-                        </Row></ListGroup.Item>
+                        
                         <ListGroup.Item><Row>
                           <Link
                             to={"/about?token=" + token}

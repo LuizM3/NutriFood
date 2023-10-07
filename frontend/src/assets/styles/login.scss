@@ -90,7 +90,8 @@
 }
 
 .modal-content {
-  align-items: center;
+  align-items: center;  
+  border-radius: 20px !important;
   border: none;
 
 }
@@ -187,9 +188,6 @@
   }
 }
 
-.modal-content {
-  border-radius: 20px !important;
-}
 .cancelar::after{
 background-color: red;
 }

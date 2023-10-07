@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/styles/carousel.scss";
 import "../assets/styles/main.scss";
 import { Container, Accordion, Button, Col, Row, Figure, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-
-const apiKey = "eedb530eb8a34cd2b4049d1be24cde1a";
-const pageSize = 6;
-const apiUrl = `https://newsapi.org/v2/everything?q=news&from=2023-08-14&pageSize=${pageSize}&sortBy=publishedAt&apiKey=${apiKey}`;
-
 
 const CarouselConst = () => {
   const land = require('../assets/images/land.png');
@@ -72,17 +66,7 @@ const CarouselConst = () => {
       name: "Teste"
     },
   ];
-  // const [noticias, setNoticias] = useState([]);
-  // useEffect(() => {
-  //   fetch(apiUrl)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.status === "ok") {
-  //         setNoticias(data.articles);
-  //       }
-  //     })
-  //     .catch((error) => console.error("Erro ao buscar notícias:", error));
-  // }, []);
+ 
   return (
     <>
 
