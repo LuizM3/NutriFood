@@ -1,0 +1,81 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add bad-words
+
+PATH: 
+  C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program File\nodejs\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\nodejs\node.exe;C:\Users\admin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\admin\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: read ECONNRESET
+      at TLSWrap.onStreamRead (node:internal/stream_base_commons:217:20)
+
+npm manifest: 
+  {
+    "name": "nutrifood",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "app": "concurrently \"npm run start-frontend\" \"npm run start-backend\"",
+      "start-frontend": "cd frontend && npm start",
+      "start-backend": "cd backend && npm start"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+      "@ionic/react": "^7.0.14",
+      "@surma/rollup-plugin-off-main-thread": "^2.2.3",
+      "@testing-library/jest-dom": "^5.16.5",
+      "@testing-library/react": "^13.4.0",
+      "@testing-library/user-event": "^13.5.0",
+      "@types/jest": "^29.5.4",
+      "@types/mocha": "^10.0.1",
+      "bad-words": "^3.0.4",
+      "bcrypt": "^5.1.1",
+      "bootstrap": "^5.2.3",
+      "concurrently": "^8.2.1",
+      "cookie-parser": "~1.4.4",
+      "cors": "^2.8.5",
+      "debug": "~2.6.9",
+      "dotenv-safe": "^8.2.0",
+      "express": "~4.16.1",
+      "gerador-nome": "^0.0.5",
+      "google-fonts": "^1.0.0",
+      "http-errors": "~1.6.3",
+      "ionicons": "^7.1.2",
+      "jade": "~1.11.0",
+      "jsonwebtoken": "^9.0.2",
+      "morgan": "~1.9.1",
+      "mysql": "^2.18.1",
+      "nodemon": "^3.0.1",
+      "password": "^0.1.1",
+      "password-validator": "^5.3.0",
+      "react": "^18.2.0",
+      "react-bootstrap": "^2.8.0",
+      "react-dom": "^18.2.0",
+      "react-helmet": "^6.1.0",
+      "react-responsive": "^9.0.2",
+      "react-router-dom": "^6.15.0",
+      "react-scripts": "^5.0.1",
+      "sass": "^1.62.1",
+      "typescript": "^3.2.1 || ^4",
+      "web-vitals": "^2.1.4",
+      "yarn": "^1.22.19"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

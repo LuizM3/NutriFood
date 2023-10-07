@@ -51,7 +51,13 @@ const LoginConst = () => {
       if (response.ok) {
         const data = await response.json();
         const token = data.token;
+        const nome = data.nome;
+        const id = data.id;
 
+        localStorage.setItem('token', token);
+        localStorage.setItem('nome', nome);
+        localStorage.setItem('id', id);
+        
         if (data.message === "Login") {
           setShowAlertSuccess(true);
           setTimeout(() => {
@@ -60,13 +66,14 @@ const LoginConst = () => {
           setTimeout(() => {
             setSpinnerModal(true);
           }, 1000);
-
+          
           setTimeout(() => { navigate("/?token=" + token) }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
           const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
           if (resp.ok) {
             const data = await resp.json();
             const validation = await data.validation; //validação do token
           }
+
         } else {
           // Credenciais inválidas
           setShowPassAlert(true);

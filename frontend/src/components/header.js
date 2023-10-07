@@ -36,6 +36,8 @@ const HeaderConst = () => {
 
   const token = Verify();
 
+  // const nome = localStorage.getItem("nome");
+
   // let validation;
   // let nome;
 
