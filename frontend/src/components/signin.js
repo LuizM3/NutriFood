@@ -55,7 +55,7 @@ const LoginConst = () => {
             setSpinnerModal(true);
           }, 1000);
           
-          setTimeout(() => { navigate("/") }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
+          setTimeout(() => { navigate("/") }, 6000);
 
         } else {
           // Credenciais inválidas

@@ -7,17 +7,17 @@ const logo = require("../assets/images/logo.png");
 
 // Aqui começa o password-validator
 
-// const passwordValidator = require('password-validator');
-// const schema = new passwordValidator();
-// // Add properties to it
-// schema
-//     .is().min(8)                                    // Minimum length 8
-//     .is().max(100)                                  // Maximum length 100
-//     .has().uppercase()                              // Must have uppercase letters
-//     .has().lowercase()                              // Must have lowercase letters
-//     .has().digits(2)                                // Must have at least 2 digits
-//     .has().not().spaces()                           // Should not have spaces
-//     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
+const passwordValidator = require('password-validator');
+const schema = new passwordValidator();
+// Add properties to it
+schema
+    .is().min(8)                                    // Minimum length 8
+    .is().max(100)                                  // Maximum length 100
+    .has().uppercase()                              // Must have uppercase letters
+    .has().lowercase()                              // Must have lowercase letters
+    .has().digits(2)                                // Must have at least 2 digits
+    .has().not().spaces()                           // Should not have spaces
+    .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
 // Aqui começa o código do signup
 
@@ -74,8 +74,8 @@ const SignUpConst = () => {
             return;
         }
 
-        // if (schema.validate(senha) === false) {
-        if (senha === false) {
+        if (schema.validate(senha) === false) {
+        // if (senha === false) {
 
             setWrongPAlert(true);
             setTimeout(() => {

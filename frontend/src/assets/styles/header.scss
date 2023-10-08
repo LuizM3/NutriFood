@@ -5,10 +5,41 @@
   }
 
   #r-div {
-    padding: 15%;
     transition: all 0.5s;
     justify-content: space-around;
     height: 100%;
+
+    .hydrated {
+      font-size: 1em !important;
+    }
+    .dropup {
+      .btn {
+
+      border: 0 !important
+      }
+  }
+    .btn {
+      border: 0 ;
+      font-size: large !important;
+      border-radius: 100px !important;
+
+      // align-items: end !important;
+      // text-align: end !important;
+      p {
+        padding-left: 10px;
+        margin: 0 !important;
+        font-size: 1em;
+      }
+    }
+
+    .btn:active {
+      background-color: white !important;
+      color: var(--gray) !important;
+    }
+
+    h1 {
+      font-size: x-large;
+    }
 
     @media(max-width: 540px) {
       padding: 5%;
@@ -21,7 +52,7 @@
 
   }
 
-    #r-b {
+  #r-b {
     display: flex;
     align-items: end;
 
@@ -68,7 +99,7 @@
       border: 1px solid var(--primary) !important;
       transition: all 0.5s !important;
       border-radius: 0.375rem !important;
-      padding: 10px ;
+      padding: 10px;
     }
 
     .btn:active {
@@ -84,6 +115,7 @@
   display: flexbox;
   z-index: 900000000;
   transition: all 0.5s;
+
   .hydrated {
     font-size: 1em !important;
   }
@@ -119,13 +151,24 @@
       width: 100%;
       background-color: var(--white) !important;
       color: var(--primary) !important;
-      border: 1px solid var(--primary) !important;
+      border: 1px solid var(--primary);
       transition: all 0.5s !important;
       align-items: center;
+      border-radius: 100px !important;
       padding: 5px 20px;
-      
       justify-content: center;
 
+    }
+
+    #dropdown-autoclose-true {
+      border: none !important;
+    }
+
+    #dropdown-autoclose-true:active {
+
+      background-color: var(--white) !important;
+
+      color: var(--primary) !important;
     }
 
     .btn:active {
@@ -181,7 +224,7 @@
   }
 }
 
-.offcanvas-body{
+.offcanvas-body {
   .row {
     a {
       text-align: center;
@@ -334,5 +377,67 @@
         }
       }
     }
+  }
+}
+
+// .settings-bt {
+//   .btn {
+//     border-color: #595959 !important;
+//   }
+// }
+.settings-bt {
+  ion-icon {
+    transition: transform 0.5s ease; // Adiciona uma transição suave para a animação
+  }
+
+  &.rotate {
+    ion-icon {
+      transform: rotate(60deg); // Define a rotação completa como 360 graus
+    }
+  }
+}
+
+.custom-toggle.dropdown-toggle::after {
+  display: none !important;
+}
+
+@keyframes cascadeAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-dropdown-item {
+  animation: cascadeAnimation 0.3s ease forwards;
+  opacity: 0;
+}
+
+// Adicione esta classe ao seu componente React para que a animação seja aplicada
+.cascading-animation {
+  .custom-dropdown-item {
+    animation-delay: 0.1s;
+  }
+}
+
+
+.dropdown-menu {
+  a {
+    font-weight: 800 !important;
+  }
+
+  a:active {
+    background-color: transparent !important;
+    color: var(--primary);
+
+  }
+
+  .logout-drop {
+    color: #dc3545 !important;
   }
 }
