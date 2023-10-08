@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Row, Col, Container, Button, Alert, ListGroup, ListGroupItem } from "react-bootstrap";
 import "../assets/styles/suggestions.scss";
 import Filter from "bad-words";
+import { ResponsiveEmbed } from "react-bootstrap";
 
 const SuggestionsConst = () => {
   const [suggestion, setSuggestion] = useState("");
@@ -29,7 +30,7 @@ const SuggestionsConst = () => {
   //   setSuggestion5(event.target.value);
   // };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
 
     event.preventDefault();
     if (suggestion === ""
@@ -41,7 +42,6 @@ const SuggestionsConst = () => {
       }, 5000);
       return;
     }
-
 
     // instância do filtro
     const filter = new Filter();
@@ -60,16 +60,31 @@ const SuggestionsConst = () => {
         setShowAlert(false);
       }, 5000);
 
-
+      
       console.log("Linguagem imprópria");
-
+      
     } else {
       // Aqui,enviar a sugestão para o backend
-      setShowAlertSuccess(true);
+      const idUsuario = localStorage.getItem("id");
+      
+      const response = await fetch("http://localhost:9000/suggestions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ suggestion, idUsuario }),
+      });
+
+      if(response){
+        setShowAlertSuccess(true);
       setTimeout(() => {
         setShowAlertSuccess(false);
       }, 5000);
       console.log("Sucesso em enviar sugestão")
+      } else{
+        alert("Algo deu errado");
+      }
+
     }
 
   };

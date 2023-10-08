@@ -1,15 +1,19 @@
 var express = require('express');
-var verify = require('../functions/verifyJWT');
 var router = express.Router();
+var connection = require("../db");
 
 require('dotenv').config();
 
-router.get('/', verify, function (req, res) {
-    if (req.error) {
-        res.status(500).json({ error: 'An error occurred' });
-    } else {
-        res.send("Autenticado");
-    }
-});
+router.post("/", async (req, res) => {
+    const { suggestion, idUsuario } = req.body;
+
+    connection.query("INSERT INTO suggestion (suggestion, idUsuario) VALUES ( ?, ? )", [suggestion, idUsuario], (error, resp) => {
+        if(error){
+            res.status(500).json({ massage: error });
+        } else {
+            res.status(200).json({ massage: "Success suggestion"});
+        }
+    })
+})
 
 module.exports = router;
