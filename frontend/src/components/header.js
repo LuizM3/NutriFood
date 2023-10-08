@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Dropdown, DropdownButton } from "react-bootstrap";
+import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Dropdown, Modal, Spinner } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/styles/header.scss";
 
 const logo = require("../assets/images/logo.png");
@@ -9,12 +9,16 @@ const logo = require("../assets/images/logo.png");
 const HeaderConst = () => {
   const [isRotated, setIsRotated] = useState(false);
 
+  const navigate = useNavigate();
   const handleButtonClick = () => {
     setIsRotated(!isRotated);
   };
+
   const [userName, setUserName] = useState("");
   const [isToggled, setIsToggled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [spinnerModal, setSpinnerModal] = useState(false);
+
   const handleToggle = () => {
     setIsToggled(!isToggled);
   };
@@ -34,9 +38,29 @@ const HeaderConst = () => {
     }
   }, [nome]);
 
+  const logout = () => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("nome");
+    localStorage.removeItem("token");
+
+    setTimeout(() => {
+      setSpinnerModal(true);
+    }, 1000);
+
+    setTimeout(() => { navigate(0) }, 2000);
+  }
+
   return (
 
     <>
+
+      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal spinner-modal" backdrop="static" data-test="links">
+        <Modal.Body>
+          <Spinner animation="border" role="status" show={spinnerModal} onHide={() => setSpinnerModal(false)}>
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </Modal.Body>
+      </Modal>
 
       <Navbar fixed="top" className="flex-nowrap" collapseOnSelect>
         <div id="nav-cont" data-test="links">
@@ -186,13 +210,11 @@ const HeaderConst = () => {
                           <ion-icon name="person"></ion-icon>
                           {userName}
                         </Dropdown.Toggle>
-                        {/* <Dropdown.Menu>
-                          <Dropdown.Item href="#">Configurações</Dropdown.Item>
-                          <Dropdown.Item href="#">Logout</Dropdown.Item>
-                        </Dropdown.Menu> */}
+
                         <Dropdown.Menu>
                           <Dropdown.Item className="custom-dropdown-item" href="#">Configurações</Dropdown.Item>
-                          <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#">Logout</Dropdown.Item>
+                          <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#" onClick={logout}>Logout</Dropdown.Item>
+
                         </Dropdown.Menu>
                       </Dropdown>
                     ) : (

@@ -12,7 +12,6 @@ const signinRouter = require("./routes/signin");
 const signupRouter = require("./routes/signup");
 const indexRouter = require("./routes/index");
 const suggestionsRouter = require("./routes/suggestions");
-const verifyTokenRouter = require("./routes/verifyToken");
 const checkEmailRouter = require('./routes/checkEmail');
 
 app.set("view engine", "ejs");
@@ -29,7 +28,6 @@ app.use("/testDB", testDBRouter);
 app.use("/signup", signupRouter);
 app.use("/signin", signinRouter);
 app.use("/reviews", reviewsRouter);
-app.use("/verifyToken", verifyTokenRouter);
 app.use("/suggestions", suggestionsRouter);
 
 module.exports = app;

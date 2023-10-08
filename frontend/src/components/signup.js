@@ -112,15 +112,6 @@ const SignUpConst = () => {
         setFormModal(true);
     };
 
-    const Verify = () => {
-        const [searchParams] = useSearchParams();
-        const tokenVerify = searchParams.get("token");
-
-        return tokenVerify;
-    };
-
-    const token = Verify();
-
     const handleColetaSubmit = async () => {
 
         if (vegetariano === "true") {
@@ -746,7 +737,7 @@ const SignUpConst = () => {
 
                                     <div id="div-btn">
                                         <Link
-                                            to={"/login?token=" + token}
+                                            to={"/login"}
                                         >Fazer login</Link>
                                         <Button type="submit" id="button-login-signup" data-test="cadastrar">
                                             Cadastrar
