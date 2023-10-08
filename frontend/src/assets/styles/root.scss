@@ -44,7 +44,7 @@ h6 {
 }
 
 .btn {
-  border-radius: 0.9em !important;
+  border-radius: 50px !important;
   background-color: var(--primary) !important;
   color: var(--white) !important;
   border: 1px solid !important;
@@ -509,4 +509,32 @@ body::-webkit-scrollbar-thumb {
 
 .menu-cont {
   margin-top: 200px;
+}
+
+.col-log {
+
+  width: 20vw; 
+  height: 50vh;
+}
+.redirect {
+  h4 {
+    color: var(--gray);
+  }
+  .redirect-c {
+    border: 2px solid var(--lgray);
+    border-radius: 25px;
+    height: 60vh;
+    // width: 25vw;
+  }
+}
+
+.back {
+  img {
+    filter: opacity(70%);
+    margin: 0;
+  }
+  .figure {
+    padding-right: 10px;
+  }
+  color: #4d4d4d;
 }

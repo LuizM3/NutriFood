@@ -110,8 +110,8 @@ const CarouselConst = () => {
 
         <Carousel.Item id="day5">
           <h1 className="tittleCar">
-            <p>Contate-nos </p>
-            <Link to="/contact">
+            <p>Sobre Nutrifood</p>
+            <Link to="/about">
 
               <Button className="bt-car">Saiba mais</Button>
             </Link>

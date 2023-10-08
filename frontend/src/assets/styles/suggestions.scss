@@ -1,15 +1,17 @@
 .s-container {
     .f-row {
-        .col-md-6{
-        }
+        .col-md-6 {}
     }
-    margin-top: 100px;
+
     height: 100vh;
+    margin-top: 100px;
     @media(max-width: 768px) {
         margin-top: 90px;
     }
 
-
+    @media(max-width: 420px) {
+        height: 112vh !important;
+    }
 
     form {
         @media(max-width: 375px) {
@@ -41,7 +43,7 @@
     .alert {
         @media(max-width: 768px) {
             width: 300px;
-        animation-name: exampleResp;
+            animation-name: exampleResp;
         }
 
         margin: 10px 0px;
@@ -66,11 +68,18 @@
         left: 20px;
     }
 }
+
 @keyframes exampleResp {
     from {
         top: 0;
     }
+
     to {
         top: 20px;
     }
+}
+
+.bt-sub {
+    height: 40px;
+    width: 50%;
 }

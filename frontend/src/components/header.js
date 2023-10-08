@@ -352,7 +352,7 @@ const HeaderConst = () => {
                               </Dropdown.Toggle>
                               <Dropdown.Menu>
                                 <Dropdown.Item className="custom-dropdown-item" href="#">Configurações</Dropdown.Item>
-                                <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#">Logout</Dropdown.Item>
+                                <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#"onClick={logout}>Logout</Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
                           ) : (
