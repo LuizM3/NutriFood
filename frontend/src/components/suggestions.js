@@ -5,10 +5,6 @@ import Filter from "bad-words";
 
 const SuggestionsConst = () => {
   const [suggestion, setSuggestion] = useState("");
-  // const [suggestion2, setSuggestion2] = useState("");
-  // const [suggestion3, setSuggestion3] = useState("");
-  // const [suggestion4, setSuggestion4] = useState("");
-  // const [suggestion5, setSuggestion5] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   // Estado para controlar a exibição do alert
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
@@ -16,24 +12,11 @@ const SuggestionsConst = () => {
   const handleSuggestionChange = (event) => {
     setSuggestion(event.target.value);
   };
-  // const handleSuggestionChange2 = (event) => {
-  //   setSuggestion2(event.target.value);
-  // };
-  // const handleSuggestionChange3 = (event) => {
-  //   setSuggestion3(event.target.value);
-  // };
-  // const handleSuggestionChange4 = (event) => {
-  //   setSuggestion4(event.target.value);
-  // };
-  // const handleSuggestionChange5 = (event) => {
-  //   setSuggestion5(event.target.value);
-  // };
 
   const handleSubmit = (event) => {
 
     event.preventDefault();
     if (suggestion === ""
-      //  || suggestion2 === "" || suggestion3 === "" || suggestion4 === "" || suggestion5 === ""
     ) {
       setErrorAlert(true);
       setTimeout(() => {
@@ -49,10 +32,7 @@ const SuggestionsConst = () => {
     // Verificando se a sugestão contém linguagem imprópria
     if (
       filter.isProfane(suggestion)
-      // filter.isProfane(suggestion2) ||
-      // filter.isProfane(suggestion3) ||
-      // filter.isProfane(suggestion4) ||
-      // filter.isProfane(suggestion5)
+     
     ) {
       // Se contiver linguagem imprópria, mostre o alert
       setShowAlert(true);
@@ -94,80 +74,18 @@ const SuggestionsConst = () => {
         )}
 
       </Row>
-      <Container className="s-container justify-content-center align-items-center d-flex flex-column">
-        <Row className="mt-0 d-flex justify-content-center align-items-center text-center w-100" md={12}>
-        
+      <Container className="mb-5 s-container justify-content-start align-items-center d-flex flex-column">
+        <Row className="mt-5 d-flex justify-content-center align-items-center text-center w-100" md={12}>
+
 
           <Col lg={8} md={12} xl={6} className="d-flex flex-column align-items-center w-100">
 
             <h2>Coleta de sugestões</h2>
             <Form className="m-0" onSubmit={handleSubmit}>
-              <Row>
-                {/* <Col md={12} className="mb-3">
-                  <Form.Group>
-                    <Form.Label>
-                      Quais pontos você acha que precisam ser melhorados para aumentar a sua satisfação com as refeições do RI?
-                    </Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      placeholder="Escreva aqui"
-                      value={suggestion}
-                    maxLength={200}
-                      onChange={handleSuggestionChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={12} className="mb-3"><Form.Group>
-                  <Form.Label>Você tem alguma sugestão para obter melhorias propostas na questão anterior?</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Escreva aqui"
-                    value={suggestion2}
-                    maxLength={200}
-                    onChange={handleSuggestionChange2}
-                  />
-                </Form.Group>
-
-                </Col>
-
-                <Col md={12} className="mb-3"><Form.Group>
-                  <Form.Label>Qual o ponto positivo do restaurante que você destacaria?</Form.Label>
-
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Escreva aqui"
-                    value={suggestion3}
-                    maxLength={200}
-                    onChange={handleSuggestionChange3}
-                  />
-                </Form.Group>
-                </Col>
-                <Col md={12} className="mb-3"> <Form.Group>
-                  <Form.Label>Qual a sua preparação preferida do almoço/jantar?</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Escreva aqui"
-                    maxLength={200}
-                    value={suggestion4}
-                    onChange={handleSuggestionChange4}
-                  />
-                </Form.Group>
-                </Col>
-                <Col md={12} className="mb-3">  <Form.Group><Form.Label>
-                  Qual sua preparação do café da manhã/lanche da tarde?
-                </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Escreva aqui"
-                    maxLength={200}
-                    onChange={handleSuggestionChange5}
-                    value={suggestion5}
-                  />
-                </Form.Group>
-                </Col> */}
-                <Col md={6} className="mb-3">
-                  <ListGroup>
-                    <ListGroupItem>
+              <Row className="f-row h-100">
+                <Col md={6} className="mb-3" xs={12}>
+                  <ListGroup className="text-start">
+                    <ListGroupItem> 
 
                       1 - Quais pontos você acha que precisam ser melhorados para aumentar a sua satisfação com as refeições do RI?
                     </ListGroupItem>
@@ -189,22 +107,33 @@ const SuggestionsConst = () => {
                     </ListGroupItem>
                   </ListGroup>
                 </Col>
-                <Col md={6} className="mb-3">  <Form.Group className="h-75">
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Escreva aqui"
-                    className="h-100"
-                    maxLength={200}
-                    onChange={handleSuggestionChange}
-                    value={suggestion}
-                  />
-                <Col className="d-flex justify-content-center mb-3" md={6}>
-                  <Button variant="primary" type="submit" className="w-100">
-                    Submit
-                  </Button>
-                </Col>
-                </Form.Group>
+                <Col md={6} xs={12} className="mb-3">
+                  <Form.Group className="h-75">
+                    <Form.Control
+                      as="textarea"
+                      placeholder="Escreva aqui"
+                      className="h-100"
+                      maxLength={1000}
+                      onChange={handleSuggestionChange}
+                      value={suggestion}
+                    />
 
+                  </Form.Group>
+                  <Form.Group
+                    // className="d-flex justify-content-center mb-3" md={6}
+                    className="h-25 d-flex justify-content-center"
+                  >
+                    <Row className="w-100">
+                      {/* <Col md={12} className="h-50 p-0"></Col> */}
+                      <Col md={12} className="pt-4 d-flex justify-content-end p-0">
+
+                      <Button variant="primary" type="submit" className="w-100">
+                          Submit
+                        </Button>
+                      </Col>
+                    </Row>
+
+                  </Form.Group>
                 </Col>
 
               </Row>

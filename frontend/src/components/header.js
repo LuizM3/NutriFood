@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Navbar, Nav, Container, Offcanvas, ToggleButton, Button, Figure, Row, Col, ListGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import { Link, useSearchParams } from "react-router-dom";
 import "../assets/styles/header.scss";
@@ -21,37 +21,15 @@ const HeaderConst = () => {
   };
 
   const handleShow = () => setShow(true);
-
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
+  const nome = localStorage.getItem("nome");
 
-  const Verify = () => {
-    const [searchParams] = useSearchParams();
-    const tokenVerify = searchParams.get("token");
-    return tokenVerify;
-  };
+  useEffect(() => {
+    if (nome) {
+      setUserName(nome);
+    }
+  }, [nome]);
 
-  const token = Verify();
-
-  // const nome = localStorage.getItem("nome");
-
-  // let validation;
-  // let nome;
-
-  if (token) {
-    const GetName = async () => {
-      try {
-        const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
-        if (resp.ok) {
-          const data = await resp.json();
-          const validation = await data.validation;
-          const nome = await data.nome;
-          console.log(nome);
-        }
-      } catch (error) {
-        console.error("Erro ao enviar requisição:", error);
-      }
-    };
-  }
 
   return (
 
@@ -151,7 +129,7 @@ const HeaderConst = () => {
             <><Navbar.Brand className="d-flex align-items-center">
               <Nav className="me-auto">
                 <div className="div-link">
-                  <Link to={"/?token=" + token} className="text-decoration-none" href="#">
+                  <Link to="/" className="text-decoration-none" href="#">
                     <Figure>
                       <Figure.Image
 
@@ -163,7 +141,7 @@ const HeaderConst = () => {
               </Nav>
               <Nav className="me-auto">
                 <div className="div-link">
-                  <Link to={"/?token=" + token} className="text-decoration-none" data-test="">
+                  <Link to="/" className="text-decoration-none" data-test="">
                     <h2>Nutrifood </h2>
                   </Link>
                 </div>
@@ -171,13 +149,13 @@ const HeaderConst = () => {
             </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
                 <Nav className="me-auto">
                   <div className="div-link">
-                    <Link to={"/reviews?token=" + token} className="text-decoration-none">
+                    <Link to="/reviews" className="text-decoration-none">
                       Avaliações
                     </Link>
                   </div>
                   <div className="div-link">
                     <Link
-                      to={"/menu?token=" + token}
+                      to="/menu"
                       className="text-decoration-none"
                     >
                       Cardápio
@@ -185,7 +163,7 @@ const HeaderConst = () => {
                   </div>
 
                   <div className="div-link">
-                    <Link to={"/suggestions?token=" + token} className="text-decoration-none">
+                    <Link to="/suggestions" className="text-decoration-none">
                       Sugestões
                     </Link>
                   </div>
@@ -193,10 +171,10 @@ const HeaderConst = () => {
 
               </Navbar.Brand><Navbar.Brand className="d-flex align-items-center">
                 <Nav className="me-auto">
-                  
+
 
                   <div className="div-link">
-                    <Link to={"/about?token=" + token} className="text-decoration-none">
+                    <Link to="/about" className="text-decoration-none">
                       Sobre
                     </Link>
                   </div>
@@ -205,14 +183,26 @@ const HeaderConst = () => {
                 </Nav>
                 <Nav className="me-auto">
                   <div className="div-link">
-                    <Link to={"/login?token=" + token} className="text-decoration-none">
-                      <Button>
-                        <ion-icon name="person"></ion-icon>
-                        {/* <GetName />
-                         <ShowName /> */}
-                        Entrar
-                      </Button>
-                    </Link>
+                    {userName ? (
+                      <Dropdown>
+                        <Dropdown.Toggle id="dropdown-autoclose-true">
+                          <ion-icon name="person"></ion-icon>
+                          {userName}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href="#">Configurações</Dropdown.Item>
+                          <Dropdown.Item href="#">Logout</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    ) : (
+                      <Link to="/login" className="text-decoration-none">
+                        <Button onClick={handleShow}>
+                          <ion-icon name="person"></ion-icon>
+                          Entrar
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </Nav>
               </Navbar.Brand></>
@@ -255,7 +245,7 @@ const HeaderConst = () => {
                       <ListGroup>
                         <ListGroup.Item>
                           <Row>
-                            <Link to={"/reviews?token=" + token} className="text-decoration-none">
+                            <Link to="/reviews" className="text-decoration-none">
                               <h1>
                                 Avaliações
                               </h1>
@@ -266,7 +256,7 @@ const HeaderConst = () => {
                         <ListGroup.Item>
                           <Row>
                             <Link
-                              to={"/menu?token=" + token}
+                              to="/menu"
                               className="text-decoration-none"
                             >
                               <h1>
@@ -278,7 +268,7 @@ const HeaderConst = () => {
                         </ListGroup.Item>
                         <ListGroup.Item><Row>
                           <Link
-                            to={"/suggestions?token=" + token}
+                            to="/suggestion"
                             className="text-decoration-none">
                             <h1>
 
@@ -286,10 +276,10 @@ const HeaderConst = () => {
                             </h1>
                           </Link>
                         </Row></ListGroup.Item>
-                        
+
                         <ListGroup.Item><Row>
                           <Link
-                            to={"/about?token=" + token}
+                            to="/about"
                             className="text-decoration-none">
 
                             <h1>
@@ -304,7 +294,7 @@ const HeaderConst = () => {
 
                       <Row id="r-b">
                         <Link
-                          to={"/login?token=" + token}
+                          to="/login"
                           className="text-decoration-none justify-content-center align-items-center d-flex">
 
                           <Button className="w-50 h-25">

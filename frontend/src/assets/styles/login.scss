@@ -90,7 +90,7 @@
 }
 
 .modal-content {
-  align-items: center;  
+  align-items: center;
   border-radius: 20px !important;
   border: none;
 
@@ -112,10 +112,12 @@
 .coleta-modal {
   .form-check-input {
     box-shadow: none !important;
+
     &::after {
       box-shadow: none !important;
     }
   }
+
   label {
     margin: 0;
   }
@@ -188,6 +190,37 @@
   }
 }
 
-.cancelar::after{
-background-color: red;
+.cancelar::after {
+  background-color: red;
+}
+
+.o-cancelar {
+  order: 0 !important;
+  @media(max-width: 768px) {
+    order: 1 !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .btn:active {
+    background-color: #dc3545 !important;
+    color: white !important;
+  }
+  .btn:focus {
+    background-color: #dc3545 !important;
+    color: white !important;
+  }
+
+  .btn::after {
+    background-color: #dc3545 !important;
+    color: white !important;
+  }
+}
+.o-enviar {
+  order: 1 !important;
+  @media(max-width: 768px){
+    order: 0 !important;
+  }
 }

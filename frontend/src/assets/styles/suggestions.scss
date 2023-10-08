@@ -1,6 +1,10 @@
 .s-container {
+    .f-row {
+        .col-md-6{
+        }
+    }
     margin-top: 100px;
-
+    height: 100vh;
     @media(max-width: 768px) {
         margin-top: 90px;
     }

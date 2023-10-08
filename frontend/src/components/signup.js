@@ -654,8 +654,13 @@ const SignUpConst = () => {
 
                 </Modal.Body>
                 <Modal.Footer className="w-100">
-                    <Row className="w-100">
-                        <Col md={6}>
+                    <Row className="w-100 row-bt">
+
+                        <Col md={6} className="o-enviar">
+                            <Button variant="primary" className="w-100" onClick={() => { handleColetaSubmit(); setFormModal(false); }}>
+                                Enviar
+                            </Button>
+                        </Col> <Col md={6} className="o-cancelar">
                             <Link to={"/sign-up"} reloadDocument>
                                 <Button className="w-100 bg-light border-danger text-danger cancelar"
                                 >
@@ -663,11 +668,6 @@ const SignUpConst = () => {
                                 </Button>
                             </Link>
 
-                        </Col>
-                        <Col md={6}>
-                            <Button variant="primary" className="w-100" onClick={() => { handleColetaSubmit(); setFormModal(false); }}>
-                                Enviar
-                            </Button>
                         </Col>
                     </Row>
 
