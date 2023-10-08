@@ -30,7 +30,6 @@ const HeaderConst = () => {
     }
   }, [nome]);
 
-
   return (
 
     <>
@@ -142,7 +141,7 @@ const HeaderConst = () => {
               <Nav className="me-auto">
                 <div className="div-link">
                   <Link to="/" className="text-decoration-none" data-test="">
-                    <h2>Nutrifood </h2>
+                    <h2>Nutrifood</h2>
                   </Link>
                 </div>
               </Nav>
@@ -157,15 +156,11 @@ const HeaderConst = () => {
                     <Link
                       to="/menu"
                       className="text-decoration-none"
-                    >
-                      Cardápio
-                    </Link>
+                    >Cardápio</Link>
                   </div>
 
                   <div className="div-link">
-                    <Link to="/suggestions" className="text-decoration-none">
-                      Sugestões
-                    </Link>
+                    <Link to="/suggestions" className="text-decoration-none">Sugestões</Link>
                   </div>
                 </Nav>
 
@@ -174,9 +169,7 @@ const HeaderConst = () => {
 
 
                   <div className="div-link">
-                    <Link to="/about" className="text-decoration-none">
-                      Sobre
-                    </Link>
+                    <Link to="/about" className="text-decoration-none">Sobre</Link>
                   </div>
 
 
@@ -189,7 +182,6 @@ const HeaderConst = () => {
                           <ion-icon name="person"></ion-icon>
                           {userName}
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                           <Dropdown.Item href="#">Configurações</Dropdown.Item>
                           <Dropdown.Item href="#">Logout</Dropdown.Item>
