@@ -5,14 +5,6 @@ import { Link, useSearchParams } from "react-router-dom";
 
 const logo = require("../assets/images/logo.png");
 const FooterConst = () => {
-  const Verify = () => {
-    const [searchParams] = useSearchParams();
-    const tokenVerify = searchParams.get("token");
-
-    return tokenVerify;
-  };
-
-  const token = Verify();
   return (
     <>
       <div className="w-100 justify-content-center d-flex m-0 d-footer flex-column align-items-center text-center">
@@ -54,20 +46,20 @@ const FooterConst = () => {
 
               <Col md={12} xs={12} sm={2}>
                 <Link 
-                  to={"/reviews?token=" + token}
+                  to={"/reviews"}
                 className="text-decoration-none" data-test="">
                   Avaliações
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
 
-                <Link to={"/menu?token=" + token} className="text-decoration-none" data-test="">
+                <Link to={"/menu"} className="text-decoration-none" data-test="">
                   Cardápio
                 </Link>
               </Col>
              
               <Col md={12} xs={12} sm={2}>
-                <Link to={"/sign-up?token=" + token} className="text-decoration-none" data-test="">
+                <Link to={"/sign-up"} className="text-decoration-none" data-test="">
                   Cadastre-se
                 </Link>
               </Col>
@@ -82,23 +74,23 @@ const FooterConst = () => {
             <Row md={12}>
               <Col md={12} sm={4}><h6>Referências</h6></Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to={"/about?token" + token} className="text-decoration-none" data-test="">
+                <Link to={"/about"} className="text-decoration-none" data-test="">
                   Sobre
                 </Link>
               </Col> <Col md={12} xs={12} sm={2}>
-                <Link to={"/suggestions?token=" + token} className="text-decoration-none" data-test="">
+                <Link to={"/suggestions"} className="text-decoration-none" data-test="">
                   Sugestões
                 </Link>
               </Col>
 
               <Col md={12} xs={12} sm={2}>
-                <Link to={"/?token=" + token} className="text-decoration-none" data-test="">
+                <Link to={"/"} className="text-decoration-none" data-test="">
                   Dúvidas
                 </Link>
               </Col>
 
               <Col md={12} xs={12} sm={2}>
-                <Link to={"/?token=" + token} className="text-decoration-none" data-test="">
+                <Link to={"/"} className="text-decoration-none" data-test="">
                   API
                 </Link>
               </Col>

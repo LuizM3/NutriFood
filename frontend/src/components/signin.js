@@ -6,14 +6,6 @@ import React, { useState } from "react";
 
 const logo = require("../assets/images/logo.png");
 const LoginConst = () => {
-  const Verify = () => {
-    const [searchParams] = useSearchParams();
-    const tokenVerify = searchParams.get("token");
-
-    return tokenVerify;
-  };
-
-  const token = Verify();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -63,12 +55,7 @@ const LoginConst = () => {
             setSpinnerModal(true);
           }, 1000);
           
-          setTimeout(() => { navigate("/?token=" + token) }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
-          const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
-          if (resp.ok) {
-            const data = await resp.json();
-            const validation = await data.validation; //validação do token
-          }
+          setTimeout(() => { navigate("/") }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
 
         } else {
           // Credenciais inválidas
@@ -100,23 +87,6 @@ const LoginConst = () => {
         </Modal.Body>
       </Modal>
 
-      {/* <Modal show={successModal} onHide={() => setSuccessModal(false)} data-test="links">
-        <Modal.Body>
-          Login concluído
-        </Modal.Body>
-      </Modal> */}
-
-      {/* <Modal show={errorModal} onHide={() => setErrorModal(false)} className="modal" data-test="links">
-        <Modal.Header>
-          <Modal.Title>Erro</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Erro ao fazer login</Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={() => setErrorModal(false)}>
-            Fechar
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
       <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
         {showPassAlert && (
           <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setShowPassAlert(false)}>
@@ -175,7 +145,7 @@ const LoginConst = () => {
                   </div>
 
                   <div id="div-btn">
-                    <Link to={"/sign-up?token=" + token}>Cadastre-se agora</Link>
+                    <Link to={"/sign-up"}>Cadastre-se agora</Link>
                     <Button type="submit" id="button-login-signup">
                       Entrar
                     </Button>
