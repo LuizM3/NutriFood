@@ -63,13 +63,7 @@ const LoginConst = () => {
             setSpinnerModal(true);
           }, 1000);
           
-          setTimeout(() => { navigate("/?token=" + token) }, 6000); // Atraso de 5 segundos (5000 milissegundos) Login bem-sucedido
-          const resp = await fetch("http://localhost:9000/verifyToken?token=" + token);
-          if (resp.ok) {
-            const data = await resp.json();
-            const validation = await data.validation; //validação do token
-          }
-
+          setTimeout(() => { navigate("/") }, 6000);
         } else {
           // Credenciais inválidas
           setShowPassAlert(true);

@@ -7,7 +7,11 @@ import "../assets/styles/header.scss";
 const logo = require("../assets/images/logo.png");
 
 const HeaderConst = () => {
+  const [isRotated, setIsRotated] = useState(false);
 
+  const handleButtonClick = () => {
+    setIsRotated(!isRotated);
+  };
   const [userName, setUserName] = useState("");
   const [isToggled, setIsToggled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -182,9 +186,13 @@ const HeaderConst = () => {
                           <ion-icon name="person"></ion-icon>
                           {userName}
                         </Dropdown.Toggle>
-                        <Dropdown.Menu>
+                        {/* <Dropdown.Menu>
                           <Dropdown.Item href="#">Configurações</Dropdown.Item>
                           <Dropdown.Item href="#">Logout</Dropdown.Item>
+                        </Dropdown.Menu> */}
+                        <Dropdown.Menu>
+                          <Dropdown.Item className="custom-dropdown-item" href="#">Configurações</Dropdown.Item>
+                          <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#">Logout</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     ) : (
@@ -234,7 +242,7 @@ const HeaderConst = () => {
                 <Container>
                   <section>
                     <Row id="r-div">
-                      <ListGroup>
+                      <ListGroup className="d-flex justify-content-center">
                         <ListGroup.Item>
                           <Row>
                             <Link to="/reviews" className="text-decoration-none">
@@ -289,13 +297,51 @@ const HeaderConst = () => {
                           to="/login"
                           className="text-decoration-none justify-content-center align-items-center d-flex">
 
-                          <Button className="w-50 h-25">
-                            <ion-icon name="person"></ion-icon>
-                            <span>
+                        </Link>  <div className="div-link">
+                          {userName ? (
+                            <Dropdown drop="up" className="d-flex justify-content-center">
+                              <Button>
+                                <ion-icon name="person"></ion-icon>
 
-                            </span>
-                          </Button>
-                        </Link>
+                                <p>
+                                  {userName}
+                                </p>
+
+
+                              </Button>
+
+
+                              {/* <Dropdown.Toggle id="dropdown-autoclose-true" className="custom-toggle">
+                                <Button
+                                  className={`settings-bt ${isRotated ? 'rotate' : ''}`} onClick={handleButtonClick}
+                                >
+                                  <ion-icon name="settings-outline"></ion-icon>
+                             
+                                </Button>
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu>
+                                <Dropdown.Item href="#">Configurações</Dropdown.Item>
+                                <Dropdown.Item href="#">Logout</Dropdown.Item>
+                              </Dropdown.Menu> */}
+                              <Dropdown.Toggle id="dropdown-autoclose-true" className="custom-toggle">
+                                <Button className={`settings-bt ${isRotated ? 'rotate' : ''}`} onClick={handleButtonClick}>
+                                  <ion-icon name="settings-outline"></ion-icon>
+                                </Button>
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu>
+                                <Dropdown.Item className="custom-dropdown-item" href="#">Configurações</Dropdown.Item>
+                                <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#">Logout</Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          ) : (
+                            <Link to="/login" className="text-decoration-none d-flex justify-content-center">
+                              <Button onClick={handleShow} className="w-50 btn-e">
+                                <ion-icon name="person"></ion-icon>
+                                Entrar
+                              </Button>
+                            </Link>
+                          )}
+                        </div>
                       </Row>
                     </Row>
                   </section>
