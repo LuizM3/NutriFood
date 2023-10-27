@@ -1,5 +1,5 @@
 import "../assets/styles/login.scss";
-import { Form, Button, Modal, Container, Spinner, Row, Figure, Alert, Col } from "react-bootstrap";
+import { Form, Button, Modal, Container, Spinner, Row, Figure, Alert, Col, Dropdown } from "react-bootstrap";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import React, { useState } from "react";
 
@@ -49,6 +49,7 @@ const SignUpConst = () => {
     const [showTermoAlert, setTermoAlert] = useState(false);
     const [showPassAlert, setShowPassAlert] = useState(false);
     const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+    const [showP, setCampoP] = useState(false);
     const [showErrorAlert, setErrorAlert] = useState(false);
     const [showCampoAlert, setCampoAlert] = useState(false);
     const [showWrongPAlert, setWrongPAlert] = useState(false);
@@ -73,16 +74,6 @@ const SignUpConst = () => {
             }, 5000);
             return;
         }
-
-        if (schema.validate(senha) === false) {
-        // if (senha === false) {
-
-            setWrongPAlert(true);
-            setTimeout(() => {
-                setWrongPAlert(false);
-            }, 5000);
-            return;
-        }
         if (senha !== confirmarSenha) {
             setShowPassAlert(true);
             setTimeout(() => {
@@ -90,6 +81,21 @@ const SignUpConst = () => {
             }, 5000);
             return;
         }
+        if (schema.validate(senha) === false) {
+            // if (senha === false) {
+
+            setCampoP(true);
+            setTimeout(() => {
+                setCampoP(false);
+            }, 5000);
+
+            setWrongPAlert(true);
+            setTimeout(() => {
+                setWrongPAlert(false);
+            }, 5000);
+            return;
+        }
+
 
         if (termo === false) {
             // Se o termo não foi aceito (termo === false)
@@ -237,31 +243,31 @@ const SignUpConst = () => {
             <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
                 {showPassAlert && (
                     <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setShowPassAlert(false)}>
-                        As senhas não são iguais!
+                        As senhas devem ser iguais
                     </Alert>
                 )}  {showAlertSuccess && (
                     <Alert variant="success" className="align-items-center d-flex fade" onClose={() => setShowAlertSuccess(false)}>
-                        Cadastro bem-sucedido!
+                        Cadastro concluído
                     </Alert>
                 )}
                 {showCampoAlert && (
                     <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setCampoAlert(false)}>
-                        Preencha todos os campos!
+                        Todos os campos devem ser preenchidos
                     </Alert>
                 )}
                 {showErrorAlert && (
                     <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setErrorAlert(false)}>
-                        Erro ao enviar requisição!
+                        Erro ao enviar requisição
                     </Alert>
                 )}
                 {showEmailAlert && (
                     <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setEmailAlert(false)}>
-                        Email já cadastrado!
+                        Este email já foi cadastrado
                     </Alert>
                 )}
                 {showWrongPAlert && (
                     <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setWrongPAlert(false)}>
-                        A senha digitada precisa atender os requisitos
+                        A senha precisa ter pelo menos 8 caracteres, com maiúsculas, minúsculas, pelo menos 2 dígitos, e sem espaços
                     </Alert>
                 )}
                 {showTermoAlert && (
@@ -290,7 +296,7 @@ const SignUpConst = () => {
 
                     <h3>1. Aceitação dos Termos de Uso</h3>
                     <p>
-                        Bem-vindo ao [Nome do Seu Site]! Ao acessar ou usar nosso site, você
+                        Bem-vindo ao Nutrifood! Ao acessar ou usar nosso site, você
                         concorda em cumprir e ficar vinculado a estes Termos de Uso. Se você não
                         concordar com algum destes termos, por favor, não utilize o nosso site.
                     </p>
@@ -712,7 +718,16 @@ const SignUpConst = () => {
                                                 value={senha}
                                                 data-test="form-pass"
                                                 onChange={(e) => setSenha(e.target.value)}
-                                            /> <Form.Control
+                                            />
+
+                                            {showP && (
+                                                <Dropdown.Menu className="align-items-center d-flex text-bg-dark" onClose={() => setCampoP(false)}>
+                                                    <Dropdown.Item href="#/action-1" active>
+                                                    A senha precisa ter pelo menos 8 caracteres, com maiúsculas, minúsculas, pelo menos 2 dígitos, e sem espaços
+                                                    </Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            )}
+                                            <Form.Control
                                                 type="password"
                                                 placeholder="Confirmar senha"
                                                 data-test="form-passc"

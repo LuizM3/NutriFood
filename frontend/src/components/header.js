@@ -212,8 +212,31 @@ const HeaderConst = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item className="custom-dropdown-item" href="#">Configurações</Dropdown.Item>
-                          <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#" onClick={logout}>Logout</Dropdown.Item>
+                          <Dropdown.Item className="custom-dropdown-item" href="#">
+                            <Link to="/user/settings">
+                            
+                            <Row>
+                              <Col>
+                                Ajustes
+                              </Col>
+                              <Col>
+                                <ion-icon name="options-outline"></ion-icon>
+                              </Col>
+                            </Row>
+                            </Link>
+                          </Dropdown.Item>
+                          <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#" onClick={logout}>
+                            <Row>
+                              <Col>
+
+                                Logout
+                              </Col>
+                              <Col>
+
+                                <ion-icon name="log-out-outline"></ion-icon>
+                              </Col>
+                            </Row>
+                          </Dropdown.Item>
 
                         </Dropdown.Menu>
                       </Dropdown>
@@ -290,7 +313,7 @@ const HeaderConst = () => {
                         </ListGroup.Item>
                         <ListGroup.Item><Row>
                           <Link
-                            to="/suggestion"
+                            to="/suggestions"
                             className="text-decoration-none">
                             <h1>
 
@@ -352,7 +375,7 @@ const HeaderConst = () => {
                               </Dropdown.Toggle>
                               <Dropdown.Menu>
                                 <Dropdown.Item className="custom-dropdown-item" href="#">Configurações</Dropdown.Item>
-                                <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#"onClick={logout}>Logout</Dropdown.Item>
+                                <Dropdown.Item className="custom-dropdown-item cascading-animation logout-drop" href="#" onClick={logout}>Logout</Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
                           ) : (

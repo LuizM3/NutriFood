@@ -81,7 +81,7 @@ const CarouselConst = () => {
 
           <h1 className="tittleCar">
             <p> Avalie nossa comida</p>
-            <Link to="/reviews">
+            <Link to="/reviews"className="text-decoration-none">
 
               <Button className="bt-car">Saiba mais</Button>
             </Link>
@@ -91,7 +91,7 @@ const CarouselConst = () => {
         <Carousel.Item id="day3">
           <h1 className="tittleCar">
             <p> Sugira uma refeição</p>
-            <Link to="/suggestions">
+            <Link to="/suggestions"className="text-decoration-none">
 
               <Button className="bt-car">Saiba mais</Button>
             </Link>
@@ -101,7 +101,7 @@ const CarouselConst = () => {
         <Carousel.Item id="day4">
           <h1 className="tittleCar">
             <p>Cardápio do dia</p>
-            <Link to="/menu">
+            <Link to="/menu"className="text-decoration-none">
 
               <Button className="bt-car">Saiba mais</Button>
             </Link>
@@ -111,7 +111,7 @@ const CarouselConst = () => {
         <Carousel.Item id="day5">
           <h1 className="tittleCar">
             <p>Sobre Nutrifood</p>
-            <Link to="/about">
+            <Link to="/about" className="text-decoration-none">
 
               <Button className="bt-car">Saiba mais</Button>
             </Link>
