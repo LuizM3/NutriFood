@@ -8,18 +8,21 @@ import {
   Row,
   Alert,
   Col,
-  FigureImage,
   Figure
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 const ReviewsConst = () => {
   const arrow = require("../assets/images/left-arrow.png");
   const [showCont, setShowCont] = useState("");
+  const [showAdmin, setShowAdmin] = useState("");
   const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
   useEffect(() => {
-    if (token) {
-      // setHideCont(false);
+    if (token && id != 1) {
       setShowCont(true);
+    } else if (token && id == 1) {
+      setShowAdmin(true);
     }
   }, [true])
 
@@ -450,7 +453,6 @@ const ReviewsConst = () => {
 
                   </Row>
                   <Row>
-
                     <h5>Apresentação das preparações</h5>
                   </Row>
                   <Row>
@@ -474,8 +476,7 @@ const ReviewsConst = () => {
                           value="4"
                           onChange={(e) => handleOpcaoChange(e, "group1")}
                           checked={selectedOptions.group1 === `star4_group1`}
-                          className="radio-input"
-                        />
+                          className="radio-input" />
                         <label htmlFor="star4_group1" title="text"></label>
 
                         <input
@@ -1120,6 +1121,18 @@ const ReviewsConst = () => {
             </Container>
 
           </Row >
+        ) : showAdmin ? (
+          <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
+            <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
+              <Container className="d-flex justify-content-center align-items-center h-100 w-100">
+                <Row className="h-100 w-100">
+                  <Col className="pt-2">
+                    Teste admin
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+          </Row>
         ) : (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
             <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">

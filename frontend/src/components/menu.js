@@ -1,13 +1,25 @@
+import { useState, useEffect } from "react";
 import { Container, Table, Accordion, Row, Col } from "react-bootstrap";
 
 const MenuConst = () => {
-
+const id = localStorage.getItem("id");
+const [showAdmin, setShowAdmin] = useState("");
+  useEffect(() => {
+    if (id == 1) {
+      setShowAdmin(true);
+    }
+  }, [true])
   return (
     <>
       <Container className="menu-cont h-100">
-        <Row className="w-100 d-flex justify-content-center text-center">
-          <Col md={10}>
-          <Accordion className="w-100">
+        <Row className="w-100 d-flex justify-content-center text-center"> 
+        <Col md={10}>
+        {showAdmin ? (
+          <Row>
+            Teste
+          </Row>
+        ) : (
+ <Accordion className="w-100">
           <Accordion.Item eventKey="0">
             <Accordion.Header>Segunda-feira</Accordion.Header>
             <Accordion.Body>
@@ -946,6 +958,10 @@ const MenuConst = () => {
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
+        )}
+        
+         
+         
           </Col>
         </Row>
         

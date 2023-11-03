@@ -5,12 +5,15 @@ import Filter from "bad-words";
 import { Link } from "react-router-dom";
 const SuggestionsConst = () => {
   const arrow = require("../assets/images/left-arrow.png");
-  const [showCont, setShowCont] = useState("");
   const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
+  const [showCont, setShowCont] = useState("");
+  const [showAdmin, setShowAdmin] = useState("");
   useEffect(() => {
-    if (token) {
-      // setHideCont(false);
+    if (token && id != 1) {
       setShowCont(true);
+    }else if(token && id == 1){
+      setShowAdmin(true);
     }
   }, [true])
   const [suggestion, setSuggestion] = useState("");
@@ -166,6 +169,18 @@ const SuggestionsConst = () => {
             </Form>
           </Col>
         </Row>
+        ) : showAdmin ? (
+           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
+            <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
+              <Container className="d-flex justify-content-center align-items-center h-100 w-100">
+                <Row className="h-100 w-100">
+                  <Col className="pt-2">
+                    Teste
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+          </Row>
         ) : (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
             <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">

@@ -10,62 +10,62 @@ const CarouselConst = () => {
   const island = require("../assets/images/island.png");
   const sun = require("../assets/images/sun.png");
   const quote = require("../assets/images/quote.png");
-  const noticias = [
-    {
-      url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsantateresa.ifes.edu.br%2Findex.php%2Fnoticias%2F17707-ifes-campus-santa-teresa-recebe-a-visita-de-alunos-da-escola-eeefm-joao-neiva&psig=AOvVaw3GTZRKM0newvCzGvuqQJuJ&ust=1695515166403000&source=images&cd=vfe&opi=89978449&ved=0CBIQjhxqGAoTCIi3l6u8v4EDFQAAAAAdAAAAABCnAQ",
-      urlToImage: "https://santateresa.ifes.edu.br/images/Noticias_2022/20220531_152733.jpg",
-      title: "Ifes – Campus Santa Teresa - Ifes Campus Santa Teresa recebe a visita de alunos da Escola EEEFM João Neiva.",
-      description:
-        "No dia 31 de maio e 01 de junho, cerca de 140 alunos de 1° e 2° séries do Ensino Médio Integral e 3°séries do Ensino Médio Regular da escola EEEFM JOÃO NEIVA visitaram o Ifes Campus Santa Teresa. Os alunos tiveram a oportunidade de conhecer os cursos superiores ministrados no Campus e participar de algumas práticas realizadas nos laboratórios nos cursos de Bacharelado em Agronomia, Licenciatura em Ciências Biológicas e Tecnologia em Sistemas para Internet.",
-      author: "IFES Santa Teresa",
-      name: "Teste"
-    },
-    {
-      url: "https://www.agazeta.com.br/concursos-e-empregos/empregos/ifes-abre-mais-de-mil-vagas-em-cursos-tecnicos-para-2-semestre-0423",
-      urlToImage: "https://midias.agazeta.com.br/2023/01/12/ifes-instituto-federal-948470.jpg",
-      title: "A Gazeta | Ifes abre mais de mil vagas em cursos técnicos para 2° semestre",
-      description:
-        "O Instituto Federal do Espírito Santo (Ifes) vai abrir inscrições para 1.272 vagas em cursos técnicos integrados, concomitantes e subsequentes e do Proeja. As oportunidades são para aulas presenciais e a distância em 12 unidades da instituição, com início das aulas no segundo semestre de 2023.",
-      author: "IFES Santa Teresa",
-      name: "Teste"
-    },
-    {
-      url: "https://santateresa.ifes.edu.br/index.php/noticias/17792-jogo-22",
-      urlToImage: "https://santateresa.ifes.edu.br/images/Noticias_2022/1662633773093.jpg",
-      title: "Ifes – Campus Santa Teresa - O Ifes Campus Santa Teresa participou dos jogos da Etapa Regional Serrana - JIFES 2022",
-      description:
-        "No dia 7 de setembro, o Campus Venda Nova do Imigrante recebeu a Etapa Regional Serrana, com disputas de futsal e vôlei. O Ifes Campus Santa Teresa participou nas duas modalidades e foi vitorioso nas modalidades de vôlei masculino, vôlei feminino e futsal masculino.O futsal feminino foi vice.",
-      author: "IFES Santa Teresa",
-      name: "Teste"
-    },
-    {
-      url: "https://www.ifes.edu.br/noticias/21053-campus-santa-teresa-realiza-evento-para-inauguracao-oficial-de-usina-fotovoltaica",
-      urlToImage: "https://www.ifes.edu.br/images/Foto_placa.jpg",
-      title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
-      description:
-        "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
-      author: "IFES Santa Teresa",
-      name: "Teste"
-    },
-    {
-      url: "https://www.folhavitoria.com.br/geral/noticia/08/2023/hospital-madre-regina-santa-teresa-es-interditado-defesa-civil-desabamento",
-      urlToImage: "https://redesantacatarina.org.br/hospital/madreregina/Imagens/Galeria%20de%20Fotos/hmrp-principal.jpg",
-      title: "Defesa Civil interdita hospital de Santa Teresa e atendimentos são suspensos por 48h",
-      description:
-        "Parte do Hospital Madre Regina ProtMann, em Santa Teresa, na Região Serrana do Espírito Santo, foi interditado pela Defesa Civil por risco de desabamento, após uma obra particular ao lado ceder e atingir algumas alas do hospital.",
-      author: "IFES Santa Teresa",
-      name: "Teste"
-    },
-    {
-      url: "https://www.agazeta.com.br/es/policia/policia-investiga-furtos-em-80-tumulos-em-cemiterio-de-santa-teresa-0923",
-      urlToImage: "https://midias.agazeta.com.br/2023/09/20/criminosos-roubaram-todo-material-metalico-desde-crucifixos-ate-letreiros-1869040-article.jpeg",
-      title: "Polícia investiga furtos em 80 túmulos em cemitério de Santa Teresa",
-      description:
-        "Moradores de Santa Teresa, na região Serrana do Espírito Santo, encontraram 80 túmulos vandalizados no Cemitério Municipal, localizado no bairro Vila Nova. A situação foi observada na última terça-feira (19). Os criminosos furtaram material metálico dos túmulos, de crucifixos a letreiros. A Polícia Civil informou que está investigando o caso.",
-      author: "IFES Santa Teresa",
-      name: "Teste"
-    },
-  ];
+  // // const noticias = [
+  // //   {
+  // //     url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsantateresa.ifes.edu.br%2Findex.php%2Fnoticias%2F17707-ifes-campus-santa-teresa-recebe-a-visita-de-alunos-da-escola-eeefm-joao-neiva&psig=AOvVaw3GTZRKM0newvCzGvuqQJuJ&ust=1695515166403000&source=images&cd=vfe&opi=89978449&ved=0CBIQjhxqGAoTCIi3l6u8v4EDFQAAAAAdAAAAABCnAQ",
+  // //     urlToImage: "https://santateresa.ifes.edu.br/images/Noticias_2022/20220531_152733.jpg",
+  // //     title: "Ifes – Campus Santa Teresa - Ifes Campus Santa Teresa recebe a visita de alunos da Escola EEEFM João Neiva.",
+  // //     description:
+  // //       "No dia 31 de maio e 01 de junho, cerca de 140 alunos de 1° e 2° séries do Ensino Médio Integral e 3°séries do Ensino Médio Regular da escola EEEFM JOÃO NEIVA visitaram o Ifes Campus Santa Teresa. Os alunos tiveram a oportunidade de conhecer os cursos superiores ministrados no Campus e participar de algumas práticas realizadas nos laboratórios nos cursos de Bacharelado em Agronomia, Licenciatura em Ciências Biológicas e Tecnologia em Sistemas para Internet.",
+  // //     author: "IFES Santa Teresa",
+  // //     name: "Teste"
+  // //   },
+  // //   {
+  // //     url: "https://www.agazeta.com.br/concursos-e-empregos/empregos/ifes-abre-mais-de-mil-vagas-em-cursos-tecnicos-para-2-semestre-0423",
+  // //     urlToImage: "https://midias.agazeta.com.br/2023/01/12/ifes-instituto-federal-948470.jpg",
+  // //     title: "A Gazeta | Ifes abre mais de mil vagas em cursos técnicos para 2° semestre",
+  // //     description:
+  // //       "O Instituto Federal do Espírito Santo (Ifes) vai abrir inscrições para 1.272 vagas em cursos técnicos integrados, concomitantes e subsequentes e do Proeja. As oportunidades são para aulas presenciais e a distância em 12 unidades da instituição, com início das aulas no segundo semestre de 2023.",
+  // //     author: "IFES Santa Teresa",
+  // //     name: "Teste"
+  // //   },
+  // //   {
+  // //     url: "https://santateresa.ifes.edu.br/index.php/noticias/17792-jogo-22",
+  // //     urlToImage: "https://santateresa.ifes.edu.br/images/Noticias_2022/1662633773093.jpg",
+  // //     title: "Ifes – Campus Santa Teresa - O Ifes Campus Santa Teresa participou dos jogos da Etapa Regional Serrana - JIFES 2022",
+  // //     description:
+  // //       "No dia 7 de setembro, o Campus Venda Nova do Imigrante recebeu a Etapa Regional Serrana, com disputas de futsal e vôlei. O Ifes Campus Santa Teresa participou nas duas modalidades e foi vitorioso nas modalidades de vôlei masculino, vôlei feminino e futsal masculino.O futsal feminino foi vice.",
+  // //     author: "IFES Santa Teresa",
+  // //     name: "Teste"
+  // //   },
+  // //   {
+  // //     url: "https://www.ifes.edu.br/noticias/21053-campus-santa-teresa-realiza-evento-para-inauguracao-oficial-de-usina-fotovoltaica",
+  // //     urlToImage: "https://www.ifes.edu.br/images/Foto_placa.jpg",
+  // //     title: "Campus Santa Teresa realiza evento para inauguração oficial de usina fotovoltaica",
+  // //     description:
+  // //       "O Campus de Santa Teresa do Instituto Federal do Espírito Santo (Ifes), realizou cerimônia de entrega da primeira de suas duas usinas...",
+  // //     author: "IFES Santa Teresa",
+  // //     name: "Teste"
+  // //   },
+  // //   {
+  // //     url: "https://www.folhavitoria.com.br/geral/noticia/08/2023/hospital-madre-regina-santa-teresa-es-interditado-defesa-civil-desabamento",
+  // //     urlToImage: "https://redesantacatarina.org.br/hospital/madreregina/Imagens/Galeria%20de%20Fotos/hmrp-principal.jpg",
+  // //     title: "Defesa Civil interdita hospital de Santa Teresa e atendimentos são suspensos por 48h",
+  // //     description:
+  // //       "Parte do Hospital Madre Regina ProtMann, em Santa Teresa, na Região Serrana do Espírito Santo, foi interditado pela Defesa Civil por risco de desabamento, após uma obra particular ao lado ceder e atingir algumas alas do hospital.",
+  // //     author: "IFES Santa Teresa",
+  // //     name: "Teste"
+  // //   },
+  // //   {
+  // //     url: "https://www.agazeta.com.br/es/policia/policia-investiga-furtos-em-80-tumulos-em-cemiterio-de-santa-teresa-0923",
+  // //     urlToImage: "https://midias.agazeta.com.br/2023/09/20/criminosos-roubaram-todo-material-metalico-desde-crucifixos-ate-letreiros-1869040-article.jpeg",
+  // //     title: "Polícia investiga furtos em 80 túmulos em cemitério de Santa Teresa",
+  // //     description:
+  // //       "Moradores de Santa Teresa, na região Serrana do Espírito Santo, encontraram 80 túmulos vandalizados no Cemitério Municipal, localizado no bairro Vila Nova. A situação foi observada na última terça-feira (19). Os criminosos furtaram material metálico dos túmulos, de crucifixos a letreiros. A Polícia Civil informou que está investigando o caso.",
+  // //     author: "IFES Santa Teresa",
+  // //     name: "Teste"
+  // //   },
+  // ];
  
   return (
     <>
@@ -327,7 +327,7 @@ const CarouselConst = () => {
       </div >
 
       {/* Noticias */}
-      <Container className="main columns news-cont" >
+      {/* <Container className="main columns news-cont" >
         <div id="news-title">
           <h1>Últimas notícias</h1>
         </div>
@@ -350,7 +350,7 @@ const CarouselConst = () => {
             </Col>
           ))}
         </Row>
-      </Container>
+      </Container> */}
     </>
 
   );
