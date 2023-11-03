@@ -29,13 +29,14 @@ const FooterConst = () => {
               <Col md={12} xs={12} sm={4}>
                 <Link className="text-decoration-none" data-test=""
                 to="https://santateresa.ifes.edu.br"
+                target="_blank"
                  >
                   Visite o campus
                 </Link> 
               </Col>
               <Col md={12} xs={12} sm={4}>
 
-                <Link to="https://santateresa.ifes.edu.br/index.php/noticias" className="text-decoration-none" data-test="">
+                <Link to="https://santateresa.ifes.edu.br/index.php/noticias" className="text-decoration-none" data-test="" target="_blank">
                   Notícias
                 </Link>
               </Col>
@@ -99,7 +100,7 @@ const FooterConst = () => {
 
               <Col md={12} sm={4} className="comunidade"><h6>Comunidade</h6></Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="https://github.com/LuizM3/NutriFood" className="text-decoration-none" data-test="">
+                <Link to="https://github.com/LuizM3/NutriFood" className="text-decoration-none" data-test="" target="_blank">
                   {/* <ion-icon name="logo-github"></ion-icon> */}
                   Github
                   <ion-icon name="open-outline"></ion-icon>
@@ -107,14 +108,14 @@ const FooterConst = () => {
               </Col>
               <Col md={12} xs={12} sm={2}>
 
-                <Link to="https://www.instagram.com" className="text-decoration-none" data-test="">
+                <Link to="https://www.instagram.com" className="text-decoration-none" data-test="" target="_blank">
                   {/* <ion-icon name="logo-instagram"></ion-icon> */}
                   Instagram
                   <ion-icon name="open-outline"></ion-icon>
                 </Link>
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="https://web.facebook.com/?locale=pt_BR&_rdc=1&_rdr" className="text-decoration-none" data-test="">
+                <Link to="https://web.facebook.com/?locale=pt_BR&_rdc=1&_rdr" className="text-decoration-none" data-test="" target="_blank">
                   {/* <ion-icon name="logo-facebook"></ion-icon> */}
                   Facebook
                   <ion-icon name="open-outline"></ion-icon>
@@ -124,7 +125,7 @@ const FooterConst = () => {
 
               </Col>
               <Col md={12} xs={12} sm={2}>
-                <Link to="https://www.paypal.com/br/home" className="text-decoration-none" data-test="">
+                <Link to="https://www.paypal.com/br/home" className="text-decoration-none" data-test="" target="_blank">
                   {/* <ion-icon name="logo-paypal"></ion-icon> */}
                   Paypal
                   <ion-icon name="open-outline"></ion-icon>
