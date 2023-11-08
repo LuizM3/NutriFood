@@ -18,11 +18,18 @@ const ReviewsConst = () => {
   const [showAdmin, setShowAdmin] = useState("");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  useEffect(() => {
+  useEffect( async () => {
     if (token && id != 1) {
       setShowCont(true);
     } else if (token && id == 1) {
       setShowAdmin(true);
+
+      const response = await fetch("http://localhost:9000/getSuggestion");
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.suggestion);
+    }
+
     }
   }, [true])
 
