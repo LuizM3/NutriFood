@@ -8,7 +8,7 @@ import {
   Row,
   Alert,
   Col,
-  Figure
+  Figure,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const ReviewsConst = () => {
     } else if (token && id == 1) {
       setShowAdmin(true);
     }
-  }, [true])
+  }, [true]);
 
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
@@ -38,9 +38,8 @@ const ReviewsConst = () => {
     group7: null,
     group8: null,
     group9: null,
-    group10: null
+    group10: null,
   });
-
 
   const handleOpcaoChange = (event, group1) => {
     const selectedValue = event.target.id;
@@ -148,7 +147,6 @@ const ReviewsConst = () => {
     return (selectedCount / 10) * 100;
   };
   const handleSubmit = async (event) => {
-
     event.preventDefault();
     if (
       selectedOptions.group1 === null ||
@@ -161,7 +159,6 @@ const ReviewsConst = () => {
       selectedOptions.group8 === null ||
       selectedOptions.group9 === null ||
       selectedOptions.group10 === null
-
     ) {
       setErrorAlert(true);
       setTimeout(() => {
@@ -169,12 +166,10 @@ const ReviewsConst = () => {
       }, 5000);
       return;
     } else {
-
       setShowAlertSuccess(true);
       setTimeout(() => {
         setShowAlertSuccess(false);
       }, 5000);
-
 
       if (selectedOptions.group1) {
         switch (selectedOptions.group1) {
@@ -385,7 +380,19 @@ const ReviewsConst = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ group1, group2, group3, group4, group5, group6, group7, group8, group9, group10, idUsuario }),
+        body: JSON.stringify({
+          group1,
+          group2,
+          group3,
+          group4,
+          group5,
+          group6,
+          group7,
+          group8,
+          group9,
+          group10,
+          idUsuario,
+        }),
       });
 
       // Limpeza de campos após sucesso e envio ao banco
@@ -400,36 +407,39 @@ const ReviewsConst = () => {
       selectedOptions.group9 = null;
       selectedOptions.group10 = null;
       return;
-
     }
-  }
+  };
 
   const progress = calculateProgress();
   return (
     <>
-
-
       <Row className="position-fixed alert-row rev-cont">
-
         {showAlertSuccess && (
-          <Alert variant="success" className="align-items-center d-flex fade" onClose={() => setShowAlertSuccess(false)}>
+          <Alert
+            variant="success"
+            className="align-items-center d-flex fade"
+            onClose={() => setShowAlertSuccess(false)}
+          >
             Sugestão enviada com sucesso!
           </Alert>
         )}
         {showErrorAlert && (
-          <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setErrorAlert(false)}>
+          <Alert
+            variant="danger"
+            className="align-items-center d-flex fade"
+            onClose={() => setErrorAlert(false)}
+          >
             Erro ao enviar sugestão
           </Alert>
         )}
-
       </Row>
       <Container className="h-100 cont-s">
         {showCont ? (
           <Row className="overflow-scroll w-100 mt-5 scroll-row overflow-x-hidden">
+            <Container
+              className=""
 
-            <Container className=""
-
-            // show={showCont} onHide={() => setShowCont(false)}
+              // show={showCont} onHide={() => setShowCont(false)}
             >
               <Navbar id="progress-nav">
                 <Container className="mt-2">
@@ -437,20 +447,18 @@ const ReviewsConst = () => {
                 </Container>
               </Navbar>
               <div className="cont2 mt-2 justify-content-center align-items-center">
-                <Form
-
-                  onSubmit={handleSubmit}
-                >
-                  <Row> <h2>Coleta da avaliação</h2>
+                <Form onSubmit={handleSubmit}>
+                  <Row>
+                    {" "}
+                    <h2>Coleta da avaliação</h2>
                   </Row>
                   <Row className="d-flex justify-content-center align-items-center">
                     <Col md={6}>
                       <h5>
-                        Dentre os pontos abordados abaixo, qual a sua avaliação em
-                        relação ao Restaurante Institucional?
+                        Dentre os pontos abordados abaixo, qual a sua avaliação
+                        em relação ao Restaurante Institucional?
                       </h5>
                     </Col>
-
                   </Row>
                   <Row>
                     <h5>Apresentação das preparações</h5>
@@ -476,7 +484,8 @@ const ReviewsConst = () => {
                           value="4"
                           onChange={(e) => handleOpcaoChange(e, "group1")}
                           checked={selectedOptions.group1 === `star4_group1`}
-                          className="radio-input" />
+                          className="radio-input"
+                        />
                         <label htmlFor="star4_group1" title="text"></label>
 
                         <input
@@ -511,12 +520,10 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group1" title="text"></label>
-
                       </div>
                     ))}
                   </Row>
                   <Row>
-
                     <h5>Variedade do cardápio</h5>
                   </Row>
                   <Row>
@@ -576,7 +583,6 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group2" title="text"></label>
-
                       </div>
                     ))}
                   </Row>
@@ -640,10 +646,8 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group3" title="text"></label>
-
                       </div>
-                    ))
-                    }
+                    ))}
                   </Row>
                   <Row>
                     <h5>Sabor do suco</h5>
@@ -705,7 +709,6 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group4" title="text"></label>
-
                       </div>
                     ))}
                   </Row>
@@ -769,8 +772,6 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group5" title="text"></label>
-
-
                       </div>
                     ))}
                   </Row>
@@ -834,8 +835,6 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group6" title="text"></label>
-
-
                       </div>
                     ))}
                   </Row>
@@ -899,19 +898,15 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group7" title="text"></label>
-
                       </div>
                     ))}
                   </Row>
                   <Row>
-                    <h5>
-                      Higiene do restaurante
-                    </h5>
+                    <h5>Higiene do restaurante</h5>
                   </Row>
                   <Row>
-
-                    (buffet, mesas, cadeiras, pisos, pratos, bandejas e talheres)
-
+                    (buffet, mesas, cadeiras, pisos, pratos, bandejas e
+                    talheres)
                   </Row>
                   <Row>
                     {["radio"].map((type) => (
@@ -1037,17 +1032,12 @@ const ReviewsConst = () => {
                     ))}
                   </Row>
                   <Row>
-                    <h5>
-                      Tempo de espera para preparar o prato
-                    </h5>
+                    <h5>Tempo de espera para preparar o prato</h5>
                   </Row>
-                  <Row>
-                    (sem considerar fila)
-                  </Row>
+                  <Row>(sem considerar fila)</Row>
                   <Row>
                     {["radio"].map((type) => (
                       <div key={`inline-${type}`} className="rate">
-
                         <input
                           type={type}
                           id={`star5_group10`}
@@ -1102,33 +1092,24 @@ const ReviewsConst = () => {
                           className="radio-input"
                         />
                         <label htmlFor="star1_group10" title="text"></label>
-
-
                       </div>
                     ))}
-
                   </Row>
                   <Row>
-
                     <Button type="submit" className="btn-reviews">
                       Enviar
                     </Button>
                   </Row>
                 </Form>
-
-
               </div>
             </Container>
-
-          </Row >
+          </Row>
         ) : showAdmin ? (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
             <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
               <Container className="d-flex justify-content-center align-items-center h-100 w-100">
                 <Row className="h-100 w-100">
-                  <Col className="pt-2">
-                    Teste admin
-                  </Col>
+                  <Col className="pt-2">Teste admin</Col>
                 </Row>
               </Container>
             </Col>
@@ -1141,49 +1122,42 @@ const ReviewsConst = () => {
                   <Col className="pt-2">
                     <Link to="/" className="text-decoration-none back">
                       <Figure>
-
-                        <Figure.Image
-                          width={25}
-                          height={25}
-                          src={arrow}
-                        /> <Figure.Caption>
-                        </Figure.Caption>
-
-
+                        <Figure.Image width={25} height={25} src={arrow} />{" "}
+                        <Figure.Caption></Figure.Caption>
                       </Figure>
-                      Voltar à página principal </Link>
+                      Voltar à página principal{" "}
+                    </Link>
                   </Col>
-                  <Col md={12} className="d-flex justify-content-center align-items-start text-center">
-
-                    <h4 className="fw-light">Para realizar esta ação é necessário fazer login primeiro</h4>
-
+                  <Col
+                    md={12}
+                    className="d-flex justify-content-center align-items-start text-center"
+                  >
+                    <h4 className="fw-light">
+                      Para realizar esta ação é necessário fazer login primeiro
+                    </h4>
                   </Col>
 
-                  <Col md={12} className="d-flex align-items-end justify-content-center w-100">
+                  <Col
+                    md={12}
+                    className="d-flex align-items-end justify-content-center w-100"
+                  >
                     <Row className="d-flex justify-content-center align-items-center w-100 mb-3">
                       <Col>
-
                         <p>Clique no botão para logar com seu usuário</p>
                       </Col>
                       <Col md={12} lg={4} sm={12} xs={12} className="p-0">
                         <Link to="/login" className="text-decoration-none">
-                          <Button className="w-100">
-                            Logar
-                          </Button>
+                          <Button className="w-100">Logar</Button>
                         </Link>
                       </Col>
                     </Row>
-
                   </Col>
                 </Row>
-
               </Container>
             </Col>
-
           </Row>
         )}
-
-      </Container >
+      </Container>
     </>
   );
 };

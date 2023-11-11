@@ -2,7 +2,7 @@ var connection = require("../db");
 var express = require("express");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 router.post("/", async (req, res) => {
@@ -21,7 +21,9 @@ router.post("/", async (req, res) => {
           // Verifica se a senha fornecida corresponde à senha hashed no banco de dados
           const match = await bcrypt.compare(senha, user.senha);
           if (match) {
-            const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: 300 });
+            const token = jwt.sign({ email }, process.env.SECRET, {
+              expiresIn: 300,
+            });
             const nome = user.nome;
             const id = user.id;
 

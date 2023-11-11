@@ -1,12 +1,20 @@
 import "../assets/styles/login.scss";
 import "../assets/styles/suggestions.scss";
-import { Modal, Row, Figure, Form, Button, Spinner, Container, Alert } from "react-bootstrap";
-import { Link, useNavigate, useSearchParams} from "react-router-dom";
+import {
+  Modal,
+  Row,
+  Figure,
+  Form,
+  Button,
+  Spinner,
+  Container,
+  Alert,
+} from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 const logo = require("../assets/images/logo.png");
 const LoginConst = () => {
-
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -14,9 +22,8 @@ const LoginConst = () => {
   const [showPassAlert, setShowPassAlert] = useState(false); // Estado para controlar a exibição do alert
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
-  
-  const handleSubmit = async (e) => {
 
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (senha === "" || email === "") {
       setErrorAlert(true);
@@ -25,7 +32,6 @@ const LoginConst = () => {
       }, 5000);
       return;
     }
-
 
     try {
       const response = await fetch("http://localhost:9000/signin", {
@@ -42,10 +48,10 @@ const LoginConst = () => {
         const nome = data.nome;
         const id = data.id;
 
-        localStorage.setItem('token', token);
-        localStorage.setItem('nome', nome);
-        localStorage.setItem('id', id);
-        
+        localStorage.setItem("token", token);
+        localStorage.setItem("nome", nome);
+        localStorage.setItem("id", id);
+
         if (data.message === "Login") {
           setShowAlertSuccess(true);
           setTimeout(() => {
@@ -54,9 +60,10 @@ const LoginConst = () => {
           setTimeout(() => {
             setSpinnerModal(true);
           }, 1000);
-          
-          setTimeout(() => { navigate("/") }, 6000);
 
+          setTimeout(() => {
+            navigate("/");
+          }, 6000);
         } else {
           // Credenciais inválidas
           setShowPassAlert(true);
@@ -78,10 +85,20 @@ const LoginConst = () => {
 
   return (
     <>
-
-      <Modal show={spinnerModal} onHide={() => setSpinnerModal(false)} className="modal spinner-modal" backdrop="static" data-test="links">
+      <Modal
+        show={spinnerModal}
+        onHide={() => setSpinnerModal(false)}
+        className="modal spinner-modal"
+        backdrop="static"
+        data-test="links"
+      >
         <Modal.Body>
-          <Spinner animation="border" role="status" show={spinnerModal} onHide={() => setSpinnerModal(false)}>
+          <Spinner
+            animation="border"
+            role="status"
+            show={spinnerModal}
+            onHide={() => setSpinnerModal(false)}
+          >
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </Modal.Body>
@@ -89,31 +106,39 @@ const LoginConst = () => {
 
       <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
         {showPassAlert && (
-          <Alert variant="warning" className="align-items-center d-flex fade" onClose={() => setShowPassAlert(false)}>
+          <Alert
+            variant="warning"
+            className="align-items-center d-flex fade"
+            onClose={() => setShowPassAlert(false)}
+          >
             Usuário inválido ou senha!
-
           </Alert>
-        )}  {showAlertSuccess && (
-          <Alert variant="success" className="align-items-center d-flex fade" onClose={() => setShowAlertSuccess(false)}>
+        )}{" "}
+        {showAlertSuccess && (
+          <Alert
+            variant="success"
+            className="align-items-center d-flex fade"
+            onClose={() => setShowAlertSuccess(false)}
+          >
             Login bem-sucedido
           </Alert>
         )}
         {showErrorAlert && (
-          <Alert variant="danger" className="align-items-center d-flex fade" onClose={() => setErrorAlert(false)}>
+          <Alert
+            variant="danger"
+            className="align-items-center d-flex fade"
+            onClose={() => setErrorAlert(false)}
+          >
             Erro ao enviar requisição
           </Alert>
         )}
-
       </Row>
       <div id="div-z-cont" data-test="links">
         <Container className="login-cont">
           <section>
             <Row>
-
               <Form id="form-login" onSubmit={handleSubmit}>
-
                 <div id="div-form-l">
-
                   <Figure className="logo-tog">
                     <Figure.Image src={logo} />
                   </Figure>
@@ -150,9 +175,7 @@ const LoginConst = () => {
                       Entrar
                     </Button>
                   </div>
-
                 </div>
-
               </Form>
             </Row>
           </section>
