@@ -11,49 +11,34 @@ import {
   Figure,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Chart from "chart.js/auto";
+
+import Grafico from "../graficos/apresentacao.js";
+
+
 const ReviewsConst = () => {
   const arrow = require("../assets/images/left-arrow.png");
   const [showCont, setShowCont] = useState("");
   const [showAdmin, setShowAdmin] = useState("");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  const [chartData, setChartData] = useState(null);
-  const chartRef = useRef(null);
-  useEffect(() => {
+
+
+  let verificar = false;
+  useEffect( () => {
+
     if (token && id != 1) {
       setShowCont(true);
     } else if (token && id == 1) {
       setShowAdmin(true);
-      const data = [
-        { year: 2010, count: 10 },
-        { year: 2011, count: 20 },
-        { year: 2012, count: 15 },
-        { year: 2013, count: 25 },
-        { year: 2014, count: 22 },
-        { year: 2015, count: 30 },
-        { year: 2016, count: 28 },
-      ];
 
-      const ctx = chartRef.current;
-
-      if (ctx && !chartData) {
-        const newChartData = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: data.map((row) => row.year),
-            datasets: [
-              {
-                label: "Acquisitions by year",
-                data: data.map((row) => row.count),
-              },
-            ],
-          },
-        });
-        setChartData(newChartData);
-      }
+      verificar = true;
     }
-  }, [chartData, true]);
+
+    if (verificar == true){
+      
+    }
+    
+  }, [true])
 
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
@@ -1135,14 +1120,12 @@ const ReviewsConst = () => {
           </Row>
         ) : showAdmin ? (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
+
             <Row className="mt-5 justify-content-center d-flex align-items-center gap-2">
               <Col lg={5} md={6} sm={8} className="redirect-c">
                 <Container className="d-flex justify-content-center align-items-center h-100 w-100">
                   <Row className="h-100 w-100">
-                    <div>
-                      <h2>Acquisitions by Year</h2>
-                      <canvas ref={chartRef}></canvas>
-                    </div>
+                     <Grafico />
                   </Row>
                 </Container>
               </Col>
@@ -1162,6 +1145,7 @@ const ReviewsConst = () => {
                 </Container>
               </Col>
             </Row>
+
           </Row>
         ) : (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
