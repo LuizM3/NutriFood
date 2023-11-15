@@ -12,7 +12,18 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import Grafico from "../graficos/apresentacao.js";
+import GraficoApresentacao from "../service/graficos/apresentacao.js";
+import GraficoVariedade from "../service/graficos/variedade.js";
+import GraficoSaborDaRefeicao from "../service/graficos/saborDaRefeicao.js";
+import GraficoSaborDoSuco from "../service/graficos/saborDoSuco.js";
+
+//Não implementados
+import GraficoSaborDaSobremesa from "../service/graficos/saborDaSobremesa.js";
+import GraficoTemperaturaDoAlimento from "../service/graficos/temperaturaDoAlimento.js";
+import GraficoAtendimento from "../service/graficos/atendimento.js";
+import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbiente.js";
+import GraficoTempoDeEspera from "../service/graficos/tempoDeEspera.js";
+import GraficoHigiene from "../service/graficos/higiene.js";
 
 
 const ReviewsConst = () => {
@@ -24,20 +35,19 @@ const ReviewsConst = () => {
 
 
   let verificar = false;
-  useEffect( () => {
+  useEffect(() => {
 
     if (token && id != 1) {
       setShowCont(true);
     } else if (token && id == 1) {
       setShowAdmin(true);
-
       verificar = true;
     }
 
-    if (verificar == true){
-      
+    if (verificar == true) {
+
     }
-    
+
   }, [true])
 
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
@@ -453,7 +463,7 @@ const ReviewsConst = () => {
             <Container
               className=""
 
-              // show={showCont} onHide={() => setShowCont(false)}
+            // show={showCont} onHide={() => setShowCont(false)}
             >
               <Navbar id="progress-nav">
                 <Container className="mt-2">
@@ -1125,23 +1135,29 @@ const ReviewsConst = () => {
               <Col lg={5} md={6} sm={8} className="redirect-c">
                 <Container className="d-flex justify-content-center align-items-center h-100 w-100">
                   <Row className="h-100 w-100">
-                     <Grafico />
+                    <GraficoApresentacao />
                   </Row>
                 </Container>
               </Col>
               <Col lg={5} md={6} sm={8} className="redirect-c">
                 <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                  <Row className="h-100 w-100"></Row>
+                  <Row className="h-100 w-100">
+                    <GraficoVariedade />
+                  </Row>
                 </Container>
               </Col>
               <Col lg={5} md={6} sm={8} className="redirect-c">
                 <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                  <Row className="h-100 w-100"></Row>
+                  <Row className="h-100 w-100">
+                    <GraficoSaborDaRefeicao />
+                  </Row>
                 </Container>
               </Col>
               <Col lg={5} md={6} sm={8} className="redirect-c">
                 <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                  <Row className="h-100 w-100"></Row>
+                  <Row className="h-100 w-100">
+                    <GraficoSaborDoSuco />
+                  </Row>
                 </Container>
               </Col>
             </Row>
