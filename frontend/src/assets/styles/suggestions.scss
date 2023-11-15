@@ -1,87 +1,85 @@
 .s-container {
-    .f-row {
-        .col-md-6 {}
+  .f-row {
+    .col-md-6 {
     }
+  }
 
-    height: 100vh;
-    margin-top: 100px;
-    @media(max-width: 768px) {
-        margin-top: 90px;
+  height: 100vh;
+  margin-top: 100px;
+  @media (max-width: 768px) {
+    margin-top: 90px;
+  }
+
+  @media (max-width: 420px) {
+    height: 112vh !important;
+  }
+
+  form {
+    @media (max-width: 375px) {
+      margin: 0 !important;
     }
-
-    @media(max-width: 420px) {
-        height: 112vh !important;
-    }
-
-    form {
-        @media(max-width: 375px) {
-            margin: 0 !important;
-        }
-    }
-
-
-
+  }
 }
 
 .alert-row {
-    padding-left: 20px;
-    margin: 0;
-    width: 100%;
-    align-items: left;
-    z-index: 200;
-    transition: all 0.5s;
+  padding-left: 20px;
+  margin: 0;
+  width: 100%;
+  align-items: left;
+  z-index: 200;
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .alert {
+    @media (max-width: 768px) {
+      width: 300px;
+      animation-name: exampleResp;
+    }
+
+    margin: 10px 0px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 
-    @media(max-width: 768px) {
-        padding: 0;
-        justify-content: center;
-        text-align: center;
-        align-items: center;
-    }
-
-    .alert {
-        @media(max-width: 768px) {
-            width: 300px;
-            animation-name: exampleResp;
-        }
-
-        margin: 10px 0px;
-        display: flex;
-        justify-content: center;
-
-        // width: 300px;
-        // max-width: 350px;
-        width: 300px;
-        height: 50px;
-        animation-name: example;
-        animation-duration: 0.8s;
-        animation-fill-mode: forwards;
-        transition: all 1s !important;
-    }
+    // width: 300px;
+    // max-width: 350px;
+    width: 300px;
+    height: 50px;
+    animation-name: example;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    transition: all 1s !important;
+  }
 }
 
 @keyframes example {
-    from {
-        left: -50px;
-    }
+  from {
+    left: -50px;
+  }
 
-    to {
-        left: 20px;
-    }
+  to {
+    left: 20px;
+  }
 }
 
 @keyframes exampleResp {
-    from {
-        top: 0;
-    }
+  from {
+    top: 0;
+  }
 
-    to {
-        top: 20px;
-    }
+  to {
+    top: 20px;
+  }
 }
 
 .bt-sub {
-    height: 40px;
-    width: 50%;
+  height: 40px;
+  width: 50%;
 }

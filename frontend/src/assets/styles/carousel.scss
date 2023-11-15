@@ -1,6 +1,5 @@
 @import url(root.scss);
 
-
 h1 {
   .bt-car {
     border: 1px solid rgba(255, 255, 255, 0.386) !important;
@@ -29,8 +28,7 @@ h1 {
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
   }
-  .bt-car:focus{
-
+  .bt-car:focus {
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border: 0.5px solid rgba(255, 255, 255, 0.225) !important;
@@ -54,8 +52,6 @@ h1 {
 
 #day1 {
   background: url("../images/c1.jpg");
-  
-  
 }
 
 #day2 {
@@ -81,4 +77,3 @@ h1 {
   transition: all 1.5s;
   background-size: cover;
 }
-
