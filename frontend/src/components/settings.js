@@ -27,9 +27,14 @@ const SettingsConst = () => {
   const [showPassAlert, setShowPassAlert] = useState(false); // Estado para controlar a exibição do alert
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
+  const id = localStorage.getItem("id");
   useEffect(() => {
-    setContent(buttonContents["a"]); // Atualiza o conteúdo para o botão "a"
-  }, [emailNovo]);
+    if (id == 1) {
+      navigate("/dashboard");
+    } else {
+      setContent(buttonContents["a"]); // Atualiza o conteúdo para o botão "a"
+    }
+  }, [emailNovo, id]);
 
   const [content, setContent] = useState(
     <div>

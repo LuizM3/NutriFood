@@ -1,0 +1,60 @@
+.dashboard {
+  height: 100vh;
+  overflow: hidden;
+  .redm {
+    border-right: #a5a5a5 1px dotted;
+  }
+}
+
+.card-side {
+  background-color: #edeff2;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+}
+.sidebar {
+  height: 100%;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+.fig {
+  border: 1px solid #f8f9fa;
+  border-radius: 100%;
+}
+.stack-log {
+    justify-self: end;
+    justify-content: end;
+    .btn {
+        background-color: rgba(255, 91, 91, 0.403);
+        border: transparent;
+        color: rgb(255, 63, 63);
+    }
+}
+.stack-bt {
+  .btn {
+    height: 45px;
+    background: transparent;
+    border: transparent;
+    justify-content: start;
+    display: flex;
+    align-content: center;
+    font-size: em;
+    color: var(--gray);
+  }
+  .btn:focus {
+    color: var(--quarter) !important;
+    background-color: #beffe6 !important;
+  }
+  .btn:active {
+    color: var(--quarter) !important;
+    background-color: #beffe6 !important;
+  }
+  .btn:hover {
+    background-color: #edeff2;
+  }
+
+}
+.col-dash-cont {
+    height: 100%;
+    overflow: hidden;
+}

@@ -12,20 +12,23 @@ import {
 } from "react-bootstrap";
 import "../assets/styles/suggestions.scss";
 import Filter from "bad-words";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SuggestionsConst = () => {
+
   const arrow = require("../assets/images/left-arrow.png");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
   const [showCont, setShowCont] = useState("");
   const [showAdmin, setShowAdmin] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
-    if (token && id != 1) {
+    if (id == 1) {
+      navigate("/dashboard");
+    } else if (token && id != 1) {
+      // setShowAdmin(true);
       setShowCont(true);
-    } else if (token && id == 1) {
-      setShowAdmin(true);
     }
-  }, [true]);
+  }, [id]);
   const [suggestion, setSuggestion] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   // Estado para controlar a exibição do alert

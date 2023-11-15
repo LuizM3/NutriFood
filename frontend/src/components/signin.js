@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const logo = require("../assets/images/logo.png");
 const LoginConst = () => {
@@ -22,7 +22,12 @@ const LoginConst = () => {
   const [showPassAlert, setShowPassAlert] = useState(false); // Estado para controlar a exibição do alert
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
-
+  const id = localStorage.getItem("id");
+  useEffect(() => {
+    if (id == 1) {
+      navigate("/dashboard");
+    }
+  }, [id]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (senha === "" || email === "") {
