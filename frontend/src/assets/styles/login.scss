@@ -105,6 +105,9 @@
 
 // Aqui é a parte da coleta
 
+  .coleta-cont {
+    overflow: hidden !important;
+  }
 .coleta-modal {
   .form-check-input {
     box-shadow: none !important;
@@ -120,6 +123,7 @@
 
   .modal-body {
     padding: 0;
+    
   }
 
   .row {
@@ -128,16 +132,20 @@
 
   .modal-content {
     padding: 0;
-    margin-top: 80px;
-    width: 70vw;
+    margin-top: 100px !important;
+    width: 80vw !important;
+    overflow: hidden !important;
+    height: 80vh !important;
 
     @media (min-width: 1200px) {
-      margin-top: 10px;
-      width: 45vw !important;
+      margin-top: 100px;
+      width: 60vw !important;
     }
 
     @media (max-width: 768px) {
       margin: 0 !important;
+      margin-top:180px !important;
+      height: 100% !important;
       border-radius: 0 !important;
       width: 100% !important;
     }
@@ -153,10 +161,11 @@
   .col-md-12 {
     .row-coleta {
       margin: 20px !important;
-      background-color: var(--lgray);
+      // background-color: var(--lgray);
       padding: 20px;
-      border-radius: 20px;
+      border-radius: 10px;
       display: flex;
+      border:  1px solid var(--lgray);
       align-items: center;
     }
 
@@ -188,9 +197,9 @@
 }
 
 .o-cancelar {
-  order: 0 !important;
+  // order: 0 !important;
   @media (max-width: 768px) {
-    order: 1 !important;
+    // order: 1 !important;
   }
 
   a {
@@ -212,8 +221,8 @@
   }
 }
 .o-enviar {
-  order: 1 !important;
+  // order: 1 !important;
   @media (max-width: 768px) {
-    order: 0 !important;
+    // order: 0 !important;
   }
 }

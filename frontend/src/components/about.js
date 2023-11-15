@@ -1,6 +1,7 @@
-import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
+import React, { useEffect, useRef } from "react";
 import "../assets/styles/about.scss";
+import Chart from "chart.js/auto";
 
 const AboutConst = () => {
   return (
@@ -115,6 +116,7 @@ const AboutConst = () => {
               Lorem Ipsum
             </p>
           </Col>
+          
         </Row>
       </Container>
     </>
