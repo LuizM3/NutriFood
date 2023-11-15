@@ -13,7 +13,7 @@ import {
   Popover,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { checkEmailUniqueness } from "../service/EmailService";
 const popover = (
   <Popover id="popover-basic">
@@ -52,7 +52,12 @@ schema
 
 const SignUpConst = () => {
   // Criando constante navigate
-
+  const id = localStorage.getItem("id");
+  useEffect(() => {
+    if (id == 1) {
+      navigate("/dashboard");
+    }
+  }, [id]);
   const navigate = useNavigate();
 
   // Setando constantes e funcões
@@ -432,206 +437,203 @@ const SignUpConst = () => {
         </Modal.Header>
         <Modal.Body className="overflow-scroll">
           <Container className="h-100">
-             <Row
-             >
-            <Col md={12}>
-              <Form>
-                <Row>
-                  <Col md={12}>
-                    {["radio"].map((type) => (
-                      <Row className="row-coleta mb-4" key={`inline-${type}`}>
-                        <Col md={12} xs={12} className="text-start mb-3">
-                          <h5>
-                            Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
-                          </h5>
-                        </Col>
-                        <Col xs={2}>
-                          <Form.Check
-                            inline
-                            name="vinculoAoIfes"
-                            type={type}
-                            id={`inline-${type}-1`}
-                            value={"AM"}
-                            checked={vinculoAoIfes === "AM"}
-                            onChange={handleVinculoChange}
-                          />
-                        </Col>
-                        <Col xs={10}className="d-flex justify-content-start">
-                          <Form.Label>Aluno do ensino médio</Form.Label>
-                        </Col>
+            <Row>
+              <Col md={12}>
+                <Form>
+                  <Row>
+                    <Col md={12}>
+                      {["radio"].map((type) => (
+                        <Row className="row-coleta mb-4" key={`inline-${type}`}>
+                          <Col md={12} xs={12} className="text-start mb-3">
+                            <h5>
+                              Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
+                            </h5>
+                          </Col>
+                          <Col xs={2}>
+                            <Form.Check
+                              inline
+                              name="vinculoAoIfes"
+                              type={type}
+                              id={`inline-${type}-1`}
+                              value={"AM"}
+                              checked={vinculoAoIfes === "AM"}
+                              onChange={handleVinculoChange}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>Aluno do ensino médio</Form.Label>
+                          </Col>
 
-                        <Col xs={2}>
-                          {" "}
-                          <Form.Check
-                            inline
-                            name="vinculoAoIfes"
-                            type={type}
-                            id={`inline-${type}-2`}
-                            value={"AG"}
-                            checked={vinculoAoIfes === "AG"}
-                            onChange={handleVinculoChange}
-                          />
-                        </Col>
-                        <Col xs={10}className="d-flex justify-content-start">
-                          <Form.Label>Aluno da graduação</Form.Label>
-                        </Col>
+                          <Col xs={2}>
+                            {" "}
+                            <Form.Check
+                              inline
+                              name="vinculoAoIfes"
+                              type={type}
+                              id={`inline-${type}-2`}
+                              value={"AG"}
+                              checked={vinculoAoIfes === "AG"}
+                              onChange={handleVinculoChange}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>Aluno da graduação</Form.Label>
+                          </Col>
 
-                        <Col xs={2}>
-                          <Form.Check
-                            inline
-                            name="vinculoAoIfes"
-                            type={type}
-                            id={`inline-${type}-3`}
-                            value={"SDT"}
-                            checked={vinculoAoIfes === "SDT"}
-                            onChange={handleVinculoChange}
-                          />
-                        </Col>
-                        <Col xs={10}className="d-flex justify-content-start">
-                          <Form.Label>
-                            Servidor, docente ou tercerizado
-                          </Form.Label>
-                        </Col>
+                          <Col xs={2}>
+                            <Form.Check
+                              inline
+                              name="vinculoAoIfes"
+                              type={type}
+                              id={`inline-${type}-3`}
+                              value={"SDT"}
+                              checked={vinculoAoIfes === "SDT"}
+                              onChange={handleVinculoChange}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>
+                              Servidor, docente ou tercerizado
+                            </Form.Label>
+                          </Col>
 
-                        <Col xs={2}>
-                          <Form.Check
-                            inline
-                            name="vinculoAoIfes"
-                            type={type}
-                            id={`inline-${type}-4`}
-                            value={"Outro"}
-                            checked={vinculoAoIfes === "Outro"}
-                            onChange={handleVinculoChange}
-                          />
-                        </Col>
-                        <Col xs={10}className="d-flex justify-content-start">
-                          <Form.Label>Outro</Form.Label>
-                        </Col>
-                      </Row>
-                    ))}
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-            <Col md={12}>
-              <Form>
-                <Row>
-                  <Col md={12}>
-                    {["checkbox"].map((type) => (
-                      <Row className="mb-4 row-coleta" key={`inline-${type}`}>
-                        <Col md={12} xs={12} className="text-start mb-3">
-                          <h5>
-                            Qual refeição você realiza no restaurante
-                            institucional?
-                          </h5>
-                        </Col>
-                     
-                        <Col xs={2}>
-                          <Form.Check
-                            inline
-                            name="refeicoes"
-                            type={type}
-                            id={`inline-${type}-4`}
-                            value={1}
-                            onChange={handleRefeicoes}
-                          />
-                        </Col>
-                        <Col xs={10} className="d-flex justify-content-start">
-                          <Form.Label>Café da manhã</Form.Label>
-                        </Col>
-                        <Col xs={2}>
-                          <Form.Check
-                            inline
-                            name="refeicoes"
-                            type={type}
-                            id={`inline-${type}-5`}
-                            value={2}
-                            onChange={handleRefeicoes}
-                          />
-                        </Col>
-                        <Col xs={10}className="d-flex justify-content-start">
-                          <Form.Label>Almoço</Form.Label>
-                        </Col>
-                        <Col xs={2}>
-                          <Form.Check
-                            inline
-                            name="refeicoes"
-                            type={type}
-                            id={`inline-${type}-6`}
-                            value={3}
-                            onChange={handleRefeicoes}
-                          />
-                        </Col>
-                        <Col xs={10}className="d-flex justify-content-start">
-                          <Form.Label>Lanche da tarde</Form.Label>
-                        </Col>
-                        <Col xs={2}>
-                          <Form.Check
-                            inline
-                            name="refeicoes"
-                            type={type}
-                            id={`inline-${type}-7`}
-                            value={4}
-                            onChange={handleRefeicoes}
-                          />
-                        </Col>
-                        <Col xs={10}className="d-flex justify-content-start">
-                          <Form.Label>Jantar</Form.Label>
-                        </Col>
-                      </Row>
-                    ))}
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-            <Col md={12}>
-              <Form>
-                <Row>
-                 
-                  <Col md={12}>
-                    {["radio"].map((type) => (
-                      <Row className="mb-4 row-coleta" key={`inline-${type}`}> 
-                      <Col md={12} xs={12} className="text-start mb-3">
-                    <h5>Você é vegetariano?</h5>
-                  </Col>
-                        <Col md={1} xs={1}>
-                          <Form.Check
-                            xs={12}
-                            inline
-                            name="vegetariano"
-                            type={type}
-                            id={`inline-${type}-9`}
-                            value={true}
-                            checked={vegetariano === "true"}
-                            onChange={handleVegetarianoChange}
-                          />
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <Form.Label>Sim</Form.Label>
-                        </Col>
-                        <Col md={1} xs={1}>
-                          <Form.Check
-                            inline
-                            name="vegetariano"
-                            type={type}
-                            id={`inline-${type}-10`}
-                            value={false}
-                            checked={vegetariano === "false"}
-                            onChange={handleVegetarianoChange}
-                          />
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <Form.Label>Não</Form.Label>
-                        </Col>
-                      </Row>
-                    ))}
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-          </Row>
+                          <Col xs={2}>
+                            <Form.Check
+                              inline
+                              name="vinculoAoIfes"
+                              type={type}
+                              id={`inline-${type}-4`}
+                              value={"Outro"}
+                              checked={vinculoAoIfes === "Outro"}
+                              onChange={handleVinculoChange}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>Outro</Form.Label>
+                          </Col>
+                        </Row>
+                      ))}
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+              <Col md={12}>
+                <Form>
+                  <Row>
+                    <Col md={12}>
+                      {["checkbox"].map((type) => (
+                        <Row className="mb-4 row-coleta" key={`inline-${type}`}>
+                          <Col md={12} xs={12} className="text-start mb-3">
+                            <h5>
+                              Qual refeição você realiza no restaurante
+                              institucional?
+                            </h5>
+                          </Col>
+
+                          <Col xs={2}>
+                            <Form.Check
+                              inline
+                              name="refeicoes"
+                              type={type}
+                              id={`inline-${type}-4`}
+                              value={1}
+                              onChange={handleRefeicoes}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>Café da manhã</Form.Label>
+                          </Col>
+                          <Col xs={2}>
+                            <Form.Check
+                              inline
+                              name="refeicoes"
+                              type={type}
+                              id={`inline-${type}-5`}
+                              value={2}
+                              onChange={handleRefeicoes}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>Almoço</Form.Label>
+                          </Col>
+                          <Col xs={2}>
+                            <Form.Check
+                              inline
+                              name="refeicoes"
+                              type={type}
+                              id={`inline-${type}-6`}
+                              value={3}
+                              onChange={handleRefeicoes}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>Lanche da tarde</Form.Label>
+                          </Col>
+                          <Col xs={2}>
+                            <Form.Check
+                              inline
+                              name="refeicoes"
+                              type={type}
+                              id={`inline-${type}-7`}
+                              value={4}
+                              onChange={handleRefeicoes}
+                            />
+                          </Col>
+                          <Col xs={10} className="d-flex justify-content-start">
+                            <Form.Label>Jantar</Form.Label>
+                          </Col>
+                        </Row>
+                      ))}
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+              <Col md={12}>
+                <Form>
+                  <Row>
+                    <Col md={12}>
+                      {["radio"].map((type) => (
+                        <Row className="mb-4 row-coleta" key={`inline-${type}`}>
+                          <Col md={12} xs={12} className="text-start mb-3">
+                            <h5>Você é vegetariano?</h5>
+                          </Col>
+                          <Col md={1} xs={1}>
+                            <Form.Check
+                              xs={12}
+                              inline
+                              name="vegetariano"
+                              type={type}
+                              id={`inline-${type}-9`}
+                              value={true}
+                              checked={vegetariano === "true"}
+                              onChange={handleVegetarianoChange}
+                            />
+                          </Col>
+                          <Col md={5} xs={5}>
+                            <Form.Label>Sim</Form.Label>
+                          </Col>
+                          <Col md={1} xs={1}>
+                            <Form.Check
+                              inline
+                              name="vegetariano"
+                              type={type}
+                              id={`inline-${type}-10`}
+                              value={false}
+                              checked={vegetariano === "false"}
+                              onChange={handleVegetarianoChange}
+                            />
+                          </Col>
+                          <Col md={5} xs={5}>
+                            <Form.Label>Não</Form.Label>
+                          </Col>
+                        </Row>
+                      ))}
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+            </Row>
           </Container>
-         
         </Modal.Body>
         <Modal.Footer className="w-100">
           <Row className="w-100 row-bt" xs={2}>

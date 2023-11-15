@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { Container, Table, Accordion, Row, Col } from "react-bootstrap";
-
+import { Link, useNavigate} from "react-router-dom";
 const MenuConst = () => {
+  const navigate = useNavigate();
   const id = localStorage.getItem("id");
   const [showAdmin, setShowAdmin] = useState("");
   useEffect(() => {
     if (id == 1) {
-      setShowAdmin(true);
+      navigate("/dashboard");
     }
-  }, [true]);
+  }, [id]);
   return (
     <>
       <Container className="menu-cont h-100">

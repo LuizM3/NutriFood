@@ -9,8 +9,9 @@ import {
   Alert,
   Col,
   Figure,
+  Card,
+  Nav,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import GraficoApresentacao from "../service/graficos/apresentacao.js";
 import GraficoVariedade from "../service/graficos/variedade.js";
@@ -25,30 +26,27 @@ import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbie
 import GraficoTempoDeEspera from "../service/graficos/tempoDeEspera.js";
 import GraficoHigiene from "../service/graficos/higiene.js";
 
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 const ReviewsConst = () => {
+  const navigate = useNavigate();
   const arrow = require("../assets/images/left-arrow.png");
   const [showCont, setShowCont] = useState("");
   const [showAdmin, setShowAdmin] = useState("");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
 
-
   let verificar = false;
   useEffect(() => {
-
     if (token && id != 1) {
       setShowCont(true);
-    } else if (token && id == 1) {
-      setShowAdmin(true);
-      verificar = true;
+    } else if (id == 1) {
+      navigate("/dashboard");
     }
+  }, [true]);
 
-    if (verificar == true) {
-
-    }
-
-  }, [true])
 
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
@@ -1128,41 +1126,6 @@ const ReviewsConst = () => {
               </div>
             </Container>
           </Row>
-        ) : showAdmin ? (
-          <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
-
-            <Row className="mt-5 justify-content-center d-flex align-items-center gap-2">
-              <Col lg={5} md={6} sm={8} className="redirect-c">
-                <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                  <Row className="h-100 w-100">
-                    <GraficoApresentacao />
-                  </Row>
-                </Container>
-              </Col>
-              <Col lg={5} md={6} sm={8} className="redirect-c">
-                <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                  <Row className="h-100 w-100">
-                    <GraficoVariedade />
-                  </Row>
-                </Container>
-              </Col>
-              <Col lg={5} md={6} sm={8} className="redirect-c">
-                <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                  <Row className="h-100 w-100">
-                    <GraficoSaborDaRefeicao />
-                  </Row>
-                </Container>
-              </Col>
-              <Col lg={5} md={6} sm={8} className="redirect-c">
-                <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                  <Row className="h-100 w-100">
-                    <GraficoSaborDoSuco />
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
-
-          </Row>
         ) : (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
             <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
@@ -1210,5 +1173,25 @@ const ReviewsConst = () => {
     </>
   );
 };
+const MainContent = () => {
+  return (
+    <Container fluid>
+      <Row>
+        <Col>
+          <Card className="mb-3">
+            <Card.Body>
+              <Card.Title>Card title</Card.Title>
 
+              <Card.Text>
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 export default ReviewsConst;
