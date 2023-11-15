@@ -11,7 +11,9 @@ import About from "./views/About"
 import Menu from "./views/Menu"
 import Reviews from "./views/Reviews";
 import Suggestions from "./views/Suggestions";
-import Settings from "./views/Settings"
+import Settings from "./views/Settings";
+import View from "./components/views";
+
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
@@ -24,6 +26,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/menu" element={<Menu/>} /> {" "}
         <Route path="/suggestions" element={<Suggestions />} /> {" "}
         <Route path="/user/settings" element={<Settings />} /> {" "}
+        <Route path="/view" element={<View />} /> {" "}
 
       </Routes>{" "}
     </Router>{" "}

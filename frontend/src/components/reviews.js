@@ -11,6 +11,7 @@ import {
   Figure
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Grafico from "../graficos/apresentacao.js";
 
 const ReviewsConst = () => {
   const arrow = require("../assets/images/left-arrow.png");
@@ -18,12 +19,20 @@ const ReviewsConst = () => {
   const [showAdmin, setShowAdmin] = useState("");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  useEffect(() => {
+
+  let verificar = false;
+  useEffect( () => {
     if (token && id != 1) {
       setShowCont(true);
     } else if (token && id == 1) {
       setShowAdmin(true);
+      verificar = true;
     }
+
+    if (verificar == true){
+      
+    }
+    
   }, [true])
 
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
@@ -1127,7 +1136,9 @@ const ReviewsConst = () => {
               <Container className="d-flex justify-content-center align-items-center h-100 w-100">
                 <Row className="h-100 w-100">
                   <Col className="pt-2">
-                    Teste admin
+                    
+                    <Grafico />
+
                   </Col>
                 </Row>
               </Container>
