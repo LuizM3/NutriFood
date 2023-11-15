@@ -1,17 +1,3 @@
-export function emailVerify(email) {
-  return new Promise(async (response, reject) => {
-    const isEmailUnique = await checkEmailUniqueness(email);
-    if (!isEmailUnique) {
-      console.log("funcionou pretinho");
-      return response;
-      // retuxn;
-    } else {
-      console.log("aaa teste");
-      return reject;
-      // return;
-    }
-  });
-}
 export const checkEmailUniqueness = async (email) => {
   try {
     const response = await fetch(
@@ -20,10 +6,14 @@ export const checkEmailUniqueness = async (email) => {
 
     if (response.ok) {
       const data = await response.json();
+      console.log(data.isUnique); 
       return data.isUnique;
+    } else {
+      console.error(`Erro na requisição: ${response.status}`);
     }
   } catch (error) {
-    console.error("Erro ao verificar email:", error);
+    console.error("Erro na solicitação:", error);
   }
+
   return false;
 };

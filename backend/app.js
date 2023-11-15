@@ -13,6 +13,8 @@ const signupRouter = require("./routes/signup");
 const indexRouter = require("./routes/index");
 const suggestionsRouter = require("./routes/suggestions");
 const checkEmailRouter = require("./routes/checkEmail");
+const getReviewsRouter = require('./routes/getReviews');
+const settingsRouter = require('./routes/settings');
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -29,5 +31,7 @@ app.use("/signup", signupRouter);
 app.use("/signin", signinRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/suggestions", suggestionsRouter);
+app.use("/reviews", getReviewsRouter);
+app.use("/settings", settingsRouter);
 
 module.exports = app;

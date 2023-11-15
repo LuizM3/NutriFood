@@ -1106,13 +1106,34 @@ const ReviewsConst = () => {
           </Row>
         ) : showAdmin ? (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
-            <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
+            <Row className="mt-5 justify-content-center d-flex align-items-center gap-2">
+              <Col lg={5} md={6} sm={8} className="redirect-c">
               <Container className="d-flex justify-content-center align-items-center h-100 w-100">
                 <Row className="h-100 w-100">
-                  <Col className="pt-2">Teste admin</Col>
+                  
                 </Row>
               </Container>
             </Col>
+            <Col lg={5} md={6} sm={8} className="redirect-c">
+              <Container className="d-flex justify-content-center align-items-center h-100 w-100">
+                <Row className="h-100 w-100">
+                </Row>
+              </Container>
+            </Col>
+            <Col lg={5} md={6} sm={8} className="redirect-c">
+              <Container className="d-flex justify-content-center align-items-center h-100 w-100">
+                <Row className="h-100 w-100">
+                </Row>
+              </Container>
+            </Col>
+            <Col lg={5} md={6} sm={8} className="redirect-c">
+              <Container className="d-flex justify-content-center align-items-center h-100 w-100">
+                <Row className="h-100 w-100">
+                </Row>
+              </Container>
+            </Col>
+            </Row>
+            
           </Row>
         ) : (
           <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">

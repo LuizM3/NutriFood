@@ -50,6 +50,7 @@ const LoginConst = () => {
 
         localStorage.setItem("token", token);
         localStorage.setItem("nome", nome);
+        localStorage.setItem("email", email);
         localStorage.setItem("id", id);
 
         if (data.message === "Login") {

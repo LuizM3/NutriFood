@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { checkEmailUniqueness } from "../service/EmailService";
 const popover = (
   <Popover id="popover-basic">
     <Popover.Header as="h3">Padrão de senha</Popover.Header>
@@ -27,12 +28,8 @@ const popover = (
 );
 
 const logo = require("../assets/images/logo.png");
-
-// Aqui começa o password-validator
-
 const passwordValidator = require("password-validator");
 const schema = new passwordValidator();
-// Add properties to it
 schema
   .is()
   .min(8) // Minimum length 8
@@ -96,6 +93,7 @@ const SignUpConst = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // *** validacao de campo vazio ***
     if (senha === "" || email === "" || nome === "") {
       setCampoAlert(true);
       setTimeout(() => {
@@ -103,15 +101,8 @@ const SignUpConst = () => {
       }, 5000);
       return;
     }
-    if (senha !== confirmarSenha) {
-      setShowPassAlert(true);
-      setTimeout(() => {
-        setShowPassAlert(false);
-      }, 5000);
-      return;
-    }
+    // *** validacao de senha ***
     if (schema.validate(senha) === false) {
-      // if (senha === false) {
       setCampoP(true);
       setWrongPAlert(true);
       setTimeout(() => {
@@ -120,12 +111,18 @@ const SignUpConst = () => {
           setWrongPAlert(false);
         }, 5000);
       }, 5000);
-
       return;
     }
-
+    // *** validacao de confirmar senha ***
+    if (senha !== confirmarSenha) {
+      setShowPassAlert(true);
+      setTimeout(() => {
+        setShowPassAlert(false);
+      }, 5000);
+      return;
+    }
+    // *** validacao de termo preenchido ***
     if (termo === false) {
-      // Se o termo não foi aceito (termo === false)
       setTermoAlert(true);
       setTimeout(() => {
         setTermoAlert(false);
@@ -134,17 +131,17 @@ const SignUpConst = () => {
     }
 
     const isEmailUnique = await checkEmailUniqueness(email);
-    if (!isEmailUnique) {
+    if (isEmailUnique === false) {
       setEmailAlert(true);
       setTimeout(() => {
         setEmailAlert(false);
       }, 5000);
-      return;
+    } else {
+      setColetaPreenchida(true);
+      setFormModal(true);
     }
-    setColetaPreenchida(true);
-    setFormModal(true);
   };
-
+  // ****** ao clicar no botao exibe o modal de coleta de dados ******
   const handleColetaSubmit = async () => {
     if (vegetariano === "true") {
       vegetariano = true;
@@ -152,14 +149,12 @@ const SignUpConst = () => {
     if (vegetariano === "false") {
       vegetariano = false;
     }
-
     let objetoRefeicoes = {
       cafeDaManha: false,
       almoco: false,
       lancheDaTarde: false,
       jantar: false,
     };
-
     for (const element of refeicoes) {
       if (element == 1) {
         objetoRefeicoes.cafeDaManha = true;
@@ -171,7 +166,6 @@ const SignUpConst = () => {
         objetoRefeicoes.jantar = true;
       }
     }
-
     const dadosCompletos = {
       nome,
       email,
@@ -199,7 +193,6 @@ const SignUpConst = () => {
         setTimeout(() => {
           setSpinnerModal(true);
         }, 1000);
-
         setTimeout(() => {
           navigate("/login");
         }, 4000);
@@ -216,22 +209,6 @@ const SignUpConst = () => {
         setErrorAlert(false);
       }, 5000);
     }
-  };
-
-  const checkEmailUniqueness = async (email) => {
-    try {
-      const response = await fetch(
-        `http://localhost:9000/check-email?email=${email}`
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        return data.isUnique;
-      }
-    } catch (error) {
-      console.error("Erro ao verificar email:", error);
-    }
-    return false;
   };
 
   const handleVinculoChange = (e) => {
@@ -326,7 +303,7 @@ const SignUpConst = () => {
       <Modal
         show={spinnerModal}
         onHide={() => setSpinnerModal(false)}
-        className="modal"
+        className="modal spinner-modal"
         backdrop="static"
         data-test="links"
       >
@@ -749,14 +726,15 @@ const SignUpConst = () => {
                           placement="right"
                           overlay={popover}
                         >
-                          <Link variant="success">Conferir padrão de senha</Link>
+                          <Link variant="success">
+                            Conferir padrão de senha
+                          </Link>
                         </OverlayTrigger>
                       )}
                     </Form.Group>
                   </div>
                   <div className="d-flex justify-content-left align-items-center flex-row mb-1">
                     <Form.Group
-                      controlId="formBasicCheckbox"
                       id="termosDeUso"
                       className="d-flex flex-row align-items-center justify-content-center"
                     >
@@ -766,7 +744,7 @@ const SignUpConst = () => {
                         value={termo}
                         onChange={(e) => setTermo(e.target.value)}
                       />
-                      <Form.Label for="termosDeUso" className="m-0">
+                      <Form.Label htmlFor="termosDeUso" className="m-0">
                         Concordo com os{" "}
                         <Link
                           onClick={() => {
