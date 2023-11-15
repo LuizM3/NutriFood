@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../assets/styles/dashboard.scss";
-import Grafico from "../graficos/apresentacao";
+import Grafico from "../service/graficos/apresentacao";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
@@ -13,6 +13,21 @@ import {
   Card,
   Figure,
 } from "react-bootstrap";
+
+import GraficoApresentacao from "../service/graficos/apresentacao.js";
+import GraficoVariedade from "../service/graficos/variedade.js";
+import GraficoSaborDaRefeicao from "../service/graficos/saborDaRefeicao.js";
+import GraficoSaborDoSuco from "../service/graficos/saborDoSuco.js";
+
+//Não implementados
+import GraficoSaborDaSobremesa from "../service/graficos/saborDaSobremesa.js";
+import GraficoTemperaturaDoAlimento from "../service/graficos/temperaturaDoAlimento.js";
+import GraficoAtendimento from "../service/graficos/atendimento.js";
+import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbiente.js";
+import GraficoTempoDeEspera from "../service/graficos/tempoDeEspera.js";
+import GraficoHigiene from "../service/graficos/higiene.js";
+
+import review from "../service/requisicao/reviewReq.js";
 
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
@@ -32,6 +47,10 @@ const DashboardConst = () => {
 };
 
 const Sidebar = () => {
+  const [quantidade, setQuantidade] = useState("");
+  review().then((Objeto) => {
+    setQuantidade(Objeto.length);
+  });
   return (
     <div className="dashboard">
       <Container fluid className="h-100 w-100">
@@ -108,11 +127,14 @@ const Sidebar = () => {
           <Col className="flex-shrink-1 overflow-scroll col-dash-cont">
             <Container fluid className="w-100 p-5">
               <Stack gap={5}>
-                <Row>
+                <Row className="m-0 p-0">
                   <Col>
                     <Card>
                       <Card.Body>
-                        This is some text within a card body.
+                        <Row>
+                          <Col md={8}>Quantidade</Col>
+                          <Col md={4}>{quantidade}</Col>
+                        </Row>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -136,8 +158,9 @@ const Sidebar = () => {
                     <Row className="p-0 m-0">
                       <Col md={8}>
                         <Card className="h-100">
+                          <Card.Header>Apresentação</Card.Header>
                           <Card.Body>
-                            <Grafico />
+                            <GraficoApresentacao />
                           </Card.Body>
                         </Card>
                       </Col>
@@ -145,13 +168,15 @@ const Sidebar = () => {
                       <Col md={4}>
                         <Stack gap={4}>
                           <Card>
+                            <Card.Header>Variedade</Card.Header>
                             <Card.Body>
-                              <Grafico />
+                              <GraficoVariedade />
                             </Card.Body>
                           </Card>
                           <Card>
+                            <Card.Header>Sabor da Refeição</Card.Header>
                             <Card.Body>
-                              <Grafico />
+                              <GraficoSaborDaRefeicao />
                             </Card.Body>
                           </Card>
                         </Stack>
@@ -161,21 +186,77 @@ const Sidebar = () => {
                       <Col md={4}>
                         <Stack gap={4}>
                           <Card>
+                            <Card.Header>Sabor do Suco</Card.Header>
                             <Card.Body>
-                              <Grafico />
+                              <GraficoSaborDoSuco />
                             </Card.Body>
                           </Card>
                           <Card>
+                            <Card.Header>Sabor da Sobremesa</Card.Header>
                             <Card.Body>
-                              <Grafico />
+                              <GraficoSaborDaSobremesa />
                             </Card.Body>
                           </Card>
                         </Stack>
                       </Col>
                       <Col md={8}>
                         <Card className="h-100">
+                          <Card.Header>Temperatura do Alimento</Card.Header>
                           <Card.Body>
-                            <Grafico />
+                            <GraficoTemperaturaDoAlimento />
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row className="p-0 m-0">
+                      {/* <Col md={6}>
+                        <Stack gap={4}>
+                          <Card>
+                            <Card.Header>Atendimento</Card.Header>
+                            <Card.Body>
+                              <GraficoAtendimento/>
+                            </Card.Body>
+                          </Card>
+                          <Card>
+                            <Card.Header>Higiene</Card.Header>
+                            <Card.Body>
+                              <GraficoHigiene/>
+                            </Card.Body>
+                          </Card>
+                        </Stack>
+                      </Col> */}
+
+                      <Col md={6}>
+                        <Card>
+                          <Card.Header>Higiene</Card.Header>
+                          <Card.Body>
+                            <GraficoHigiene />
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                      <Col md={6}>
+                        <Card>
+                          <Card.Header>Temperatura do Ambiente</Card.Header>
+                          <Card.Body>
+                            <GraficoTemperaturaDoAmbiente />
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row className="p-0 m-0">
+                      <Col md={7}>
+                        <Card>
+                          <Card.Header>Atendimento</Card.Header>
+                          <Card.Body>
+                            <GraficoAtendimento />
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                      <Col md={5}>
+                        <Card className="h-100">
+                          <Card.Header>Tempo de Espera</Card.Header>
+                          <Card.Body>
+                            <GraficoTempoDeEspera />
                           </Card.Body>
                         </Card>
                       </Col>
