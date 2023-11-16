@@ -6,6 +6,12 @@
   overflow: hidden;
   .redm {
     border-right: #a5a5a5 1px dotted;
+    @media (max-width: 990px) {
+      display: none !important;
+    }
+    @media (max-width: 1460px) {
+      width: 25%;
+    }
   }
 }
 
@@ -59,6 +65,9 @@
 .col-dash-cont {
   height: 100%;
   overflow: hidden;
+  h2 {
+    font-weight: bolder;
+  }
   .card-top-1 {
     background-color: #d4f9df;
     box-shadow: none !important;
@@ -74,6 +83,15 @@
     }
     .row {
       font-family: "Quicksand", sans-serif !important;
+    }
+    @media (max-width: 990px) {
+      .c-2 {
+        display: none !important;
+      }
+      .col-md-12 {
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
   .card-top-2 {
@@ -92,6 +110,15 @@
     .row {
       font-family: "Quicksand", sans-serif !important;
     }
+    @media (max-width: 990px) {
+      .c-2 {
+        display: none !important;
+      }
+      .col-md-12 {
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
   .card-top-3 {
     background-color: #fffed4;
@@ -109,6 +136,15 @@
     .row {
       font-family: "Quicksand", sans-serif !important;
     }
+    @media (max-width: 990px) {
+      .c-2 {
+        display: none !important;
+      }
+      .col-md-12 {
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
   .card {
     border: transparent;
@@ -120,8 +156,35 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 30px rgba(0, 0, 0, 0.1);
   }
 }
-.active-sidebar{
-    border-radius: 8px !important;
+.active-sidebar {
+  border-radius: 8px !important;
+  color: var(--quarter) !important;
+  background-color: #beffe6 !important;
+  :hover {
     color: var(--quarter) !important;
     background-color: #beffe6 !important;
+  }
+  :active {
+    color: var(--quarter) !important;
+    background-color: #beffe6 !important;
+  }
 }
+
+.stk {
+  // display: none;
+  // gap: 0 !important;
+  @media (max-width: 990px) {
+    // display: flex;
+    // gap:1.5rem !important;
+  }
+}
+.div-resp {
+  @media (max-width: 990px) {
+    margin-top: 1.5rem;
+  }
+}
+.cont-nv {
+  height: 80px;
+  border-bottom: #a5a5a5 1px dotted;
+}
+

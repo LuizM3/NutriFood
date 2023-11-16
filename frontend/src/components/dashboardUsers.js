@@ -97,7 +97,7 @@ const Sidebar = () => {
                   </Row>
                 </Button>
               </Link>
-              <Link to="dashboard/users" className="text-decoration-none w-100 active-sidebar">
+              <Link to="" className="text-decoration-none w-100 active-sidebar">
                 <Button className="w-100">
                   <Row>
                     <Col md={2}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/styles/carousel.scss";
 import "../assets/styles/main.scss";
@@ -11,8 +11,9 @@ import {
   Figure,
   Table,
 } from "react-bootstrap";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+import GraficoSaborDoSuco from "../service/graficos/saborDoSuco.js";
 const CarouselConst = () => {
   const id = localStorage.getItem("id");
   const navigate = useNavigate();
