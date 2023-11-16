@@ -88,7 +88,7 @@ const Sidebar = () => {
             </Stack>
             <Stack gap={2} className="stack-bt">
               <Link to="/dashboard" className="text-decoration-none w-100">
-                <Button className="w-100 active-sidebar">
+                <Button className="w-100">
                   <Row>
                     <Col md={2}>
                       <ion-icon name="stats-chart"></ion-icon>
@@ -97,7 +97,7 @@ const Sidebar = () => {
                   </Row>
                 </Button>
               </Link>
-              <Link to="/dashboard/users" className="text-decoration-none w-100">
+              <Link to="dashboard/users" className="text-decoration-none w-100 active-sidebar">
                 <Button className="w-100">
                   <Row>
                     <Col md={2}>

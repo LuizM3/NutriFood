@@ -24,7 +24,11 @@ const LoginConst = () => {
   const [showErrorAlert, setErrorAlert] = useState(false);
   const id = localStorage.getItem("id");
   useEffect(() => {
-    if (id == 1) {
+    if(showAlertSuccess && id == 1) {
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 5500);
+    }else if (id == 1) {
       navigate("/dashboard");
     }
   }, [id]);
@@ -62,14 +66,14 @@ const LoginConst = () => {
           setShowAlertSuccess(true);
           setTimeout(() => {
             setShowAlertSuccess(false);
-          }, 5000);
+          }, 4000);
           setTimeout(() => {
             setSpinnerModal(true);
           }, 1000);
 
           setTimeout(() => {
             navigate("/");
-          }, 6000);
+          }, 5000);
         } else {
           // Credenciais inválidas
           setShowPassAlert(true);

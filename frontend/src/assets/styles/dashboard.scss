@@ -1,3 +1,6 @@
+@import url(root.scss);
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 .dashboard {
   height: 100vh;
   overflow: hidden;
@@ -22,13 +25,13 @@
   border-radius: 100%;
 }
 .stack-log {
-    justify-self: end;
-    justify-content: end;
-    .btn {
-        background-color: rgba(255, 91, 91, 0.403);
-        border: transparent;
-        color: rgb(255, 63, 63);
-    }
+  justify-self: end;
+  justify-content: end;
+  .btn {
+    background-color: rgba(255, 91, 91, 0.403);
+    border: transparent;
+    color: rgb(255, 63, 63);
+  }
 }
 .stack-bt {
   .btn {
@@ -38,7 +41,7 @@
     justify-content: start;
     display: flex;
     align-content: center;
-    font-size: em;
+    font-size: 1em;
     color: var(--gray);
   }
   .btn:focus {
@@ -52,9 +55,73 @@
   .btn:hover {
     background-color: #edeff2;
   }
-
 }
 .col-dash-cont {
-    height: 100%;
-    overflow: hidden;
+  height: 100%;
+  overflow: hidden;
+  .card-top-1 {
+    background-color: #d4f9df;
+    box-shadow: none !important;
+    display: flex;
+    color: #4d6d57;
+    justify-content: center;
+    .hydrated {
+      background: linear-gradient(45deg, #8bc34a, #43a047);
+      border-radius: 100%;
+      padding: 10px;
+      font-size: large !important;
+      color: white;
+    }
+    .row {
+      font-family: "Quicksand", sans-serif !important;
+    }
+  }
+  .card-top-2 {
+    background-color: #ffe9e6;
+    color: #c77e72;
+    display: flex;
+    justify-content: center;
+    box-shadow: none !important;
+    .hydrated {
+      background: linear-gradient(45deg, #ff4081, #f50057);
+      border-radius: 100%;
+      padding: 10px;
+      font-size: large !important;
+      color: white;
+    }
+    .row {
+      font-family: "Quicksand", sans-serif !important;
+    }
+  }
+  .card-top-3 {
+    background-color: #fffed4;
+    color: #a3a06b;
+    box-shadow: none !important;
+    display: flex;
+    justify-content: center;
+    .hydrated {
+      background: linear-gradient(45deg, #ffeb3b, #ffc107);
+      border-radius: 100%;
+      padding: 10px;
+      font-size: large !important;
+      color: white;
+    }
+    .row {
+      font-family: "Quicksand", sans-serif !important;
+    }
+  }
+  .card {
+    border: transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s ease-in-out;
+  }
+  .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+.active-sidebar{
+    border-radius: 8px !important;
+    color: var(--quarter) !important;
+    background-color: #beffe6 !important;
 }

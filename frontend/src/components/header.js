@@ -36,7 +36,7 @@ const HeaderConst = () => {
   const [show, setShow] = useState(false);
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  const [showNav, setShowNav] = useState("");
+  const [showNav, setShowNav] = useState(true);
   const handleShow = () => {
     setShow(true);
   };
@@ -55,15 +55,10 @@ const HeaderConst = () => {
 
   useEffect(() => {
     setIsClose(!show);
-    if (token && id == 1) {
-      setShowNav(false);
-    } else {
-      if (nome) {
-        setUserName(nome);
-      }
-      setShowNav(true);
+    if (nome) {
+      setUserName(nome);
     }
-  }, [nome, show, id, token, true]);
+  }, [nome, show, token, true]);
 
   const logout = () => {
     localStorage.removeItem("id");
