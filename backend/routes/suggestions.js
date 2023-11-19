@@ -6,10 +6,12 @@ require("dotenv").config();
 
 router.post("/", async (req, res) => {
   const { suggestion, idUsuario } = req.body;
-
+  const today = new Date();
+  // const data = today.toLocaleDateString();
+  console.log(today);
   connection.query(
-    "INSERT INTO suggestion (suggestion, idUsuario) VALUES ( ?, ? )",
-    [suggestion, idUsuario],
+    "INSERT INTO suggestion (suggestion, idUsuario, data_criacao) VALUES ( ?, ?, ? )",
+    [suggestion, idUsuario, today],
     (error, resp) => {
       if (error) {
         res.status(500).json({ massage: error });

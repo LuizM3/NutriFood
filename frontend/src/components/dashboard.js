@@ -34,41 +34,14 @@ const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
 
 const DashboardConst = () => {
-  // const [scrolling, setScrolling] = useState(false);
-  const id = localStorage.getItem("id");
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (id != 1) {
-      navigate("/");
-    }
-    // const handleScroll = () => {
-    //   if (window.scrollY > 0) {
-    //     setScrolling(true);
-    //   } else {
-    //     setScrolling(false);
-    //   }
-    // };
-
-    // window.addEventListener("scroll", handleScroll);
-
-    // return () => {
-    //   window.removeEventListener("scroll", handleScroll);
-    // };
-  }, [id]);
-  return <Sidebar />;
-};
-
-const Sidebar = () => {
+  const [scrolling, setScrolling] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleOff = () => setShow(true);
   const isResponsive = useMediaQuery({ query: "(max-width: 990px)" });
   const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState("");
-
-  review().then((Objeto) => {
-    setQuantidade(Objeto.length);
-  });
+  const id = localStorage.getItem("id");
   const handleShow = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("email");
@@ -76,18 +49,39 @@ const Sidebar = () => {
     localStorage.removeItem("nome");
     navigate("/");
   };
+  useEffect(() => {
+    if (id != 1) {
+      navigate("/");
+    }
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [id]);
+  review().then((Objeto) => {
+    setQuantidade(Objeto.length);
+  });
   return (
     <div className="dashboard">
       <Container fluid className="h-100 w-100">
         <Row className="h-100 d-flex">
           {isResponsive ? (
             <Container
-              // className={`dashboard w-100 cont-nv ${
-              //   scrolling ? "scrolled" : ""
-              // }`}
-              className="w-100 cont-nv"
+              className={`dashboard w-100 cont-nv ${
+                scrolling ? "scrolled" : ""
+              }`}
+              // className="w-100 cont-nv"
             >
-              <Row className="w-100 d-flex align-items-center">
+              <Row className="w-100 d-flex align-items-center rr">
                 <Col className="h-100 d-flex justify-content-center align-items-center">
                   <Button variant="primary" onClick={handleOff}>
                     <ion-icon name="menu"></ion-icon>
@@ -395,4 +389,5 @@ const Sidebar = () => {
     </div>
   );
 };
+
 export default DashboardConst;

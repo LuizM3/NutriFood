@@ -9,6 +9,7 @@ import {
   ListGroup,
   ListGroupItem,
   Figure,
+  Badge
 } from "react-bootstrap";
 import "../assets/styles/suggestions.scss";
 import Filter from "bad-words";
@@ -21,6 +22,7 @@ const SuggestionsConst = () => {
   const [showCont, setShowCont] = useState("");
   const [showAdmin, setShowAdmin] = useState("");
   const navigate = useNavigate();
+   const [characterLimit] = useState(200);
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");
@@ -158,11 +160,13 @@ const SuggestionsConst = () => {
                       <Form.Control
                         as="textarea"
                         placeholder="Escreva aqui"
-                        className="h-100"
-                        maxLength={1000}
+                        className="h-75"
+                        maxLength={200}
                         onChange={handleSuggestionChange}
                         value={suggestion}
+                        isInvalid={(suggestion.length >  characterLimit)}
                       />
+                      <Badge className='mt-3' bg={`${suggestion.length > characterLimit ? 'danger' : 'secondary'}`}>{suggestion.length}/{characterLimit}</Badge>
                     </Form.Group>
                     <Form.Group
                       // className="d-flex justify-content-center mb-3" md={6}

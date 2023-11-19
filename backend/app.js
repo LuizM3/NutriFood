@@ -16,6 +16,8 @@ const suggestionsRouter = require("./routes/suggestions");
 const checkEmailRouter = require("./routes/checkEmail");
 const getReviewsRouter = require('./routes/getReviews');
 const settingsRouter = require('./routes/settings');
+const getSuggestionsRouter = require("./routes/getSuggestions");
+const editSuggestionsRouter = require("./routes/editSuggestions");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -33,7 +35,10 @@ app.use("/signin", signinRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/suggestions", suggestionsRouter);
 
+
 app.use("/getReviews", getReviewsRouter);
+app.use("/getSuggestions", getSuggestionsRouter);
+app.use("/editSuggestions", editSuggestionsRouter);
 
 app.use("/settings", settingsRouter);
 
