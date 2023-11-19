@@ -9,6 +9,8 @@ import {
   Spinner,
   Container,
   Alert,
+  Stack,
+  Col
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -24,11 +26,11 @@ const LoginConst = () => {
   const [showErrorAlert, setErrorAlert] = useState(false);
   const id = localStorage.getItem("id");
   useEffect(() => {
-    if(showAlertSuccess && id == 1) {
+    if (showAlertSuccess && id == 1) {
       setTimeout(() => {
         navigate("/dashboard");
       }, 5500);
-    }else if (id == 1) {
+    } else if (id == 1) {
       navigate("/dashboard");
     }
   }, [id]);
@@ -154,11 +156,11 @@ const LoginConst = () => {
                   </Figure>
 
                   <h1>Login</h1>
-                  <div className="in-section">
+                  {/* <div className="in-section">
                     <Form.Group className="mb-3">
                       <Form.Label>Insira seus dados de login</Form.Label>
                     </Form.Group>
-                  </div>
+                  </div> */}
 
                   <div className="in-section">
                     <Form.Group className="mb-3">
@@ -180,10 +182,20 @@ const LoginConst = () => {
                   </div>
 
                   <div id="div-btn">
-                    <Link to={"/sign-up"}>Cadastre-se agora</Link>
-                    <Button type="submit" id="button-login-signup">
-                      Entrar
-                    </Button>
+                    <Stack gap={2} as="row" className="w-100 d-flex flex-row">
+                      <Col>
+                        <Link to={"/sign-up"}>Cadastre-se</Link>
+                      </Col>
+                      <Col>
+                        <Button
+                          type="submit"
+                          className="bt-sub w-100"
+                          id="button-login-signup"
+                        >
+                          Entrar
+                        </Button>
+                      </Col>
+                    </Stack>
                   </div>
                 </div>
               </Form>

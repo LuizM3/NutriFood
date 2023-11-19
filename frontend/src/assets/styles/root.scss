@@ -108,6 +108,7 @@ h6 {
 
   padding: 0px 120px;
   min-height: 500px;
+  // min-width: 500px;
 
   // margin: 20px 0 0 0;
   border: 1px solid #dadce0;
@@ -461,7 +462,7 @@ body {
     width: 500px !important;
 
     @media (max-width: 540px) {
-      width: 100% !important;
+      margin: 20px;
       border-radius: 0;
     }
   }
@@ -691,5 +692,32 @@ body::-webkit-scrollbar-thumb {
       margin: 0;
       color: black;
     }
+  }
+}
+
+.formulario-card{
+  .form-control:focus {
+  transition: all 0.5s;
+  box-shadow: none;
+  border-color: #838c95;
+  }
+}
+
+.bt-sub {
+  background: var(--primary) !important;
+  border: transparent !important;
+}
+.bt-sub:active {
+  background: var(--primary);
+}
+.bt-sub:hover {
+  background: var(--primary);
+}
+.bt-sub:focus {
+  background: var(--primary) !important;
+}
+.modal-senha {
+  .modal-dialog{
+    height: 100vh;
   }
 }

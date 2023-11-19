@@ -9,6 +9,7 @@ import {
   Form,
   Card,
   Offcanvas,
+  Badge,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -28,9 +29,13 @@ const SettingsConst = () => {
   const [selecionaSugestaoIndex, setSelecionaSugestaoIndex] = useState(null);
   const [salvar, setSalvar] = useState("");
   const [conteudo, setConteudo] = useState("");
+
+  const [characterLimit] = useState(200);
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");
+    } else if(id == null) {
+      navigate("/login")
     } else {
       const fetchData = async () => {
         try {
@@ -66,10 +71,13 @@ const SettingsConst = () => {
     setSelecionaSugestaoIndex(index);
     setEdit(true);
     setConteudo(suggestions[index]);
-    // setIndexSave(index);
   };
 
   const handleSalvar = async (e) => {
+    if(salvar == ""){
+      setEdit(false);
+      return;
+    }
     console.log(salvar);
     e.preventDefault();
     try {
@@ -84,10 +92,12 @@ const SettingsConst = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.message === "SALVO") {
-            window.location.reload();
+          window.location.reload();
         } else {
+          console.log("Error");
         }
       } else {
+        console.log("Error");
       }
     } catch (error) {
       console.error("Erro ao enviar requisição:", error);
@@ -306,20 +316,40 @@ const SettingsConst = () => {
                               <Card.Subtitle className="p-2 pt-0 pb-0 text-muted align-self-start">
                                 {dataFormatada}
                               </Card.Subtitle>
-                              <Card.Body className="pt-0 pb-3 p-2 m-0">
+                              <Card.Body className="pt-0 pb-0 p-2 m-0">
                                 {edit && selecionaSugestaoIndex === index ? (
                                   <>
-                                    <Form onSubmit={handleSalvar}>
+                                    <Form onSubmit={handleSalvar} className="formulario-card">
                                       <Form.Control
                                         as="textarea"
                                         defaultValue={suggestion}
                                         style={{ height: "100px" }}
                                         value={salvar}
+                                        maxLength={200}
+                                        isInvalid={
+                                          salvar.length > characterLimit
+                                        }
                                         onChange={(e) =>
                                           setSalvar(e.target.value)
                                         }
                                       />
-                                      <Button type="submit">Salvar</Button>
+                                      <Row className="p-2">
+                                        <Col>
+                                          <Badge
+                                            className="mt-3"
+                                            bg={`${
+                                              salvar.length > characterLimit
+                                                ? "danger"
+                                                : "secondary"
+                                            }`}
+                                          >
+                                            {salvar.length}/{characterLimit}
+                                          </Badge>
+                                        </Col>
+                                        <Col className="d-flex align-items-center justify-content-end">
+                                          <Button type="submit" className="h-100 bt-sub">Salvar</Button>
+                                        </Col>
+                                      </Row>
                                     </Form>
                                   </>
                                 ) : (

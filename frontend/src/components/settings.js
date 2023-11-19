@@ -12,6 +12,7 @@ import {
   Spinner,
   Card,
   Offcanvas,
+  Stack,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -34,6 +35,8 @@ const SettingsConst = () => {
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");
+    } else if (id == null) {
+      navigate("/login");
     }
   }, [emailNovo, id]);
   const handleSubmit = async (e) => {
@@ -162,12 +165,16 @@ const SettingsConst = () => {
       <Modal
         show={passModal}
         onHide={() => setPassModal(false)}
-        className="modal"
+        className="modal modal-senha"
         backdrop="static"
         data-test="links"
       >
         <Modal.Body>
-          <Form onSubmit={handleSubmitAuth}>
+          <Form onSubmit={handleSubmitAuth} className="formulario-card">
+            <Stack gap={2}>
+                      <Form.Group>
+              <Form.Text>Digite sua senha</Form.Text>
+            </Form.Group>
             <Form.Group>
               <Form.Control
                 type="password"
@@ -176,10 +183,14 @@ const SettingsConst = () => {
                 data-test="form-pass"
                 onChange={(e) => setSenha(e.target.value)}
               />
-              <Button type="submit" id="button-login-signup">
+            </Form.Group>
+            <Form.Group>
+              <Button className="bt-sub" type="submit" id="button-login-signup">
                 Autenticar
               </Button>
             </Form.Group>
+            </Stack>
+    
           </Form>
         </Modal.Body>
       </Modal>
@@ -367,7 +378,7 @@ const SettingsConst = () => {
                     Atualize suas informações pessoais, como nome,
                     classificações, etc.
                   </p>
-                  <Form onSubmit={handleSubmit}>
+                  <Form onSubmit={handleSubmit} className="formulario-card">
                     <Form.Group controlId="exampleForm.ControlInput1">
                       <Form.Label>Alterar email</Form.Label>
                       <Form.Control
@@ -384,7 +395,7 @@ const SettingsConst = () => {
                     <Row>
                       <Col className="justify-content-end d-flex m-3 mt-0 mb-3">
                         <Form.Group>
-                          <Button type="submit" variant="primary">
+                          <Button type="submit" className="bt-sub">
                             Enviar
                           </Button>
                         </Form.Group>

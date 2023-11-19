@@ -11,12 +11,14 @@ import {
   Col,
   OverlayTrigger,
   Popover,
+  Stack,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { checkEmailUniqueness } from "../service/EmailService";
+import { useMediaQuery } from "react-responsive";
 const popover = (
-  <Popover id="popover-basic">
+  <Popover id="popover-basic" className="transition-effect">
     <Popover.Header as="h3">Padrão de senha</Popover.Header>
     <Popover.Body>
       <p>
@@ -51,6 +53,7 @@ schema
 // Aqui começa o código do signup
 
 const SignUpConst = () => {
+  const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
   // Criando constante navigate
   const id = localStorage.getItem("id");
   useEffect(() => {
@@ -111,11 +114,11 @@ const SignUpConst = () => {
       setCampoP(true);
       setWrongPAlert(true);
       setTimeout(() => {
-        setCampoP(false);
-        setTimeout(() => {
-          setWrongPAlert(false);
-        }, 5000);
+        setWrongPAlert(false);
       }, 5000);
+      setTimeout(() => {
+        setCampoP(false);
+      }, 10000);
       return;
     }
     // *** validacao de confirmar senha ***
@@ -148,6 +151,7 @@ const SignUpConst = () => {
   };
   // ****** ao clicar no botao exibe o modal de coleta de dados ******
   const handleColetaSubmit = async () => {
+
     if (vegetariano === "true") {
       vegetariano = true;
     }
@@ -640,7 +644,7 @@ const SignUpConst = () => {
             <Col md={6} className="o-enviar p-1 order-1">
               <Button
                 variant="primary"
-                className="w-100"
+                className="w-100 bt-sub"
                 onClick={() => {
                   handleColetaSubmit();
                   setFormModal(false);
@@ -673,13 +677,13 @@ const SignUpConst = () => {
                   <Figure className="logo-tog">
                     <Figure.Image src={logo} />
                   </Figure>
-                  <h1>Cadastro de usuário</h1>
+                  <h1>Cadastro</h1>
 
-                  <div className="in-section">
+                  {/* <div className="in-section">
                     <Form.Group className="mb-3">
                       <Form.Label>Insira seus dados pessoais abaixo</Form.Label>
                     </Form.Group>
-                  </div>
+                  </div> */}
 
                   <div className="in-section">
                     <Form.Group className="mb-3">
@@ -687,7 +691,6 @@ const SignUpConst = () => {
                         type="text"
                         aria-label="Nome"
                         placeholder="Nome"
-                        autoComplete="username"
                         autoCapitalize="Nome"
                         value={nome}
                         data-test="form-nome"
@@ -695,6 +698,7 @@ const SignUpConst = () => {
                       />
                       <Form.Control
                         type="email"
+                        autoComplete="email"
                         placeholder="Email"
                         value={email}
                         data-test="form-email"
@@ -716,17 +720,30 @@ const SignUpConst = () => {
                         value={confirmarSenha}
                         onChange={(e) => setConfirmarSenha(e.target.value)}
                       />
-                      {showP && (
-                        <OverlayTrigger
-                          trigger="click"
-                          placement="right"
-                          overlay={popover}
-                        >
-                          <Link variant="success">
-                            Conferir padrão de senha
-                          </Link>
-                        </OverlayTrigger>
-                      )}
+                      {showP &&
+                        (isResponsive ? (
+                          <OverlayTrigger
+                            trigger="click"
+                            placement="top"
+                            overlay={popover}
+                            className="transition-effect overlay-t"
+                          >
+                            <Link className="text-decoration-none transition-effect">
+                              Conferir padrão de senha
+                            </Link>
+                          </OverlayTrigger>
+                        ) : (
+                          <OverlayTrigger
+                            trigger="click"
+                            placement="right"
+                            overlay={popover}
+                            className="transition-effect overlay-t"
+                          >
+                            <Link className="text-decoration-none transition-effect">
+                              Conferir padrão de senha
+                            </Link>
+                          </OverlayTrigger>
+                        ))}
                     </Form.Group>
                   </div>
                   <div className="d-flex justify-content-left align-items-center flex-row mb-1">
@@ -754,14 +771,21 @@ const SignUpConst = () => {
                   </div>
 
                   <div id="div-btn">
-                    <Link to={"/login"}>Fazer login</Link>
-                    <Button
-                      type="submit"
-                      id="button-login-signup"
-                      data-test="cadastrar"
-                    >
-                      Cadastrar
-                    </Button>
+                    <Stack gap={2} as="row" className="w-100 d-flex flex-row">
+                      <Col>
+                        <Link to={"/login"}>Fazer login</Link>
+                      </Col>
+                      <Col>
+                        <Button
+                          type="submit"
+                          id="button-login-signup"
+                          className="bt-sub w-100"
+                          data-test="cadastrar"
+                        >
+                          Cadastrar
+                        </Button>
+                      </Col>
+                    </Stack>
                   </div>
                 </div>
               </Form>

@@ -9,31 +9,28 @@ import {
   ListGroup,
   ListGroupItem,
   Figure,
-  Badge
+  Badge,
 } from "react-bootstrap";
 import "../assets/styles/suggestions.scss";
 import Filter from "bad-words";
 import { Link, useNavigate } from "react-router-dom";
 const SuggestionsConst = () => {
-
   const arrow = require("../assets/images/left-arrow.png");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
   const [showCont, setShowCont] = useState("");
   const [showAdmin, setShowAdmin] = useState("");
   const navigate = useNavigate();
-   const [characterLimit] = useState(200);
+  const [characterLimit] = useState(200);
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");
     } else if (token && id != 1) {
-      // setShowAdmin(true);
       setShowCont(true);
     }
   }, [id]);
   const [suggestion, setSuggestion] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  // Estado para controlar a exibição do alert
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
   const handleSuggestionChange = (event) => {
@@ -50,7 +47,7 @@ const SuggestionsConst = () => {
       return;
     }
 
-    // instância do filtro
+    // filtro
     const filter = new Filter();
 
     // Verificando se a sugestão contém linguagem imprópria
@@ -80,6 +77,7 @@ const SuggestionsConst = () => {
           setShowAlertSuccess(false);
         }, 5000);
         console.log("Sucesso em enviar sugestão");
+        window.location.reload();
       } else {
         alert("Algo deu errado");
       }
@@ -130,7 +128,7 @@ const SuggestionsConst = () => {
               className="d-flex flex-column align-items-center w-100"
             >
               <h2>Coleta de sugestões</h2>
-              <Form className="m-0" onSubmit={handleSubmit}>
+              <Form className="m-0 formulario-card" onSubmit={handleSubmit}>
                 <Row className="f-row h-100">
                   <Col md={6} className="mb-3" xs={12}>
                     <ListGroup className="text-start">
@@ -164,9 +162,18 @@ const SuggestionsConst = () => {
                         maxLength={200}
                         onChange={handleSuggestionChange}
                         value={suggestion}
-                        isInvalid={(suggestion.length >  characterLimit)}
+                        isInvalid={suggestion.length > characterLimit}
                       />
-                      <Badge className='mt-3' bg={`${suggestion.length > characterLimit ? 'danger' : 'secondary'}`}>{suggestion.length}/{characterLimit}</Badge>
+                      <Badge
+                        className="mt-3"
+                        bg={`${
+                          suggestion.length > characterLimit
+                            ? "danger"
+                            : "secondary"
+                        }`}
+                      >
+                        {suggestion.length}/{characterLimit}
+                      </Badge>
                     </Form.Group>
                     <Form.Group
                       // className="d-flex justify-content-center mb-3" md={6}
@@ -181,9 +188,9 @@ const SuggestionsConst = () => {
                           <Button
                             variant="primary"
                             type="submit"
-                            className="bt-sub"
+                            className="bt-sub bt-tamanho"
                           >
-                            Submit
+                            Enviar
                           </Button>
                         </Col>
                       </Row>
@@ -236,7 +243,7 @@ const SuggestionsConst = () => {
                       </Col>
                       <Col md={12} lg={4} sm={12} xs={12} className="p-0">
                         <Link to="/login" className="text-decoration-none">
-                          <Button className="w-100">Logar</Button>
+                          <Button className="w-100 bt-sub">Logar</Button>
                         </Link>
                       </Col>
                     </Row>

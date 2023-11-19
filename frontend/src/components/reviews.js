@@ -413,6 +413,7 @@ const ReviewsConst = () => {
       selectedOptions.group8 = null;
       selectedOptions.group9 = null;
       selectedOptions.group10 = null;
+      calculateProgress(0);
       return;
     }
   };
@@ -1103,7 +1104,7 @@ const ReviewsConst = () => {
                     ))}
                   </Row>
                   <Row>
-                    <Button type="submit" className="btn-reviews">
+                    <Button type="submit" className="btn-reviews bt-sub">
                       Enviar
                     </Button>
                   </Row>
@@ -1144,7 +1145,7 @@ const ReviewsConst = () => {
                       </Col>
                       <Col md={12} lg={4} sm={12} xs={12} className="p-0">
                         <Link to="/login" className="text-decoration-none">
-                          <Button className="w-100">Logar</Button>
+                          <Button className="w-100 bt-sub">Logar</Button>
                         </Link>
                       </Col>
                     </Row>
@@ -1158,25 +1159,5 @@ const ReviewsConst = () => {
     </>
   );
 };
-const MainContent = () => {
-  return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <Card className="mb-3">
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
 
-              <Card.Text>
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-  );
-};
 export default ReviewsConst;
