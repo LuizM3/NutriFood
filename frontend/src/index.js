@@ -14,6 +14,7 @@ import SettingsData from "./views/SettingsData";
 import Dashboard from "./views/Dashboard";
 import View from "./components/views";
 import DashboardUsers from "./views/DashboardUsers";
+import DashboardSuggestions from "./views/DashboardSuggestions";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/user/settings-data" element={<SettingsData />} /> {" "}
         <Route path="/dashboard" element={<Dashboard />} /> {" "}
         <Route path="/dashboard/users" element={<DashboardUsers />} /> {" "}
+        <Route path="/dashboard/suggestions" element={<DashboardSuggestions />} /> {" "}
         <Route path="/view" element={<View />} /> {" "}
 
       </Routes>{" "}

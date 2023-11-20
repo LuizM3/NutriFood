@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../assets/styles/dashboard.scss";
-import Grafico from "../service/graficos/apresentacao";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
@@ -13,23 +12,11 @@ import {
   Card,
   Figure,
   Offcanvas,
+  ListGroup,
 } from "react-bootstrap";
 
+import { format } from "date-fns";
 import { useMediaQuery } from "react-responsive";
-import GraficoApresentacao from "../service/graficos/apresentacao.js";
-import GraficoVariedade from "../service/graficos/variedade.js";
-import GraficoSaborDaRefeicao from "../service/graficos/saborDaRefeicao.js";
-import GraficoSaborDoSuco from "../service/graficos/saborDoSuco.js";
-
-//Não implementados
-import GraficoSaborDaSobremesa from "../service/graficos/saborDaSobremesa.js";
-import GraficoTemperaturaDoAlimento from "../service/graficos/temperaturaDoAlimento.js";
-import GraficoAtendimento from "../service/graficos/atendimento.js";
-import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbiente.js";
-import GraficoTempoDeEspera from "../service/graficos/tempoDeEspera.js";
-import GraficoHigiene from "../service/graficos/higiene.js";
-import review from "../service/requisicao/reviewReq.js";
-
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
 
@@ -42,6 +29,9 @@ const DashboardConst = () => {
   const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState("");
   const id = localStorage.getItem("id");
+  const [suggestions, setSuggestions] = useState([]);
+  const [dataCriacao, setDataCriacao] = useState([]);
+
   const handleShow = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("email");
@@ -53,6 +43,37 @@ const DashboardConst = () => {
     if (id != 1) {
       navigate("/");
     }
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:9000/getAdminSuggestions",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.message === "FEITO") {
+            setSuggestions(data.suggestions);
+            setDataCriacao(data.data_criacao);
+          } else {
+            console.log("error");
+          }
+        } else {
+          console.log("Erro na requisição");
+        }
+      } catch (error) {
+        console.error("Erro ao enviar requisição:", error);
+      }
+    };
+
+    fetchData();
+
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setScrolling(true);
@@ -67,9 +88,7 @@ const DashboardConst = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [id]);
-  review().then((Objeto) => {
-    setQuantidade(Objeto.length);
-  });
+
   return (
     <div className="dashboard">
       <Container fluid className="h-100 w-100">
@@ -140,7 +159,7 @@ const DashboardConst = () => {
               </Stack>
               <Stack gap={2} className="stack-bt">
                 <Link to="/dashboard" className="text-decoration-none w-100">
-                  <Button className="w-100 active-sidebar">
+                  <Button className="w-100">
                     <Row>
                       <Col md={2}>
                         <ion-icon name="stats-chart"></ion-icon>
@@ -162,8 +181,11 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Link to="/dashboard/suggestions" className="text-decoration-none w-100">
-                  <Button className="w-100">
+                <Link
+                  to="/dashboard/suggestions"
+                  className="text-decoration-none w-100"
+                >
+                  <Button className="w-100 active-sidebar">
                     <Row>
                       <Col md={2}>
                         <ion-icon name="file-tray"></ion-icon>
@@ -172,6 +194,7 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
+
                 <Button>
                   <Row>
                     <Col md={2}>
@@ -251,7 +274,7 @@ const DashboardConst = () => {
                             md={6}
                             className="d-flex justify-content-center align-items-center c-3"
                           >
-                            <h3>100</h3>
+                            <h3></h3>
                           </Col>
                         </Row>
                       </Card.Body>
@@ -287,101 +310,36 @@ const DashboardConst = () => {
                     </Card>
                   </Col>
                 </Row>
-                <Row>
-                  <Stack gap={4}>
-                    <Row className="p-0 m-0">
-                      {/* <Stack> */}
-                      <Col md={12} lg={8}>
-                        <Card className="h-100">
-                          <Card.Header>Apresentação</Card.Header>
-                          <Card.Body>
-                            <GraficoApresentacao />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col md={12} lg={4} className="div-resp">
-                        <Stack gap={4}>
-                          <Card>
-                            <Card.Header>Variedade</Card.Header>
-                            <Card.Body>
-                              <GraficoVariedade />
-                            </Card.Body>
-                          </Card>
-                          <Card>
-                            <Card.Header>Sabor da Refeição</Card.Header>
-                            <Card.Body>
-                              <GraficoSaborDaRefeicao />
-                            </Card.Body>
-                          </Card>
-                        </Stack>
-                      </Col>
-                      {/* </Stack> */}
-                    </Row>
-                    <Row className="p-0 m-0">
-                      {/* <Stack gap={4}> */}
-                      <Col md={12} lg={4}>
-                        <Stack gap={4}>
-                          <Card>
-                            <Card.Header>Sabor do Suco</Card.Header>
-                            <Card.Body>
-                              <GraficoSaborDoSuco />
-                            </Card.Body>
-                          </Card>
-                          <Card>
-                            <Card.Header>Sabor da Sobremesa</Card.Header>
-                            <Card.Body>
-                              <GraficoSaborDaSobremesa />
-                            </Card.Body>
-                          </Card>
-                        </Stack>
-                      </Col>
-                      <Col className="div-resp" md={12} lg={8}>
-                        <Card className="h-100">
-                          <Card.Header>Temperatura do Alimento</Card.Header>
-                          <Card.Body>
-                            <GraficoTemperaturaDoAlimento />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      {/* </Stack> */}
-                    </Row>
-                    <Row className="p-0 m-0">
-                      <Col md={6} lg={6}>
-                        <Card>
-                          <Card.Header>Higiene</Card.Header>
-                          <Card.Body>
-                            <GraficoHigiene />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col md={6} lg={6} className="div-resp">
-                        <Card>
-                          <Card.Header>Temperatura do Ambiente</Card.Header>
-                          <Card.Body>
-                            <GraficoTemperaturaDoAmbiente />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-                    <Row className="p-0 m-0">
-                      <Col lg={7} md={6}>
-                        <Card>
-                          <Card.Header>Atendimento</Card.Header>
-                          <Card.Body>
-                            <GraficoAtendimento />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col lg={5} md={6} className="div-resp">
-                        <Card className="h-100">
-                          <Card.Header>Tempo de Espera</Card.Header>
-                          <Card.Body>
-                            <GraficoTempoDeEspera />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </Stack>
+                <Row className="admin-suges-row">
+                  <Col className="overflow-scroll h-100 suges-col p-2 pt-0">
+                    <ListGroup className="m-0 p-0">
+                      {suggestions.map((suggestion, index) => {
+                        const dataFormatada = format(
+                          new Date(dataCriacao[index]),
+                          "dd/MM/yyyy"
+                        );
+                        return (
+                          <Col>
+                            <Card key={index} className="m-2">
+                              <Card.Header className="p-0 mb-1 m-0">
+                                <Row className="p-2">
+                                  <Col>
+                                    Sugestão <span>#{index + 1}</span>
+                                  </Col>
+                                  <Col className="d-flex justify-content-end text-muted">{dataFormatada}</Col>
+                                </Row>
+
+                              </Card.Header>
+
+                              <Card.Body className="pt-0 pb-0 p-2 m-0" style={{'minHeight': '100px'}}>
+                                <span>{suggestion}</span>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </ListGroup>
+                  </Col>
                 </Row>
               </Stack>
             </Container>

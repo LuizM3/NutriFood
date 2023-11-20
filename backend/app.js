@@ -18,6 +18,7 @@ const getReviewsRouter = require('./routes/getReviews');
 const settingsRouter = require('./routes/settings');
 const getSuggestionsRouter = require("./routes/getSuggestions");
 const editSuggestionsRouter = require("./routes/editSuggestions");
+const getAdminSuggestions = require("./routes/getAdminSuggestions");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -38,6 +39,7 @@ app.use("/suggestions", suggestionsRouter);
 
 app.use("/getReviews", getReviewsRouter);
 app.use("/getSuggestions", getSuggestionsRouter);
+app.use("/getAdminSuggestions", getAdminSuggestions);
 app.use("/editSuggestions", editSuggestionsRouter);
 
 app.use("/settings", settingsRouter);
