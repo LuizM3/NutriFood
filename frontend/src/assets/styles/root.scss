@@ -385,6 +385,7 @@ body {
   --quarter: #0e9956;
   --fifty: #1a1a1a;
   --white: #ffffff;
+  --cancel: #dc3545;
   --light: #babfc4;
   --light2: #838c95;
   --dark: #232629;
@@ -698,16 +699,20 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-.formulario-card{
+.formulario-card {
   .form-control:focus {
-  transition: all 0.5s;
-  box-shadow: none;
-  border-color: #838c95;
+    transition: all 0.5s;
+    box-shadow: none;
+    border-color: #838c95;
   }
 }
 
 .bt-sub {
   background: var(--primary) !important;
+  border: transparent !important;
+}
+.bt-sub-cancel {
+  background: var(--cancel) !important;
   border: transparent !important;
 }
 .bt-sub:active {
@@ -720,7 +725,7 @@ body::-webkit-scrollbar-thumb {
   background: var(--primary) !important;
 }
 .modal-senha {
-  .modal-dialog{
+  .modal-dialog {
     height: 100vh;
   }
 }

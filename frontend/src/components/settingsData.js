@@ -10,6 +10,8 @@ import {
   Card,
   Offcanvas,
   Badge,
+  Modal,
+  Stack,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,18 +26,22 @@ const SettingsConst = () => {
   const email = localStorage.getItem("email");
   const id = localStorage.getItem("id");
   const [suggestions, setSuggestions] = useState([]);
+  const [idSug, setIdSug] = useState([]);
   const [dataCriacao, setDataCriacao] = useState([]);
   const [edit, setEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
   const [selecionaSugestaoIndex, setSelecionaSugestaoIndex] = useState(null);
+
   const [salvar, setSalvar] = useState("");
   const [conteudo, setConteudo] = useState("");
+  const [idSuggestions, setIdSuggestions] = useState("");
 
   const [characterLimit] = useState(200);
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");
-    } else if(id == null) {
-      navigate("/login")
+    } else if (id == null) {
+      navigate("/login");
     } else {
       const fetchData = async () => {
         try {
@@ -51,6 +57,7 @@ const SettingsConst = () => {
             const data = await response.json();
             if (data.message === "OK") {
               setSuggestions(data.suggestions);
+              setIdSug(data.id);
               setDataCriacao(data.data_criacao);
             } else {
               console.log("error");
@@ -71,10 +78,46 @@ const SettingsConst = () => {
     setSelecionaSugestaoIndex(index);
     setEdit(true);
     setConteudo(suggestions[index]);
+    setIdSuggestions(idSug[index]);
+  };
+
+  const handleDelete = (index) => {
+    setSelecionaSugestaoIndex(index);
+    // console.log(index);
+    setIdSuggestions(idSug[index]);
+    setIsDelete(true);
+  };
+
+  const handleConfirmDelete = async (e) => {
+    e.preventDefault();
+
+       try {
+      const response = await fetch("http://localhost:9000/deleteSuggestions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id, idSuggestions }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.message === "DELETADO") {
+          window.location.reload();
+        } else {
+          console.log("Error");
+        }
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar requisição:", error);
+    }
+    setIsDelete(false);
   };
 
   const handleSalvar = async (e) => {
-    if(salvar == ""){
+    if (salvar == "") {
       setEdit(false);
       return;
     }
@@ -86,7 +129,7 @@ const SettingsConst = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ salvar, id, conteudo }),
+        body: JSON.stringify({ salvar, id, idSuggestions, conteudo }),
       });
 
       if (response.ok) {
@@ -104,13 +147,45 @@ const SettingsConst = () => {
     }
     setEdit(false);
   };
-  const handleDelete = () => {};
 
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
   const arrow = require("../assets/images/left-arrow.png");
 
   return (
     <>
+      <Modal
+        show={isDelete}
+        onHide={() => setIsDelete(false)}
+        className="modal modal-senha"
+        backdrop="static"
+        data-test="links"
+      >
+        <Modal.Body>
+          Você tem certeza que quer excluir esta sugestão?
+          <Row className="p-2">
+            <Col>
+              <Stack gap={2} className="d-flex flex-row">
+                <Button
+                  className="w-50 bt-sub-cancel"
+                  type="click"
+                  onClick={() => {
+                    setIsDelete(false);
+                  }}
+                >
+                  Não
+                </Button>
+                <Button
+                  className="w-50 bt-sub"
+                  type="click"
+                  onClick={handleConfirmDelete}
+                >
+                  Sim
+                </Button>
+              </Stack>
+            </Col>
+          </Row>
+        </Modal.Body>
+      </Modal>
       <div className="bg-light div-config d-flex justify-content-center align-items-center">
         <Container className="cont-resp">
           <Row className="w-100 overflow-hidden pb-0 d-flex justify-content-center row-response">
@@ -261,19 +336,6 @@ const SettingsConst = () => {
                     gerenciar como os dados são coletados, armazenados e
                     utilizados em sua conta.
                   </p>
-                  <h3>Preferências de Coleta de Dados</h3>
-
-                  <p>
-                    Escolha suas preferências em relação à coleta de dados,
-                    decidindo quais informações deseja compartilhar.
-                  </p>
-                  <Form>
-                    <Form.Check // prettier-ignore
-                      type="switch"
-                      id="custom-switch"
-                      label="Anonimato de avaliação"
-                    />
-                  </Form>
                   <h3>Histórico de Avaliações</h3>
                   <p>
                     Confira abaixo seu histórico de avaliações, você poderá ver
@@ -294,6 +356,7 @@ const SettingsConst = () => {
                                 <Row className="p-2">
                                   <Col>
                                     Sugestão <span>#{index + 1}</span>
+                                    {idSuggestions[index]}
                                   </Col>
 
                                   <Col className="align-items-center justify-content-end d-flex lixeira-lapis gap-2">
@@ -318,40 +381,44 @@ const SettingsConst = () => {
                               </Card.Subtitle>
                               <Card.Body className="pt-0 pb-0 p-2 m-0">
                                 {edit && selecionaSugestaoIndex === index ? (
-                                  <>
-                                    <Form onSubmit={handleSalvar} className="formulario-card">
-                                      <Form.Control
-                                        as="textarea"
-                                        defaultValue={suggestion}
-                                        style={{ height: "100px" }}
-                                        value={salvar}
-                                        maxLength={200}
-                                        isInvalid={
-                                          salvar.length > characterLimit
-                                        }
-                                        onChange={(e) =>
-                                          setSalvar(e.target.value)
-                                        }
-                                      />
-                                      <Row className="p-2">
-                                        <Col>
-                                          <Badge
-                                            className="mt-3"
-                                            bg={`${
-                                              salvar.length > characterLimit
-                                                ? "danger"
-                                                : "secondary"
-                                            }`}
-                                          >
-                                            {salvar.length}/{characterLimit}
-                                          </Badge>
-                                        </Col>
-                                        <Col className="d-flex align-items-center justify-content-end">
-                                          <Button type="submit" className="h-100 bt-sub">Salvar</Button>
-                                        </Col>
-                                      </Row>
-                                    </Form>
-                                  </>
+                                  <Form
+                                    onSubmit={handleSalvar}
+                                    className="formulario-card"
+                                  >
+                                    <Form.Control
+                                      as="textarea"
+                                      defaultValue={suggestion}
+                                      style={{ height: "100px" }}
+                                      value={salvar}
+                                      maxLength={200}
+                                      isInvalid={salvar.length > characterLimit}
+                                      onChange={(e) =>
+                                        setSalvar(e.target.value)
+                                      }
+                                    />
+                                    <Row className="p-2">
+                                      <Col>
+                                        <Badge
+                                          className="mt-3"
+                                          bg={`${
+                                            salvar.length > characterLimit
+                                              ? "danger"
+                                              : "secondary"
+                                          }`}
+                                        >
+                                          {salvar.length}/{characterLimit}
+                                        </Badge>
+                                      </Col>
+                                      <Col className="d-flex align-items-center justify-content-end">
+                                        <Button
+                                          type="submit"
+                                          className="h-100 bt-sub"
+                                        >
+                                          Salvar
+                                        </Button>
+                                      </Col>
+                                    </Row>
+                                  </Form>
                                 ) : (
                                   <span>{suggestion}</span>
                                 )}

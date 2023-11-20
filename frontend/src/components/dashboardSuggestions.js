@@ -325,6 +325,7 @@ const DashboardConst = () => {
                                 <Row className="p-2">
                                   <Col>
                                     Sugestão <span>#{index + 1}</span>
+                                    
                                   </Col>
                                   <Col className="d-flex justify-content-end text-muted">{dataFormatada}</Col>
                                 </Row>

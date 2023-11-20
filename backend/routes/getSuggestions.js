@@ -6,7 +6,7 @@ router.post("/", (req, res) => {
   const id = req.body.id;
   console.log(id);
   connection.query(
-    "SELECT suggestion, data_criacao FROM suggestion WHERE idUsuario = ?;",
+    "SELECT suggestion, data_criacao, id FROM suggestion WHERE idUsuario = ?;",
     [id],
     (error, results) => {
       if (error) {
@@ -14,9 +14,10 @@ router.post("/", (req, res) => {
       } else {
         const sugestoes = results.map((result) => result.suggestion);
         const data_criacao = results.map((result) => result.data_criacao);
+        const id_sugestao = results.map((result) =>  result.id);
         console.log(sugestoes);
         console.log(data_criacao);
-        res.status(200).json({ message: "OK", suggestions: sugestoes, data_criacao: data_criacao});
+        res.status(200).json({ message: "OK", suggestions: sugestoes, data_criacao, id: id_sugestao});
       }
     }
   );
