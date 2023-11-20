@@ -41,6 +41,8 @@ const DashboardConst = () => {
   const isResponsive = useMediaQuery({ query: "(max-width: 990px)" });
   const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState("");
+  const [boasAvaliacoes, setBoasAvaliacoes] = useState("");
+  const [masAvaliacoes, setMasAvaliacoes] = useState("");
   const id = localStorage.getItem("id");
   const handleShow = () => {
     localStorage.removeItem("id");
@@ -67,9 +69,44 @@ const DashboardConst = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [id]);
+
+  const vetMedia = [];
+
   review().then((Objeto) => {
     setQuantidade(Objeto.length);
+    for(let i = 0; i < Objeto.length; i++){
+      let soma = 0;
+      soma += Number(Objeto[i].apresentacao);
+      soma += Number(Objeto[i].variedade);
+      soma += Number(Objeto[i].saborDaRefeicao);
+      soma += Number(Objeto[i].saborDoSuco);
+      soma += Number(Objeto[i].saborDaSobremesa);
+      soma += Number(Objeto[i].temperaturaDoAlimento);
+      soma += Number(Objeto[i].atendimento);
+      soma += Number(Objeto[i].higiene);
+      soma += Number(Objeto[i].temperaturaDoAlimento);
+      soma += Number(Objeto[i].tempoDeEspera);
+      soma = soma/10;
+      vetMedia.push(soma);
+    }
+
+    console.log(vetMedia);
+
+    let boas = 0;
+    let ruins = 0;
+    for(let i = 0; i < vetMedia.length; i++){
+      if(vetMedia[i] < 4){
+        ruins +=1;
+      } else {
+        boas += 1;
+      }
+    }
+    setBoasAvaliacoes(boas);
+    setMasAvaliacoes(ruins);
   });
+
+//obter média das reviews
+
   return (
     <div className="dashboard">
       <Container fluid className="h-100 w-100">
@@ -222,7 +259,7 @@ const DashboardConst = () => {
                             md={6}
                             className="d-flex justify-content-center align-items-center c-3"
                           >
-                            <h3>{quantidade}</h3>
+                            <h3>{boasAvaliacoes}</h3>
                           </Col>
                         </Row>
                       </Card.Body>
@@ -251,7 +288,7 @@ const DashboardConst = () => {
                             md={6}
                             className="d-flex justify-content-center align-items-center c-3"
                           >
-                            <h3>100</h3>
+                            <h3>{masAvaliacoes}</h3>
                           </Col>
                         </Row>
                       </Card.Body>
