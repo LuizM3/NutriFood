@@ -69,11 +69,10 @@ const SignUpConst = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
-  const [vinculoAoIfes, setVinculoAoIfes] = useState("");
   const [termo, setTermo] = useState(false);
-
+  
   // const [emailError, setEmailError] = useState("");
-
+  
   // Modais
 
   const [spinnerModal, setSpinnerModal] = useState(false);
@@ -90,12 +89,14 @@ const SignUpConst = () => {
   const [showCampoAlert, setCampoAlert] = useState(false);
   const [showWrongPAlert, setWrongPAlert] = useState(false);
   const [showEmailAlert, setEmailAlert] = useState(false);
+  const [showColetaDeDadosAlert, setColetaDeDados] = useState(false);
 
   // Coletas de usuário
-
+  
   const [coletaPreenchida, setColetaPreenchida] = useState(false);
   const [dadosColeta, setDadosColeta] = useState("");
   let [vegetariano, setVegetariano] = useState("");
+  const [vinculoAoIfes, setVinculoAoIfes] = useState("");
   let [refeicoes, setRefeicoes] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -152,12 +153,6 @@ const SignUpConst = () => {
   // ****** ao clicar no botao exibe o modal de coleta de dados ******
   const handleColetaSubmit = async () => {
 
-    if (vegetariano === "true") {
-      vegetariano = true;
-    }
-    if (vegetariano === "false") {
-      vegetariano = false;
-    }
     let objetoRefeicoes = {
       cafeDaManha: false,
       almoco: false,
@@ -175,49 +170,70 @@ const SignUpConst = () => {
         objetoRefeicoes.jantar = true;
       }
     }
-    const dadosCompletos = {
-      nome,
-      email,
-      senha,
-      vinculoAoIfes,
-      objetoRefeicoes,
-      vegetariano,
-    };
 
-    try {
-      const response = await fetch(`http://localhost:9000/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(dadosCompletos),
-      });
-
-      if (response.ok) {
-        setShowAlertSuccess(true);
-        setTimeout(() => {
-          setShowAlertSuccess(false);
-        }, 5000);
-        setTimeout(() => {
-          setSpinnerModal(true);
-        }, 1000);
-        setTimeout(() => {
-          navigate("/login");
-        }, 4000);
+    const IsNull = (a) => {
+      if(a == null){
+        return false;
       } else {
-        setErrorAlert(true);
-        setTimeout(() => {
-          setErrorAlert(false);
-        }, 5000);
+        return true;
       }
-    } catch (error) {
-      console.error("Erro ao enviar dados:", error);
-      setErrorAlert(true);
-      setTimeout(() => {
-        setErrorAlert(false);
-      }, 5000);
     }
+
+    if(IsNull(vegetariano) || IsNull(vinculoAoIfes) || objetoRefeicoes.cafeDaManha == false && objetoRefeicoes.almoco == false && objetoRefeicoes.lancheDaTarde == false && objetoRefeicoes.jantar == false){
+      setColetaDeDados(true);
+    } else{
+    
+      if (vegetariano === "true") {
+          vegetariano = true;
+        }
+        if (vegetariano === "false") {
+          vegetariano = false;
+        }
+        const dadosCompletos = {
+          nome,
+          email,
+          senha,
+          vinculoAoIfes,
+          objetoRefeicoes,
+          vegetariano,
+        };
+    
+        try {
+          const response = await fetch(`http://localhost:9000/signup`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+    
+            body: JSON.stringify(dadosCompletos),
+          });
+    
+          if (response.ok) {
+            setShowAlertSuccess(true);
+            setTimeout(() => {
+              setShowAlertSuccess(false);
+            }, 5000);
+            setTimeout(() => {
+              setSpinnerModal(true);
+            }, 1000);
+            setTimeout(() => {
+              navigate("/login");
+            }, 4000);
+          } else {
+            setErrorAlert(true);
+            setTimeout(() => {
+              setErrorAlert(false);
+            }, 5000);
+          }
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+          setErrorAlert(true);
+          setTimeout(() => {
+            setErrorAlert(false);
+          }, 5000);
+        }
+    }
+
   };
 
   const handleVinculoChange = (e) => {
@@ -303,6 +319,15 @@ const SignUpConst = () => {
             onClose={() => setTermoAlert(false)}
           >
             Leia e concorde com os Termos de Uso
+          </Alert>
+        )}
+        {showColetaDeDadosAlert && (
+          <Alert
+            variant="warning"
+            className="align-items-center d-flex fade"
+            onClose={() => setTermoAlert(false)}
+          >
+            Dado não inserido
           </Alert>
         )}
       </Row>
