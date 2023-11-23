@@ -95,8 +95,8 @@ const SignUpConst = () => {
   
   const [coletaPreenchida, setColetaPreenchida] = useState(false);
   const [dadosColeta, setDadosColeta] = useState("");
-  let [vegetariano, setVegetariano] = useState("");
-  const [vinculoAoIfes, setVinculoAoIfes] = useState("");
+  let [vegetariano, setVegetariano] = useState(null);
+  const [vinculoAoIfes, setVinculoAoIfes] = useState(null);
   let [refeicoes, setRefeicoes] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -171,15 +171,21 @@ const SignUpConst = () => {
       }
     }
 
-    const IsNull = (a) => {
-      if(a == null){
-        return false;
-      } else {
-        return true;
+    const IsNull = (...a) => {
+      let verificar = true;
+      for(let i = 0; i < a.length; i++){
+        if(a[i] == true){
+          verificar = false;
+        }
       }
+
+      return verificar;
     }
 
-    if(IsNull(vegetariano) || IsNull(vinculoAoIfes) || objetoRefeicoes.cafeDaManha == false && objetoRefeicoes.almoco == false && objetoRefeicoes.lancheDaTarde == false && objetoRefeicoes.jantar == false){
+    console.log(IsNull(vegetariano));
+    console.log(IsNull(vinculoAoIfes));
+
+    if(IsNull([vegetariano]) || IsNull([vinculoAoIfes]) || IsNull([objetoRefeicoes.cafeDaManha, objetoRefeicoes.almoco, objetoRefeicoes.lancheDaTarde, objetoRefeicoes.jantar])) {
       setColetaDeDados(true);
     } else{
     

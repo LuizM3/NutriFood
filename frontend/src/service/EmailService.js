@@ -6,7 +6,6 @@ export const checkEmailUniqueness = async (email) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.isUnique); 
       return data.isUnique;
     } else {
       console.error(`Erro na requisição: ${response.status}`);

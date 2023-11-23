@@ -46,6 +46,8 @@ const DashboardConst = () => {
   );
 };
 
+
+
 const Sidebar = () => {
   const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState("");
@@ -59,6 +61,7 @@ const Sidebar = () => {
     localStorage.removeItem("nome");
     navigate("/");
   };
+
   return (
     <div className="dashboard">
       <Container fluid className="h-100 w-100">
