@@ -70,9 +70,9 @@ const SignUpConst = () => {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [termo, setTermo] = useState(false);
-  
+
   // const [emailError, setEmailError] = useState("");
-  
+
   // Modais
 
   const [spinnerModal, setSpinnerModal] = useState(false);
@@ -92,7 +92,7 @@ const SignUpConst = () => {
   const [showColetaDeDadosAlert, setColetaDeDados] = useState(false);
 
   // Coletas de usuário
-  
+
   const [coletaPreenchida, setColetaPreenchida] = useState(false);
   const [dadosColeta, setDadosColeta] = useState("");
   let [vegetariano, setVegetariano] = useState(null);
@@ -170,76 +170,86 @@ const SignUpConst = () => {
         objetoRefeicoes.jantar = true;
       }
     }
+    
+    let verify = false;
+    
+    console.log(vegetariano);
+    console.log(vinculoAoIfes);
+    console.log(objetoRefeicoes.cafeDaManha != true && objetoRefeicoes.almoco != true && objetoRefeicoes.lancheDaTarde != true && objetoRefeicoes.jantar != true);
 
-    const IsNull = (...a) => {
-      let verificar = true;
-      for(let i = 0; i < a.length; i++){
-        if(a[i] == true){
-          verificar = false;
-        }
-      }
-
-      return verificar;
+    if (vinculoAoIfes == null) {
+      verify = true;
+      console.log("1");
+    } else if (objetoRefeicoes.cafeDaManha != true && objetoRefeicoes.almoco != true && objetoRefeicoes.lancheDaTarde != true && objetoRefeicoes.jantar != true) {
+      verify = true;
+      console.log("2");
+    }
+    else if (vegetariano == null) {
+      verify = true;
+      console.log("3");
     }
 
-    console.log(IsNull(vegetariano));
-    console.log(IsNull(vinculoAoIfes));
+    if (verify == true) {
+      console.log("Algo errado");
+      objetoRefeicoes = {
+        cafeDaManha: false,
+        almoco: false,
+        lancheDaTarde: false,
+        jantar: false,
+      };
+      verify = false;
+    } else {
 
-    if(IsNull([vegetariano]) || IsNull([vinculoAoIfes]) || IsNull([objetoRefeicoes.cafeDaManha, objetoRefeicoes.almoco, objetoRefeicoes.lancheDaTarde, objetoRefeicoes.jantar])) {
-      setColetaDeDados(true);
-    } else{
-    
       if (vegetariano === "true") {
-          vegetariano = true;
-        }
-        if (vegetariano === "false") {
-          vegetariano = false;
-        }
-        const dadosCompletos = {
-          nome,
-          email,
-          senha,
-          vinculoAoIfes,
-          objetoRefeicoes,
-          vegetariano,
-        };
-    
-        try {
-          const response = await fetch(`http://localhost:9000/signup`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-    
-            body: JSON.stringify(dadosCompletos),
-          });
-    
-          if (response.ok) {
-            setShowAlertSuccess(true);
-            setTimeout(() => {
-              setShowAlertSuccess(false);
-            }, 5000);
-            setTimeout(() => {
-              setSpinnerModal(true);
-            }, 1000);
-            setTimeout(() => {
-              navigate("/login");
-            }, 4000);
-          } else {
-            setErrorAlert(true);
-            setTimeout(() => {
-              setErrorAlert(false);
-            }, 5000);
-          }
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
+        vegetariano = true;
+      }
+      if (vegetariano === "false") {
+        vegetariano = false;
+      }
+      const dadosCompletos = {
+        nome,
+        email,
+        senha,
+        vinculoAoIfes,
+        objetoRefeicoes,
+        vegetariano,
+      };
+
+      try {
+        const response = await fetch(`http://localhost:9000/signup`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(dadosCompletos),
+        });
+
+        if (response.ok) {
+          setShowAlertSuccess(true);
+          setTimeout(() => {
+            setShowAlertSuccess(false);
+          }, 5000);
+          setTimeout(() => {
+            setSpinnerModal(true);
+          }, 1000);
+          setTimeout(() => {
+            navigate("/login");
+          }, 4000);
+        } else {
           setErrorAlert(true);
           setTimeout(() => {
             setErrorAlert(false);
           }, 5000);
         }
+      } catch (error) {
+        console.error("Erro ao enviar dados:", error);
+        setErrorAlert(true);
+        setTimeout(() => {
+          setErrorAlert(false);
+        }, 5000);
+      }
     }
-
   };
 
   const handleVinculoChange = (e) => {
