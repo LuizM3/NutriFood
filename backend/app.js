@@ -19,6 +19,7 @@ const getReviewsRouter = require('./routes/getReviews');
 const settingsRouter = require('./routes/settings');
 const getSuggestionsRouter = require("./routes/getSuggestions");
 const editSuggestionsRouter = require("./routes/editSuggestions");
+const editSenhaRouter = require("./routes/editSenha");
 const deleteSuggestionsRouter = require("./routes/deleteSuggestions");
 const getAdminSuggestions = require("./routes/getAdminSuggestions");
 
@@ -44,6 +45,7 @@ app.use("/getReviews", getReviewsRouter);
 app.use("/getSuggestions", getSuggestionsRouter);
 app.use("/getAdminSuggestions", getAdminSuggestions);
 app.use("/editSuggestions", editSuggestionsRouter);
+app.use("/editSenha", editSenhaRouter);
 app.use("/deleteSuggestions", deleteSuggestionsRouter);
 
 app.use("/settings", settingsRouter);

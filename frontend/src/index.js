@@ -11,6 +11,7 @@ import Reviews from "./views/Reviews";
 import Suggestions from "./views/Suggestions";
 import Settings from "./views/Settings";
 import SettingsData from "./views/SettingsData";
+import SettingsSecurity from "./views/SettingsSecurity";
 import Dashboard from "./views/Dashboard";
 import View from "./components/views";
 import DashboardUsers from "./views/DashboardUsers";
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/suggestions" element={<Suggestions />} /> {" "}
         <Route path="/user/settings" element={<Settings />} /> {" "}
         <Route path="/user/settings-data" element={<SettingsData />} /> {" "}
+        <Route path="/user/settings-security" element={<SettingsSecurity />} /> {" "}
         <Route path="/dashboard" element={<Dashboard />} /> {" "}
         <Route path="/dashboard/users" element={<DashboardUsers />} /> {" "}
         <Route path="/dashboard/suggestions" element={<DashboardSuggestions />} /> {" "}

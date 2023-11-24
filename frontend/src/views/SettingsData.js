@@ -1,12 +1,10 @@
 import React from "react";
-import SettingsDataComp from "../components/settingsData";
 import "../assets/styles/bootstrap.scss";
-// import Header from "../components/header";
+import SettingsDataComp from "../components/settingsData";
 
 const SettingsData = () => {
   return (
     <>
-      {/* <Header /> */}
       <SettingsDataComp />
     </>
   );

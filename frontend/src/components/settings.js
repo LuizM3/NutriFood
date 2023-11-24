@@ -10,7 +10,6 @@ import {
   Modal,
   Alert,
   Spinner,
-  Card,
   Offcanvas,
   Stack,
 } from "react-bootstrap";
@@ -28,6 +27,7 @@ const SettingsConst = () => {
   const [showPassAlert, setShowPassAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
+  const [showEmailAlert, setEmailAlert] = useState(false);
   const id = localStorage.getItem("id");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -42,12 +42,10 @@ const SettingsConst = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isEmailUnique = await checkEmailUniqueness(emailNovo);
-    console.log(emailNovo);
-    console.log(isEmailUnique);
     if (isEmailUnique === false) {
-      setErrorAlert(true);
+      setEmailAlert(true);
       setTimeout(() => {
-        setErrorAlert(false);
+        setEmailAlert(false);
       }, 5000);
     } else {
       setPassModal(true);
@@ -69,11 +67,6 @@ const SettingsConst = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.message === "CRUD") {
-          localStorage.removeItem("id");
-          localStorage.removeItem("email");
-          localStorage.removeItem("nome");
-          localStorage.removeItem("token");
-
           setShowAlertSuccess(true);
           setTimeout(() => {
             setShowAlertSuccess(false);
@@ -83,6 +76,10 @@ const SettingsConst = () => {
           }, 1000);
           setTimeout(() => {
             navigate("/");
+            localStorage.removeItem("id");
+            localStorage.removeItem("email");
+            localStorage.removeItem("nome");
+            localStorage.removeItem("token");
           }, 2000);
           return;
         } else {
@@ -92,54 +89,21 @@ const SettingsConst = () => {
           }, 5000);
         }
       } else {
-        setErrorAlert(true);
+        setShowPassAlert(true);
         setTimeout(() => {
-          setErrorAlert(false);
+          setShowPassAlert(false);
         }, 5000);
       }
     } catch (error) {
+      setErrorAlert(true);
+      setTimeout(() => {
+        setErrorAlert(false);
+      }, 5000);
       console.error("Erro ao enviar requisição:", error);
     }
   };
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
   const arrow = require("../assets/images/left-arrow.png");
-  // const buttonContents = {
-  //   a: (
-
-  //   ),
-  //   b: (
-  //     <div className="div-pattern">
-  //       <h2>Segurança e Privacidade</h2>
-  //       <p>
-  //         Bem-vindo à seção de segurança e privacidade. Aqui você pode ajustar
-  //         configurações importantes para garantir a proteção dos seus dados
-  //         pessoais.
-  //       </p>
-  //       <h3>Senha</h3>
-  //       <Form className="mb-2">
-  //         <Form.Group>
-  //           <Form.Label htmlFor="inputPassword5">Alterar senha</Form.Label>
-  //           <Form.Control
-  //             type="password"
-  //             id="inputPassword5"
-  //             aria-describedby="passwordHelpBlock"
-  //           />
-  //           <Form.Text id="passwordHelpBlock" muted>
-  //             Sua senha deve ser entre 8-100 caracteres de tamanho, com pelo
-  //             menos uma letra maiúscula e uma minúscula, sem conter espaços ou
-  //             emojis.
-  //           </Form.Text>
-  //         </Form.Group>
-  //         <Row>
-  //           <Col className="justify-content-end d-flex m-3 mt-0 mb-3">
-  //             <Form.Group>
-  //               <Button variant="primary">Enviar</Button>
-  //             </Form.Group>
-  //           </Col>
-  //         </Row>
-  //       </Form>
-  //     </div>
-  //   ),
 
   return (
     <>
@@ -172,25 +136,28 @@ const SettingsConst = () => {
         <Modal.Body>
           <Form onSubmit={handleSubmitAuth} className="formulario-card">
             <Stack gap={2}>
-                      <Form.Group>
-              <Form.Text>Digite sua senha</Form.Text>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                type="password"
-                placeholder="Digite sua senha"
-                value={senha}
-                data-test="form-pass"
-                onChange={(e) => setSenha(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Button className="bt-sub" type="submit" id="button-login-signup">
-                Autenticar
-              </Button>
-            </Form.Group>
+              <Form.Group>
+                <Form.Text>Digite sua senha</Form.Text>
+              </Form.Group>
+              <Form.Group>
+                <Form.Control
+                  type="password"
+                  placeholder="Digite sua senha"
+                  value={senha}
+                  data-test="form-pass"
+                  onChange={(e) => setSenha(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  className="bt-sub"
+                  type="submit"
+                  id="button-login-signup"
+                >
+                  Autenticar
+                </Button>
+              </Form.Group>
             </Stack>
-    
           </Form>
         </Modal.Body>
       </Modal>
@@ -202,7 +169,16 @@ const SettingsConst = () => {
             className="align-items-center d-flex fade"
             onClose={() => setShowPassAlert(false)}
           >
-            Usuário inválido ou senha!
+            Senha incorreta
+          </Alert>
+        )}{" "}
+        {showEmailAlert && (
+          <Alert
+            variant="warning"
+            className="align-items-center d-flex fade"
+            onClose={() => setEmailAlert(false)}
+          >
+            Email já cadastrado
           </Alert>
         )}{" "}
         {showAlertSuccess && (
@@ -211,7 +187,7 @@ const SettingsConst = () => {
             className="align-items-center d-flex fade"
             onClose={() => setShowAlertSuccess(false)}
           >
-            Login bem-sucedido
+            Email alterado com sucesso
           </Alert>
         )}
         {showErrorAlert && (
