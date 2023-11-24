@@ -152,7 +152,6 @@ const SignUpConst = () => {
   };
   // ****** ao clicar no botao exibe o modal de coleta de dados ******
   const handleColetaSubmit = async () => {
-
     let objetoRefeicoes = {
       cafeDaManha: false,
       almoco: false,
@@ -170,21 +169,30 @@ const SignUpConst = () => {
         objetoRefeicoes.jantar = true;
       }
     }
-    
+
     let verify = false;
-    
+
     console.log(vegetariano);
     console.log(vinculoAoIfes);
-    console.log(objetoRefeicoes.cafeDaManha != true && objetoRefeicoes.almoco != true && objetoRefeicoes.lancheDaTarde != true && objetoRefeicoes.jantar != true);
+    console.log(
+      objetoRefeicoes.cafeDaManha != true &&
+        objetoRefeicoes.almoco != true &&
+        objetoRefeicoes.lancheDaTarde != true &&
+        objetoRefeicoes.jantar != true
+    );
 
     if (vinculoAoIfes == null) {
       verify = true;
       console.log("1");
-    } else if (objetoRefeicoes.cafeDaManha != true && objetoRefeicoes.almoco != true && objetoRefeicoes.lancheDaTarde != true && objetoRefeicoes.jantar != true) {
+    } else if (
+      objetoRefeicoes.cafeDaManha != true &&
+      objetoRefeicoes.almoco != true &&
+      objetoRefeicoes.lancheDaTarde != true &&
+      objetoRefeicoes.jantar != true
+    ) {
       verify = true;
       console.log("2");
-    }
-    else if (vegetariano == null) {
+    } else if (vegetariano == null) {
       verify = true;
       console.log("3");
     }
@@ -199,7 +207,6 @@ const SignUpConst = () => {
       };
       verify = false;
     } else {
-
       if (vegetariano === "true") {
         vegetariano = true;
       }
@@ -374,91 +381,103 @@ const SignUpConst = () => {
       <Modal
         show={termoModal}
         onHide={() => setTermoModal(false)}
-        className="modal"
+        className="modal coleta-modal"
         backdrop="static"
         data-test="links"
       >
-        <Modal.Body>
-          <h2>TERMOS DE USO</h2>
+        <Modal.Header>
+          <Modal.Title>
+            <h2>TERMOS DE USO</h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="overflow-scroll p-5">
+          <Container className="h-100">
+            <Row>
+              <Col>
+                <h3>1. Aceitação dos Termos de Uso</h3>
+                <p>
+                  Bem-vindo ao Nutrifood! Ao acessar ou usar nosso site, você
+                  concorda em cumprir e ficar vinculado a estes Termos de Uso.
+                  Se você não concordar com algum destes termos, por favor, não
+                  utilize o nosso site.
+                </p>
 
-          <h3>1. Aceitação dos Termos de Uso</h3>
-          <p>
-            Bem-vindo ao Nutrifood! Ao acessar ou usar nosso site, você concorda
-            em cumprir e ficar vinculado a estes Termos de Uso. Se você não
-            concordar com algum destes termos, por favor, não utilize o nosso
-            site.
-          </p>
+                <h3>2. Uso Autorizado</h3>
+                <p>
+                  Você concorda em utilizar nosso site apenas para fins legais e
+                  de acordo com estes Termos de Uso. Você não deve usar nosso
+                  site de forma que possa causar danos, prejudicar ou interferir
+                  com o funcionamento normal do site.
+                </p>
 
-          <h3>2. Uso Autorizado</h3>
-          <p>
-            Você concorda em utilizar nosso site apenas para fins legais e de
-            acordo com estes Termos de Uso. Você não deve usar nosso site de
-            forma que possa causar danos, prejudicar ou interferir com o
-            funcionamento normal do site.
-          </p>
+                <h3>3. Informações de Conta</h3>
+                <p>
+                  Ao utilizar nosso site, você é responsável por manter a
+                  confidencialidade de suas informações de conta, incluindo nome
+                  de usuário e senha. Você concorda em nos notificar
+                  imediatamente sobre qualquer uso não autorizado de sua conta.
+                </p>
 
-          <h3>3. Informações de Conta</h3>
-          <p>
-            Ao utilizar nosso site, você é responsável por manter a
-            confidencialidade de suas informações de conta, incluindo nome de
-            usuário e senha. Você concorda em nos notificar imediatamente sobre
-            qualquer uso não autorizado de sua conta.
-          </p>
+                <h3>4. Direitos de Propriedade Intelectual</h3>
+                <p>
+                  Nosso site e seu conteúdo, incluindo texto, gráficos,
+                  logotipos, imagens e software, são protegidos por leis de
+                  direitos autorais e outras leis de propriedade intelectual.
+                  Você não deve reproduzir, distribuir, modificar ou criar obras
+                  derivadas com base em nosso conteúdo, a menos que tenha
+                  permissão expressa.
+                </p>
 
-          <h3>4. Direitos de Propriedade Intelectual</h3>
-          <p>
-            Nosso site e seu conteúdo, incluindo texto, gráficos, logotipos,
-            imagens e software, são protegidos por leis de direitos autorais e
-            outras leis de propriedade intelectual. Você não deve reproduzir,
-            distribuir, modificar ou criar obras derivadas com base em nosso
-            conteúdo, a menos que tenha permissão expressa.
-          </p>
+                <h3>5. Links para Outros Sites</h3>
+                <p>
+                  Nosso site pode conter links para sites de terceiros que não
+                  controlamos. Não somos responsáveis pelo conteúdo ou pelas
+                  práticas de privacidade desses sites.
+                </p>
 
-          <h3>5. Links para Outros Sites</h3>
-          <p>
-            Nosso site pode conter links para sites de terceiros que não
-            controlamos. Não somos responsáveis pelo conteúdo ou pelas práticas
-            de privacidade desses sites.
-          </p>
+                <h3>6. Isenção de Garantias</h3>
+                <p>
+                  Nosso site é fornecido "como está" e "conforme disponível".
+                  Não fazemos garantias de qualquer tipo quanto à sua precisão,
+                  confiabilidade ou disponibilidade.
+                </p>
 
-          <h3>6. Isenção de Garantias</h3>
-          <p>
-            Nosso site é fornecido "como está" e "conforme disponível". Não
-            fazemos garantias de qualquer tipo quanto à sua precisão,
-            confiabilidade ou disponibilidade.
-          </p>
+                <h3>7. Limitação de Responsabilidade</h3>
+                <p>
+                  Em nenhuma circunstância seremos responsáveis por danos
+                  diretos, indiretos, incidentais, especiais, consequentes ou
+                  punitivos decorrentes do uso ou incapacidade de uso do nosso
+                  site.
+                </p>
 
-          <h3>7. Limitação de Responsabilidade</h3>
-          <p>
-            Em nenhuma circunstância seremos responsáveis por danos diretos,
-            indiretos, incidentais, especiais, consequentes ou punitivos
-            decorrentes do uso ou incapacidade de uso do nosso site.
-          </p>
+                <h3>8. Modificações nos Termos de Uso</h3>
+                <p>
+                  Reservamo-nos o direito de modificar estes Termos de Uso a
+                  qualquer momento, e é sua responsabilidade verificar
+                  periodicamente se houve alterações. O uso continuado do site
+                  após tais alterações constituirá sua aceitação dos Termos de
+                  Uso revisados.
+                </p>
 
-          <h3>8. Modificações nos Termos de Uso</h3>
-          <p>
-            Reservamo-nos o direito de modificar estes Termos de Uso a qualquer
-            momento, e é sua responsabilidade verificar periodicamente se houve
-            alterações. O uso continuado do site após tais alterações
-            constituirá sua aceitação dos Termos de Uso revisados.
-          </p>
+                <h3>9. Encerramento de Conta</h3>
+                <p>
+                  Reservamo-nos o direito de encerrar ou suspender sua conta a
+                  qualquer momento, sem aviso prévio, por qualquer motivo.
+                </p>
 
-          <h3>9. Encerramento de Conta</h3>
-          <p>
-            Reservamo-nos o direito de encerrar ou suspender sua conta a
-            qualquer momento, sem aviso prévio, por qualquer motivo.
-          </p>
-
-          <h3>10. Lei Aplicável</h3>
-          <p>
-            Estes Termos de Uso serão regidos e interpretados de acordo com as
-            leis do [seu país/estado], sem levar em consideração suas
-            disposições de conflito de leis.
-          </p>
+                <h3>10. Lei Aplicável</h3>
+                <p>
+                  Estes Termos de Uso serão regidos e interpretados de acordo
+                  com as leis do [seu país/estado], sem levar em consideração
+                  suas disposições de conflito de leis.
+                </p>
+              </Col>
+            </Row>
+          </Container>
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant="primary"
+            className="bt-sub"
             onClick={() => {
               setTermoModal(false);
             }}
@@ -488,13 +507,13 @@ const SignUpConst = () => {
                   <Row>
                     <Col md={12}>
                       {["radio"].map((type) => (
-                        <Row className="row-coleta mb-4" key={`inline-${type}`}>
+                        <Row className="row-coleta mb-4 bg-light" key={`inline-${type}`}>
                           <Col md={12} xs={12} className="text-start mb-3">
                             <h5>
                               Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
                             </h5>
                           </Col>
-                          <Col xs={2}>
+                          <Col xs={2} className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="vinculoAoIfes"
@@ -509,7 +528,7 @@ const SignUpConst = () => {
                             <Form.Label>Aluno do ensino médio</Form.Label>
                           </Col>
 
-                          <Col xs={2}>
+                          <Col xs={2}className="d-flex justify-content-end">
                             {" "}
                             <Form.Check
                               inline
@@ -525,7 +544,7 @@ const SignUpConst = () => {
                             <Form.Label>Aluno da graduação</Form.Label>
                           </Col>
 
-                          <Col xs={2}>
+                          <Col xs={2}className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="vinculoAoIfes"
@@ -542,7 +561,7 @@ const SignUpConst = () => {
                             </Form.Label>
                           </Col>
 
-                          <Col xs={2}>
+                          <Col xs={2}className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="vinculoAoIfes"
@@ -567,7 +586,7 @@ const SignUpConst = () => {
                   <Row>
                     <Col md={12}>
                       {["checkbox"].map((type) => (
-                        <Row className="mb-4 row-coleta" key={`inline-${type}`}>
+                        <Row className="mb-4 row-coleta bg-light" key={`inline-${type}`}>
                           <Col md={12} xs={12} className="text-start mb-3">
                             <h5>
                               Qual refeição você realiza no restaurante
@@ -575,7 +594,7 @@ const SignUpConst = () => {
                             </h5>
                           </Col>
 
-                          <Col xs={2}>
+                          <Col xs={2}className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -588,7 +607,7 @@ const SignUpConst = () => {
                           <Col xs={10} className="d-flex justify-content-start">
                             <Form.Label>Café da manhã</Form.Label>
                           </Col>
-                          <Col xs={2}>
+                          <Col xs={2}className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -601,7 +620,7 @@ const SignUpConst = () => {
                           <Col xs={10} className="d-flex justify-content-start">
                             <Form.Label>Almoço</Form.Label>
                           </Col>
-                          <Col xs={2}>
+                          <Col xs={2}className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -614,7 +633,7 @@ const SignUpConst = () => {
                           <Col xs={10} className="d-flex justify-content-start">
                             <Form.Label>Lanche da tarde</Form.Label>
                           </Col>
-                          <Col xs={2}>
+                          <Col xs={2}className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -638,7 +657,7 @@ const SignUpConst = () => {
                   <Row>
                     <Col md={12}>
                       {["radio"].map((type) => (
-                        <Row className="mb-4 row-coleta" key={`inline-${type}`}>
+                        <Row className="mb-4 row-coleta bg-light" key={`inline-${type}`}>
                           <Col md={12} xs={12} className="text-start mb-3">
                             <h5>Você é vegetariano?</h5>
                           </Col>
