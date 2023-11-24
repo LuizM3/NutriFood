@@ -14,46 +14,33 @@ import {
   Figure,
 } from "react-bootstrap";
 
-import GraficoApresentacao from "../service/graficos/apresentacao.js";
-import GraficoVariedade from "../service/graficos/variedade.js";
-import GraficoSaborDaRefeicao from "../service/graficos/saborDaRefeicao.js";
-import GraficoSaborDoSuco from "../service/graficos/saborDoSuco.js";
-
-//Não implementados
-import GraficoSaborDaSobremesa from "../service/graficos/saborDaSobremesa.js";
-import GraficoTemperaturaDoAlimento from "../service/graficos/temperaturaDoAlimento.js";
-import GraficoAtendimento from "../service/graficos/atendimento.js";
+import GraficoApresentacao from "../service/graficos/review/apresentacao.js";
+import GraficoAtendimento from "../service/graficos/review/atendimento.js";
+import GraficoHigiene from "../service/graficos/review/higiene.js";
+import GraficoSaborDaRefeicao from "../service/graficos/review/saborDaRefeicao.js";
+import GraficoSaborDaSobremesa from "../service/graficos/review/saborDaSobremesa.js";
+import GraficoSaborDoSuco from "../service/graficos/review/saborDoSuco.js";
+import GraficoTemperaturaDoAlimento from "../service/graficos/review/temperaturaDoAlimento.js";
 import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbiente.js";
-import GraficoTempoDeEspera from "../service/graficos/tempoDeEspera.js";
-import GraficoHigiene from "../service/graficos/higiene.js";
-
-import review from "../service/requisicao/reviewReq.js";
+import GraficoTempoDeEspera from "../service/graficos/review/tempoDeEspera.js";
+import GraficoVariedade from "../service/graficos/review/variedade.js";
 
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
-const DashboardConst = () => {
-  const id = localStorage.getItem("id");
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (id != 1) {
-      navigate("/");
-    }
-  }, [id]);
-  return (
-    <>
-      <Sidebar />
-    </>
-  );
-};
-
-
 
 const Sidebar = () => {
+
+  const [vinculado, setVinculoAoIfes] = useState([]);
+  const [cafeDaManha, setCafeDaManha] = useState([]);
+  const [almoco, setAlmoco] = useState([]);
+  const [lancheDaTarde, setLancheDaTarde] = useState([]);
+  const [jantar, setJantar] = useState([]);
+  const [vegetariano, setVegetariano] = useState([]);
+
+
+  const id = localStorage.getItem("id");
   const navigate = useNavigate();
-  const [quantidade, setQuantidade] = useState("");
-  review().then((Objeto) => {
-    setQuantidade(Objeto.length);
-  });
+
   const handleShow = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("email");
@@ -61,6 +48,12 @@ const Sidebar = () => {
     localStorage.removeItem("nome");
     navigate("/");
   };
+
+  useEffect(() => {
+    if (id != 1) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="dashboard">
@@ -157,7 +150,7 @@ const Sidebar = () => {
                             Avaliações boas
                           </Col>
                           <Col md={2} className="d-flex align-items-center">
-                            {quantidade}
+                            {}
                           </Col>
                         </Row>
                       </Card.Body>
@@ -197,7 +190,7 @@ const Sidebar = () => {
                             Total de avaliações
                           </Col>
                           <Col md={2} className="d-flex align-items-center">
-                            {quantidade}
+                            {}
                           </Col>
                         </Row>
                       </Card.Body>
@@ -305,4 +298,4 @@ const Sidebar = () => {
     </div>
   );
 };
-export default DashboardConst;
+export default Sidebar;
