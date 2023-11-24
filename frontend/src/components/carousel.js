@@ -13,7 +13,6 @@ import {
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-import GraficoSaborDoSuco from "../service/graficos/saborDoSuco.js";
 const CarouselConst = () => {
   const id = localStorage.getItem("id");
   const navigate = useNavigate();

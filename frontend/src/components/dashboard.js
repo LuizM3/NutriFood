@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../assets/styles/dashboard.scss";
-import Grafico from "../service/graficos/apresentacao";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
@@ -23,7 +22,7 @@ import GraficoSaborDaRefeicao from "../service/graficos/review/saborDaRefeicao.j
 import GraficoSaborDaSobremesa from "../service/graficos/review/saborDaSobremesa.js";
 import GraficoSaborDoSuco from "../service/graficos/review/saborDoSuco.js";
 import GraficoTemperaturaDoAlimento from "../service/graficos/review/temperaturaDoAlimento.js";
-import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbiente.js";
+import GraficoTemperaturaDoAmbiente from "../service/graficos/review/temperaturaDoAmbiente.js";
 import GraficoTempoDeEspera from "../service/graficos/review/tempoDeEspera.js";
 import GraficoVariedade from "../service/graficos/review/variedade.js";
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import review from "../requisicao/reviewReq";
+import review from "../../requisicao/reviewReq";
 import ReactApexChart from "react-apexcharts";
 
 const objeto = {

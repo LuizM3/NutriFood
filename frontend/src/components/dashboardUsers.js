@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../assets/styles/dashboard.scss";
-import Grafico from "../service/graficos/apresentacao";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
@@ -14,16 +13,17 @@ import {
   Figure,
 } from "react-bootstrap";
 
-import GraficoApresentacao from "../service/graficos/review/apresentacao.js";
 import GraficoAtendimento from "../service/graficos/review/atendimento.js";
 import GraficoHigiene from "../service/graficos/review/higiene.js";
 import GraficoSaborDaRefeicao from "../service/graficos/review/saborDaRefeicao.js";
 import GraficoSaborDaSobremesa from "../service/graficos/review/saborDaSobremesa.js";
 import GraficoSaborDoSuco from "../service/graficos/review/saborDoSuco.js";
 import GraficoTemperaturaDoAlimento from "../service/graficos/review/temperaturaDoAlimento.js";
-import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbiente.js";
+import GraficoTemperaturaDoAmbiente from "../service/graficos/review/temperaturaDoAmbiente.js";
 import GraficoTempoDeEspera from "../service/graficos/review/tempoDeEspera.js";
 import GraficoVariedade from "../service/graficos/review/variedade.js";
+
+import GraficoVegetariano from "../service/graficos/user/graficoVegetariano.js";
 
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
@@ -204,7 +204,8 @@ const Sidebar = () => {
                         <Card className="h-100">
                           <Card.Header>Apresentação</Card.Header>
                           <Card.Body>
-                            <GraficoApresentacao />
+                            {/* <GraficoApresentacao /> */}
+                            <GraficoVegetariano/>
                           </Card.Body>
                         </Card>
                       </Col>
