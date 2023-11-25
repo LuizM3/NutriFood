@@ -354,7 +354,8 @@ const SettingsConst = () => {
                     Atualize suas informações pessoais, como nome,
                     classificações, etc.
                   </p>
-                  <Form onSubmit={handleSubmit} className="formulario-card">
+                  <Col lg={8} sm={8} md={12}>
+                   <Form onSubmit={handleSubmit} className="formulario-card">
                     <Form.Group controlId="exampleForm.ControlInput1">
                       <Form.Label>Alterar email</Form.Label>
                       <Form.Control
@@ -369,7 +370,7 @@ const SettingsConst = () => {
                       email.
                     </Form.Text>
                     <Row>
-                      <Col className="justify-content-end d-flex m-3 mt-0 mb-3">
+                      <Col className="justify-content-end d-flex mt-0 mb-3">
                         <Form.Group>
                           <Button type="submit" className="bt-sub">
                             Enviar
@@ -378,6 +379,8 @@ const SettingsConst = () => {
                       </Col>
                     </Row>
                   </Form>
+                  </Col>
+                 
                   <h3>Informações de coleta</h3>
                   <p>
                     Marque ou altere suas informações para coleta nutricional

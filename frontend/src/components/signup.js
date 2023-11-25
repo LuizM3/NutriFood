@@ -507,7 +507,10 @@ const SignUpConst = () => {
                   <Row>
                     <Col md={12}>
                       {["radio"].map((type) => (
-                        <Row className="row-coleta mb-4 bg-light" key={`inline-${type}`}>
+                        <Row
+                          className="row-coleta mb-4 bg-light"
+                          key={`inline-${type}`}
+                        >
                           <Col md={12} xs={12} className="text-start mb-3">
                             <h5>
                               Qual seu vínculo com o IFES - Campus Santa Teresa?{" "}
@@ -528,7 +531,7 @@ const SignUpConst = () => {
                             <Form.Label>Aluno do ensino médio</Form.Label>
                           </Col>
 
-                          <Col xs={2}className="d-flex justify-content-end">
+                          <Col xs={2} className="d-flex justify-content-end">
                             {" "}
                             <Form.Check
                               inline
@@ -544,7 +547,7 @@ const SignUpConst = () => {
                             <Form.Label>Aluno da graduação</Form.Label>
                           </Col>
 
-                          <Col xs={2}className="d-flex justify-content-end">
+                          <Col xs={2} className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="vinculoAoIfes"
@@ -561,7 +564,7 @@ const SignUpConst = () => {
                             </Form.Label>
                           </Col>
 
-                          <Col xs={2}className="d-flex justify-content-end">
+                          <Col xs={2} className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="vinculoAoIfes"
@@ -586,7 +589,10 @@ const SignUpConst = () => {
                   <Row>
                     <Col md={12}>
                       {["checkbox"].map((type) => (
-                        <Row className="mb-4 row-coleta bg-light" key={`inline-${type}`}>
+                        <Row
+                          className="mb-4 row-coleta bg-light"
+                          key={`inline-${type}`}
+                        >
                           <Col md={12} xs={12} className="text-start mb-3">
                             <h5>
                               Qual refeição você realiza no restaurante
@@ -594,7 +600,7 @@ const SignUpConst = () => {
                             </h5>
                           </Col>
 
-                          <Col xs={2}className="d-flex justify-content-end">
+                          <Col xs={2} className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -607,7 +613,7 @@ const SignUpConst = () => {
                           <Col xs={10} className="d-flex justify-content-start">
                             <Form.Label>Café da manhã</Form.Label>
                           </Col>
-                          <Col xs={2}className="d-flex justify-content-end">
+                          <Col xs={2} className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -620,7 +626,7 @@ const SignUpConst = () => {
                           <Col xs={10} className="d-flex justify-content-start">
                             <Form.Label>Almoço</Form.Label>
                           </Col>
-                          <Col xs={2}className="d-flex justify-content-end">
+                          <Col xs={2} className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -633,7 +639,7 @@ const SignUpConst = () => {
                           <Col xs={10} className="d-flex justify-content-start">
                             <Form.Label>Lanche da tarde</Form.Label>
                           </Col>
-                          <Col xs={2}className="d-flex justify-content-end">
+                          <Col xs={2} className="d-flex justify-content-end">
                             <Form.Check
                               inline
                               name="refeicoes"
@@ -657,38 +663,41 @@ const SignUpConst = () => {
                   <Row>
                     <Col md={12}>
                       {["radio"].map((type) => (
-                        <Row className="mb-4 row-coleta bg-light" key={`inline-${type}`}>
+                        <Row
+                          className="mb-4 row-coleta bg-light"
+                          key={`inline-${type}`}
+                        >
                           <Col md={12} xs={12} className="text-start mb-3">
                             <h5>Você é vegetariano?</h5>
                           </Col>
-                          <Col md={1} xs={1}>
-                            <Form.Check
-                              xs={12}
-                              inline
-                              name="vegetariano"
-                              type={type}
-                              id={`inline-${type}-9`}
-                              value={true}
-                              checked={vegetariano === "true"}
-                              onChange={handleVegetarianoChange}
-                            />
-                          </Col>
                           <Col md={5} xs={5}>
-                            <Form.Label>Sim</Form.Label>
-                          </Col>
-                          <Col md={1} xs={1}>
-                            <Form.Check
-                              inline
-                              name="vegetariano"
-                              type={type}
-                              id={`inline-${type}-10`}
-                              value={false}
-                              checked={vegetariano === "false"}
-                              onChange={handleVegetarianoChange}
-                            />
-                          </Col>
-                          <Col md={5} xs={5}>
-                            <Form.Label>Não</Form.Label>
+                            <Stack gap={5} className="d-flex flex-row">
+                              <Stack gap={2} className="d-flex flex-row">
+                                <Form.Check
+                                  xs={12}
+                                  inline
+                                  name="vegetariano"
+                                  type={type}
+                                  id={`inline-${type}-9`}
+                                  value={true}
+                                  checked={vegetariano === "true"}
+                                  onChange={handleVegetarianoChange}
+                                />
+                                <Form.Label>Sim</Form.Label>
+                              </Stack>
+                              <Stack gap={2} className="d-flex flex-row">
+                                <Form.Check
+                                  inline
+                                  name="vegetariano"
+                                  type={type}
+                                  id={`inline-${type}-10`}
+                                  value={false}
+                                  checked={vegetariano === "false"}
+                                  onChange={handleVegetarianoChange}
+                                />
+                                <Form.Label>Não</Form.Label>
+                              </Stack>
+                            </Stack>
                           </Col>
                         </Row>
                       ))}

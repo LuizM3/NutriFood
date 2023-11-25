@@ -116,11 +116,10 @@ const SettingsConst = () => {
         }, 5000);
       }
     } else {
-
-        setRequisitoAlert(true);
-        setTimeout(() => {
-          setRequisitoAlert(false);
-        }, 5000);
+      setRequisitoAlert(true);
+      setTimeout(() => {
+        setRequisitoAlert(false);
+      }, 5000);
     }
   };
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
@@ -344,61 +343,66 @@ const SettingsConst = () => {
                     dos seus dados pessoais.
                   </p>
                   <h3>Alterar senha</h3>
-                  <Form onSubmit={handleSubmitAuth} className="formulario-card">
-                    <Stack gap={2}>
-                      <Form.Group>
-                        <Form.Text>Senha Atual</Form.Text>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Control
-                          type="password"
-                          placeholder="Digite aqui sua senha atual"
-                          value={senha}
-                          data-test="form-pass"
-                          onChange={(e) => setSenha(e.target.value)}
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Text>Nova Senha</Form.Text>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Control
-                          type="password"
-                          placeholder="Digite aqui sua nova senha"
-                          value={senhaNova}
-                          data-test="form-pass"
-                          onChange={(e) => setSenhaNova(e.target.value)}
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Control
-                          type="password"
-                          placeholder="Confirme a nova senha"
-                          value={senhaNovaConfirmar}
-                          data-test="form-pass"
-                          onChange={(e) =>
-                            setSenhaNovaConfirmar(e.target.value)
-                          }
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Button
-                          className="bt-sub"
-                          type="submit"
-                          id="button-login-signup"
-                        >
-                          Autenticar
-                        </Button>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Text muted>
-                          A senha deve conter entre 8-100 caracteres, com ao
-                          menos uma letra maiúscula, minúscula e um símbolo. Não
-                          pode conter espaços ou emojis.
-                        </Form.Text>
-                      </Form.Group>
-                    </Stack>
-                  </Form>
+                  <Col lg={8} sm={8} md={12}>
+                    <Form
+                      onSubmit={handleSubmitAuth}
+                      className="formulario-card"
+                    >
+                      <Stack gap={2}>
+                        <Form.Group>
+                          <Form.Text>Senha Atual</Form.Text>
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Control
+                            type="password"
+                            placeholder="Digite aqui sua senha atual"
+                            value={senha}
+                            data-test="form-pass"
+                            onChange={(e) => setSenha(e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Text>Nova Senha</Form.Text>
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Control
+                            type="password"
+                            placeholder="Digite aqui sua nova senha"
+                            value={senhaNova}
+                            data-test="form-pass"
+                            onChange={(e) => setSenhaNova(e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Control
+                            type="password"
+                            placeholder="Confirme a nova senha"
+                            value={senhaNovaConfirmar}
+                            data-test="form-pass"
+                            onChange={(e) =>
+                              setSenhaNovaConfirmar(e.target.value)
+                            }
+                          />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Text muted>
+                            A senha deve conter entre 8-100 caracteres, com ao
+                            menos uma letra maiúscula, minúscula e um símbolo.
+                            Não pode conter espaços ou emojis.
+                          </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="d-flex justify-content-end">
+                          <Button
+                            className="bt-sub"
+                            type="submit"
+                            id="button-login-signup"
+                          >
+                            Autenticar
+                          </Button>
+                        </Form.Group>
+                      </Stack>
+                    </Form>
+                  </Col>
                 </div>
               </div>
             </Col>

@@ -430,10 +430,7 @@ const SettingsConst = () => {
                     </Col>
                   </Row>
 
-                  <p>
-                    Confira abaixo seu histórico se sugestões, você poderá ver
-                    suas sugestões já feitas.
-                  </p>
+          
                 </div>
               </div>
             </Col>
