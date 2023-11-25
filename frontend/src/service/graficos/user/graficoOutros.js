@@ -3,18 +3,22 @@ import ReactApexChart from "react-apexcharts";
 import user from "../../requisicao/userReq";
 import review from "../../requisicao/reviewReq";
 
-class GraficoVegetariano extends Component {
+class GraficoOutros extends Component {
   constructor(props) {
     super(props);
     this.state = {
       series: [
         {
           name: "Geral",
-          data: [0, 0, 0],
+          data: [
+            0, 0, 0
+          ],
         },
         {
-          name: "Vegetariano",
-          data: [0, 0, 0],
+          name: "Outros",
+          data: [
+            0, 0, 0
+          ],
         },
       ],
       options: {
@@ -23,7 +27,7 @@ class GraficoVegetariano extends Component {
           height: 440,
           stacked: true,
         },
-        colors: ["#008FFB", "#52f772"],
+        colors: ["#008FFB", "#0026ff"],
         plotOptions: {
           bar: {
             horizontal: true,
@@ -67,13 +71,12 @@ class GraficoVegetariano extends Component {
         },
         xaxis: {
           categories: [
-            "Sabor Da Refeicao",
-            "Variedade",
-            "Temperatura Do Alimento",
+            "Sabor Da Refeicao", "Variedade", "Temperatura Do Alimento"
           ],
           title: {
             text: "Nota",
           },
+          
         },
       },
     };
@@ -83,12 +86,13 @@ class GraficoVegetariano extends Component {
     // Buscar dados de usuário e avaliação
     user().then((userObject) => {
       const id = userObject.id;
-      const vegetariano = userObject.vegetariano;
-      const idVeg = [];
+      const vinculoAoIfes = userObject.vinculoAoIfes;
+      const idOutros = [];
+    
 
-      for (let i = 0; i < vegetariano.length; i++) {
-        if (vegetariano[i] == 1) {
-          idVeg.push(id[i]);
+      for (let i = 0; i < vinculoAoIfes.length; i++) {
+        if (vinculoAoIfes[i] == "Outro") {
+            idOutros.push(id[i]);
         }
       }
 
@@ -98,43 +102,42 @@ class GraficoVegetariano extends Component {
         let somaGeral2 = 0;
         let somaGeral3 = 0;
 
-        let contVeg = 0;
-        let somaVeg1 = 0;
-        let somaVeg2 = 0;
-        let somaVeg3 = 0;
+        let contOutros = 0;
+        let somaOutros1 = 0;
+        let somaOutros2 = 0;
+        let somaOutros3 = 0;
 
         for (const element of reviewObject) {
           somaGeral1 += Number(element.saborDaRefeicao);
           somaGeral2 += Number(element.variedade);
           somaGeral3 += Number(element.temperaturaDoAlimento);
+          contGeral++;
 
-          for (let i = 0; i < idVeg.length; i++) {
-            if (element.idUsuario == idVeg[i]) {
-              somaVeg1 += Number(element.saborDaRefeicao);
-              somaVeg2 += Number(element.variedade);
-              somaVeg3 += Number(element.temperaturaDoAlimento);
-              contVeg++;
+          for (let i = 0; i < idOutros.length; i++) {
+            if (element.idUsuario == idOutros[i]) {
+              somaOutros1 += Number(element.saborDaRefeicao);
+              somaOutros2 += Number(element.variedade);
+              somaOutros3 += Number(element.temperaturaDoAlimento);
+              contOutros++;
             }
           }
-
-          contGeral++;
         }
 
-        const mediaVegSaborDaRefeicao = (somaVeg1 / contVeg) * -1;
-        const mediaVegVariedade = (somaVeg2 / contVeg) * -1;
-        const mediaVegTemperaturaDoAlimento = (somaVeg3 / contVeg) * -1;
-
+        const mediaOutrosSaborDaRefeicao = somaOutros1 / contOutros *-1;
+        const mediaOutrosVariedade = somaOutros2 / contOutros*-1;
+        const mediaOutrosTemperaturaDoAlimento = somaOutros3 / contOutros*-1;
+        
         const mediaGeralSaborDaRefeicao = somaGeral1 / contGeral;
         const mediaGeralVariedade = somaGeral2 / contGeral;
         const mediaGeralTemperaturaDoAlimento = somaGeral3 / contGeral;
 
         this.setState({
           mediaGeralSaborDaRefeicao,
-          mediaVegSaborDaRefeicao,
+          mediaOutrosSaborDaRefeicao,
           mediaGeralVariedade,
-          mediaVegVariedade,
+          mediaOutrosVariedade,
           mediaGeralTemperaturaDoAlimento,
-          mediaVegTemperaturaDoAlimento,
+          mediaOutrosTemperaturaDoAlimento,
           series: [
             {
               name: "Geral",
@@ -145,11 +148,11 @@ class GraficoVegetariano extends Component {
               ],
             },
             {
-              name: "Vegetariano",
+              name: "Outros",
               data: [
-                mediaVegSaborDaRefeicao.toFixed(2),
-                mediaVegVariedade.toFixed(2),
-                mediaVegTemperaturaDoAlimento.toFixed(2),
+                mediaOutrosSaborDaRefeicao.toFixed(2),
+                mediaOutrosVariedade.toFixed(2),
+                mediaOutrosTemperaturaDoAlimento.toFixed(2),
               ],
             },
           ],
@@ -172,4 +175,4 @@ class GraficoVegetariano extends Component {
   }
 }
 
-export default GraficoVegetariano;
+export default GraficoOutros;

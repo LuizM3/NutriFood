@@ -88,8 +88,6 @@ const DashboardConst = () => {
       vetMedia.push(soma);
     }
 
-    console.log(vetMedia);
-
     let boas = 0;
     let ruins = 0;
     for(let i = 0; i < vetMedia.length; i++){

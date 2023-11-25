@@ -3,18 +3,22 @@ import ReactApexChart from "react-apexcharts";
 import user from "../../requisicao/userReq";
 import review from "../../requisicao/reviewReq";
 
-class GraficoVegetariano extends Component {
+class GraficoSDT extends Component {
   constructor(props) {
     super(props);
     this.state = {
       series: [
         {
           name: "Geral",
-          data: [0, 0, 0],
+          data: [
+            0, 0, 0
+          ],
         },
         {
-          name: "Vegetariano",
-          data: [0, 0, 0],
+          name: "SDT",
+          data: [
+            0, 0, 0
+          ],
         },
       ],
       options: {
@@ -23,7 +27,7 @@ class GraficoVegetariano extends Component {
           height: 440,
           stacked: true,
         },
-        colors: ["#008FFB", "#52f772"],
+        colors: ["#008FFB", "#ffe100"],
         plotOptions: {
           bar: {
             horizontal: true,
@@ -67,13 +71,12 @@ class GraficoVegetariano extends Component {
         },
         xaxis: {
           categories: [
-            "Sabor Da Refeicao",
-            "Variedade",
-            "Temperatura Do Alimento",
+            "Sabor Da Refeicao", "Variedade", "Temperatura Do Alimento"
           ],
           title: {
             text: "Nota",
           },
+          
         },
       },
     };
@@ -83,12 +86,12 @@ class GraficoVegetariano extends Component {
     // Buscar dados de usuário e avaliação
     user().then((userObject) => {
       const id = userObject.id;
-      const vegetariano = userObject.vegetariano;
-      const idVeg = [];
-
-      for (let i = 0; i < vegetariano.length; i++) {
-        if (vegetariano[i] == 1) {
-          idVeg.push(id[i]);
+      const vinculoAoIfes = userObject.vinculoAoIfes;
+      const idSDT = [];
+    
+      for (let i = 0; i < vinculoAoIfes.length; i++) {
+        if (vinculoAoIfes[i] == "SDT") {
+            idSDT.push(id[i]);
         }
       }
 
@@ -98,43 +101,42 @@ class GraficoVegetariano extends Component {
         let somaGeral2 = 0;
         let somaGeral3 = 0;
 
-        let contVeg = 0;
-        let somaVeg1 = 0;
-        let somaVeg2 = 0;
-        let somaVeg3 = 0;
+        let contSDT = 0;
+        let somaSDT1 = 0;
+        let somaSDT2 = 0;
+        let somaSDT3 = 0;
 
         for (const element of reviewObject) {
           somaGeral1 += Number(element.saborDaRefeicao);
           somaGeral2 += Number(element.variedade);
           somaGeral3 += Number(element.temperaturaDoAlimento);
+          contGeral++;
 
-          for (let i = 0; i < idVeg.length; i++) {
-            if (element.idUsuario == idVeg[i]) {
-              somaVeg1 += Number(element.saborDaRefeicao);
-              somaVeg2 += Number(element.variedade);
-              somaVeg3 += Number(element.temperaturaDoAlimento);
-              contVeg++;
+          for (let i = 0; i < idSDT.length; i++) {
+            if (element.idUsuario == idSDT[i]) {
+              somaSDT1 += Number(element.saborDaRefeicao);
+              somaSDT2 += Number(element.variedade);
+              somaSDT3 += Number(element.temperaturaDoAlimento);
+              contSDT++;
             }
           }
-
-          contGeral++;
         }
 
-        const mediaVegSaborDaRefeicao = (somaVeg1 / contVeg) * -1;
-        const mediaVegVariedade = (somaVeg2 / contVeg) * -1;
-        const mediaVegTemperaturaDoAlimento = (somaVeg3 / contVeg) * -1;
-
+        const mediaSDTSaborDaRefeicao = somaSDT1 / contSDT *-1;
+        const mediaSDTVariedade = somaSDT2 / contSDT*-1;
+        const mediaSDTTemperaturaDoAlimento = somaSDT3 / contSDT*-1;
+        
         const mediaGeralSaborDaRefeicao = somaGeral1 / contGeral;
         const mediaGeralVariedade = somaGeral2 / contGeral;
         const mediaGeralTemperaturaDoAlimento = somaGeral3 / contGeral;
 
         this.setState({
           mediaGeralSaborDaRefeicao,
-          mediaVegSaborDaRefeicao,
+          mediaSDTSaborDaRefeicao,
           mediaGeralVariedade,
-          mediaVegVariedade,
+          mediaSDTVariedade,
           mediaGeralTemperaturaDoAlimento,
-          mediaVegTemperaturaDoAlimento,
+          mediaSDTTemperaturaDoAlimento,
           series: [
             {
               name: "Geral",
@@ -145,11 +147,11 @@ class GraficoVegetariano extends Component {
               ],
             },
             {
-              name: "Vegetariano",
+              name: "SDT",
               data: [
-                mediaVegSaborDaRefeicao.toFixed(2),
-                mediaVegVariedade.toFixed(2),
-                mediaVegTemperaturaDoAlimento.toFixed(2),
+                mediaSDTSaborDaRefeicao.toFixed(2),
+                mediaSDTVariedade.toFixed(2),
+                mediaSDTTemperaturaDoAlimento.toFixed(2),
               ],
             },
           ],
@@ -172,4 +174,4 @@ class GraficoVegetariano extends Component {
   }
 }
 
-export default GraficoVegetariano;
+export default GraficoSDT;

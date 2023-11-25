@@ -24,19 +24,22 @@ import GraficoTempoDeEspera from "../service/graficos/review/tempoDeEspera.js";
 import GraficoVariedade from "../service/graficos/review/variedade.js";
 
 import GraficoVegetariano from "../service/graficos/user/graficoVegetariano.js";
+import GraficoAlunoMedio from "../service/graficos/user/graficoAlunoMedio.js";
+import GraficoAlunoGraduacao from "../service/graficos/user/graficoAlunoGraduacao.js";
+import GraficoSDT from "../service/graficos/user/graficoSDT.js";
+import GraficoOutros from "../service/graficos/user/graficoOutros.js";
+
+import userReq from "../service/requisicao/userReq.js";
 
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
 
 const Sidebar = () => {
-
-  const [vinculado, setVinculoAoIfes] = useState([]);
-  const [cafeDaManha, setCafeDaManha] = useState([]);
-  const [almoco, setAlmoco] = useState([]);
-  const [lancheDaTarde, setLancheDaTarde] = useState([]);
-  const [jantar, setJantar] = useState([]);
-  const [vegetariano, setVegetariano] = useState([]);
-
+  const [quantidadeAM, setQuantidadeAM] = useState(0);
+  const [quantidadeAG, setQuantidadeAG] = useState(0);
+  const [quantidadeSDT, setQuantidadeSDT] = useState(0);
+  const [quantidadeOutro, setQuantidadeOutro] = useState(0);
+  const [quantidadeVeg, setQuantidadeVeg] = useState(0);
 
   const id = localStorage.getItem("id");
   const navigate = useNavigate();
@@ -49,10 +52,51 @@ const Sidebar = () => {
     navigate("/");
   };
 
+  let qtdAM = 0;
+  let qtdAG = 0;
+  let qtdSDT = 0;
+  let qtdOutro = 0;
+  let qtdVeg = 0;
+
   useEffect(() => {
     if (id != 1) {
       navigate("/");
     }
+
+    let cont = 0;
+
+    userReq().then((Object) => {
+      for (const element of Object.vinculoAoIfes) {
+        switch (element) {
+          case "AM":
+            qtdAM++;
+            break;
+          case "AG":
+            qtdAG++;
+            break;
+          case "SDT":
+            qtdSDT++;
+            break;
+          case "Outro":
+            qtdOutro++;
+        }
+        cont++;
+        if (Object.vegetariano[cont] == "1") {
+          qtdVeg++;
+        }
+      }
+      setQuantidadeAG(qtdAG);
+      setQuantidadeAM(qtdAM);
+      setQuantidadeSDT(qtdSDT);
+      setQuantidadeOutro(qtdOutro);
+      setQuantidadeVeg(qtdVeg);
+
+      qtdAM = 0;
+      qtdAG = 0;
+      qtdSDT = 0;
+      qtdOutro = 0;
+      qtdVeg = 0;
+    });
   }, []);
 
   return (
@@ -147,10 +191,10 @@ const Sidebar = () => {
                             <ion-icon name="thumbs-up-sharp"></ion-icon>
                           </Col>
                           <Col md={6} className="d-flex align-items-center">
-                            Avaliações boas
+                            Vegetariano
                           </Col>
                           <Col md={2} className="d-flex align-items-center">
-                            {}
+                            {quantidadeVeg}
                           </Col>
                         </Row>
                       </Card.Body>
@@ -167,10 +211,10 @@ const Sidebar = () => {
                             <ion-icon name="thumbs-down-sharp"></ion-icon>
                           </Col>
                           <Col md={6} className="d-flex align-items-center">
-                            Avaliações ruins
+                            Aluno Medio
                           </Col>
                           <Col md={2} className="d-flex align-items-center">
-                            10
+                            {quantidadeAM}
                           </Col>
                         </Row>
                       </Card.Body>
@@ -187,10 +231,50 @@ const Sidebar = () => {
                             <ion-icon name="analytics-sharp"></ion-icon>
                           </Col>
                           <Col md={6} className="d-flex align-items-center">
-                            Total de avaliações
+                            Aluno Graduação
                           </Col>
                           <Col md={2} className="d-flex align-items-center">
-                            {}
+                            {quantidadeAG}
+                          </Col>
+                        </Row>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col>
+                    <Card className="card-top-1">
+                      <Card.Body>
+                        <Row>
+                          <Col
+                            md={4}
+                            className="d-flex align-items-center justify-content-center"
+                          >
+                            <ion-icon name="thumbs-up-sharp"></ion-icon>
+                          </Col>
+                          <Col md={6} className="d-flex align-items-center">
+                            SDT
+                          </Col>
+                          <Col md={2} className="d-flex align-items-center">
+                            {quantidadeSDT}
+                          </Col>
+                        </Row>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col>
+                    <Card className="card-top-1">
+                      <Card.Body>
+                        <Row>
+                          <Col
+                            md={4}
+                            className="d-flex align-items-center justify-content-center"
+                          >
+                            <ion-icon name="thumbs-up-sharp"></ion-icon>
+                          </Col>
+                          <Col md={6} className="d-flex align-items-center">
+                            Outro
+                          </Col>
+                          <Col md={2} className="d-flex align-items-center">
+                            {quantidadeOutro}
                           </Col>
                         </Row>
                       </Card.Body>
@@ -202,10 +286,9 @@ const Sidebar = () => {
                     <Row className="p-0 m-0">
                       <Col md={8}>
                         <Card className="h-100">
-                          <Card.Header>Apresentação</Card.Header>
+                          <Card.Header>Vegetariano x Geral</Card.Header>
                           <Card.Body>
-                            {/* <GraficoApresentacao /> */}
-                            <GraficoVegetariano/>
+                            <GraficoVegetariano />
                           </Card.Body>
                         </Card>
                       </Col>
@@ -213,9 +296,9 @@ const Sidebar = () => {
                       <Col md={4}>
                         <Stack gap={4}>
                           <Card>
-                            <Card.Header>Variedade</Card.Header>
+                            <Card.Header></Card.Header>
                             <Card.Body>
-                              <GraficoVariedade />
+                              <GraficoHigiene />
                             </Card.Body>
                           </Card>
                           <Card>
@@ -246,9 +329,9 @@ const Sidebar = () => {
                       </Col>
                       <Col md={8}>
                         <Card className="h-100">
-                          <Card.Header>Temperatura do Alimento</Card.Header>
+                          <Card.Header>Aluno Medio x Geral</Card.Header>
                           <Card.Body>
-                            <GraficoTemperaturaDoAlimento />
+                            <GraficoAlunoMedio />
                           </Card.Body>
                         </Card>
                       </Col>
@@ -256,17 +339,17 @@ const Sidebar = () => {
                     <Row className="p-0 m-0">
                       <Col md={6}>
                         <Card>
-                          <Card.Header>Higiene</Card.Header>
+                          <Card.Header>Outros x Geral</Card.Header>
                           <Card.Body>
-                            <GraficoHigiene />
+                            <GraficoOutros />
                           </Card.Body>
                         </Card>
                       </Col>
                       <Col md={6}>
                         <Card>
-                          <Card.Header>Temperatura do Ambiente</Card.Header>
+                          <Card.Header>Aluno Graduação x Geral</Card.Header>
                           <Card.Body>
-                            <GraficoTemperaturaDoAmbiente />
+                            <GraficoAlunoGraduacao />
                           </Card.Body>
                         </Card>
                       </Col>
@@ -274,9 +357,9 @@ const Sidebar = () => {
                     <Row className="p-0 m-0">
                       <Col md={7}>
                         <Card>
-                          <Card.Header>Atendimento</Card.Header>
+                          <Card.Header>SDT x Geral</Card.Header>
                           <Card.Body>
-                            <GraficoAtendimento />
+                            <GraficoSDT />
                           </Card.Body>
                         </Card>
                       </Col>
