@@ -14,6 +14,7 @@ import SettingsData from "./views/SettingsData";
 import Dashboard from "./views/Dashboard";
 import DashboardUsers from "./views/DashboardUsers";
 import DashboardSuggestions from "./views/DashboardSuggestions";
+import DashboardCardapio from "./components/dashboardCardapio";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard" element={<Dashboard />} /> {" "}
         <Route path="/dashboard/users" element={<DashboardUsers />} /> {" "}
         <Route path="/dashboard/suggestions" element={<DashboardSuggestions />} /> {" "}
+        <Route path="/dashboard/cardapio" element={<DashboardCardapio />} /> {" "}
 
       </Routes>{" "}
     </Router>{" "}

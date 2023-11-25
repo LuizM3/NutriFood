@@ -137,7 +137,7 @@ const Sidebar = () => {
                   </Row>
                 </Button>
               </Link>
-              <Link to="" className="text-decoration-none w-100 active-sidebar">
+              <Link to="/dashboard/users" className="text-decoration-none w-100 active-sidebar">
                 <Button className="w-100">
                   <Row>
                     <Col md={2}>
@@ -147,22 +147,26 @@ const Sidebar = () => {
                   </Row>
                 </Button>
               </Link>
-              <Button>
-                <Row>
-                  <Col md={2}>
-                    <ion-icon name="file-tray"></ion-icon>
-                  </Col>
-                  <Col md={2}>Sugestões</Col>
-                </Row>
-              </Button>
-              <Button>
-                <Row>
-                  <Col md={2}>
-                    <ion-icon name="restaurant"></ion-icon>
-                  </Col>
-                  <Col md={2}>Cardápio</Col>
-                </Row>
-              </Button>
+              <Link to="/dashboard/suggestions" className="text-decoration-none w-100">
+                <Button className="w-100">
+                  <Row>
+                    <Col md={2}>
+                      <ion-icon name="file-tray"></ion-icon>
+                    </Col>
+                    <Col md={2}>Sugestões</Col>
+                  </Row>
+                </Button>
+              </Link>
+              <Link to="/dashboard/cardapio" className="text-decoration-none w-100">
+                <Button className="w-100">
+                  <Row>
+                    <Col md={2}>
+                      <ion-icon name="restaurant"></ion-icon>
+                    </Col>
+                    <Col md={2}>Cardápio</Col>
+                  </Row>
+                </Button>
+              </Link>
             </Stack>
             <Stack className="align-self-end stack-log w-100">
               <Button onClick={handleShow}>

@@ -205,7 +205,8 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Button>
+                <Link to="/dashboard/cardapio" className="text-decoration-none w-100">
+                <Button className="w-100">
                   <Row>
                     <Col md={2}>
                       <ion-icon name="restaurant"></ion-icon>
@@ -213,6 +214,7 @@ const DashboardConst = () => {
                     <Col md={2}>Cardápio</Col>
                   </Row>
                 </Button>
+                </Link>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
                 <Button onClick={handleShow}>
