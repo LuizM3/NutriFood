@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../assets/styles/dashboard.scss";
-import Grafico from "../service/graficos/apresentacao";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
@@ -16,18 +15,17 @@ import {
 } from "react-bootstrap";
 
 import { useMediaQuery } from "react-responsive";
-import GraficoApresentacao from "../service/graficos/apresentacao.js";
-import GraficoVariedade from "../service/graficos/variedade.js";
-import GraficoSaborDaRefeicao from "../service/graficos/saborDaRefeicao.js";
-import GraficoSaborDoSuco from "../service/graficos/saborDoSuco.js";
+import GraficoApresentacao from "../service/graficos/review/apresentacao.js";
+import GraficoAtendimento from "../service/graficos/review/atendimento.js";
+import GraficoHigiene from "../service/graficos/review/higiene.js";
+import GraficoSaborDaRefeicao from "../service/graficos/review/saborDaRefeicao.js";
+import GraficoSaborDaSobremesa from "../service/graficos/review/saborDaSobremesa.js";
+import GraficoSaborDoSuco from "../service/graficos/review/saborDoSuco.js";
+import GraficoTemperaturaDoAlimento from "../service/graficos/review/temperaturaDoAlimento.js";
+import GraficoTemperaturaDoAmbiente from "../service/graficos/review/temperaturaDoAmbiente.js";
+import GraficoTempoDeEspera from "../service/graficos/review/tempoDeEspera.js";
+import GraficoVariedade from "../service/graficos/review/variedade.js";
 
-//Não implementados
-import GraficoSaborDaSobremesa from "../service/graficos/saborDaSobremesa.js";
-import GraficoTemperaturaDoAlimento from "../service/graficos/temperaturaDoAlimento.js";
-import GraficoAtendimento from "../service/graficos/atendimento.js";
-import GraficoTemperaturaDoAmbiente from "../service/graficos/temperaturaDoAmbiente.js";
-import GraficoTempoDeEspera from "../service/graficos/tempoDeEspera.js";
-import GraficoHigiene from "../service/graficos/higiene.js";
 import review from "../service/requisicao/reviewReq.js";
 
 const logo = require("../assets/images/logo.png");
@@ -89,8 +87,6 @@ const DashboardConst = () => {
       soma = soma/10;
       vetMedia.push(soma);
     }
-
-    console.log(vetMedia);
 
     let boas = 0;
     let ruins = 0;
@@ -209,7 +205,8 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Button>
+                <Link to="/dashboard/cardapio" className="text-decoration-none w-100">
+                <Button className="w-100">
                   <Row>
                     <Col md={2}>
                       <ion-icon name="restaurant"></ion-icon>
@@ -217,6 +214,7 @@ const DashboardConst = () => {
                     <Col md={2}>Cardápio</Col>
                   </Row>
                 </Button>
+                </Link>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
                 <Button onClick={handleShow}>

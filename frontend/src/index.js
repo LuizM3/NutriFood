@@ -13,9 +13,9 @@ import Settings from "./views/Settings";
 import SettingsData from "./views/SettingsData";
 import SettingsSecurity from "./views/SettingsSecurity";
 import Dashboard from "./views/Dashboard";
-import View from "./components/views";
 import DashboardUsers from "./views/DashboardUsers";
 import DashboardSuggestions from "./views/DashboardSuggestions";
+import DashboardCardapio from "./components/dashboardCardapio";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -34,7 +34,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard" element={<Dashboard />} /> {" "}
         <Route path="/dashboard/users" element={<DashboardUsers />} /> {" "}
         <Route path="/dashboard/suggestions" element={<DashboardSuggestions />} /> {" "}
-        <Route path="/view" element={<View />} /> {" "}
+        <Route path="/dashboard/cardapio" element={<DashboardCardapio />} /> {" "}
 
       </Routes>{" "}
     </Router>{" "}

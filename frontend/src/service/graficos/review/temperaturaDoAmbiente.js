@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import review from "../requisicao/reviewReq";
+import review from "../../requisicao/reviewReq";
 import Chart from "react-apexcharts";
 import ReactApexChart from "react-apexcharts";
 
@@ -13,25 +13,25 @@ const objeto = {
 
 review().then(Object => {
     for (let i = 0; i < Object.length; i++) {
-        if (Object[i].variedade == 1) {
+        if (Object[i].temperaturaDoAmbiente == 1) {
             objeto.a++;
         }
-        if (Object[i].variedade == 2) {
+        if (Object[i].temperaturaDoAmbiente == 2) {
             objeto.b++;
         }
-        if (Object[i].variedade == 3) {
+        if (Object[i].temperaturaDoAmbiente == 3) {
             objeto.c++;
         }
-        if (Object[i].variedade == 4) {
+        if (Object[i].temperaturaDoAmbiente == 4) {
             objeto.d++;
         }
-        if (Object[i].variedade == 5) {
+        if (Object[i].temperaturaDoAmbiente == 5) {
             objeto.e++;
         }
     }
 });
 
-class GraficoVariedade extends Component {
+class GraficoTemperaturaDoAmbiente extends Component {
     constructor(props) {
         super(props);
 
@@ -72,4 +72,4 @@ class GraficoVariedade extends Component {
         )
     }
 }
-export default GraficoVariedade;
+export default GraficoTemperaturaDoAmbiente;

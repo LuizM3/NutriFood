@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import review from "../requisicao/reviewReq";
+import review from "../../requisicao/reviewReq";
 import ReactApexChart from "react-apexcharts";
 
 const objeto = {
@@ -12,25 +12,25 @@ const objeto = {
 
 review().then(Object => {
     for (let i = 0; i < Object.length; i++) {
-        if (Object[i].atendimento == 1) {
+        if (Object[i].temperaturaDoAlimento == 1) {
             objeto.a++;
         }
-        if (Object[i].atendimento == 2) {
+        if (Object[i].temperaturaDoAlimento == 2) {
             objeto.b++;
         }
-        if (Object[i].atendimento == 3) {
+        if (Object[i].temperaturaDoAlimento == 3) {
             objeto.c++;
         }
-        if (Object[i].atendimento == 4) {
+        if (Object[i].temperaturaDoAlimento == 4) {
             objeto.d++;
         }
-        if (Object[i].atendimento == 5) {
+        if (Object[i].temperaturaDoAlimento == 5) {
             objeto.e++;
         }
     }
 });
 
-class GraficoAtendimento extends Component {
+class GraficoTemperaturaDoAlimento extends Component {
     constructor(props) {
         super(props);
 
@@ -42,7 +42,6 @@ class GraficoAtendimento extends Component {
             options: {
                 chart: {
                     type: 'bar',
-                    
                 },
                 plotOptions: {
                     bar: {
@@ -65,10 +64,10 @@ class GraficoAtendimento extends Component {
     render() {
         return (
             <div id="chart">
-                <ReactApexChart options={this.state.options} series={this.state.series} type="bar"/>
+                <ReactApexChart options={this.state.options} series={this.state.series} type="bar" />
             </div>
         );
     }
 }
 
-export default GraficoAtendimento;
+export default GraficoTemperaturaDoAlimento;

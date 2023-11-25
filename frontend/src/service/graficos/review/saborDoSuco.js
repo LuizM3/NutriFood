@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import review from "../requisicao/reviewReq";
+import review from "../../requisicao/reviewReq";
 import ReactApexChart from "react-apexcharts";
 
 const objeto = {
@@ -12,25 +12,25 @@ const objeto = {
 
 review().then(Object => {
     for (let i = 0; i < Object.length; i++) {
-        if (Object[i].tempoDeEspera == 1) {
+        if (Object[i].saborDoSuco == 1) {
             objeto.a++;
         }
-        if (Object[i].tempoDeEspera == 2) {
+        if (Object[i].saborDoSuco == 2) {
             objeto.b++;
         }
-        if (Object[i].tempoDeEspera == 3) {
+        if (Object[i].saborDoSuco == 3) {
             objeto.c++;
         }
-        if (Object[i].tempoDeEspera == 4) {
+        if (Object[i].saborDoSuco == 4) {
             objeto.d++;
         }
-        if (Object[i].tempoDeEspera == 5) {
+        if (Object[i].saborDoSuco == 5) {
             objeto.e++;
         }
     }
 });
 
-class GraficoTempoDeEspera extends Component {
+class GraficoSaborDoSuco extends Component {
     constructor(props) {
         super(props);
 
@@ -39,7 +39,7 @@ class GraficoTempoDeEspera extends Component {
             series: [objeto.a, objeto.b, objeto.c, objeto.d, objeto.e],
             options: {
                 chart: {
-                    type: 'pie',
+                    type: 'donut',
                 },
                 labels: [1, 2, 3, 4, 5],
                 responsive: [{
@@ -53,16 +53,18 @@ class GraficoTempoDeEspera extends Component {
                     }
                 }]
             },
+
+
         };
     }
-
 
     render() {
         return (
             <div id="chart">
-                <ReactApexChart options={this.state.options} series={this.state.series} type="pie"/>
+                <ReactApexChart options={this.state.options} series={this.state.series} type="donut" />
             </div>
+
         )
     }
 }
-export default GraficoTempoDeEspera;
+export default GraficoSaborDoSuco;
