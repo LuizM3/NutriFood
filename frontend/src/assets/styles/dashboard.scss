@@ -51,12 +51,12 @@
     color: var(--gray);
   }
   .btn:focus {
-    color: var(--quarter) !important;
-    background-color: #beffe6 !important;
+    color: var(--gray) !important;
+    background-color: #edeff2;
   }
   .btn:active {
-    color: var(--quarter) !important;
-    background-color: #beffe6 !important;
+    color: var(--gray) !important;
+    background-color: #edeff2;
   }
   .btn:hover {
     background-color: #edeff2;
@@ -75,7 +75,8 @@
     color: #4d6d57;
     justify-content: center;
     .hydrated {
-      background: linear-gradient(45deg, #8bc34a, #43a047);
+
+      background: linear-gradient(45deg, #8bc34a, #43a047 );
       border-radius: 100%;
       padding: 10px;
       font-size: large !important;
@@ -120,6 +121,34 @@
       }
     }
   }
+
+  .card-top-4 {
+    background-color: #edeff2;
+    color: #585858;
+    box-shadow: none !important;
+    display: flex;
+    justify-content: center;
+    .hydrated {
+      
+      background: linear-gradient(45deg, #c9caca, #585858);
+      border-radius: 100%;
+      padding: 10px;
+      font-size: x-large !important;
+      color: white;
+    }
+    .row {
+      font-family: "Quicksand", sans-serif !important;
+    }
+    @media (max-width: 990px) {
+      .c-2 {
+        display: none !important;
+      }
+      .col-md-12 {
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
   .card-top-3 {
     background-color: #fffed4;
     color: #a3a06b;
@@ -127,6 +156,7 @@
     display: flex;
     justify-content: center;
     .hydrated {
+      
       background: linear-gradient(45deg, #ffeb3b, #ffc107);
       border-radius: 100%;
       padding: 10px;
@@ -149,24 +179,21 @@
   .card {
     border: transparent;
     border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 5px rgba(138, 138, 138, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.5s ease-in-out;
   }
   .card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 30px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 30px rgba(0, 0, 0, 0.1);
   }
 }
 .active-sidebar {
   border-radius: 8px !important;
-  color: var(--quarter) !important;
-  background-color: #beffe6 !important;
+  background-color: #edeff2 !important;
   :hover {
-    color: var(--quarter) !important;
-    background-color: #beffe6 !important;
+    background-color: #edeff2 !important;
   }
   :active {
-    color: var(--quarter) !important;
-    background-color: #beffe6 !important;
+    background-color: #edeff2 !important;
   }
 }
 

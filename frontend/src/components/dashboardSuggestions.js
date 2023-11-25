@@ -223,95 +223,7 @@ const DashboardConst = () => {
           <Col className="flex-shrink-1 overflow-scroll col-dash-cont">
             <Container fluid className="w-100 p-5">
               <Stack gap={5}>
-                <Row className="m-0 p-0">
-                  <Col>
-                    <Card className="card-top-1">
-                      <Card.Body>
-                        <Row>
-                          <Col
-                            md={6}
-                            lg={4}
-                            className="d-flex align-items-center justify-content-center c-1"
-                          >
-                            <ion-icon name="thumbs-up-sharp"></ion-icon>
-                          </Col>
-                          <Col
-                            lg={4}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-2"
-                          >
-                            <h5>Positivas</h5>
-                          </Col>
-                          <Col
-                            lg={12}
-                            md={6}
-                            className="d-flex justify-content-center align-items-center c-3"
-                          >
-                            <h3>{quantidade}</h3>
-                          </Col>
-                        </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                  <Col>
-                    <Card className="card-top-2">
-                      <Card.Body>
-                        <Row>
-                          <Col
-                            lg={4}
-                            md={6}
-                            className="d-flex align-items-center justify-content-center c-1"
-                          >
-                            <ion-icon name="thumbs-down-sharp"></ion-icon>
-                          </Col>
-                          <Col
-                            lg={4}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-2"
-                          >
-                            <h5>Negativas</h5>
-                          </Col>
-                          <Col
-                            lg={12}
-                            md={6}
-                            className="d-flex justify-content-center align-items-center c-3"
-                          >
-                            <h3></h3>
-                          </Col>
-                        </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                  <Col>
-                    <Card className="card-top-3">
-                      <Card.Body>
-                        <Row>
-                          <Col
-                            lg={4}
-                            md={6}
-                            className="d-flex align-items-center justify-content-center c-1"
-                          >
-                            <ion-icon name="analytics-sharp"></ion-icon>
-                          </Col>
-                          <Col
-                            lg={4}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-2"
-                          >
-                            <h5>Total</h5>
-                          </Col>
-                          <Col
-                            lg={12}
-                            md={6}
-                            className="d-flex justify-content-center align-items-center c-3"
-                          >
-                            <h3>{quantidade}</h3>
-                          </Col>
-                        </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </Row>
+              <h2>Listagem de sugestões</h2>
                 <Row className="admin-suges-row">
                   <Col className="overflow-scroll h-100 suges-col p-2 pt-0">
                     <ListGroup className="m-0 p-0">
@@ -321,9 +233,9 @@ const DashboardConst = () => {
                           "dd/MM/yyyy"
                         );
                         return (
-                          <Col>
+                          <Col md={12}>
                             <Card key={index} className="m-2">
-                              <Card.Header className="p-0 mb-1 m-0">
+                              <Card.Header className="p-0 mb-1 m-0 border-0">
                                 <Row className="p-2">
                                   <Col>
                                     Sugestão <span>#{index + 1}</span>

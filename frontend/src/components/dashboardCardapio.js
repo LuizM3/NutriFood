@@ -253,6 +253,8 @@ const Sidebar = () => {
           <Col className="flex-shrink-1 overflow-scroll col-dash-cont">
             <Container fluid className="w-100 p-5">
               <Row className="p-0 m-0">
+
+              <h2>Cardápio Mensal</h2>
                 <Stack gap={4} className="d-flex flex-row">
                   <Stack gap={4}>
                     <Col md={12} lg={12} className="p-0 m-0">
@@ -325,10 +327,12 @@ const Sidebar = () => {
                           </Form>
                         </Card.Body>
                       </Card>
+
                     </Col>
+
+                <Button className="bt-sub">Enviar</Button>
                   </Stack>
                 </Stack>
-                <Button>Enviar</Button>
               </Row>
             </Container>
           </Col>

@@ -241,20 +241,20 @@ const DashboardConst = () => {
                           <Col
                             md={6}
                             lg={4}
-                            className="d-flex align-items-center justify-content-center c-1"
+                            className="d-flex align-items-center justify-content-center c-2"
                           >
                             <ion-icon name="thumbs-up-sharp"></ion-icon>
                           </Col>
                           <Col
                             lg={4}
                             md={12}
-                            className="d-flex justify-content-center align-items-center c-2"
+                            className="d-flex justify-content-center align-items-center c-1"
                           >
                             <h5>Positivas</h5>
                           </Col>
                           <Col
                             lg={12}
-                            md={6}
+                            md={12}
                             className="d-flex justify-content-center align-items-center c-3"
                           >
                             <h3>{boasAvaliacoes}</h3>
@@ -270,20 +270,20 @@ const DashboardConst = () => {
                           <Col
                             lg={4}
                             md={6}
-                            className="d-flex align-items-center justify-content-center c-1"
+                            className="d-flex align-items-center justify-content-center c-2"
                           >
                             <ion-icon name="thumbs-down-sharp"></ion-icon>
                           </Col>
                           <Col
                             lg={4}
                             md={12}
-                            className="d-flex justify-content-center align-items-center c-2"
+                            className="d-flex justify-content-center align-items-center c-1"
                           >
                             <h5>Negativas</h5>
                           </Col>
                           <Col
                             lg={12}
-                            md={6}
+                            md={12}
                             className="d-flex justify-content-center align-items-center c-3"
                           >
                             <h3>{masAvaliacoes}</h3>
@@ -299,20 +299,20 @@ const DashboardConst = () => {
                           <Col
                             lg={4}
                             md={6}
-                            className="d-flex align-items-center justify-content-center c-1"
+                            className="d-flex align-items-center justify-content-center c-2"
                           >
                             <ion-icon name="analytics-sharp"></ion-icon>
                           </Col>
                           <Col
                             lg={4}
                             md={12}
-                            className="d-flex justify-content-center align-items-center c-2"
+                            className="d-flex justify-content-center align-items-center c-1"
                           >
                             <h5>Total</h5>
                           </Col>
                           <Col
                             lg={12}
-                            md={6}
+                            md={12}
                             className="d-flex justify-content-center align-items-center c-3"
                           >
                             <h3>{quantidade}</h3>
@@ -328,7 +328,7 @@ const DashboardConst = () => {
                       {/* <Stack> */}
                       <Col md={12} lg={8}>
                         <Card className="h-100">
-                          <Card.Header>Apresentação</Card.Header>
+                          <Card.Header className="border-0">Apresentação</Card.Header>
                           <Card.Body>
                             <GraficoApresentacao />
                           </Card.Body>
@@ -337,13 +337,13 @@ const DashboardConst = () => {
                       <Col md={12} lg={4} className="div-resp">
                         <Stack gap={4}>
                           <Card>
-                            <Card.Header>Variedade</Card.Header>
+                            <Card.Header className="border-0">Variedade</Card.Header>
                             <Card.Body>
                               <GraficoVariedade />
                             </Card.Body>
                           </Card>
                           <Card>
-                            <Card.Header>Sabor da Refeição</Card.Header>
+                            <Card.Header className="border-0">Sabor da Refeição</Card.Header>
                             <Card.Body>
                               <GraficoSaborDaRefeicao />
                             </Card.Body>
@@ -357,13 +357,13 @@ const DashboardConst = () => {
                       <Col md={12} lg={4}>
                         <Stack gap={4}>
                           <Card>
-                            <Card.Header>Sabor do Suco</Card.Header>
+                            <Card.Header className="border-0">Sabor do Suco</Card.Header>
                             <Card.Body>
                               <GraficoSaborDoSuco />
                             </Card.Body>
                           </Card>
                           <Card>
-                            <Card.Header>Sabor da Sobremesa</Card.Header>
+                            <Card.Header className="border-0">Sabor da Sobremesa</Card.Header>
                             <Card.Body>
                               <GraficoSaborDaSobremesa />
                             </Card.Body>
@@ -372,7 +372,7 @@ const DashboardConst = () => {
                       </Col>
                       <Col className="div-resp" md={12} lg={8}>
                         <Card className="h-100">
-                          <Card.Header>Temperatura do Alimento</Card.Header>
+                          <Card.Header className="border-0">Temperatura do Alimento</Card.Header>
                           <Card.Body>
                             <GraficoTemperaturaDoAlimento />
                           </Card.Body>
@@ -383,7 +383,7 @@ const DashboardConst = () => {
                     <Row className="p-0 m-0">
                       <Col md={6} lg={6}>
                         <Card>
-                          <Card.Header>Higiene</Card.Header>
+                          <Card.Header className="border-0">Higiene</Card.Header>
                           <Card.Body>
                             <GraficoHigiene />
                           </Card.Body>
@@ -391,7 +391,7 @@ const DashboardConst = () => {
                       </Col>
                       <Col md={6} lg={6} className="div-resp">
                         <Card>
-                          <Card.Header>Temperatura do Ambiente</Card.Header>
+                          <Card.Header className="border-0">Temperatura do Ambiente</Card.Header>
                           <Card.Body>
                             <GraficoTemperaturaDoAmbiente />
                           </Card.Body>
@@ -401,7 +401,7 @@ const DashboardConst = () => {
                     <Row className="p-0 m-0">
                       <Col lg={7} md={6}>
                         <Card>
-                          <Card.Header>Atendimento</Card.Header>
+                          <Card.Header className="border-0">Atendimento</Card.Header>
                           <Card.Body>
                             <GraficoAtendimento />
                           </Card.Body>
@@ -409,7 +409,7 @@ const DashboardConst = () => {
                       </Col>
                       <Col lg={5} md={6} className="div-resp">
                         <Card className="h-100">
-                          <Card.Header>Tempo de Espera</Card.Header>
+                          <Card.Header className="border-0">Tempo de Espera</Card.Header>
                           <Card.Body>
                             <GraficoTempoDeEspera />
                           </Card.Body>
