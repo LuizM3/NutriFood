@@ -32,5 +32,8 @@
   "license": "ISC",
   "dependencies": {
     "csvtexttools": "^1.1.2"
+  },
+  "devDependencies": {
+    "papaparse": "^5.4.1"
   }
 }

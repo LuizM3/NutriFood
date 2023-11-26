@@ -5,8 +5,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10; // Número de "rodadas" de hash (maior é mais seguro, mas mais lento)
 
 router.post("/", async (req, res) => {
-  const { nome, email, senha, vinculoAoIfes, objetoRefeicoes, vegetariano } =
-    req.body;
+  const { nome, email, senha, vinculoAoIfes, objetoRefeicoes, vegetariano } = req.body;
 
   const cafeDaManha = objetoRefeicoes.cafeDaManha;
   const almoco = objetoRefeicoes.almoco;

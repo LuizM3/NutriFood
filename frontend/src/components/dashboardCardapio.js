@@ -16,6 +16,8 @@ import {
   Offcanvas,
 } from "react-bootstrap";
 
+import Papa from "papaparse";
+
 const tools = require("csvtexttools");
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
@@ -26,10 +28,31 @@ const Sidebar = () => {
   const handleClose = () => setShow(false);
   const handleOff = () => setShow(true);
   const isResponsive = useMediaQuery({ query: "(max-width: 990px)" });
-  const [textAlmoco, setTextAlmoco] = useState("");
-  const [textCafeDaManha, setTextCafeDaManha] = useState("");
-  const [textLancheDaTarde, setTextLancheDaTarde] = useState("");
-  const [textJantar, setTextJantar] = useState("");
+  const [jsonAlmoco, setjsonAlmoco] = useState("");
+  const [jsonCafeDaManha, setjsonCafeDaManha] = useState("");
+  const [jsonLancheDaTarde, setjsonLancheDaTarde] = useState("");
+  const [jsonJantar, setjsonJantar] = useState("");
+
+  const saveMenu = async () => {
+      try{
+
+        const response = await fetch(`http://localhost:9000/saveMenu`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ jsonCafeDaManha, jsonAlmoco, jsonLancheDaTarde, jsonJantar }),
+        })
+
+        if(response.ok){
+          console.log("OK");
+        }else{
+          console.log("Deu Errado");
+        }
+      } catch{
+        console.log("Error");
+      }
+  }
 
   const handleFileChangeCafeDaManha = (event) => {
     const selectedFile = event.target.files[0];
@@ -38,8 +61,8 @@ const Sidebar = () => {
 
       reader.onload = (e) => {
         const fileContent = e.target.result;
-        const output = tools.csvtexttools(fileContent, "sql", "cafeDaManha");
-        console.log(output);
+        const json = Papa.parse(fileContent, { header: true, dynamicTyping: true });
+        setjsonCafeDaManha(json);
       };
       reader.readAsText(selectedFile);
     }
@@ -52,8 +75,8 @@ const Sidebar = () => {
 
       reader.onload = (e) => {
         const fileContent = e.target.result;
-        const output = tools.csvtexttools(fileContent, "sql", "almoco");
-        console.log(output);
+        const json = Papa.parse(fileContent, { header: true, dynamicTyping: true });
+        setjsonAlmoco(json);
       };
       reader.readAsText(selectedFile);
     }
@@ -66,8 +89,8 @@ const Sidebar = () => {
 
       reader.onload = (e) => {
         const fileContent = e.target.result;
-        const output = tools.csvtexttools(fileContent, "sql", "lancheDaTarde");
-        console.log(output);
+        const json = Papa.parse(fileContent, { header: true, dynamicTyping: true });
+        setjsonLancheDaTarde(json);
       };
       reader.readAsText(selectedFile);
     }
@@ -80,8 +103,8 @@ const Sidebar = () => {
 
       reader.onload = (e) => {
         const fileContent = e.target.result;
-        const output = tools.csvtexttools(fileContent, "sql", "jantar");
-        console.log(output);
+        const json = Papa.parse(fileContent, { header: true, dynamicTyping: true });
+        setjsonJantar(json);
       };
       reader.readAsText(selectedFile);
     }
@@ -187,7 +210,7 @@ const Sidebar = () => {
               </Stack>
               <Stack gap={2} className="stack-bt">
                 <Link to="/dashboard" className="text-decoration-none w-100">
-                  <Button className="w-100 active-sidebar">
+                  <Button className="w-100">
                     <Row>
                       <Col md={2}>
                         <ion-icon name="stats-chart"></ion-icon>
@@ -226,7 +249,7 @@ const Sidebar = () => {
                   to="/dashboard/cardapio"
                   className="text-decoration-none w-100"
                 >
-                  <Button className="w-100">
+                  <Button className="w-100 active-sidebar">
                     <Row>
                       <Col md={2}>
                         <ion-icon name="restaurant"></ion-icon>
@@ -328,7 +351,7 @@ const Sidebar = () => {
                     </Col>
                   </Stack>
                 </Stack>
-                <Button>Enviar</Button>
+                <Button onClick={saveMenu}>Enviar</Button>
               </Row>
             </Container>
           </Col>

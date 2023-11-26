@@ -21,7 +21,9 @@ const getSuggestionsRouter = require("./routes/getSuggestions");
 const editSuggestionsRouter = require("./routes/editSuggestions");
 const editSenhaRouter = require("./routes/editSenha");
 const deleteSuggestionsRouter = require("./routes/deleteSuggestions");
-const getAdminSuggestions = require("./routes/getAdminSuggestions");
+const getAdminSuggestionsRouter = require("./routes/getAdminSuggestions");
+const getMenuRouter = require("./routes/getMenu");
+const saveMenuRouter = require("./routes/saveMenu");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -39,11 +41,12 @@ app.use("/signin", signinRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/suggestions", suggestionsRouter);
 app.use("/getDadosUser", getDadosUserRouter);
-
+app.use("/saveMenu", saveMenuRouter);
+app.use("/getMenu", getMenuRouter);
 
 app.use("/getReviews", getReviewsRouter);
 app.use("/getSuggestions", getSuggestionsRouter);
-app.use("/getAdminSuggestions", getAdminSuggestions);
+app.use("/getAdminSuggestions", getAdminSuggestionsRouter);
 app.use("/editSuggestions", editSuggestionsRouter);
 app.use("/editSenha", editSenhaRouter);
 app.use("/deleteSuggestions", deleteSuggestionsRouter);
