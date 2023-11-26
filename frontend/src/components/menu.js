@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createElement } from "react";
 import {
   Container,
   Table,
@@ -16,9 +16,16 @@ const MenuConst = () => {
   const navigate = useNavigate();
   const id = localStorage.getItem("id");
 
-  const datas = [];
+  const [datas, setDatas] = useState([]);
+
+  const [menuCafeDaManha, setMenuCafeDaManha] = useState("");
+  const [menuAlmoco, setMenuAlmoco] = useState("");
+  const [menuLancheDaTarde, setMenuLancheDaTarde] = useState("");
+  const [menuJantar, setMenuJantar] = useState("");
 
   const fetchData = async () => {
+    console.log("fez");
+
     try {
       const response = await fetch("http://localhost:9000/getMenu", {
         method: "GET",
@@ -30,20 +37,19 @@ const MenuConst = () => {
       if (response.ok) {
         const data = await response.json();
 
-        const menuCafeDaManha = data.response[0];
-        const menuAlmoco = data.response[1];
-        const menuLancheDaTarde = data.response[2];
-        const menuJantar = data.response[3];
+        setMenuCafeDaManha(data.response[0]);
+        setMenuAlmoco(data.response[1]);
+        setMenuLancheDaTarde(data.response[2]);
+        setMenuJantar(data.response[3]);
 
-        console.log(menuJantar);
-
+        const dias = [];
         for (const elements of menuAlmoco) {
-          // console.log(elements);
+          dias.push(elements.id);
         }
 
-        const cardapioAlmoco = () => {
-          
-        };
+        console.log(dias);
+        setDatas(dias);
+        console.log(datas);
       } else {
         console.log("Erro na requisição");
       }
@@ -52,7 +58,9 @@ const MenuConst = () => {
     }
   };
 
-  fetchData();
+  setTimeout(() => {
+    fetchData();
+  }, 3000);
 
   useEffect(() => {
     if (id == 1) {
@@ -73,11 +81,11 @@ const MenuConst = () => {
       <Container className="menu-cont h-100">
         <Row className="w-100 d-flex justify-content-center text-center">
           <Col md={10}>
-            {/* <ButtonToolbar aria-label="Toolbar with button groups">
-              {dados.map((item, index) => (
-                <ButtonDia key={index} dado={item} />
+            <ButtonToolbar aria-label="Toolbar with button groups">
+              {datas.map((item, index) => (
+                <ButtonDia key={index + 1} dado={item} />
               ))}
-            </ButtonToolbar> */}
+            </ButtonToolbar>
           </Col>
         </Row>
       </Container>
