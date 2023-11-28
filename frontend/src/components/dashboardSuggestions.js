@@ -13,6 +13,7 @@ import {
   Figure,
   Offcanvas,
   ListGroup,
+  Spinner,
 } from "react-bootstrap";
 
 import { format } from "date-fns";
@@ -20,12 +21,13 @@ import { useMediaQuery } from "react-responsive";
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
 
-const listaSuggestions = [];
-const listaData = [];
+let listaSuggestions = [];
+let listaData = [];
 
 const DashboardConst = () => {
   const [scrolling, setScrolling] = useState(false);
   const [show, setShow] = useState(false);
+  const [spin, setSpin] = useState(false);
   const handleClose = () => setShow(false);
   const handleOff = () => setShow(true);
   const isResponsive = useMediaQuery({ query: "(max-width: 990px)" });
@@ -47,40 +49,6 @@ const DashboardConst = () => {
       navigate("/");
     }
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:9000/getAdminSuggestions",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.message === "FEITO") {
-            setSuggestions(data.suggestions);
-            setDataCriacao(data.data_criacao);
-            for(let i = suggestions.length; i > 0; i--){
-              listaSuggestions.push(suggestions[i-1]);
-              listaData.push(dataCriacao[i-1]);
-            }
-          } else {
-            console.log("error");
-          }
-        } else {
-          console.log("Erro na requisição");
-        }
-      } catch (error) {
-        console.error("Erro ao enviar requisição:", error);
-      }
-    };
-
-    fetchData();
-
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setScrolling(true);
@@ -96,6 +64,45 @@ const DashboardConst = () => {
     };
   }, [id]);
 
+  const handlePull = () => {
+    setSpin(true);
+    setTimeout(() => {
+      setSpin(false);
+    }, 4000);
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:9000/getAdminSuggestions",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        
+        listaSuggestions = [];
+        listaData = [];
+        if (response.ok) {
+          const data = await response.json();
+          if (data.message === "FEITO") {
+            for (let i = data.suggestions.length; i > 0; i--) {
+              listaSuggestions.push(data.suggestions[i - 1]);
+              listaData.push(data.data_criacao[i - 1]);
+            }
+          } else {
+            console.log("error");
+          }
+        } else {
+          console.log("Erro na requisição");
+        }
+      } catch (error) {
+        console.error("Erro ao enviar requisição:", error);
+      }
+    };
+    fetchData();
+  };
   return (
     <div className="dashboard">
       <Container fluid className="h-100 w-100">
@@ -109,7 +116,11 @@ const DashboardConst = () => {
             >
               <Row className="w-100 d-flex align-items-center rr">
                 <Col className="h-100 d-flex justify-content-center align-items-center">
-                  <Button variant="primary" onClick={handleOff} className="off-btn">
+                  <Button
+                    variant="primary"
+                    onClick={handleOff}
+                    className="off-btn"
+                  >
                     <ion-icon name="menu-outline"></ion-icon>
                   </Button>
                 </Col>
@@ -336,6 +347,39 @@ const DashboardConst = () => {
                 <h2>Listagem de sugestões</h2>
                 <Row className="admin-suges-row">
                   <Col className="overflow-scroll h-100 suges-col p-2 pt-0">
+                    <ListGroup className="m-0 p-0 w-100">
+                      <Col md={2}>
+                        <Button
+                          onClick={handlePull}
+                          className="m-2 d-flex align-items-center justify-content-center p-2 bt-sub w-100"
+                        >
+                          {spin ? (
+                            <Row className="p-2">
+                              <Stack gap={4} className="d-flex flex-row">
+                                {/* <Col md={6} className="m-0 p-0">
+                                  Carregando...
+                                </Col> */}
+                                <Col md={6} className="m-0 p-0">
+                                  <Spinner
+                                    animation="border"
+                                    role="status"
+                                    variant="white"
+                                    className="p-0 m-0"
+                                  ></Spinner>
+                                </Col>
+                              </Stack>
+                            </Row>
+                          ) : (
+                            <Row>
+                              <Col>Atualizar</Col>
+                              {/* <Col>
+                                <ion-icon name="reload"></ion-icon>
+                              </Col> */}
+                            </Row>
+                          )}
+                        </Button>
+                      </Col>
+                    </ListGroup>
                     <ListGroup className="m-0 p-0">
                       {listaSuggestions.map((suggestion, index) => {
                         const dataFormatada = format(
@@ -348,7 +392,8 @@ const DashboardConst = () => {
                               <Card.Header className="p-0 mb-1 m-0 border-0">
                                 <Row className="p-2">
                                   <Col>
-                                    Sugestão <span>#{listaData.length - index}</span>
+                                    Sugestão{" "}
+                                    <span>#{listaData.length - index}</span>
                                   </Col>
                                   <Col className="d-flex justify-content-end text-muted">
                                     {dataFormatada}
