@@ -122,8 +122,8 @@ const DashboardConst = () => {
             >
               <Row className="w-100 d-flex align-items-center rr">
                 <Col className="h-100 d-flex justify-content-center align-items-center">
-                  <Button variant="primary" onClick={handleOff}>
-                    <ion-icon name="menu"></ion-icon>
+                  <Button variant="primary" onClick={handleOff} className="off-btn">
+                    <ion-icon name="menu-outline"></ion-icon>
                   </Button>
                 </Col>
                 <Col className="h-100 d-flex justify-content-center align-items-center">
@@ -141,11 +141,111 @@ const DashboardConst = () => {
 
               <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                  <Offcanvas.Title>
+                    <Figure>
+                      <Figure.Image
+                        src={logo}
+                        width={64}
+                        height={64}
+                      ></Figure.Image>
+                    </Figure>
+                  </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  Some text as placeholder. In real life you can have the
-                  elements you have chosen. Like, text, images, lists, etc.
+                  <Col
+                    lg={2}
+                    className="p-3 m-0 flex-column redm gap-1 d-flex h-100"
+                  >
+                    <Stack gap={4}>
+                      <Card className="card-side">
+                        <Card.Body>
+                          <Row className="d-flex justify-content-center align-items-center">
+                            <Col xs={4}>
+                              <Figure className="m-0 w-100 d-flex justify-content-center">
+                                <Figure.Image
+                                  className="fig m-0"
+                                  src={avatar}
+                                  width={64}
+                                  height={64}
+                                ></Figure.Image>
+                              </Figure>
+                            </Col>
+                            <Col className="d-flex justify-content-center">
+                              Administrador
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Stack>
+                    <Stack gap={2} className="stack-bt">
+                      <Link
+                        to="/dashboard"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col>
+                              <ion-icon name="stats-chart"></ion-icon>
+                            </Col> */}
+                            <Col>Estatísticas</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/users"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100 active-sidebar">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="people"></ion-icon>
+                            </Col> */}
+                            <Col>Usuários</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/suggestions"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="file-tray"></ion-icon>
+                            </Col> */}
+                            <Col>Sugestões</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/cardapio"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="restaurant"></ion-icon>
+                            </Col> */}
+                            <Col>Cardápio</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                    </Stack>
+                    <Stack className="align-self-end stack-log w-100">
+                      <Button onClick={handleShow}>
+                        <Row className="justify-content-center align-items-center">
+                          <Col></Col>
+                          <Col></Col>
+                          <Col>Sair</Col>
+                          <Col className="d-flex align-items-center">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                          </Col>
+                          <Col></Col>
+                          <Col></Col>
+                        </Row>
+                      </Button>
+                    </Stack>
+                  </Col>
                 </Offcanvas.Body>
               </Offcanvas>
             </Container>

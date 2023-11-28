@@ -336,11 +336,6 @@ const SettingsConst = () => {
                     gerenciar como os dados são coletados, armazenados e
                     utilizados em sua conta.
                   </p>
-                  <h3>Histórico de Avaliações</h3>
-                  <p>
-                    Confira abaixo seu histórico de avaliações, você poderá ver
-                    suas avaliações já feitas.
-                  </p>
                   <h3>Histórico de Sugestões</h3>
                   <Row className="suges-row pt-3 pb-3">
                     <Col className="overflow-scroll h-100 suges-col p-2 pt-0">

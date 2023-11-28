@@ -12,6 +12,7 @@ import {
   Card,
   Figure,
   Offcanvas,
+  Form,
 } from "react-bootstrap";
 
 import { useMediaQuery } from "react-responsive";
@@ -72,7 +73,7 @@ const DashboardConst = () => {
 
   review().then((Objeto) => {
     setQuantidade(Objeto.length);
-    for(let i = 0; i < Objeto.length; i++){
+    for (let i = 0; i < Objeto.length; i++) {
       let soma = 0;
       soma += Number(Objeto[i].apresentacao);
       soma += Number(Objeto[i].variedade);
@@ -84,15 +85,15 @@ const DashboardConst = () => {
       soma += Number(Objeto[i].higiene);
       soma += Number(Objeto[i].temperaturaDoAlimento);
       soma += Number(Objeto[i].tempoDeEspera);
-      soma = soma/10;
+      soma = soma / 10;
       vetMedia.push(soma);
     }
 
     let boas = 0;
     let ruins = 0;
-    for(let i = 0; i < vetMedia.length; i++){
-      if(vetMedia[i] < 4){
-        ruins +=1;
+    for (let i = 0; i < vetMedia.length; i++) {
+      if (vetMedia[i] < 4) {
+        ruins += 1;
       } else {
         boas += 1;
       }
@@ -101,7 +102,7 @@ const DashboardConst = () => {
     setMasAvaliacoes(ruins);
   });
 
-//obter média das reviews
+  //obter média das reviews
 
   return (
     <div className="dashboard">
@@ -116,8 +117,12 @@ const DashboardConst = () => {
             >
               <Row className="w-100 d-flex align-items-center rr">
                 <Col className="h-100 d-flex justify-content-center align-items-center">
-                  <Button variant="primary" onClick={handleOff}>
-                    <ion-icon name="menu"></ion-icon>
+                  <Button
+                    variant="primary"
+                    onClick={handleOff}
+                    className="off-btn"
+                  >
+                    <ion-icon name="menu-outline"></ion-icon>
                   </Button>
                 </Col>
                 <Col className="h-100 d-flex justify-content-center align-items-center">
@@ -135,11 +140,111 @@ const DashboardConst = () => {
 
               <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                  <Offcanvas.Title>
+                    <Figure>
+                      <Figure.Image
+                        src={logo}
+                        width={64}
+                        height={64}
+                      ></Figure.Image>
+                    </Figure>
+                  </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  Some text as placeholder. In real life you can have the
-                  elements you have chosen. Like, text, images, lists, etc.
+                  <Col
+                    lg={2}
+                    className="p-3 m-0 flex-column redm gap-1 d-flex h-100"
+                  >
+                    <Stack gap={4}>
+                      <Card className="card-side">
+                        <Card.Body>
+                          <Row className="d-flex justify-content-center align-items-center">
+                            <Col xs={4}>
+                              <Figure className="m-0 w-100 d-flex justify-content-center">
+                                <Figure.Image
+                                  className="fig m-0"
+                                  src={avatar}
+                                  width={64}
+                                  height={64}
+                                ></Figure.Image>
+                              </Figure>
+                            </Col>
+                            <Col className="d-flex justify-content-center">
+                              Administrador
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Stack>
+                    <Stack gap={2} className="stack-bt">
+                      <Link
+                        to="/dashboard"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100 active-sidebar">
+                          <Row className="w-100">
+                            {/* <Col>
+                              <ion-icon name="stats-chart"></ion-icon>
+                            </Col> */}
+                            <Col>Estatísticas</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/users"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="people"></ion-icon>
+                            </Col> */}
+                            <Col>Usuários</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/suggestions"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="file-tray"></ion-icon>
+                            </Col> */}
+                            <Col>Sugestões</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/cardapio"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="restaurant"></ion-icon>
+                            </Col> */}
+                            <Col>Cardápio</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                    </Stack>
+                    <Stack className="align-self-end stack-log w-100">
+                      <Button onClick={handleShow}>
+                        <Row className="justify-content-center align-items-center">
+                          <Col></Col>
+                          <Col></Col>
+                          <Col>Sair</Col>
+                          <Col className="d-flex align-items-center">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                          </Col>
+                          <Col></Col>
+                          <Col></Col>
+                        </Row>
+                      </Button>
+                    </Stack>
+                  </Col>
                 </Offcanvas.Body>
               </Offcanvas>
             </Container>
@@ -195,7 +300,10 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Link to="/dashboard/suggestions" className="text-decoration-none w-100">
+                <Link
+                  to="/dashboard/suggestions"
+                  className="text-decoration-none w-100"
+                >
                   <Button className="w-100">
                     <Row>
                       <Col md={2}>
@@ -205,15 +313,18 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Link to="/dashboard/cardapio" className="text-decoration-none w-100">
-                <Button className="w-100">
-                  <Row>
-                    <Col md={2}>
-                      <ion-icon name="restaurant"></ion-icon>
-                    </Col>
-                    <Col md={2}>Cardápio</Col>
-                  </Row>
-                </Button>
+                <Link
+                  to="/dashboard/cardapio"
+                  className="text-decoration-none w-100"
+                >
+                  <Button className="w-100">
+                    <Row>
+                      <Col md={2}>
+                        <ion-icon name="restaurant"></ion-icon>
+                      </Col>
+                      <Col md={2}>Cardápio</Col>
+                    </Row>
+                  </Button>
                 </Link>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
@@ -234,93 +345,119 @@ const DashboardConst = () => {
             <Container fluid className="w-100 p-5">
               <Stack gap={5}>
                 <Row className="m-0 p-0">
-                  <Col>
-                    <Card className="card-top-1">
-                      <Card.Body>
-                        <Row>
-                          <Col
-                            md={6}
-                            lg={4}
-                            className="d-flex align-items-center justify-content-center c-2"
-                          >
-                            <ion-icon name="thumbs-up-sharp"></ion-icon>
+                  <Stack gap={2}>
+                    <Stack gap={2} className="d-flex flex-row">
+                      <Col className="m-0 p-0">
+                        <Stack gap={2}>
+                          <Col md={12}>
+                            <Card className="card-top-1">
+                              <Card.Body>
+                                <Row>
+                                  <Col
+                                    md={6}
+                                    lg={3}
+                                    className="d-flex align-items-center justify-content-center c-2"
+                                  >
+                                    <ion-icon name="thumbs-up"></ion-icon>
+                                  </Col>
+                                  <Row
+                                    // lg={4}
+                                    // md={12}
+                                    className="d-flex justify-content-center align-items-center c-1 w-50"
+                                  >
+                                    <Col className="d-flex justify-content-center align-items-center">
+                                      <h5>Positivas</h5>
+                                    </Col>
+                                    <Col
+                                      lg={12}
+                                      md={12}
+                                      className="d-flex justify-content-center align-items-center c-3"
+                                    >
+                                      <h3>{boasAvaliacoes}</h3>
+                                    </Col>
+                                  </Row>
+                                </Row>
+                              </Card.Body>
+                            </Card>
                           </Col>
-                          <Col
-                            lg={4}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-1"
-                          >
-                            <h5>Positivas</h5>
+                        </Stack>
+                      </Col>
+                      <Col className="m-0 p-0">
+                        <Stack gap={2}>
+                          <Col md={12}>
+                            <Card className="card-top-2">
+                              <Card.Body>
+                                <Row>
+                                  <Col
+                                    md={6}
+                                    lg={3}
+                                    className="d-flex align-items-center justify-content-center c-2"
+                                  >
+                                    <ion-icon name="thumbs-down"></ion-icon>
+                                  </Col>
+                                  <Row
+                                    // lg={4}
+                                    // md={12}
+                                    className="d-flex justify-content-center align-items-center c-1 w-50"
+                                  >
+                                    <Col className="d-flex justify-content-center align-items-center">
+                                      <h5>Negativas</h5>
+                                    </Col>
+                                    <Col
+                                      lg={12}
+                                      md={12}
+                                      className="d-flex justify-content-center align-items-center c-3"
+                                    >
+                                      <h3>{masAvaliacoes}</h3>
+                                    </Col>
+                                  </Row>
+                                </Row>
+                              </Card.Body>
+                            </Card>
                           </Col>
-                          <Col
-                            lg={12}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-3"
-                          >
-                            <h3>{boasAvaliacoes}</h3>
+                        </Stack>
+                      </Col>
+                    </Stack>
+                    <Stack className="d-flex justify-content-center align-items-center">
+                      <Col className="m-0 p-0 w-100">
+                        <Stack gap={2}>
+                          <Col md={12}>
+                            <Card className="card-top-3">
+                              <Card.Body>
+                                <Row>
+                                  <Col
+                                    lg={3}
+                                    md={6}
+                                    className="d-flex align-items-center justify-content-center c-2"
+                                  >
+                                    {/* <ion-icon name="person"></ion-icon> */}
+                                    <ion-icon name="stats-chart"></ion-icon>
+                                  </Col>
+                                  <Row
+                                    // lg={6}
+                                    // md={12}
+                                    className="d-flex justify-content-center align-items-center c-1 w-50"
+                                  >
+                                    <Col className="d-flex justify-content-center align-items-center">
+                                      <h5>Total</h5>
+                                    </Col>
+
+                                    <Col
+                                      lg={12}
+                                      md={12}
+                                      className="d-flex justify-content-center align-items-center c-3"
+                                    >
+                                      <h3>{quantidade}</h3>
+                                    </Col>
+                                  </Row>
+                                </Row>
+                              </Card.Body>
+                            </Card>
                           </Col>
-                        </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                  <Col>
-                    <Card className="card-top-2">
-                      <Card.Body>
-                        <Row>
-                          <Col
-                            lg={4}
-                            md={6}
-                            className="d-flex align-items-center justify-content-center c-2"
-                          >
-                            <ion-icon name="thumbs-down-sharp"></ion-icon>
-                          </Col>
-                          <Col
-                            lg={4}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-1"
-                          >
-                            <h5>Negativas</h5>
-                          </Col>
-                          <Col
-                            lg={12}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-3"
-                          >
-                            <h3>{masAvaliacoes}</h3>
-                          </Col>
-                        </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                  <Col>
-                    <Card className="card-top-3">
-                      <Card.Body>
-                        <Row>
-                          <Col
-                            lg={4}
-                            md={6}
-                            className="d-flex align-items-center justify-content-center c-2"
-                          >
-                            <ion-icon name="analytics-sharp"></ion-icon>
-                          </Col>
-                          <Col
-                            lg={4}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-1"
-                          >
-                            <h5>Total</h5>
-                          </Col>
-                          <Col
-                            lg={12}
-                            md={12}
-                            className="d-flex justify-content-center align-items-center c-3"
-                          >
-                            <h3>{quantidade}</h3>
-                          </Col>
-                        </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
+                        </Stack>
+                      </Col>
+                    </Stack>
+                  </Stack>
                 </Row>
                 <Row>
                   <Stack gap={4}>
@@ -328,7 +465,9 @@ const DashboardConst = () => {
                       {/* <Stack> */}
                       <Col md={12} lg={8}>
                         <Card className="h-100">
-                          <Card.Header className="border-0">Apresentação</Card.Header>
+                          <Card.Header className="border-0">
+                            Apresentação
+                          </Card.Header>
                           <Card.Body>
                             <GraficoApresentacao />
                           </Card.Body>
@@ -337,13 +476,17 @@ const DashboardConst = () => {
                       <Col md={12} lg={4} className="div-resp">
                         <Stack gap={4}>
                           <Card>
-                            <Card.Header className="border-0">Variedade</Card.Header>
+                            <Card.Header className="border-0">
+                              Variedade
+                            </Card.Header>
                             <Card.Body>
                               <GraficoVariedade />
                             </Card.Body>
                           </Card>
                           <Card>
-                            <Card.Header className="border-0">Sabor da Refeição</Card.Header>
+                            <Card.Header className="border-0">
+                              Sabor da Refeição
+                            </Card.Header>
                             <Card.Body>
                               <GraficoSaborDaRefeicao />
                             </Card.Body>
@@ -357,13 +500,17 @@ const DashboardConst = () => {
                       <Col md={12} lg={4}>
                         <Stack gap={4}>
                           <Card>
-                            <Card.Header className="border-0">Sabor do Suco</Card.Header>
+                            <Card.Header className="border-0">
+                              Sabor do Suco
+                            </Card.Header>
                             <Card.Body>
                               <GraficoSaborDoSuco />
                             </Card.Body>
                           </Card>
                           <Card>
-                            <Card.Header className="border-0">Sabor da Sobremesa</Card.Header>
+                            <Card.Header className="border-0">
+                              Sabor da Sobremesa
+                            </Card.Header>
                             <Card.Body>
                               <GraficoSaborDaSobremesa />
                             </Card.Body>
@@ -372,7 +519,9 @@ const DashboardConst = () => {
                       </Col>
                       <Col className="div-resp" md={12} lg={8}>
                         <Card className="h-100">
-                          <Card.Header className="border-0">Temperatura do Alimento</Card.Header>
+                          <Card.Header className="border-0">
+                            Temperatura do Alimento
+                          </Card.Header>
                           <Card.Body>
                             <GraficoTemperaturaDoAlimento />
                           </Card.Body>
@@ -383,7 +532,9 @@ const DashboardConst = () => {
                     <Row className="p-0 m-0">
                       <Col md={6} lg={6}>
                         <Card>
-                          <Card.Header className="border-0">Higiene</Card.Header>
+                          <Card.Header className="border-0">
+                            Higiene
+                          </Card.Header>
                           <Card.Body>
                             <GraficoHigiene />
                           </Card.Body>
@@ -391,7 +542,9 @@ const DashboardConst = () => {
                       </Col>
                       <Col md={6} lg={6} className="div-resp">
                         <Card>
-                          <Card.Header className="border-0">Temperatura do Ambiente</Card.Header>
+                          <Card.Header className="border-0">
+                            Temperatura do Ambiente
+                          </Card.Header>
                           <Card.Body>
                             <GraficoTemperaturaDoAmbiente />
                           </Card.Body>
@@ -401,7 +554,9 @@ const DashboardConst = () => {
                     <Row className="p-0 m-0">
                       <Col lg={7} md={6}>
                         <Card>
-                          <Card.Header className="border-0">Atendimento</Card.Header>
+                          <Card.Header className="border-0">
+                            Atendimento
+                          </Card.Header>
                           <Card.Body>
                             <GraficoAtendimento />
                           </Card.Body>
@@ -409,7 +564,9 @@ const DashboardConst = () => {
                       </Col>
                       <Col lg={5} md={6} className="div-resp">
                         <Card className="h-100">
-                          <Card.Header className="border-0">Tempo de Espera</Card.Header>
+                          <Card.Header className="border-0">
+                            Tempo de Espera
+                          </Card.Header>
                           <Card.Body>
                             <GraficoTempoDeEspera />
                           </Card.Body>

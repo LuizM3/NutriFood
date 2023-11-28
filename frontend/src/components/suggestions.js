@@ -14,6 +14,7 @@ import {
 import "../assets/styles/suggestions.scss";
 import Filter from "bad-words";
 import { Link, useNavigate } from "react-router-dom";
+
 const SuggestionsConst = () => {
   const arrow = require("../assets/images/left-arrow.png");
   const token = localStorage.getItem("token");
@@ -50,6 +51,11 @@ const SuggestionsConst = () => {
     // filtro
     const filter = new Filter();
 
+    var newBadWords = [
+      "teste", "teste"
+    ];
+
+    filter.addWords(...newBadWords);
     // Verificando se a sugestão contém linguagem imprópria
     if (filter.isProfane(suggestion)) {
       // Se contiver linguagem imprópria, mostre o alert

@@ -130,8 +130,12 @@ const Sidebar = () => {
             >
               <Row className="w-100 d-flex align-items-center rr">
                 <Col className="h-100 d-flex justify-content-center align-items-center">
-                  <Button variant="primary" onClick={handleOff}>
-                    <ion-icon name="menu"></ion-icon>
+                  <Button
+                    variant="primary"
+                    onClick={handleOff}
+                    className="off-btn"
+                  >
+                    <ion-icon name="menu-outline"></ion-icon>
                   </Button>
                 </Col>
                 <Col className="h-100 d-flex justify-content-center align-items-center">
@@ -149,11 +153,111 @@ const Sidebar = () => {
 
               <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                  <Offcanvas.Title>
+                    <Figure>
+                      <Figure.Image
+                        src={logo}
+                        width={64}
+                        height={64}
+                      ></Figure.Image>
+                    </Figure>
+                  </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  Some text as placeholder. In real life you can have the
-                  elements you have chosen. Like, text, images, lists, etc.
+                  <Col
+                    lg={2}
+                    className="p-3 m-0 flex-column redm gap-1 d-flex h-100"
+                  >
+                    <Stack gap={4}>
+                      <Card className="card-side">
+                        <Card.Body>
+                          <Row className="d-flex justify-content-center align-items-center">
+                            <Col xs={4}>
+                              <Figure className="m-0 w-100 d-flex justify-content-center">
+                                <Figure.Image
+                                  className="fig m-0"
+                                  src={avatar}
+                                  width={64}
+                                  height={64}
+                                ></Figure.Image>
+                              </Figure>
+                            </Col>
+                            <Col className="d-flex justify-content-center">
+                              Administrador
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Stack>
+                    <Stack gap={2} className="stack-bt">
+                      <Link
+                        to="/dashboard"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col>
+                              <ion-icon name="stats-chart"></ion-icon>
+                            </Col> */}
+                            <Col>Estatísticas</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/users"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="people"></ion-icon>
+                            </Col> */}
+                            <Col>Usuários</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/suggestions"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="file-tray"></ion-icon>
+                            </Col> */}
+                            <Col>Sugestões</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/cardapio"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100 active-sidebar">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="restaurant"></ion-icon>
+                            </Col> */}
+                            <Col>Cardápio</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                    </Stack>
+                    <Stack className="align-self-end stack-log w-100">
+                      <Button onClick={handleShow}>
+                        <Row className="justify-content-center align-items-center">
+                          <Col></Col>
+                          <Col></Col>
+                          <Col>Sair</Col>
+                          <Col className="d-flex align-items-center">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                          </Col>
+                          <Col></Col>
+                          <Col></Col>
+                        </Row>
+                      </Button>
+                    </Stack>
+                  </Col>
                 </Offcanvas.Body>
               </Offcanvas>
             </Container>
@@ -187,7 +291,7 @@ const Sidebar = () => {
               </Stack>
               <Stack gap={2} className="stack-bt">
                 <Link to="/dashboard" className="text-decoration-none w-100">
-                  <Button className="w-100 active-sidebar">
+                  <Button className="w-100">
                     <Row>
                       <Col md={2}>
                         <ion-icon name="stats-chart"></ion-icon>
@@ -226,7 +330,7 @@ const Sidebar = () => {
                   to="/dashboard/cardapio"
                   className="text-decoration-none w-100"
                 >
-                  <Button className="w-100">
+                  <Button className="w-100 active-sidebar">
                     <Row>
                       <Col md={2}>
                         <ion-icon name="restaurant"></ion-icon>
@@ -253,86 +357,166 @@ const Sidebar = () => {
           <Col className="flex-shrink-1 overflow-scroll col-dash-cont">
             <Container fluid className="w-100 p-5">
               <Row className="p-0 m-0">
+                <h2>Cardápio Mensal</h2>
+                {isResponsive ? (
+                  <Stack gap={4} className="d-flex p-0 pt-0 pb-2">
+                    <Stack gap={4}>
+                      <Col xs={12} sm={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Cafe Da Manhã
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeCafeDaManha}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                      <Col xs={12} sm={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Almoço
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeAlmoco}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    </Stack>
+                    <Stack gap={4}>
+                      <Col md={12} lg={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Lanche Da Tarde
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeLancheDaTarde}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
 
-              <h2>Cardápio Mensal</h2>
-                <Stack gap={4} className="d-flex flex-row">
-                  <Stack gap={4}>
-                    <Col md={12} lg={12} className="p-0 m-0">
-                      <Card className="h-100">
-                        <Card.Header>
-                          Selecione um arquivo de Cafe Da Manhã
-                        </Card.Header>
-                        <Card.Body>
-                          <Form>
-                            <Form.Group controlId="formFile">
-                              <Form.Control
-                                type="file"
-                                onChange={handleFileChangeCafeDaManha}
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                    <Col md={12} lg={12} className="p-0 m-0">
-                      <Card className="h-100">
-                        <Card.Header>
-                          Selecione um arquivo de Almoço
-                        </Card.Header>
-                        <Card.Body>
-                          <Form>
-                            <Form.Group controlId="formFile">
-                              <Form.Control
-                                type="file"
-                                onChange={handleFileChangeAlmoco}
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Card.Body>
-                      </Card>
-                    </Col>
+                      <Col md={12} lg={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Jantar
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeJantar}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+
+                      <Col xs={12} sm={6}>
+                        <Button className="bt-sub w-100">Enviar</Button>
+                      </Col>
+                    </Stack>
                   </Stack>
-                  <Stack gap={4}>
-                    <Col md={12} lg={12} className="p-0 m-0">
-                      <Card className="h-100">
-                        <Card.Header>
-                          Selecione um arquivo de Lanche Da Tarde
-                        </Card.Header>
-                        <Card.Body>
-                          <Form>
-                            <Form.Group controlId="formFile">
-                              <Form.Control
-                                type="file"
-                                onChange={handleFileChangeLancheDaTarde}
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Card.Body>
-                      </Card>
-                    </Col>
+                ) : (
+                  <Stack gap={4} className="d-flex flex-row">
+                    <Stack gap={4}>
+                      <Col md={12} lg={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Cafe Da Manhã
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeCafeDaManha}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                      <Col md={12} lg={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Almoço
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeAlmoco}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    </Stack>
+                    <Stack gap={4}>
+                      <Col md={12} lg={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Lanche Da Tarde
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeLancheDaTarde}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
 
-                    <Col md={12} lg={12} className="p-0 m-0">
-                      <Card className="h-100">
-                        <Card.Header>
-                          Selecione um arquivo de Jantar
-                        </Card.Header>
-                        <Card.Body>
-                          <Form>
-                            <Form.Group controlId="formFile">
-                              <Form.Control
-                                type="file"
-                                onChange={handleFileChangeJantar}
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Card.Body>
-                      </Card>
+                      <Col md={12} lg={12} className="p-0 m-0">
+                        <Card className="h-100">
+                          <Card.Header>
+                            Selecione um arquivo de Jantar
+                          </Card.Header>
+                          <Card.Body>
+                            <Form>
+                              <Form.Group controlId="formFile">
+                                <Form.Control
+                                  type="file"
+                                  onChange={handleFileChangeJantar}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Card.Body>
+                        </Card>
+                      </Col>
 
-                    </Col>
-
-                <Button className="bt-sub">Enviar</Button>
+                      <Button className="bt-sub">Enviar</Button>
+                    </Stack>
                   </Stack>
-                </Stack>
+                )}
               </Row>
             </Container>
           </Col>

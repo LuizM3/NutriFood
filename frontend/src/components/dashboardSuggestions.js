@@ -20,6 +20,9 @@ import { useMediaQuery } from "react-responsive";
 const logo = require("../assets/images/logo.png");
 const avatar = require("../assets/images/avatar.png");
 
+const listaSuggestions = [];
+const listaData = [];
+
 const DashboardConst = () => {
   const [scrolling, setScrolling] = useState(false);
   const [show, setShow] = useState(false);
@@ -61,6 +64,10 @@ const DashboardConst = () => {
           if (data.message === "FEITO") {
             setSuggestions(data.suggestions);
             setDataCriacao(data.data_criacao);
+            for(let i = suggestions.length; i > 0; i--){
+              listaSuggestions.push(suggestions[i-1]);
+              listaData.push(dataCriacao[i-1]);
+            }
           } else {
             console.log("error");
           }
@@ -102,8 +109,8 @@ const DashboardConst = () => {
             >
               <Row className="w-100 d-flex align-items-center rr">
                 <Col className="h-100 d-flex justify-content-center align-items-center">
-                  <Button variant="primary" onClick={handleOff}>
-                    <ion-icon name="menu"></ion-icon>
+                  <Button variant="primary" onClick={handleOff} className="off-btn">
+                    <ion-icon name="menu-outline"></ion-icon>
                   </Button>
                 </Col>
                 <Col className="h-100 d-flex justify-content-center align-items-center">
@@ -121,11 +128,111 @@ const DashboardConst = () => {
 
               <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                  <Offcanvas.Title>
+                    <Figure>
+                      <Figure.Image
+                        src={logo}
+                        width={64}
+                        height={64}
+                      ></Figure.Image>
+                    </Figure>
+                  </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  Some text as placeholder. In real life you can have the
-                  elements you have chosen. Like, text, images, lists, etc.
+                  <Col
+                    lg={2}
+                    className="p-3 m-0 flex-column redm gap-1 d-flex h-100"
+                  >
+                    <Stack gap={4}>
+                      <Card className="card-side">
+                        <Card.Body>
+                          <Row className="d-flex justify-content-center align-items-center">
+                            <Col xs={4}>
+                              <Figure className="m-0 w-100 d-flex justify-content-center">
+                                <Figure.Image
+                                  className="fig m-0"
+                                  src={avatar}
+                                  width={64}
+                                  height={64}
+                                ></Figure.Image>
+                              </Figure>
+                            </Col>
+                            <Col className="d-flex justify-content-center">
+                              Administrador
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Stack>
+                    <Stack gap={2} className="stack-bt">
+                      <Link
+                        to="/dashboard"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col>
+                              <ion-icon name="stats-chart"></ion-icon>
+                            </Col> */}
+                            <Col>Estatísticas</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/users"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="people"></ion-icon>
+                            </Col> */}
+                            <Col>Usuários</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/suggestions"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100 active-sidebar">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="file-tray"></ion-icon>
+                            </Col> */}
+                            <Col>Sugestões</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                      <Link
+                        to="/dashboard/cardapio"
+                        className="text-decoration-none w-100"
+                      >
+                        <Button className="w-100">
+                          <Row className="w-100">
+                            {/* <Col md={2}>
+                              <ion-icon name="restaurant"></ion-icon>
+                            </Col> */}
+                            <Col>Cardápio</Col>
+                          </Row>
+                        </Button>
+                      </Link>
+                    </Stack>
+                    <Stack className="align-self-end stack-log w-100">
+                      <Button onClick={handleShow}>
+                        <Row className="justify-content-center align-items-center">
+                          <Col></Col>
+                          <Col></Col>
+                          <Col>Sair</Col>
+                          <Col className="d-flex align-items-center">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                          </Col>
+                          <Col></Col>
+                          <Col></Col>
+                        </Row>
+                      </Button>
+                    </Stack>
+                  </Col>
                 </Offcanvas.Body>
               </Offcanvas>
             </Container>
@@ -195,15 +302,18 @@ const DashboardConst = () => {
                   </Button>
                 </Link>
 
-                <Link to="/dashboard/cardapio" className="text-decoration-none w-100">
-                <Button className="w-100">
-                  <Row>
-                    <Col md={2}>
-                      <ion-icon name="restaurant"></ion-icon>
-                    </Col>
-                    <Col md={2}>Cardápio</Col>
-                  </Row>
-                </Button>
+                <Link
+                  to="/dashboard/cardapio"
+                  className="text-decoration-none w-100"
+                >
+                  <Button className="w-100">
+                    <Row>
+                      <Col md={2}>
+                        <ion-icon name="restaurant"></ion-icon>
+                      </Col>
+                      <Col md={2}>Cardápio</Col>
+                    </Row>
+                  </Button>
                 </Link>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
@@ -223,13 +333,13 @@ const DashboardConst = () => {
           <Col className="flex-shrink-1 overflow-scroll col-dash-cont">
             <Container fluid className="w-100 p-5">
               <Stack gap={5}>
-              <h2>Listagem de sugestões</h2>
+                <h2>Listagem de sugestões</h2>
                 <Row className="admin-suges-row">
                   <Col className="overflow-scroll h-100 suges-col p-2 pt-0">
                     <ListGroup className="m-0 p-0">
-                      {suggestions.map((suggestion, index) => {
+                      {listaSuggestions.map((suggestion, index) => {
                         const dataFormatada = format(
-                          new Date(dataCriacao[index]),
+                          new Date(listaData[index]),
                           "dd/MM/yyyy"
                         );
                         return (
@@ -238,15 +348,18 @@ const DashboardConst = () => {
                               <Card.Header className="p-0 mb-1 m-0 border-0">
                                 <Row className="p-2">
                                   <Col>
-                                    Sugestão <span>#{index + 1}</span>
-                                    
+                                    Sugestão <span>#{listaData.length - index}</span>
                                   </Col>
-                                  <Col className="d-flex justify-content-end text-muted">{dataFormatada}</Col>
+                                  <Col className="d-flex justify-content-end text-muted">
+                                    {dataFormatada}
+                                  </Col>
                                 </Row>
-
                               </Card.Header>
 
-                              <Card.Body className="pt-0 pb-0 p-2 m-0" style={{'minHeight': '100px'}}>
+                              <Card.Body
+                                className="pt-0 pb-0 p-2 m-0"
+                                style={{ minHeight: "100px" }}
+                              >
                                 <span>{suggestion}</span>
                               </Card.Body>
                             </Card>
