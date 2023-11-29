@@ -13,26 +13,19 @@ const AboutConst = () => {
   }, [id]);
   return (
     <>
-      <Container className="flex-column r-about">
-        <Row md={12} className="m-5">
+     <Container className="flex-column r-about">
+        <Row className="m-5">
           <Col
             md={12}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Nutrifood</h2>
+            <h2>Sobre o Projeto</h2>
           </Col>
           <Col>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+            Bem-vindo ao Projeto Nutrifood, uma iniciativa que vai além de um simples site 
+            - é a confluência entre nutrição consciente, tecnologia e um compromisso genuíno 
+            com a saúde da comunidade estudantil do IFES Campus Santa Teresa.
             </p>
           </Col>
         </Row>
@@ -41,20 +34,16 @@ const AboutConst = () => {
             md={4}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Nutrifood</h2>
+            <h2>Figura</h2>
           </Col>
           <Col md={8}>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+            O Projeto Nutrifood é fruto do empenho e comprometimento dos alunos 
+            Bryan Zucoloto, Ruan Pablo, Luiz Felipe, Filipe Kiefer, Alex Brandão e Heitor Poleze 
+            do curso de informática para a internet no IFES Santa Teresa. Nossa jornada começou 
+            com a meta de criar algo significativo para nossa comunidade, indo além de um simples 
+            projeto acadêmico. Decidimos aproveitar a oportunidade do terceiro ano do curso para 
+            desenvolver um site nutricional voltado para o Restaurante Institucional do campus.
             </p>
           </Col>
         </Row>
@@ -63,20 +52,16 @@ const AboutConst = () => {
             md={4}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Nutrifood</h2>
+            <h2>Figura</h2>
           </Col>
           <Col md={8}>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+              Ao compreender as dificuldades da nutricionista do campus na captação de dados sobre 
+              o restaurante e a avaliação das refeições, decidimos unir esforços para criar uma 
+              solução inovadora. Nosso projeto atende às necessidades da direção ao coletar 
+              e analisar dados, além de proporcionar aos alunos acesso fácil e transparente 
+              a informações vitais sobre o cardápio diário e semanal, facilitando a comunicação 
+              com a direção do restaurante.
             </p>
           </Col>
         </Row>{" "}
@@ -85,42 +70,31 @@ const AboutConst = () => {
             md={4}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Nutrifood</h2>
+            <h2>Figura</h2>
           </Col>
           <Col md={8}>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+            Nosso time conta com o apoio e orientação valiosa dos 
+            professores Milton, Fábio Bigati e Filipe. Os Professores Milton e Fábio, 
+            especialista na área técnica, trazem consigo vasta experiência profissional, 
+            enquanto o Professor Filipe, da área básica, contribui com sua expertise, 
+            enriquecendo nosso time com sua formação e visão única. Juntos, eles são peças 
+            fundamentais para o desenvolvimento e sucesso deste projeto.
             </p>
           </Col>
         </Row>
         <Row md={12} className="m-5">
           <Col
-            md={12}
+            md={6}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Nutrifood</h2>
+            <h2>Comprometimento</h2>
           </Col>
           <Col>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+            Estamos comprometidos em tornar a alimentação uma experiência mais transparente, 
+            acessível e saudável para toda a comunidade do IFES Campus Santa Teresa. 
+            Junte-se a nós nessa jornada de nutrição e inovação!
             </p>
           </Col>
         </Row>

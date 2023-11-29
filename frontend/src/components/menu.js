@@ -11,56 +11,115 @@ import {
   ButtonToolbar,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import Calendar from "react-calendar";
+import cardapio from "../service/requisicao/cardapioReq";
+import arrayToTable from "array-to-table";
+
+let menuState = [];
 
 const MenuConst = () => {
   const navigate = useNavigate();
   const id = localStorage.getItem("id");
-
   const [datas, setDatas] = useState([]);
+  const [tabela, setTabela] = useState(false);
+  const [tabela2, setTabela2] = useState(false);
+  const [tabela1, setTabela1] = useState(false);
+  const [menu, setMenu] = useState([]);
+  let mesString = "";
+  const [value, onChange] = useState(new Date());
+  const hoje = new Date().getMonth();
 
-  const [menuCafeDaManha, setMenuCafeDaManha] = useState("");
-  const [menuAlmoco, setMenuAlmoco] = useState("");
-  const [menuLancheDaTarde, setMenuLancheDaTarde] = useState("");
-  const [menuJantar, setMenuJantar] = useState("");
+  switch (hoje) {
+    case 0:
+      mesString = "Janeiro";
+      break;
+    case 1:
+      mesString = "Fevereiro";
+      break;
+    case 2:
+      mesString = "Março";
+      break;
+    case 3:
+      mesString = "Abril";
+      break;
+    case 4:
+      mesString = "Maio";
+      break;
+    case 5:
+      mesString = "Junho";
+      break;
+    case 6:
+      mesString = "Julho";
+      break;
+    case 7:
+      mesString = "Agosto";
+      break;
+    case 8:
+      mesString = "Setembro";
+      break;
+    case 9:
+      mesString = "Outubro";
+      break;
+    case 10:
+      mesString = "Novembro";
+      break;
+    case 11:
+      mesString = "Dezembro";
+      break;
+  }
 
-  const fetchData = async () => {
-    console.log("fez");
+  // const [menuCafeDaManha, setMenuCafeDaManha] = useState("");
+  // const [menuAlmoco, setMenuAlmoco] = useState("");
+  // const [menuLancheDaTarde, setMenuLancheDaTarde] = useState("");
+  // const [menuJantar, setMenuJantar] = useState("");
+  const menuCafeDaManha = [];
+  const menuAlmoco = [];
+  const menuLancheDaTarde = [];
+  const menuJantar = [];
 
-    try {
-      const response = await fetch("http://localhost:9000/getMenu", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  const handleShowCardapio = (e) => {
+    cardapio().then((lista) => {
+      menuCafeDaManha.push(lista.response[0]);
+      menuAlmoco.push(lista.response[1]);
+      menuLancheDaTarde.push(lista.response[2]);
+      menuJantar.push(lista.response[3]);
 
-      if (response.ok) {
-        const data = await response.json();
+      const listaCafeDaManha = [];
+      const listaAlmoco = [];
+      const listaLancheDaTarde = [];
+      const listaJantar = [];
 
-        setMenuCafeDaManha(data.response[0]);
-        setMenuAlmoco(data.response[1]);
-        setMenuLancheDaTarde(data.response[2]);
-        setMenuJantar(data.response[3]);
-
-        const dias = [];
-        for (const elements of menuAlmoco) {
-          dias.push(elements.id);
+      for (const elements of menuCafeDaManha) {
+        for (const element of elements) {
+          listaCafeDaManha.push(element);
         }
-
-        console.log(dias);
-        setDatas(dias);
-        console.log(datas);
-      } else {
-        console.log("Erro na requisição");
       }
-    } catch (error) {
-      console.error("Erro ao enviar requisição:", error);
-    }
-  };
+      for (const elements of menuAlmoco) {
+        for (const element of elements) {
+          listaAlmoco.push(element);
+        }
+      }
+      for (const elements of menuLancheDaTarde) {
+        for (const element of elements) {
+          listaLancheDaTarde.push(element);
+        }
+      }
+      for (const elements of menuJantar) {
+        for (const element of elements) {
+          listaJantar.push(element);
+        }
+      }
 
-  setTimeout(() => {
-    fetchData();
-  }, 3000);
+      menuState.push(listaCafeDaManha[e - 1]);
+      menuState.push(listaAlmoco[e - 1]);
+      menuState.push(listaLancheDaTarde[e - 1]);
+      menuState.push(listaJantar[e - 1]);
+
+      console.log(menuState)
+
+      setTabela(true);
+    });
+  };
 
   useEffect(() => {
     if (id == 1) {
@@ -77,19 +136,68 @@ const MenuConst = () => {
   };
 
   return (
-    <>
-      <Container className="menu-cont h-100">
-        <Row className="w-100 d-flex justify-content-center text-center">
-          <Col md={10}>
-            <ButtonToolbar aria-label="Toolbar with button groups">
-              {datas.map((item, index) => (
-                <ButtonDia key={index + 1} dado={item} />
-              ))}
-            </ButtonToolbar>
+    <Container className="menu-cont h-100">
+      <Row className="w-100 d-flex justify-content-center text-center">
+        <Col md={6} sm={12}>
+          <Col
+            md={12}
+            lg={12}
+            sm={12}
+            xs={12}
+            className="d-flex justify-content-center align-items-center flex-column"
+          >
+            <div>{mesString}</div>
+            <Calendar
+              onChange={onChange}
+              value={value}
+              defaultActiveStartDate={new Date()}
+              tileDisabled={({ activeStartDate, date, view }) =>
+                date.getUTCDay() === 0
+              }
+              maxDate={new Date(value.getFullYear(), value.getMonth(), "31")}
+              minDate={new Date(value.getFullYear(), value.getMonth(), "1")}
+              showNeighboringMonth={false}
+              minDetail={"month"}
+              showNavigation={false}
+              onClickDay={(day, event) => handleShowCardapio(day.getUTCDate())}
+            />
           </Col>
-        </Row>
-      </Container>
-    </>
+        </Col>
+        {tabela ? (
+          <Col md={6}>
+            <Row>
+              <Col md={12} sm={12}>
+                {tabela1}
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>principal</th>
+                      <th>opção</th>
+                      <th>arroz</th>
+                      <th>feijão</th>
+                      <th>guarnição</th>
+                      <th>salada1</th>
+                      <th>salada2</th>
+                      <th>sobremesa</th>
+                      <th>suco</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>{}</tr>
+                  </tbody>
+                </Table>
+              </Col>
+              <Col md={12} sm={12}>
+                {tabela2}
+              </Col>
+            </Row>
+          </Col>
+        ) : (
+          <Col md={6}></Col>
+        )}
+      </Row>
+    </Container>
   );
 };
 

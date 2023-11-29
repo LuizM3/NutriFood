@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 
   try {
     setTimeout(() => {
-      connection.query("SELECT * FROM almoco", (error, results) => {
+      connection.query("SELECT principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco FROM almoco", (error, results) => {
         if (error) {
           res.status(500).json({ error: "An error occurred" });
         } else {
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
       });
     }, 2000);
     setTimeout(() => {
-      connection.query("SELECT * FROM lancheDaTarde", (error, results) => {
+      connection.query("SELECT comida, bebida FROM lancheDaTarde", (error, results) => {
         if (error) {
           res.status(500).json({ error: "An error occurred" });
         } else {
@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
       });
     }, 3000);
     setTimeout(() => {
-      connection.query("SELECT * FROM jantar", (error, results) => {
+      connection.query("SELECT principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco  FROM jantar", (error, results) => {
         if (error) {
           res.status(500).json({ error: "An error occurred" });
         } else {
@@ -35,7 +35,7 @@ router.get("/", (req, res) => {
     }, 4000);
 
     setTimeout(() => {
-      connection.query("SELECT * FROM cafeDaManha", (error, results) => {
+      connection.query("SELECT comida, bebida FROM cafeDaManha", (error, results) => {
         if (error) {
           res.status(500).json({ error: "An error occurred" });
         } else {

@@ -14,7 +14,7 @@ import {
 import "../assets/styles/suggestions.scss";
 import Filter from "bad-words";
 import { Link, useNavigate } from "react-router-dom";
-
+// var lineReader = require('line-reader');
 const SuggestionsConst = () => {
   const arrow = require("../assets/images/left-arrow.png");
   const token = localStorage.getItem("token");
@@ -31,6 +31,7 @@ const SuggestionsConst = () => {
     }
   }, [id]);
   const [suggestion, setSuggestion] = useState("");
+  const [palavrao, setPalavrao] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
@@ -50,10 +51,17 @@ const SuggestionsConst = () => {
 
     // filtro
     const filter = new Filter();
+    // var contents = readTextFi;le.readSync("../assets/listaProfano.txt");
+    // console.log(contents);
 
-    var newBadWords = [
-      "teste", "teste"
-    ];
+// lineReader.eachLine('file.txt', function(line, last) {
+//   console.log(line);
+
+//   if (true) {
+//     return false; // stop reading
+//   }
+// });
+    var newBadWords = ["teste", "teste"];
 
     filter.addWords(...newBadWords);
     // Verificando se a sugestão contém linguagem imprópria

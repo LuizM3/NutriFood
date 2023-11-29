@@ -19,6 +19,7 @@ import {
   Modal,
 } from "react-bootstrap";
 
+import 'react-calendar/dist/Calendar.css';
 import Papa from "papaparse";
 
 const logo = require("../assets/images/logo.png");
