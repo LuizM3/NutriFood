@@ -16,6 +16,7 @@ import cardapio from "../service/requisicao/cardapioReq";
 import arrayToTable from "array-to-table";
 
 let menuState = [];
+let dia;
 
 const MenuConst = () => {
   const navigate = useNavigate();
@@ -78,6 +79,12 @@ const MenuConst = () => {
   const menuJantar = [];
 
   const handleShowCardapio = (e) => {
+    dia = e;
+    createMenu(dia);
+  };
+
+  const createMenu = (e) => {
+    setTabela(false);
     cardapio().then((lista) => {
       menuCafeDaManha.push(lista.response[0]);
       menuAlmoco.push(lista.response[1]);
@@ -110,12 +117,14 @@ const MenuConst = () => {
         }
       }
 
+      menuState = [];
+
       menuState.push(listaCafeDaManha[e - 1]);
       menuState.push(listaAlmoco[e - 1]);
       menuState.push(listaLancheDaTarde[e - 1]);
       menuState.push(listaJantar[e - 1]);
 
-      console.log(menuState)
+      console.log(menuState);
 
       setTabela(true);
     });
@@ -146,8 +155,11 @@ const MenuConst = () => {
             xs={12}
             className="d-flex justify-content-center align-items-center flex-column"
           >
-            <div>{mesString}</div>
+            <div className="calendar-hd">
+              <h4>{mesString}</h4>
+            </div>
             <Calendar
+              className="calendar"
               onChange={onChange}
               value={value}
               defaultActiveStartDate={new Date()}
@@ -167,29 +179,71 @@ const MenuConst = () => {
           <Col md={6}>
             <Row>
               <Col md={12} sm={12}>
-                {tabela1}
-                <Table>
+                <Table responsive striped bordered className="table-cp">
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>principal</th>
-                      <th>opção</th>
-                      <th>arroz</th>
-                      <th>feijão</th>
-                      <th>guarnição</th>
-                      <th>salada1</th>
-                      <th>salada2</th>
-                      <th>sobremesa</th>
-                      <th>suco</th>
+                      <th>Comida</th>
+                      <th>Bebida</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>{}</tr>
+                    <tr>
+                      <td>Café Da Manhã</td>
+                      <td>{menuState[0].comida}</td>
+                      <td>{menuState[0].bebida}</td>
+                    </tr>
+                    <tr>
+                      <td>Lanche Da Tarde</td>
+                      <td>{menuState[2].comida}</td>
+                      <td>{menuState[2].bebida}</td>
+                    </tr>
                   </tbody>
                 </Table>
               </Col>
               <Col md={12} sm={12}>
-                {tabela2}
+                <Table responsive striped bordered className="table-cp">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Principal</th>
+                      <th>Opção</th>
+                      <th>Arroz</th>
+                      <th>Feijão</th>
+                      <th>Guarnição</th>
+                      <th>Salada I</th>
+                      <th>Salada II</th>
+                      <th>Sobremesa</th>
+                      <th>Suco</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Almoço</td>
+                      <td>{menuState[1].principal}</td>
+                      <td>{menuState[1].opcao}</td>
+                      <td>{menuState[1].arroz}</td>
+                      <td>{menuState[1].feijao}</td>
+                      <td>{menuState[1].guarnicao}</td>
+                      <td>{menuState[1].salada1}</td>
+                      <td>{menuState[1].salada2}</td>
+                      <td>{menuState[1].sobremesa}</td>
+                      <td>{menuState[1].suco}</td>
+                    </tr>
+                    <tr>
+                      <td>Jantar</td>
+                      <td>{menuState[3].principal}</td>
+                      <td>{menuState[3].opcao}</td>
+                      <td>{menuState[3].arroz}</td>
+                      <td>{menuState[3].feijao}</td>
+                      <td>{menuState[3].guarnicao}</td>
+                      <td>{menuState[3].salada1}</td>
+                      <td>{menuState[3].salada2}</td>
+                      <td>{menuState[3].sobremesa}</td>
+                      <td>{menuState[3].suco}</td>
+                    </tr>
+                  </tbody>
+                </Table>
               </Col>
             </Row>
           </Col>

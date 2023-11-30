@@ -348,7 +348,7 @@ const DashboardConst = () => {
                 <Row className="admin-suges-row">
                   <Col className="overflow-scroll h-100 suges-col p-2 pt-0">
                     <ListGroup className="m-0 p-0 w-100">
-                      <Col md={2}>
+                      <Col md={2} className="mb-2">
                         <Button
                           onClick={handlePull}
                           className="m-2 d-flex align-items-center justify-content-center p-2 bt-sub w-100"

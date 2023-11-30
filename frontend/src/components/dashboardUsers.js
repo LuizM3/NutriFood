@@ -353,7 +353,7 @@ const DashboardConst = () => {
                           <Col md={12}>
                             <Card className="card-top-4">
                               <Card.Body>
-                                <Row>
+                                <Row className="row-resp-info">
                                   <Col
                                     md={6}
                                     lg={3}
@@ -377,6 +377,7 @@ const DashboardConst = () => {
                                       <h3>{quantidadeVeg}</h3>
                                     </Col>
                                   </Row>
+                                  <Col lg={3}></Col>
                                 </Row>
                               </Card.Body>
                             </Card>
@@ -384,7 +385,7 @@ const DashboardConst = () => {
                           <Col md={12}>
                             <Card className="card-top-4">
                               <Card.Body>
-                                <Row>
+                                <Row className="row-resp-info">
                                   <Col
                                     lg={3}
                                     md={6}
@@ -408,6 +409,7 @@ const DashboardConst = () => {
                                       <h3>{quantidadeAM}</h3>
                                     </Col>
                                   </Row>
+                                  <Col lg={3}></Col>
                                 </Row>
                               </Card.Body>
                             </Card>
@@ -416,7 +418,7 @@ const DashboardConst = () => {
                           <Col md={12}>
                             <Card className="card-top-4">
                               <Card.Body>
-                                <Row>
+                                <Row className="row-resp-info">
                                   <Col
                                     lg={3}
                                     md={6}
@@ -442,6 +444,7 @@ const DashboardConst = () => {
                                       <h3>{quantidade}</h3>
                                     </Col>
                                   </Row>
+                                  <Col lg={3}></Col>
                                 </Row>
                               </Card.Body>
                             </Card>
@@ -453,7 +456,7 @@ const DashboardConst = () => {
                           <Col md={12}>
                             <Card className="card-top-4">
                               <Card.Body>
-                                <Row>
+                                <Row className="row-resp-info">
                                   <Col
                                     lg={3}
                                     md={6}
@@ -479,6 +482,7 @@ const DashboardConst = () => {
                                       <h3>{quantidadeAG}</h3>
                                     </Col>
                                   </Row>
+                                  <Col lg={3}></Col>
                                 </Row>
                               </Card.Body>
                             </Card>
@@ -486,7 +490,7 @@ const DashboardConst = () => {
                           <Col md={12}>
                             <Card className="card-top-4">
                               <Card.Body>
-                                <Row>
+                                <Row className="row-resp-info">
                                   <Col
                                     lg={3}
                                     md={6}
@@ -511,6 +515,7 @@ const DashboardConst = () => {
                                       <h3>{quantidadeOutro}</h3>
                                     </Col>
                                   </Row>
+                                  <Col lg={3}></Col>
                                 </Row>
                               </Card.Body>
                             </Card>
@@ -518,7 +523,7 @@ const DashboardConst = () => {
                           <Col md={12}>
                             <Card className="card-top-4">
                               <Card.Body>
-                                <Row>
+                                <Row className="row-resp-info">
                                   <Col
                                     lg={3}
                                     md={6}
@@ -544,6 +549,7 @@ const DashboardConst = () => {
                                       <h3>{quantidadeSDT}</h3>
                                     </Col>
                                   </Row>
+                                  <Col lg={3}></Col>
                                 </Row>
                               </Card.Body>
                             </Card>
