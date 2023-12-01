@@ -23,6 +23,7 @@ const SuggestionsConst = () => {
   const [showAdmin, setShowAdmin] = useState("");
   const navigate = useNavigate();
   const [characterLimit] = useState(200);
+  
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");

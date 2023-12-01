@@ -41,6 +41,7 @@ const DashboardConst = () => {
   const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState("");
   const [boasAvaliacoes, setBoasAvaliacoes] = useState("");
+  const [graph, setGraph] = useState(false);
   const [masAvaliacoes, setMasAvaliacoes] = useState("");
   const id = localStorage.getItem("id");
   const handleShow = () => {
@@ -68,12 +69,14 @@ const DashboardConst = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [id]);
-
+  const showGraph = () => {
+    setGraph(true);
+  };
   const vetMedia = [];
 
   review().then((Objeto) => {
     setQuantidade(Objeto.length);
-    for (let i = 0; i < Objeto.length; i++) {
+    for(let i = 0; i < Objeto.length; i++){
       let soma = 0;
       soma += Number(Objeto[i].apresentacao);
       soma += Number(Objeto[i].variedade);
@@ -85,15 +88,15 @@ const DashboardConst = () => {
       soma += Number(Objeto[i].higiene);
       soma += Number(Objeto[i].temperaturaDoAlimento);
       soma += Number(Objeto[i].tempoDeEspera);
-      soma = soma / 10;
+      soma = soma/10;
       vetMedia.push(soma);
     }
 
     let boas = 0;
     let ruins = 0;
-    for (let i = 0; i < vetMedia.length; i++) {
-      if (vetMedia[i] < 4) {
-        ruins += 1;
+    for(let i = 0; i < vetMedia.length; i++){
+      if(vetMedia[i] < 4){
+        ruins +=1;
       } else {
         boas += 1;
       }
@@ -102,7 +105,7 @@ const DashboardConst = () => {
     setMasAvaliacoes(ruins);
   });
 
-  //obter média das reviews
+//obter média das reviews
 
   return (
     <div className="dashboard">
@@ -300,10 +303,7 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Link
-                  to="/dashboard/suggestions"
-                  className="text-decoration-none w-100"
-                >
+                <Link to="/dashboard/suggestions" className="text-decoration-none w-100">
                   <Button className="w-100">
                     <Row>
                       <Col md={2}>
@@ -313,18 +313,15 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Link
-                  to="/dashboard/cardapio"
-                  className="text-decoration-none w-100"
-                >
-                  <Button className="w-100">
-                    <Row>
-                      <Col md={2}>
-                        <ion-icon name="restaurant"></ion-icon>
-                      </Col>
-                      <Col md={2}>Cardápio</Col>
-                    </Row>
-                  </Button>
+                <Link to="/dashboard/cardapio" className="text-decoration-none w-100">
+                <Button className="w-100">
+                  <Row>
+                    <Col md={2}>
+                      <ion-icon name="restaurant"></ion-icon>
+                    </Col>
+                    <Col md={2}>Cardápio</Col>
+                  </Row>
+                </Button>
                 </Link>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
