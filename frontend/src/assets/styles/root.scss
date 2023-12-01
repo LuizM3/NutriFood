@@ -496,7 +496,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .menu-cont {
-  margin-top: 200px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .col-log {
@@ -508,7 +511,7 @@ body::-webkit-scrollbar-thumb {
   h4 {
     color: var(--gray);
   }
-
+min-height: 100vh;
   .redirect-c {
     border: 2px solid var(--lgray);
     border-radius: 25px;

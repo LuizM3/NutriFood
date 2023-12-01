@@ -2,24 +2,23 @@ import { useState, useEffect, createElement } from "react";
 import {
   Container,
   Table,
-  Accordion,
+  Spinner,
   Row,
   Col,
-  Card,
   Button,
   ButtonGroup,
-  ButtonToolbar,
+  Stack,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import cardapio from "../service/requisicao/cardapioReq";
-import arrayToTable from "array-to-table";
 
 let menuState = [];
 let dia;
 
 const MenuConst = () => {
   const navigate = useNavigate();
+  const [spin, setSpin] = useState(false);
   const id = localStorage.getItem("id");
   const [datas, setDatas] = useState([]);
   const [tabela, setTabela] = useState(false);
@@ -116,7 +115,6 @@ const MenuConst = () => {
           listaJantar.push(element);
         }
       }
-
       menuState = [];
 
       menuState.push(listaCafeDaManha[e - 1]);
@@ -125,7 +123,6 @@ const MenuConst = () => {
       menuState.push(listaJantar[e - 1]);
 
       console.log(menuState);
-
       setTabela(true);
     });
   };
@@ -145,9 +142,14 @@ const MenuConst = () => {
   };
 
   return (
-    <Container className="menu-cont h-100">
+    <Container className="menu-cont m-0 min-vw-100">
       <Row className="w-100 d-flex justify-content-center text-center">
-        <Col md={6} sm={12}>
+        <Col
+          md={5}
+          lg={4}
+          sm={12}
+          className="d-flex justify-content-center align-items-center min-vh-100"
+        >
           <Col
             md={12}
             lg={12}
@@ -159,7 +161,7 @@ const MenuConst = () => {
               <h4>{mesString}</h4>
             </div>
             <Calendar
-              className="calendar"
+              className="calendar w-100"
               onChange={onChange}
               value={value}
               defaultActiveStartDate={new Date()}
@@ -176,74 +178,80 @@ const MenuConst = () => {
           </Col>
         </Col>
         {tabela ? (
-          <Col md={6}>
-            <Row>
+          <Col md={7} lg={8} className="border-1 table-cp">
+            <Row className="h-100">
               <Col md={12} sm={12}>
-                <Table responsive striped bordered className="table-cp">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Comida</th>
-                      <th>Bebida</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Café Da Manhã</td>
-                      <td>{menuState[0].comida}</td>
-                      <td>{menuState[0].bebida}</td>
-                    </tr>
-                    <tr>
-                      <td>Lanche Da Tarde</td>
-                      <td>{menuState[2].comida}</td>
-                      <td>{menuState[2].bebida}</td>
-                    </tr>
-                  </tbody>
-                </Table>
+                <Stack className="h-100 d-flex justify-content-end">
+                  <h4>Café da manhã e Lanche da tarde</h4>
+                  <Table responsive striped bordered className="table-cp">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Comida</th>
+                        <th>Bebida</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Café Da Manhã</td>
+                        <td>{menuState[0].comida}</td>
+                        <td>{menuState[0].bebida}</td>
+                      </tr>
+                      <tr>
+                        <td>Lanche Da Tarde</td>
+                        <td>{menuState[2].comida}</td>
+                        <td>{menuState[2].bebida}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Stack>
               </Col>
               <Col md={12} sm={12}>
-                <Table responsive striped bordered className="table-cp">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Principal</th>
-                      <th>Opção</th>
-                      <th>Arroz</th>
-                      <th>Feijão</th>
-                      <th>Guarnição</th>
-                      <th>Salada I</th>
-                      <th>Salada II</th>
-                      <th>Sobremesa</th>
-                      <th>Suco</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Almoço</td>
-                      <td>{menuState[1].principal}</td>
-                      <td>{menuState[1].opcao}</td>
-                      <td>{menuState[1].arroz}</td>
-                      <td>{menuState[1].feijao}</td>
-                      <td>{menuState[1].guarnicao}</td>
-                      <td>{menuState[1].salada1}</td>
-                      <td>{menuState[1].salada2}</td>
-                      <td>{menuState[1].sobremesa}</td>
-                      <td>{menuState[1].suco}</td>
-                    </tr>
-                    <tr>
-                      <td>Jantar</td>
-                      <td>{menuState[3].principal}</td>
-                      <td>{menuState[3].opcao}</td>
-                      <td>{menuState[3].arroz}</td>
-                      <td>{menuState[3].feijao}</td>
-                      <td>{menuState[3].guarnicao}</td>
-                      <td>{menuState[3].salada1}</td>
-                      <td>{menuState[3].salada2}</td>
-                      <td>{menuState[3].sobremesa}</td>
-                      <td>{menuState[3].suco}</td>
-                    </tr>
-                  </tbody>
-                </Table>
+                <Stack className="h-100 d-flex justify-content-start">
+                  <h4>Almoço e Jantar</h4>
+                  <Table responsive striped bordered className="table-cp">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Principal</th>
+                        <th>Opção</th>
+                        <th>Arroz</th>
+                        <th>Feijão</th>
+                        <th>Guarnição</th>
+                        <th>Salada I</th>
+                        <th>Salada II</th>
+                        <th>Sobremesa</th>
+                        <th>Suco</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Almoço</td>
+                        <td>{menuState[1].principal}</td>
+                        <td>{menuState[1].opcao}</td>
+                        <td>{menuState[1].arroz}</td>
+                        <td>{menuState[1].feijao}</td>
+                        <td>{menuState[1].guarnicao}</td>
+                        <td>{menuState[1].salada1}</td>
+                        <td>{menuState[1].salada2}</td>
+                        <td>{menuState[1].sobremesa}</td>
+                        <td>{menuState[1].suco}</td>
+                      </tr>
+                      <tr>
+                        <td>Jantar</td>
+                        <td>{menuState[3].principal}</td>
+                        <td>{menuState[3].opcao}</td>
+                        <td>{menuState[3].arroz}</td>
+                        <td>{menuState[3].feijao}</td>
+                        <td>{menuState[3].guarnicao}</td>
+                        <td>{menuState[3].salada1}</td>
+                        <td>{menuState[3].salada2}</td>
+                        <td>{menuState[3].sobremesa}</td>
+                        <td>{menuState[3].suco}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Stack>
               </Col>
             </Row>
           </Col>

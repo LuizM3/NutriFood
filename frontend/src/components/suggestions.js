@@ -34,7 +34,7 @@ const SuggestionsConst = () => {
   const [palavrao, setPalavrao] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
-  const [showErrorAlert, setErrorAlert] = useState(false);
+  const [showErrorAlert, setErrorAlert] = useState(true);
   const handleSuggestionChange = (event) => {
     setSuggestion(event.target.value);
   };
@@ -54,13 +54,13 @@ const SuggestionsConst = () => {
     // var contents = readTextFi;le.readSync("../assets/listaProfano.txt");
     // console.log(contents);
 
-// lineReader.eachLine('file.txt', function(line, last) {
-//   console.log(line);
+    // lineReader.eachLine('file.txt', function(line, last) {
+    //   console.log(line);
 
-//   if (true) {
-//     return false; // stop reading
-//   }
-// });
+    //   if (true) {
+    //     return false; // stop reading
+    //   }
+    // });
     var newBadWords = ["teste", "teste"];
 
     filter.addWords(...newBadWords);
@@ -100,7 +100,7 @@ const SuggestionsConst = () => {
 
   return (
     <>
-      <Row className="position-fixed alert-row">
+      <Row className="position-fixed alert-row rev-cont">
         {showAlert && (
           <Alert
             variant="warning"
@@ -129,10 +129,10 @@ const SuggestionsConst = () => {
           </Alert>
         )}
       </Row>
-      <Container className="mb-5 s-container justify-content-start align-items-center d-flex flex-column">
+      <Container className="s-container justify-content-center align-items-center d-flex flex-column">
         {showCont ? (
           <Row
-            className="mt-5 d-flex justify-content-center align-items-center text-center w-100"
+            className=" d-flex justify-content-center align-items-end text-center w-100 row-cont"
             md={12}
           >
             <Col
@@ -141,9 +141,15 @@ const SuggestionsConst = () => {
               xl={6}
               className="d-flex flex-column align-items-center w-100"
             >
-              <h2>Coleta de sugestões</h2>
-              <Form className="m-0 formulario-card" onSubmit={handleSubmit}>
-                <Row className="f-row h-100">
+              <Col className="min-vh-100 d-flex justify-content-center align-items-center">
+               <Form
+                className="m-0 formulario-card d-flex justify-content-center align-items-center flex-column"
+                onSubmit={handleSubmit}
+              >
+                <Row>
+                  <h2>Coleta de sugestões</h2>
+                </Row>
+                <Row>
                   <Col md={6} className="mb-3" xs={12}>
                     <ListGroup className="text-start">
                       <ListGroupItem>
@@ -167,12 +173,12 @@ const SuggestionsConst = () => {
                       </ListGroupItem>
                     </ListGroup>
                   </Col>
-                  <Col md={6} xs={12} className="mb-3">
-                    <Form.Group className="h-75">
+                  <Col md={6} xs={12}>
+                    <Form.Group>
                       <Form.Control
                         as="textarea"
                         placeholder="Escreva aqui"
-                        className="h-75"
+                        style={{ height: "100px" }}
                         maxLength={200}
                         onChange={handleSuggestionChange}
                         value={suggestion}
@@ -191,7 +197,7 @@ const SuggestionsConst = () => {
                     </Form.Group>
                     <Form.Group
                       // className="d-flex justify-content-center mb-3" md={6}
-                      className="h-25 d-flex justify-content-center"
+                      className="d-flex justify-content-center"
                     >
                       <Row className="w-100">
                         {/* <Col md={12} className="h-50 p-0"></Col> */}
@@ -212,21 +218,13 @@ const SuggestionsConst = () => {
                   </Col>
                 </Row>
               </Form>
-            </Col>
-          </Row>
-        ) : showAdmin ? (
-          <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
-            <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
-              <Container className="d-flex justify-content-center align-items-center h-100 w-100">
-                <Row className="h-100 w-100">
-                  <Col className="pt-2">Teste</Col>
-                </Row>
-              </Container>
+              </Col>
+             
             </Col>
           </Row>
         ) : (
-          <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
-            <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
+          <Row className="w-100 justify-content-center d-flex align-items-center redirect">
+            <Col lg={5} md={6} sm={8} className="redirect-c">
               <Container className="d-flex justify-content-center align-items-center h-100 w-100">
                 <Row className="h-100 w-100">
                   <Col className="pt-2">

@@ -441,7 +441,7 @@ const ReviewsConst = () => {
           </Alert>
         )}
       </Row>
-      <Container className="h-100 cont-s">
+      <Container className="s-container">
         {showCont ? (
           <Row className="overflow-scroll w-100 mt-5 scroll-row overflow-x-hidden">
             <Container
@@ -1113,8 +1113,8 @@ const ReviewsConst = () => {
             </Container>
           </Row>
         ) : (
-          <Row className="w-100 mt-5 justify-content-center d-flex align-items-center redirect">
-            <Col lg={5} md={6} sm={8} className=" mt-5 redirect-c">
+          <Row className="w-100 justify-content-center d-flex align-items-center redirect">
+            <Col lg={5} md={6} sm={8} className="redirect-c">
               <Container className="d-flex justify-content-center align-items-center h-100 w-100">
                 <Row className="h-100 w-100">
                   <Col className="pt-2">

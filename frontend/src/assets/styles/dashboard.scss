@@ -47,9 +47,9 @@
   justify-self: end;
   justify-content: end;
   .btn {
-    background-color: rgba(255, 91, 91, 0.403);
-    border: transparent;
-    color: rgb(255, 63, 63);
+    background-color: rgba(255, 91, 91, 0.403) !important;
+    border: transparent !important;
+    color: rgb(255, 63, 63) !important;
   }
 }
 .stack-bt {
@@ -195,9 +195,6 @@
       0 1px 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.5s ease-in-out;
   }
-  .card:hover {
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 30px rgba(0, 0, 0, 0.1);
-  }
 }
 .active-sidebar {
   border-radius: 8px !important;
@@ -210,14 +207,6 @@
   }
 }
 
-.stk {
-  // display: none;
-  // gap: 0 !important;
-  @media (max-width: 990px) {
-    // display: flex;
-    // gap:1.5rem !important;
-  }
-}
 .div-resp {
   @media (max-width: 990px) {
     margin-top: 1.5rem;
@@ -236,13 +225,15 @@
   justify-content: center;
   align-items: center;
 }
+
 .table-cp {
-  td, th {
-    width: 100px !important;
-    min-width: 100px !important;
+  td,
+  th {
+    min-width: 150px !important;
+    height: 60px !important;
   }
 }
 .calendar {
-  border: 0.5px solid #a5a5a5;
+  border: 0.5px solid #e2e5e9 !important;
   border-radius: 5px;
 }
