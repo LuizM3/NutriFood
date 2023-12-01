@@ -40,6 +40,7 @@ const DashboardConst = () => {
   const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState("");
   const [boasAvaliacoes, setBoasAvaliacoes] = useState("");
+  const [graph, setGraph] = useState(false);
   const [masAvaliacoes, setMasAvaliacoes] = useState("");
   const id = localStorage.getItem("id");
   const handleShow = () => {
@@ -67,12 +68,14 @@ const DashboardConst = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [id]);
-
+  const showGraph = () => {
+    setGraph(true);
+  };
   const vetMedia = [];
 
   review().then((Objeto) => {
     setQuantidade(Objeto.length);
-    for(let i = 0; i < Objeto.length; i++){
+    for (let i = 0; i < Objeto.length; i++) {
       let soma = 0;
       soma += Number(Objeto[i].apresentacao);
       soma += Number(Objeto[i].variedade);
@@ -84,15 +87,15 @@ const DashboardConst = () => {
       soma += Number(Objeto[i].higiene);
       soma += Number(Objeto[i].temperaturaDoAlimento);
       soma += Number(Objeto[i].tempoDeEspera);
-      soma = soma/10;
+      soma = soma / 10;
       vetMedia.push(soma);
     }
 
     let boas = 0;
     let ruins = 0;
-    for(let i = 0; i < vetMedia.length; i++){
-      if(vetMedia[i] < 4){
-        ruins +=1;
+    for (let i = 0; i < vetMedia.length; i++) {
+      if (vetMedia[i] < 4) {
+        ruins += 1;
       } else {
         boas += 1;
       }
@@ -101,7 +104,7 @@ const DashboardConst = () => {
     setMasAvaliacoes(ruins);
   });
 
-//obter média das reviews
+  //obter média das reviews
 
   return (
     <div className="dashboard">
@@ -195,7 +198,10 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Link to="/dashboard/suggestions" className="text-decoration-none w-100">
+                <Link
+                  to="/dashboard/suggestions"
+                  className="text-decoration-none w-100"
+                >
                   <Button className="w-100">
                     <Row>
                       <Col md={2}>
@@ -205,15 +211,18 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
-                <Link to="/dashboard/cardapio" className="text-decoration-none w-100">
-                <Button className="w-100">
-                  <Row>
-                    <Col md={2}>
-                      <ion-icon name="restaurant"></ion-icon>
-                    </Col>
-                    <Col md={2}>Cardápio</Col>
-                  </Row>
-                </Button>
+                <Link
+                  to="/dashboard/cardapio"
+                  className="text-decoration-none w-100"
+                >
+                  <Button className="w-100">
+                    <Row>
+                      <Col md={2}>
+                        <ion-icon name="restaurant"></ion-icon>
+                      </Col>
+                      <Col md={2}>Cardápio</Col>
+                    </Row>
+                  </Button>
                 </Link>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
@@ -323,100 +332,105 @@ const DashboardConst = () => {
                   </Col>
                 </Row>
                 <Row>
-                  <Stack gap={4}>
-                    <Row className="p-0 m-0">
-                      {/* <Stack> */}
-                      <Col md={12} lg={8}>
-                        <Card className="h-100">
-                          <Card.Header>Apresentação</Card.Header>
-                          <Card.Body>
-                            <GraficoApresentacao />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col md={12} lg={4} className="div-resp">
-                        <Stack gap={4}>
-                          <Card>
-                            <Card.Header>Variedade</Card.Header>
+                  <Button onClick={showGraph} className="bt-sub"></Button>
+                  {graph ? (
+                    <Stack gap={4}>
+                      <Row className="p-0 m-0">
+                        {/* <Stack> */}
+                        <Col md={12} lg={8}>
+                          <Card className="h-100">
+                            <Card.Header>Apresentação</Card.Header>
                             <Card.Body>
-                              <GraficoVariedade />
+                              <GraficoApresentacao />
                             </Card.Body>
                           </Card>
-                          <Card>
-                            <Card.Header>Sabor da Refeição</Card.Header>
+                        </Col>
+                        <Col md={12} lg={4} className="div-resp">
+                          <Stack gap={4}>
+                            <Card>
+                              <Card.Header>Variedade</Card.Header>
+                              <Card.Body>
+                                <GraficoVariedade />
+                              </Card.Body>
+                            </Card>
+                            <Card>
+                              <Card.Header>Sabor da Refeição</Card.Header>
+                              <Card.Body>
+                                <GraficoSaborDaRefeicao />
+                              </Card.Body>
+                            </Card>
+                          </Stack>
+                        </Col>
+                        {/* </Stack> */}
+                      </Row>
+                      <Row className="p-0 m-0">
+                        {/* <Stack gap={4}> */}
+                        <Col md={12} lg={4}>
+                          <Stack gap={4}>
+                            <Card>
+                              <Card.Header>Sabor do Suco</Card.Header>
+                              <Card.Body>
+                                <GraficoSaborDoSuco />
+                              </Card.Body>
+                            </Card>
+                            <Card>
+                              <Card.Header>Sabor da Sobremesa</Card.Header>
+                              <Card.Body>
+                                <GraficoSaborDaSobremesa />
+                              </Card.Body>
+                            </Card>
+                          </Stack>
+                        </Col>
+                        <Col className="div-resp" md={12} lg={8}>
+                          <Card className="h-100">
+                            <Card.Header>Temperatura do Alimento</Card.Header>
                             <Card.Body>
-                              <GraficoSaborDaRefeicao />
+                              <GraficoTemperaturaDoAlimento />
                             </Card.Body>
                           </Card>
-                        </Stack>
-                      </Col>
-                      {/* </Stack> */}
-                    </Row>
-                    <Row className="p-0 m-0">
-                      {/* <Stack gap={4}> */}
-                      <Col md={12} lg={4}>
-                        <Stack gap={4}>
+                        </Col>
+                        {/* </Stack> */}
+                      </Row>
+                      <Row className="p-0 m-0">
+                        <Col md={6} lg={6}>
                           <Card>
-                            <Card.Header>Sabor do Suco</Card.Header>
+                            <Card.Header>Higiene</Card.Header>
                             <Card.Body>
-                              <GraficoSaborDoSuco />
+                              <GraficoHigiene />
                             </Card.Body>
                           </Card>
+                        </Col>
+                        <Col md={6} lg={6} className="div-resp">
                           <Card>
-                            <Card.Header>Sabor da Sobremesa</Card.Header>
+                            <Card.Header>Temperatura do Ambiente</Card.Header>
                             <Card.Body>
-                              <GraficoSaborDaSobremesa />
+                              <GraficoTemperaturaDoAmbiente />
                             </Card.Body>
                           </Card>
-                        </Stack>
-                      </Col>
-                      <Col className="div-resp" md={12} lg={8}>
-                        <Card className="h-100">
-                          <Card.Header>Temperatura do Alimento</Card.Header>
-                          <Card.Body>
-                            <GraficoTemperaturaDoAlimento />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      {/* </Stack> */}
-                    </Row>
-                    <Row className="p-0 m-0">
-                      <Col md={6} lg={6}>
-                        <Card>
-                          <Card.Header>Higiene</Card.Header>
-                          <Card.Body>
-                            <GraficoHigiene />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col md={6} lg={6} className="div-resp">
-                        <Card>
-                          <Card.Header>Temperatura do Ambiente</Card.Header>
-                          <Card.Body>
-                            <GraficoTemperaturaDoAmbiente />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-                    <Row className="p-0 m-0">
-                      <Col lg={7} md={6}>
-                        <Card>
-                          <Card.Header>Atendimento</Card.Header>
-                          <Card.Body>
-                            <GraficoAtendimento />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col lg={5} md={6} className="div-resp">
-                        <Card className="h-100">
-                          <Card.Header>Tempo de Espera</Card.Header>
-                          <Card.Body>
-                            <GraficoTempoDeEspera />
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </Stack>
+                        </Col>
+                      </Row>
+                      <Row className="p-0 m-0">
+                        <Col lg={7} md={6}>
+                          <Card>
+                            <Card.Header>Atendimento</Card.Header>
+                            <Card.Body>
+                              <GraficoAtendimento />
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                        <Col lg={5} md={6} className="div-resp">
+                          <Card className="h-100">
+                            <Card.Header>Tempo de Espera</Card.Header>
+                            <Card.Body>
+                              <GraficoTempoDeEspera />
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                      </Row>
+                    </Stack>
+                  ) : (
+                    <div>Oi</div>
+                  )}
                 </Row>
               </Stack>
             </Container>

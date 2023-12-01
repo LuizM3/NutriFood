@@ -1,7 +1,7 @@
 export default async function user() {
     try {
         const response = await fetch(
-          "http://localhost:9000/getDadosUser",
+          "http://localhost:9000/getDadosUsers",
           {
             method: "GET",
             headers: {

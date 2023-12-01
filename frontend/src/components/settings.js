@@ -17,28 +17,99 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { checkEmailUniqueness } from "../service/EmailService";
+
 const SettingsConst = () => {
   const navigate = useNavigate();
+
   const [emailNovo, setEmailNovo] = useState("");
   const [senha, setSenha] = useState("");
   const email = localStorage.getItem("email");
+  const id = localStorage.getItem("id");
+
+  const [vinculoAoIfes, setVinculo] = useState("");
+  const [cafeDaManha, setCafeDaManha] = useState(false);
+  const [almoco, setAlmoco] = useState(false);
+  const [lancheDaTarde, setLancheDaTarde] = useState(false);
+  const [jantar, setJantar] = useState(false);
+  let [vegetariano, setVegetariano] = useState(false);
+  const [am, setAm] = useState(false);
+  const [ag, setAg] = useState(false);
+  const [sdt, setSdt] = useState(false);
+  const [outro, setOutro] = useState(false);
+
   const [spinnerModal, setSpinnerModal] = useState(false);
   const [passModal, setPassModal] = useState(false);
   const [showPassAlert, setShowPassAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
   const [showEmailAlert, setEmailAlert] = useState(false);
-  const id = localStorage.getItem("id");
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");
     } else if (id == null) {
       navigate("/login");
     }
+
+    const dadosUserReq = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:9000/getDadosUser?id=${id}`,
+          {
+            method: "get",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.ok) {
+          const dados = response.json();
+          dados.then((Object) => {
+            if (Object.cafeDaManha == 1) {
+              setCafeDaManha(true);
+            }
+            if (Object.almoco == 1) {
+              setAlmoco(true);
+            }
+            if (Object.lancheDaTarde == 1) {
+              setLancheDaTarde(true);
+            }
+            if (Object.jantar == 1) {
+              setJantar(true);
+            }
+            if (Object.vegetariano == 1) {
+              setVegetariano(true);
+            }
+
+            if (Object.vinculoAoIfes == "AM") {
+              setAm(true);
+            }
+            if (Object.vinculoAoIfes == "AG") {
+              setAg(true);
+            }
+            if (Object.vinculoAoIfes == "SDT") {
+              setSdt(true);
+            }
+            if (Object.vinculoAoIfes == "Outro") {
+              setOutro(true);
+            }
+          });
+        } else {
+          console.log("erro 1");
+        }
+      } catch (error) {
+        console.log("erro 2");
+      }
+    };
+
+    dadosUserReq();
   }, [emailNovo, id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isEmailUnique = await checkEmailUniqueness(emailNovo);
@@ -49,6 +120,149 @@ const SettingsConst = () => {
       }, 5000);
     } else {
       setPassModal(true);
+    }
+  };
+
+  const sendData = async () => {
+    let veg = vegetariano;
+    let alunoMedio = am;
+    let alunoGraduacao = ag;
+    let serDocT = sdt;
+    let outros = outro;
+    let cafe = cafeDaManha;
+    let alm = almoco;
+    let lanche = lancheDaTarde;
+    let jant = jantar;
+
+    let aMedio = false;
+    let aGraduaco = false;
+    let servidor = false;
+    let otr = false;
+
+    if (veg == true) {
+      veg = 1;
+    } else {
+      veg = 0;
+    }
+    // if (alunoMedio == true) {
+    //   alunoMedio = 1;
+    // } else {
+    //   alunoMedio = 0;
+    // }
+    // if (alunoGraduacao == true) {
+    //   alunoGraduacao = 1;
+    // } else {
+    //   alunoGraduacao = 0;
+    // }
+    // if (serDocT == true) {
+    //   serDocT = 1;
+    // } else {
+    //   serDocT = 0;
+    // }
+    // if (outros == true) {
+    //   outros = 1;
+    // } else {
+    //   outros = 0;
+    // }
+    if (cafe == true) {
+      cafe = 1;
+    } else {
+      cafe = 0;
+    }
+    if (alm == true) {
+      alm = 1;
+    } else {
+      alm = 0;
+    }
+    if (lanche == true) {
+      lanche = 1;
+    } else {
+      lanche = 0;
+    }
+    if (jant == true) {
+      jant = 1;
+    } else {
+      jant = 0;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:9000/getDadosUser?id=${id}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const dados = response.json();
+        dados.then(async (Object) => {
+          if (Object.vinculoAoIfes == "AM") {
+            aMedio = true;
+          }
+          if (Object.vinculoAoIfes == "AG") {
+            aGraduaco = true;
+          }
+          if (Object.vinculoAoIfes == "SDT") {
+            servidor = true;
+          }
+          if (Object.vinculoAoIfes == "Outro") {
+            otr = true;
+          }
+          if (
+            veg == Object.vegetariano &&
+            alm == Object.almoco &&
+            cafe == Object.cafeDaManha &&
+            lanche == Object.lancheDaTarde &&
+            jant == Object.jantar &&
+            am == aMedio &&
+            ag == aGraduaco &&
+            serDocT == servidor &&
+            outros == otr
+          ) {
+            console.log("envie certo");
+          } else {
+            let vinculo = Object.vinculoAoIfes;
+            if (am == true) {
+              vinculo = "AM";
+            }
+            if (ag == true) {
+              vinculo = "AG";
+            }
+            if (serDocT == true) {
+              vinculo = "SDT";
+            }
+            if (outros == true) {
+              vinculo = "Outro";
+            }
+            try {
+              const response = await fetch(
+                `http://localhost:9000/getDadosUser`,
+                {
+                  method: "post",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ id, vinculo, veg, alm, cafe, lanche, jant }),
+                }
+              );
+
+              if(response.ok){
+                console.log("Foiiiiiii")
+              }
+
+            } catch (erro) {
+              console.log("erro 3")
+            }
+          }
+        });
+      } else {
+        console.log("erro 1");
+      }
+    } catch (error) {
+      console.log("erro 2");
     }
   };
 
@@ -355,32 +569,32 @@ const SettingsConst = () => {
                     classificações, etc.
                   </p>
                   <Col lg={8} sm={8} md={12}>
-                   <Form onSubmit={handleSubmit} className="formulario-card">
-                    <Form.Group controlId="exampleForm.ControlInput1">
-                      <Form.Label>Alterar email</Form.Label>
-                      <Form.Control
-                        type="email"
-                        placeholder="nome@exemplo.com"
-                        value={emailNovo}
-                        onChange={(e) => setEmailNovo(e.target.value)}
-                      />
-                    </Form.Group>
-                    <Form.Text>
-                      Seu email deve conter as normas padrões de endereço de
-                      email.
-                    </Form.Text>
-                    <Row>
-                      <Col className="justify-content-end d-flex mt-0 mb-3">
-                        <Form.Group>
-                          <Button type="submit" className="bt-sub">
-                            Enviar
-                          </Button>
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                  </Form>
+                    <Form onSubmit={handleSubmit} className="formulario-card">
+                      <Form.Group controlId="exampleForm.ControlInput1">
+                        <Form.Label>Alterar email</Form.Label>
+                        <Form.Control
+                          type="email"
+                          placeholder="nome@exemplo.com"
+                          value={emailNovo}
+                          onChange={(e) => setEmailNovo(e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Text>
+                        Seu email deve conter as normas padrões de endereço de
+                        email.
+                      </Form.Text>
+                      <Row>
+                        <Col className="justify-content-end d-flex mt-0 mb-3">
+                          <Form.Group>
+                            <Button type="submit" className="bt-sub">
+                              Enviar
+                            </Button>
+                          </Form.Group>
+                        </Col>
+                      </Row>
+                    </Form>
                   </Col>
-                 
+
                   <h3>Informações de coleta</h3>
                   <p>
                     Marque ou altere suas informações para coleta nutricional
@@ -392,27 +606,68 @@ const SettingsConst = () => {
                       type="switch"
                       id="custom-switch"
                       label="Vegetariano"
+                      checked={vegetariano}
+                      onChange={() => {
+                        if (vegetariano == false) {
+                          setVegetariano(true);
+                        } else if (vegetariano == true) {
+                          setVegetariano(false);
+                        }
+                      }}
                     />
+
                     <p>Escolha as refeições que realiza na instituição:</p>
                     <Form.Check // prettier-ignore
                       type="switch"
                       id="custom-switch"
                       label="Café da manhã"
+                      checked={cafeDaManha}
+                      onChange={() => {
+                        if (cafeDaManha == false) {
+                          setCafeDaManha(true);
+                        } else if (cafeDaManha == true) {
+                          setCafeDaManha(false);
+                        }
+                      }}
                     />
                     <Form.Check // prettier-ignore
                       type="switch"
                       id="custom-switch"
                       label="Almoço"
+                      checked={almoco}
+                      onChange={() => {
+                        if (almoco == false) {
+                          setAlmoco(true);
+                        } else if (almoco == true) {
+                          setAlmoco(false);
+                        }
+                      }}
                     />
                     <Form.Check // prettier-ignore
                       type="switch"
                       id="custom-switch"
                       label="Lanche da tarde"
+                      checked={lancheDaTarde}
+                      onChange={() => {
+                        if (lancheDaTarde == false) {
+                          setLancheDaTarde(true);
+                        } else if (lancheDaTarde == true) {
+                          setLancheDaTarde(false);
+                        }
+                      }}
                     />
                     <Form.Check // prettier-ignore
                       type="switch"
                       id="custom-switch"
                       label="Jantar"
+                      checked={jantar}
+                      onChange={() => {
+                        if (jantar == false) {
+                          setJantar(true);
+                        } else if (jantar == true) {
+                          setJantar(false);
+                        }
+                      }}
                     />
                   </Form>
                   <p>Escolha seu vínculo com a instituição:</p>
@@ -424,28 +679,68 @@ const SettingsConst = () => {
                           name="group1"
                           type={type}
                           id={`vinculo-${type}-1`}
+                          checked={am}
+                          onChange={() => {
+                            if (am == false) {
+                              setAm(true);
+                              setAg(false);
+                              setSdt(false);
+                              setOutro(false);
+                            }
+                          }}
                         />
                         <Form.Check
                           label="Servidor, docente ou tercerizado"
                           name="group1"
                           type={type}
                           id={`vinculo-${type}-2`}
+                          checked={sdt}
+                          onChange={() => {
+                            if (sdt == false) {
+                              setAm(false);
+                              setAg(false);
+                              setSdt(true);
+                              setOutro(false);
+                            }
+                          }}
                         />
                         <Form.Check
                           label="Graduação"
                           name="group1"
                           type={type}
                           id={`vinculo-${type}-3`}
+                          checked={ag}
+                          onChange={() => {
+                            if (ag == false) {
+                              setAm(false);
+                              setAg(true);
+                              setSdt(false);
+                              setOutro(false);
+                            }
+                          }}
                         />
                         <Form.Check
                           label="Outro"
                           name="group1"
                           type={type}
                           id={`vinculo-${type}-4`}
+                          checked={outro}
+                          onChange={() => {
+                            if (outro == false) {
+                              setAm(false);
+                              setAg(false);
+                              setSdt(false);
+                              setOutro(true);
+                            }
+                          }}
                         />
                       </div>
                     ))}
                   </Form>
+
+                  <Button className="bt-sub" onClick={sendData}>
+                    Enviar
+                  </Button>
                 </div>
               </div>
             </Col>

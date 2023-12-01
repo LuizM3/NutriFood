@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const connection = require("../db");
 
-router.get("/", (req, res) => {
+router.get("/", (req, res) => {   
+  const  id  = req.query.id;
     connection.query(
-        "SELECT id, vinculoAoIfes, cafeDaManha, almoco, lancheDaTarde, jantar, vegetariano FROM users",
+        "SELECT vinculoAoIfes, cafeDaManha, almoco, lancheDaTarde, jantar, vegetariano FROM users WHERE id = ?", [id],
         (error, results) => {
             if(error){
                 res.status(500).json({ error });
             } else {
-                const id = results.map((result) => result.id)
                 const vinculoAoIfes = results.map((result) => result.vinculoAoIfes);
                 const cafeDaManha = results.map((result) => result.cafeDaManha);
                 const almoco = results.map((result) => result.almoco);
@@ -17,10 +17,37 @@ router.get("/", (req, res) => {
                 const jantar = results.map((result) => result.jantar);
                 const vegetariano = results.map((result) => result.vegetariano);
 
-                res.status(200).json({ id, vinculoAoIfes, cafeDaManha, almoco, lancheDaTarde, jantar, vegetariano });
+                res.status(200).json({ vinculoAoIfes, cafeDaManha, almoco, lancheDaTarde, jantar, vegetariano });
             }
         }
     )
 })
 
+router.post("/", (req, res)=>{
+  const id = req.body.id;
+  const vinculo = req.body.vinculo;
+  const cafeDaManha = req.body.cafe;
+  const almoco = req.body.alm;
+  const lancheDaTarde = req.body.lanche;
+  const jantar = req.body.jant;
+  const vegetariano = req.body.veg;
+
+  console.log(id);
+  console.log(vinculo);
+  console.log(cafeDaManha);
+  console.log(almoco);
+  console.log(lancheDaTarde);
+  console.log(jantar)
+  console.log(vegetariano);
+    connection.query(
+        "UPDATE users SET VinculoAoIfes = ?, cafeDaManha = ?, almoco = ?, lancheDaTarde = ?, jantar = ?, vegetariano = ? WHERE id = ?", [vinculo, cafeDaManha, almoco, lancheDaTarde, jantar, vegetariano, id],
+        (error, results) => {
+            if(error){
+                res.status(500).json({ error: error });
+            } else {
+                res.status(200).json({ message: "Sucess" });
+            }
+        }
+    )
+})
 module.exports = router;

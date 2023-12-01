@@ -12,6 +12,7 @@ const signinRouter = require("./routes/signin");
 const signupRouter = require("./routes/signup");
 const indexRouter = require("./routes/index");
 const suggestionsRouter = require("./routes/suggestions");
+const getDadosUsersRouter = require("./routes/getDadosUsers");
 const getDadosUserRouter = require("./routes/getDadosUser");
 
 const checkEmailRouter = require("./routes/checkEmail");
@@ -40,6 +41,7 @@ app.use("/signup", signupRouter);
 app.use("/signin", signinRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/suggestions", suggestionsRouter);
+app.use("/getDadosUsers", getDadosUsersRouter);
 app.use("/getDadosUser", getDadosUserRouter);
 app.use("/saveMenu", saveMenuRouter);
 app.use("/getMenu", getMenuRouter);
