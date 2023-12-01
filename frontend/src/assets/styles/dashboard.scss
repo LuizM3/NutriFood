@@ -63,16 +63,20 @@
     font-size: 1em;
     color: var(--gray);
   }
+
   .btn:focus {
-    color: var(--gray) !important;
+    color: var(--gray);
     background-color: #edeff2;
   }
   .btn:active {
-    color: var(--gray) !important;
+    color: var(--gray);
     background-color: #edeff2;
   }
   .btn:hover {
     background-color: #edeff2;
+  }
+  .bt-sub {
+    height: 45px;
   }
 }
 .col-dash-cont {

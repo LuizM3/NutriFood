@@ -713,6 +713,7 @@ min-height: 100vh;
 .bt-sub {
   background: var(--primary) !important;
   border: transparent !important;
+  color: white !important;
 }
 .bt-sub-cancel {
   background: var(--cancel) !important;
@@ -720,12 +721,15 @@ min-height: 100vh;
 }
 .bt-sub:active {
   background: var(--primary);
+  color: white !important;
 }
 .bt-sub:hover {
   background: var(--primary);
+  color: white !important;
 }
 .bt-sub:focus {
   background: var(--primary) !important;
+  color: white !important;
 }
 .modal-senha {
   .modal-dialog {

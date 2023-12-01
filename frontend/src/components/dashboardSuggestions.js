@@ -81,7 +81,7 @@ const DashboardConst = () => {
             },
           }
         );
-        
+
         listaSuggestions = [];
         listaData = [];
         if (response.ok) {
@@ -228,6 +228,16 @@ const DashboardConst = () => {
                           </Row>
                         </Button>
                       </Link>
+                      <Button
+                        onClick={handlePull}
+                        className="bt-sub text-white"
+                      >
+                        <Row className="w-100 m-0 p-0">
+                          <Col className="d-flex justify-content-center align-items-center">
+                            Atualizar
+                          </Col>
+                        </Row>
+                      </Button>
                     </Stack>
                     <Stack className="align-self-end stack-log w-100">
                       <Button onClick={handleShow}>
@@ -326,6 +336,13 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
+                <Button onClick={handlePull} className="bt-sub text-white">
+                  <Row className="w-100 m-0 p-0">
+                    <Col className="d-flex justify-content-center align-items-center">
+                      Atualizar
+                    </Col>
+                  </Row>
+                </Button>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
                 <Button onClick={handleShow}>
@@ -347,39 +364,6 @@ const DashboardConst = () => {
                 <h2>Listagem de sugestões</h2>
                 <Row className="admin-suges-row">
                   <Col className="overflow-scroll h-100 suges-col p-2 pt-0">
-                    <ListGroup className="m-0 p-0 w-100">
-                      <Col md={2} className="mb-2">
-                        <Button
-                          onClick={handlePull}
-                          className="m-2 d-flex align-items-center justify-content-center p-2 bt-sub w-100"
-                        >
-                          {spin ? (
-                            <Row className="p-2">
-                              <Stack gap={4} className="d-flex flex-row">
-                                {/* <Col md={6} className="m-0 p-0">
-                                  Carregando...
-                                </Col> */}
-                                <Col md={6} className="m-0 p-0">
-                                  <Spinner
-                                    animation="border"
-                                    role="status"
-                                    variant="white"
-                                    className="p-0 m-0"
-                                  ></Spinner>
-                                </Col>
-                              </Stack>
-                            </Row>
-                          ) : (
-                            <Row>
-                              <Col>Atualizar</Col>
-                              {/* <Col>
-                                <ion-icon name="reload"></ion-icon>
-                              </Col> */}
-                            </Row>
-                          )}
-                        </Button>
-                      </Col>
-                    </ListGroup>
                     <ListGroup className="m-0 p-0">
                       {listaSuggestions.map((suggestion, index) => {
                         const dataFormatada = format(

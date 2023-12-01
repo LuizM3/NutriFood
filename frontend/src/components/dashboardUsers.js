@@ -122,7 +122,11 @@ const DashboardConst = () => {
             >
               <Row className="w-100 d-flex align-items-center rr">
                 <Col className="h-100 d-flex justify-content-center align-items-center">
-                  <Button variant="primary" onClick={handleOff} className="off-btn">
+                  <Button
+                    variant="primary"
+                    onClick={handleOff}
+                    className="off-btn"
+                  >
                     <ion-icon name="menu-outline"></ion-icon>
                   </Button>
                 </Col>
@@ -230,6 +234,14 @@ const DashboardConst = () => {
                           </Row>
                         </Button>
                       </Link>
+
+                      <Button disabled className="bt-sub text-white">
+                        <Row className="w-100 m-0 p-0">
+                          <Col className="d-flex justify-content-center align-items-center">
+                            Atualizar
+                          </Col>
+                        </Row>
+                      </Button>
                     </Stack>
                     <Stack className="align-self-end stack-log w-100">
                       <Button onClick={handleShow}>
@@ -327,6 +339,13 @@ const DashboardConst = () => {
                     </Row>
                   </Button>
                 </Link>
+                <Button disabled className="bt-sub text-white">
+                  <Row className="w-100 m-0 p-0">
+                    <Col className="d-flex justify-content-center align-items-center">
+                      Atualizar
+                    </Col>
+                  </Row>
+                </Button>
               </Stack>
               <Stack className="align-self-end stack-log w-100">
                 <Button onClick={handleShow}>

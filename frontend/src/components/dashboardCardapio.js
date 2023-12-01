@@ -19,7 +19,7 @@ import {
   Modal,
 } from "react-bootstrap";
 
-import 'react-calendar/dist/Calendar.css';
+import "react-calendar/dist/Calendar.css";
 import Papa from "papaparse";
 
 const logo = require("../assets/images/logo.png");
@@ -357,6 +357,14 @@ const Sidebar = () => {
                             </Row>
                           </Button>
                         </Link>
+
+                        <Button disabled className="bt-sub text-white">
+                          <Row className="w-100 m-0 p-0">
+                            <Col className="d-flex justify-content-center align-items-center">
+                              Atualizar
+                            </Col>
+                          </Row>
+                        </Button>
                       </Stack>
                       <Stack className="align-self-end stack-log w-100">
                         <Button onClick={handleShow}>
@@ -457,6 +465,14 @@ const Sidebar = () => {
                       </Row>
                     </Button>
                   </Link>
+
+                  <Button disabled className="bt-sub text-white">
+                    <Row className="w-100 m-0 p-0">
+                      <Col className="d-flex justify-content-center align-items-center">
+                        Atualizar
+                      </Col>
+                    </Row>
+                  </Button>
                 </Stack>
                 <Stack className="align-self-end stack-log w-100">
                   <Button onClick={handleShow}>

@@ -14,13 +14,12 @@ import {
 import "../assets/styles/suggestions.scss";
 import Filter from "bad-words";
 import { Link, useNavigate } from "react-router-dom";
-// var lineReader = require('line-reader');
+import palavraProfano from "../service/Profano";
 const SuggestionsConst = () => {
   const arrow = require("../assets/images/left-arrow.png");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
   const [showCont, setShowCont] = useState("");
-  const [showAdmin, setShowAdmin] = useState("");
   const navigate = useNavigate();
   const [characterLimit] = useState(200);
   
@@ -31,11 +30,12 @@ const SuggestionsConst = () => {
       setShowCont(true);
     }
   }, [id]);
+
   const [suggestion, setSuggestion] = useState("");
   const [palavrao, setPalavrao] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
-  const [showErrorAlert, setErrorAlert] = useState(true);
+  const [showErrorAlert, setErrorAlert] = useState(false);
   const handleSuggestionChange = (event) => {
     setSuggestion(event.target.value);
   };
@@ -52,19 +52,8 @@ const SuggestionsConst = () => {
 
     // filtro
     const filter = new Filter();
-    // var contents = readTextFi;le.readSync("../assets/listaProfano.txt");
-    // console.log(contents);
-
-    // lineReader.eachLine('file.txt', function(line, last) {
-    //   console.log(line);
-
-    //   if (true) {
-    //     return false; // stop reading
-    //   }
-    // });
-    var newBadWords = ["teste", "teste"];
-
-    filter.addWords(...newBadWords);
+    filter.addWords(...palavraProfano);
+    console.log(palavraProfano);
     // Verificando se a sugestão contém linguagem imprópria
     if (filter.isProfane(suggestion)) {
       // Se contiver linguagem imprópria, mostre o alert
