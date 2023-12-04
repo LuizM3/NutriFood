@@ -8,7 +8,6 @@ router.post("/", async (req, res) => {
   const { suggestion, idUsuario } = req.body;
   const today = new Date();
   // const data = today.toLocaleDateString();
-  console.log(today);
   connection.query(
     "INSERT INTO suggestion (suggestion, idUsuario, data_criacao) VALUES ( ?, ?, ? )",
     [suggestion, idUsuario, today],

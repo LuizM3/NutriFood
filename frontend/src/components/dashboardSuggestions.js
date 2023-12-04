@@ -14,6 +14,7 @@ import {
   Offcanvas,
   ListGroup,
   Spinner,
+  Alert
 } from "react-bootstrap";
 
 import { format } from "date-fns";
@@ -36,6 +37,8 @@ const DashboardConst = () => {
   const id = localStorage.getItem("id");
   const [suggestions, setSuggestions] = useState([]);
   const [dataCriacao, setDataCriacao] = useState([]);
+
+  const [showAlertErro, setShowAlertErro] = useState(false);
 
   const handleShow = () => {
     localStorage.removeItem("id");
@@ -92,18 +95,34 @@ const DashboardConst = () => {
               listaData.push(data.data_criacao[i - 1]);
             }
           } else {
-            console.log("error");
-          }
+            setShowAlertErro(true);
+            setTimeout(() => {
+              setShowAlertErro(false);
+            }, 5000);          }
         } else {
-          console.log("Erro na requisição");
-        }
+          setShowAlertErro(true);
+          setTimeout(() => {
+            setShowAlertErro(false);
+          }, 5000);        }
       } catch (error) {
-        console.error("Erro ao enviar requisição:", error);
-      }
+        setShowAlertErro(true);
+        setTimeout(() => {
+          setShowAlertErro(false);
+        }, 5000);      }
     };
     fetchData();
   };
   return (
+    <>
+    {showAlertErro && (
+      <Alert
+        variant="warning"
+        className="align-items-center d-flex fade"
+        onClose={() => setShowAlertErro(false)}
+      >
+        As senhas devem ser iguais
+      </Alert>
+    )}{" "}
     <div className="dashboard">
       <Container fluid className="h-100 w-100">
         <Row className="h-100 d-flex">
@@ -404,6 +423,7 @@ const DashboardConst = () => {
         </Row>
       </Container>
     </div>
+    </>
   );
 };
 

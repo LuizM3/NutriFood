@@ -5,8 +5,6 @@ const connection = require("../db");
 router.post("/", (req, res) => {
   const id = req.body.id;
   const idSuggestions = req.body.idSuggestions;
-  console.log(idSuggestions);
-  console.log(id);
   connection.query(
     "DELETE FROM suggestion WHERE id = ? AND idUsuario = ?",
     [idSuggestions, id],
@@ -14,12 +12,7 @@ router.post("/", (req, res) => {
       if (error) {
         res.status(500).json({ error: "An error occurred" });
       } else {
-        console.log('Funcionou');
-        res
-          .status(200)
-          .json({
-            message: "DELETADO",
-          });
+        res.status(200).json({ message: "DELETADO" });
       }
     }
   );

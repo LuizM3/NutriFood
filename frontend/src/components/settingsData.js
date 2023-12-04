@@ -12,6 +12,7 @@ import {
   Badge,
   Modal,
   Stack,
+  Alert
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,6 +32,8 @@ const SettingsConst = () => {
   const [edit, setEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [selecionaSugestaoIndex, setSelecionaSugestaoIndex] = useState(null);
+
+  const [showAlertErro, setShowAlertErro] = useState(false);
 
   const [salvar, setSalvar] = useState("");
   const [conteudo, setConteudo] = useState("");
@@ -60,13 +63,22 @@ const SettingsConst = () => {
               setIdSug(data.id);
               setDataCriacao(data.data_criacao);
             } else {
-              console.log("error");
+              setShowAlertErro(true);
+              setTimeout(() => {
+                setShowAlertErro(false);
+              }, 5000);
             }
           } else {
-            console.log("Erro na requisição");
+            setShowAlertErro(true);
+            setTimeout(() => {
+              setShowAlertErro(false);
+            }, 5000);
           }
         } catch (error) {
-          console.error("Erro ao enviar requisição:", error);
+          setShowAlertErro(true);
+          setTimeout(() => {
+            setShowAlertErro(false);
+          }, 5000);
         }
       };
 
@@ -83,7 +95,6 @@ const SettingsConst = () => {
 
   const handleDelete = (index) => {
     setSelecionaSugestaoIndex(index);
-    // console.log(index);
     setIdSuggestions(idSug[index]);
     setIsDelete(true);
   };
@@ -91,7 +102,7 @@ const SettingsConst = () => {
   const handleConfirmDelete = async (e) => {
     e.preventDefault();
 
-       try {
+    try {
       const response = await fetch("http://localhost:9000/deleteSuggestions", {
         method: "POST",
         headers: {
@@ -105,13 +116,22 @@ const SettingsConst = () => {
         if (data.message === "DELETADO") {
           window.location.reload();
         } else {
-          console.log("Error");
+          setShowAlertErro(true);
+          setTimeout(() => {
+            setShowAlertErro(false);
+          }, 5000);
         }
       } else {
-        console.log("Error");
+        setShowAlertErro(true);
+        setTimeout(() => {
+          setShowAlertErro(false);
+        }, 5000);
       }
     } catch (error) {
-      console.error("Erro ao enviar requisição:", error);
+      setShowAlertErro(true);
+      setTimeout(() => {
+        setShowAlertErro(false);
+      }, 5000);
     }
     setIsDelete(false);
   };
@@ -121,7 +141,6 @@ const SettingsConst = () => {
       setEdit(false);
       return;
     }
-    console.log(salvar);
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:9000/editSuggestions", {
@@ -137,13 +156,22 @@ const SettingsConst = () => {
         if (data.message === "SALVO") {
           window.location.reload();
         } else {
-          console.log("Error");
+          setShowAlertErro(true);
+          setTimeout(() => {
+            setShowAlertErro(false);
+          }, 5000);
         }
       } else {
-        console.log("Error");
+        setShowAlertErro(true);
+        setTimeout(() => {
+          setShowAlertErro(false);
+        }, 5000);
       }
     } catch (error) {
-      console.error("Erro ao enviar requisição:", error);
+      setShowAlertErro(true);
+      setTimeout(() => {
+        setShowAlertErro(false);
+      }, 5000);
     }
     setEdit(false);
   };
@@ -153,6 +181,15 @@ const SettingsConst = () => {
 
   return (
     <>
+      {showAlertErro && (
+        <Alert
+          variant="danger"
+          className="align-items-center d-flex fade"
+          onClose={() => setShowAlertErro(false)}
+        >
+          Erro
+        </Alert>
+      )}{" "}
       <Modal
         show={isDelete}
         onHide={() => setIsDelete(false)}
@@ -395,11 +432,10 @@ const SettingsConst = () => {
                                       <Col>
                                         <Badge
                                           className="mt-3"
-                                          bg={`${
-                                            salvar.length > characterLimit
+                                          bg={`${salvar.length > characterLimit
                                               ? "danger"
                                               : "secondary"
-                                          }`}
+                                            }`}
                                         >
                                           {salvar.length}/{characterLimit}
                                         </Badge>
@@ -425,7 +461,7 @@ const SettingsConst = () => {
                     </Col>
                   </Row>
 
-          
+
                 </div>
               </div>
             </Col>

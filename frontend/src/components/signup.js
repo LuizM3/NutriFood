@@ -172,18 +172,8 @@ const SignUpConst = () => {
 
     let verify = false;
 
-    console.log(vegetariano);
-    console.log(vinculoAoIfes);
-    console.log(
-      objetoRefeicoes.cafeDaManha != true &&
-        objetoRefeicoes.almoco != true &&
-        objetoRefeicoes.lancheDaTarde != true &&
-        objetoRefeicoes.jantar != true
-    );
-
     if (vinculoAoIfes == null) {
       verify = true;
-      console.log("1");
     } else if (
       objetoRefeicoes.cafeDaManha != true &&
       objetoRefeicoes.almoco != true &&
@@ -191,14 +181,11 @@ const SignUpConst = () => {
       objetoRefeicoes.jantar != true
     ) {
       verify = true;
-      console.log("2");
     } else if (vegetariano == null) {
       verify = true;
-      console.log("3");
     }
 
     if (verify == true) {
-      console.log("Algo errado");
       objetoRefeicoes = {
         cafeDaManha: false,
         almoco: false,
@@ -250,7 +237,6 @@ const SignUpConst = () => {
           }, 5000);
         }
       } catch (error) {
-        console.error("Erro ao enviar dados:", error);
         setErrorAlert(true);
         setTimeout(() => {
           setErrorAlert(false);
@@ -278,7 +264,6 @@ const SignUpConst = () => {
 
   return (
     <>
-      {/* Alerts */}
 
       <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
         {showPassAlert && (

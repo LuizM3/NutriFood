@@ -7,10 +7,6 @@ require("dotenv").config();
 
 router.post("/", async (req, res) => {
   const { id, senhaNova, senha } = req.body;
-  console.log(id);
-  console.log(senha);
-  console.log(senhaNova);
-
   connection.query(
     "SELECT senha FROM users WHERE id = ?",
     [id],
@@ -18,12 +14,10 @@ router.post("/", async (req, res) => {
       if (error) {
         res.status(500).json({ error: "An error occurred" });
       } else {
-        console.log(results.map((result) => result.senha)[0]);
         const match = await bcrypt.compare(
           senha,
           results.map((result) => result.senha)[0]
         );
-        console.log(match);
         if (match) {
           const hashedSenha = await bcrypt.hash(senhaNova, saltRounds);
           connection.query(

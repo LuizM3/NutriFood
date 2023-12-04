@@ -36,6 +36,9 @@ const SuggestionsConst = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
+  const [showAlertProfano, setShowAlertProfano] = useState(false);
+
+
   const handleSuggestionChange = (event) => {
     setSuggestion(event.target.value);
   };
@@ -53,16 +56,14 @@ const SuggestionsConst = () => {
     // filtro
     const filter = new Filter();
     filter.addWords(...palavraProfano);
-    console.log(palavraProfano);
     // Verificando se a sugestão contém linguagem imprópria
     if (filter.isProfane(suggestion)) {
       // Se contiver linguagem imprópria, mostre o alert
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 5000);
 
-      console.log("Linguagem imprópria");
+      setShowAlertProfano(true);
+        setTimeout(() => {
+          setShowAlertProfano(false);
+        }, 5000);
     } else {
       // Aqui,enviar a sugestão para o backend
       const idUsuario = localStorage.getItem("id");
@@ -80,8 +81,8 @@ const SuggestionsConst = () => {
         setTimeout(() => {
           setShowAlertSuccess(false);
         }, 5000);
-        console.log("Sucesso em enviar sugestão");
-        window.location.reload();
+        // window.location.reload();
+        navigate(0)
       } else {
         alert("Algo deu errado");
       }
@@ -91,15 +92,6 @@ const SuggestionsConst = () => {
   return (
     <>
       <Row className="position-fixed alert-row rev-cont">
-        {showAlert && (
-          <Alert
-            variant="warning"
-            className="align-items-center d-flex fade"
-            onClose={() => setShowAlert(false)}
-          >
-            Linguagem imprópria detectada!
-          </Alert>
-        )}{" "}
         {showAlertSuccess && (
           <Alert
             variant="success"
@@ -116,6 +108,15 @@ const SuggestionsConst = () => {
             onClose={() => setErrorAlert(false)}
           >
             Erro ao enviar sugestão
+          </Alert>
+        )}
+        {showAlertProfano && (
+          <Alert
+            variant="warning"
+            className="align-items-center d-flex fade"
+            onClose={() => setShowAlertProfano(false)}
+          >
+            Linguagem imprópria detectada
           </Alert>
         )}
       </Row>

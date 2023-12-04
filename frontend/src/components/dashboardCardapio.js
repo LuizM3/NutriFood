@@ -47,6 +47,8 @@ const Sidebar = () => {
   const [textLancheDaTarde, setTextLancheDaTarde] = useState("");
   const [textJantar, setTextJantar] = useState("");
 
+  const [showAlertErro, setShowAlertErro] = useState(false);
+
   const saveMenu = async () => {
     if (
       jsonAlmoco == "" ||
@@ -87,11 +89,16 @@ const Sidebar = () => {
             nav(0);
           }, 4000);
         } else {
-          console.log("Deu Errado");
+          setShowAlertErro(true);
+      setTimeout(() => {
+        setShowAlertErro(false);
+      }, 5000);
         }
       } catch {
-        console.log("Error");
-      }
+        setShowAlertErro(true);
+        setTimeout(() => {
+          setShowAlertErro(false);
+        }, 5000);      }
     }
   };
 
@@ -195,6 +202,16 @@ const Sidebar = () => {
 
   return (
     <>
+    {showAlertErro && (
+          <Alert
+            variant="danger"
+            className="align-items-center d-flex fade"
+            onClose={() => setShowAlertErro(false)}
+          >
+            As senhas devem ser iguais
+          </Alert>
+        )}{" "}
+
       <Modal
         show={spinnerModal}
         onHide={() => setSpinnerModal(false)}
