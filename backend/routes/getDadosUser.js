@@ -32,20 +32,13 @@ router.post("/", (req, res)=>{
   const jantar = req.body.jant;
   const vegetariano = req.body.veg;
 
-  console.log(id);
-  console.log(vinculo);
-  console.log(cafeDaManha);
-  console.log(almoco);
-  console.log(lancheDaTarde);
-  console.log(jantar)
-  console.log(vegetariano);
     connection.query(
         "UPDATE users SET VinculoAoIfes = ?, cafeDaManha = ?, almoco = ?, lancheDaTarde = ?, jantar = ?, vegetariano = ? WHERE id = ?", [vinculo, cafeDaManha, almoco, lancheDaTarde, jantar, vegetariano, id],
         (error, results) => {
             if(error){
                 res.status(500).json({ error: error });
             } else {
-                res.status(200).json({ message: "Sucess" });
+                res.status(200).json({ message: "Success" });
             }
         }
     )

@@ -7,9 +7,6 @@ router.post("/", (req, res) => {
   const id = req.body.id;
   const conteudoAntigo = req.body.conteudo;
   const idSuggestions = req.body.idSuggestions;
-  console.log(idSuggestions);
-  console.log(conteudoNovo);
-  console.log(id);
   connection.query(
     "UPDATE suggestion SET suggestion = ? WHERE id = ? AND idUsuario = ? AND suggestion = ?",
     [conteudoNovo, idSuggestions, id, conteudoAntigo],

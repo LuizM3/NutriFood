@@ -107,7 +107,6 @@ const SettingsConst = () => {
           setTimeout(() => {
             setErrorAlert(false);
           }, 5000);
-          console.error("Erro ao enviar requisição:", error);
         }
       } else {
         setConfirmAlert(true);

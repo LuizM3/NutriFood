@@ -91,8 +91,10 @@ const LoginConst = () => {
         }, 5000);
       }
     } catch (error) {
-      console.error("Erro ao enviar requisição:", error);
-    }
+      setErrorAlert(true);
+      setTimeout(() => {
+        setErrorAlert(false);
+      }, 5000);    }
   };
 
   return (

@@ -39,10 +39,13 @@ const SettingsConst = () => {
 
   const [spinnerModal, setSpinnerModal] = useState(false);
   const [passModal, setPassModal] = useState(false);
+
   const [showPassAlert, setShowPassAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
-  const [showErrorAlert, setErrorAlert] = useState(false);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [showEmailAlert, setEmailAlert] = useState(false);
+  const [showAlertDadosIgauis, setShowAlertDadosIgauis] = useState(false);
+  const [showSuccessDados, setShowSuccessDados] = useState(false);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -100,11 +103,15 @@ const SettingsConst = () => {
             }
           });
         } else {
-          console.log("erro 1");
-        }
+          showErrorAlert(true);
+          setTimeout(() => {
+            showErrorAlert(false);
+          }, 5000);        }
       } catch (error) {
-        console.log("erro 2");
-      }
+        showErrorAlert(true);
+        setTimeout(() => {
+          showErrorAlert(false);
+        }, 5000);      }
     };
 
     dadosUserReq();
@@ -144,26 +151,7 @@ const SettingsConst = () => {
     } else {
       veg = 0;
     }
-    // if (alunoMedio == true) {
-    //   alunoMedio = 1;
-    // } else {
-    //   alunoMedio = 0;
-    // }
-    // if (alunoGraduacao == true) {
-    //   alunoGraduacao = 1;
-    // } else {
-    //   alunoGraduacao = 0;
-    // }
-    // if (serDocT == true) {
-    //   serDocT = 1;
-    // } else {
-    //   serDocT = 0;
-    // }
-    // if (outros == true) {
-    //   outros = 1;
-    // } else {
-    //   outros = 0;
-    // }
+
     if (cafe == true) {
       cafe = 1;
     } else {
@@ -217,12 +205,15 @@ const SettingsConst = () => {
             cafe == Object.cafeDaManha &&
             lanche == Object.lancheDaTarde &&
             jant == Object.jantar &&
-            am == aMedio &&
-            ag == aGraduaco &&
+            alunoMedio == aMedio &&
+            alunoGraduacao == aGraduaco &&
             serDocT == servidor &&
             outros == otr
           ) {
-            console.log("envie certo");
+            setShowAlertDadosIgauis(true);
+            setTimeout(() => {
+              setShowAlertDadosIgauis(false);
+            }, 5000);          
           } else {
             let vinculo = Object.vinculoAoIfes;
             if (am == true) {
@@ -238,6 +229,7 @@ const SettingsConst = () => {
               vinculo = "Outro";
             }
             try {
+
               const response = await fetch(
                 `http://localhost:9000/getDadosUser`,
                 {
@@ -250,20 +242,30 @@ const SettingsConst = () => {
               );
 
               if(response.ok){
-                console.log("Foiiiiiii")
+                showSuccessDados(true);
+                setTimeout(() => {
+                  showSuccessDados(false);  
+                }, 5000);
               }
 
             } catch (erro) {
-              console.log("erro 3")
+              setShowErrorAlert(true);
+              setTimeout(() => {
+                setShowErrorAlert(false);
+              }, 5000); 
             }
           }
         });
       } else {
-        console.log("erro 1");
-      }
+        setShowErrorAlert(true);
+        setTimeout(() => {
+          setShowErrorAlert(false);
+        }, 5000);      }
     } catch (error) {
-      console.log("erro 2");
-    }
+      setShowErrorAlert(true);
+      setTimeout(() => {
+        setShowErrorAlert(false);
+      }, 5000);    }
   };
 
   const handleSubmitAuth = async (e) => {
@@ -309,11 +311,10 @@ const SettingsConst = () => {
         }, 5000);
       }
     } catch (error) {
-      setErrorAlert(true);
+      setShowErrorAlert(true);
       setTimeout(() => {
-        setErrorAlert(false);
+        setShowErrorAlert(false);
       }, 5000);
-      console.error("Erro ao enviar requisição:", error);
     }
   };
   const isResponsive = useMediaQuery({ query: "(max-width: 768px)" });
@@ -327,7 +328,7 @@ const SettingsConst = () => {
         className="modal spinner-modal"
         backdrop="static"
         data-test="links"
-      >
+        >
         <Modal.Body>
           <Spinner
             animation="border"
@@ -346,7 +347,7 @@ const SettingsConst = () => {
         className="modal modal-senha"
         backdrop="static"
         data-test="links"
-      >
+        >
         <Modal.Body>
           <Form onSubmit={handleSubmitAuth} className="formulario-card">
             <Stack gap={2}>
@@ -360,14 +361,14 @@ const SettingsConst = () => {
                   value={senha}
                   data-test="form-pass"
                   onChange={(e) => setSenha(e.target.value)}
-                />
+                  />
               </Form.Group>
               <Form.Group>
                 <Button
                   className="bt-sub"
                   type="submit"
                   id="button-login-signup"
-                >
+                  >
                   Autenticar
                 </Button>
               </Form.Group>
@@ -377,15 +378,36 @@ const SettingsConst = () => {
       </Modal>
 
       <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
+        {showAlertDadosIgauis && (
+              <Alert
+                variant="warning"
+                className="align-items-center d-flex fade"
+                onClose={() => showAlertDadosIgauis(false)}
+              >
+                Altere os dados
+              </Alert>
+            )}
+
+            {showSuccessDados && (
+              <Alert
+                variant="success"
+                className="align-items-center d-flex fade"
+                onClose={() => showSuccessDados(false)}
+              >
+                Dados alterados
+              </Alert>
+            )}{" "}
+            
         {showPassAlert && (
           <Alert
-            variant="warning"
+          variant="warning"
             className="align-items-center d-flex fade"
             onClose={() => setShowPassAlert(false)}
           >
             Senha incorreta
           </Alert>
         )}{" "}
+
         {showEmailAlert && (
           <Alert
             variant="warning"
@@ -408,7 +430,7 @@ const SettingsConst = () => {
           <Alert
             variant="danger"
             className="align-items-center d-flex fade"
-            onClose={() => setErrorAlert(false)}
+            onClose={() => setShowErrorAlert(false)}
           >
             Erro ao enviar requisição
           </Alert>

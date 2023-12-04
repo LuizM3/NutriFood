@@ -115,6 +115,7 @@ const MenuConst = () => {
           listaJantar.push(element);
         }
       }
+      
       menuState = [];
 
       menuState.push(listaCafeDaManha[e - 1]);
@@ -122,7 +123,6 @@ const MenuConst = () => {
       menuState.push(listaLancheDaTarde[e - 1]);
       menuState.push(listaJantar[e - 1]);
 
-      console.log(menuState);
       setTabela(true);
     });
   };

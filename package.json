@@ -52,6 +52,7 @@
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-bootstrap": "^2.8.0",
+    "react-calendar": "^4.6.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -67,7 +68,6 @@
   "dependencies": {
     "babel-plugin-macros": "^3.1.0",
     "chart.js": "^4.4.0",
-    "react-calendar": "^4.6.1",
     "react-charts": "^3.0.0-beta.57",
     "read-text-file": "^1.1.0"
   }
