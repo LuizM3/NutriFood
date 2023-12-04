@@ -32,8 +32,6 @@ const SuggestionsConst = () => {
   }, [id]);
 
   const [suggestion, setSuggestion] = useState("");
-  const [palavrao, setPalavrao] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorAlert, setErrorAlert] = useState(false);
   const [showAlertProfano, setShowAlertProfano] = useState(false);

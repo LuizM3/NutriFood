@@ -12,19 +12,19 @@ import {
   Badge,
   Modal,
   Stack,
-  Alert
+  Alert,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { format } from "date-fns";
+import palavraProfano from "../service/Profano";
+import Filter from "bad-words";
 const SettingsConst = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
-  const [emailNovo, setEmailNovo] = useState("");
-  const email = localStorage.getItem("email");
   const id = localStorage.getItem("id");
   const [suggestions, setSuggestions] = useState([]);
   const [idSug, setIdSug] = useState([]);
@@ -32,9 +32,8 @@ const SettingsConst = () => {
   const [edit, setEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [selecionaSugestaoIndex, setSelecionaSugestaoIndex] = useState(null);
-
+  const [showAlertProfano, setShowAlertProfano] = useState(false);
   const [showAlertErro, setShowAlertErro] = useState(false);
-
   const [salvar, setSalvar] = useState("");
   const [conteudo, setConteudo] = useState("");
   const [idSuggestions, setIdSuggestions] = useState("");
@@ -84,7 +83,7 @@ const SettingsConst = () => {
 
       fetchData();
     }
-  }, [emailNovo, id]);
+  }, [id]);
 
   const handleEdit = (index) => {
     setSelecionaSugestaoIndex(index);
@@ -142,37 +141,48 @@ const SettingsConst = () => {
       return;
     }
     e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:9000/editSuggestions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ salvar, id, idSuggestions, conteudo }),
-      });
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.message === "SALVO") {
-          window.location.reload();
+    const filter = new Filter();
+    filter.addWords(...palavraProfano);
+    if (filter.isProfane(salvar)) {
+      setShowAlertProfano(true);
+      setTimeout(() => {
+        setShowAlertProfano(false);
+      }, 5000);
+    } else {
+      try {
+        const response = await fetch("http://localhost:9000/editSuggestions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ salvar, id, idSuggestions, conteudo }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.message === "SALVO") {
+            window.location.reload();
+          } else {
+            setShowAlertErro(true);
+            setTimeout(() => {
+              setShowAlertErro(false);
+            }, 5000);
+          }
         } else {
           setShowAlertErro(true);
           setTimeout(() => {
             setShowAlertErro(false);
           }, 5000);
         }
-      } else {
+      } catch (error) {
         setShowAlertErro(true);
         setTimeout(() => {
           setShowAlertErro(false);
         }, 5000);
       }
-    } catch (error) {
-      setShowAlertErro(true);
-      setTimeout(() => {
-        setShowAlertErro(false);
-      }, 5000);
     }
+
     setEdit(false);
   };
 
@@ -181,15 +191,27 @@ const SettingsConst = () => {
 
   return (
     <>
-      {showAlertErro && (
-        <Alert
-          variant="danger"
-          className="align-items-center d-flex fade"
-          onClose={() => setShowAlertErro(false)}
-        >
-          Erro
-        </Alert>
-      )}{" "}
+      <Row className="position-fixed alert-row rev-cont">
+        {showAlertProfano && (
+          <Alert
+            variant="warning"
+            className="align-items-center d-flex fade"
+            onClose={() => setShowAlertProfano(false)}
+          >
+            Linguagem imprópria detectada
+          </Alert>
+        )}
+        {showAlertErro && (
+          <Alert
+            variant="danger"
+            className="align-items-center d-flex fade"
+            onClose={() => setShowAlertErro(false)}
+          >
+            Erro
+          </Alert>
+        )}{" "}
+      </Row>
+
       <Modal
         show={isDelete}
         onHide={() => setIsDelete(false)}
@@ -432,10 +454,11 @@ const SettingsConst = () => {
                                       <Col>
                                         <Badge
                                           className="mt-3"
-                                          bg={`${salvar.length > characterLimit
+                                          bg={`${
+                                            salvar.length > characterLimit
                                               ? "danger"
                                               : "secondary"
-                                            }`}
+                                          }`}
                                         >
                                           {salvar.length}/{characterLimit}
                                         </Badge>
@@ -460,8 +483,6 @@ const SettingsConst = () => {
                       </ListGroup>
                     </Col>
                   </Row>
-
-
                 </div>
               </div>
             </Col>
