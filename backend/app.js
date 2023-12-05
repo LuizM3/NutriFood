@@ -14,6 +14,7 @@ const indexRouter = require("./routes/index");
 const suggestionsRouter = require("./routes/suggestions");
 const getDadosUsersRouter = require("./routes/getDadosUsers");
 const getDadosUserRouter = require("./routes/getDadosUser");
+const getCardapioMainRouter = require("./routes/getCardapioMain");
 
 const checkEmailRouter = require("./routes/checkEmail");
 const getReviewsRouter = require('./routes/getReviews');
@@ -45,6 +46,7 @@ app.use("/getDadosUsers", getDadosUsersRouter);
 app.use("/getDadosUser", getDadosUserRouter);
 app.use("/saveMenu", saveMenuRouter);
 app.use("/getMenu", getMenuRouter);
+app.use("/getCardapioMain", getCardapioMainRouter);
 
 app.use("/getReviews", getReviewsRouter);
 app.use("/getSuggestions", getSuggestionsRouter);

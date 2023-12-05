@@ -71,8 +71,6 @@ const SignUpConst = () => {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [termo, setTermo] = useState(false);
 
-  // const [emailError, setEmailError] = useState("");
-
   // Modais
 
   const [spinnerModal, setSpinnerModal] = useState(false);
@@ -264,7 +262,6 @@ const SignUpConst = () => {
 
   return (
     <>
-
       <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
         {showPassAlert && (
           <Alert

@@ -2,7 +2,7 @@ var connection = require("../db");
 var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
-const saltRounds = 10; 
+const saltRounds = 10;
 require("dotenv").config();
 
 router.post("/", async (req, res) => {

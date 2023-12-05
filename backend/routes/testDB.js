@@ -8,7 +8,6 @@ router.get("/", async (req, res) => {
     const reviews = await query("SELECT * FROM review");
     const suggestions = await query("SELECT * FROM suggestion");
 
-    // Mapeia as reviews e suggestions para os usuários correspondentes usando o idUsuario
     const usersWithReviewsAndSuggestions = users.map((user) => {
       const userReviews = reviews.filter(
         (review) => review.idUsuario == user.id

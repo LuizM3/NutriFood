@@ -26,7 +26,6 @@ const SettingsConst = () => {
   const email = localStorage.getItem("email");
   const id = localStorage.getItem("id");
 
-  const [vinculoAoIfes, setVinculo] = useState("");
   const [cafeDaManha, setCafeDaManha] = useState(false);
   const [almoco, setAlmoco] = useState(false);
   const [lancheDaTarde, setLancheDaTarde] = useState(false);
@@ -106,12 +105,14 @@ const SettingsConst = () => {
           showErrorAlert(true);
           setTimeout(() => {
             showErrorAlert(false);
-          }, 5000);        }
+          }, 5000);
+        }
       } catch (error) {
         showErrorAlert(true);
         setTimeout(() => {
           showErrorAlert(false);
-        }, 5000);      }
+        }, 5000);
+      }
     };
 
     dadosUserReq();
@@ -213,7 +214,7 @@ const SettingsConst = () => {
             setShowAlertDadosIgauis(true);
             setTimeout(() => {
               setShowAlertDadosIgauis(false);
-            }, 5000);          
+            }, 5000);
           } else {
             let vinculo = Object.vinculoAoIfes;
             if (am == true) {
@@ -229,30 +230,32 @@ const SettingsConst = () => {
               vinculo = "Outro";
             }
             try {
-
-              const response = await fetch(
-                `http://localhost:9000/getDadosUser`,
-                {
-                  method: "post",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({ id, vinculo, veg, alm, cafe, lanche, jant }),
-                }
-              );
-
-              if(response.ok){
-                showSuccessDados(true);
+              const resp = await fetch(`http://localhost:9000/getDadosUser`, {
+                method: "post",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  id,
+                  vinculo,
+                  veg,
+                  alm,
+                  cafe,
+                  lanche,
+                  jant,
+                }),
+              });
+              if (resp.ok) {
+                setShowSuccessDados(true);
                 setTimeout(() => {
-                  showSuccessDados(false);  
+                  setShowSuccessDados(false);
                 }, 5000);
               }
-
             } catch (erro) {
               setShowErrorAlert(true);
               setTimeout(() => {
                 setShowErrorAlert(false);
-              }, 5000); 
+              }, 5000);
             }
           }
         });
@@ -260,12 +263,14 @@ const SettingsConst = () => {
         setShowErrorAlert(true);
         setTimeout(() => {
           setShowErrorAlert(false);
-        }, 5000);      }
+        }, 5000);
+      }
     } catch (error) {
       setShowErrorAlert(true);
       setTimeout(() => {
         setShowErrorAlert(false);
-      }, 5000);    }
+      }, 5000);
+    }
   };
 
   const handleSubmitAuth = async (e) => {
@@ -328,7 +333,7 @@ const SettingsConst = () => {
         className="modal spinner-modal"
         backdrop="static"
         data-test="links"
-        >
+      >
         <Modal.Body>
           <Spinner
             animation="border"
@@ -347,7 +352,7 @@ const SettingsConst = () => {
         className="modal modal-senha"
         backdrop="static"
         data-test="links"
-        >
+      >
         <Modal.Body>
           <Form onSubmit={handleSubmitAuth} className="formulario-card">
             <Stack gap={2}>
@@ -361,14 +366,14 @@ const SettingsConst = () => {
                   value={senha}
                   data-test="form-pass"
                   onChange={(e) => setSenha(e.target.value)}
-                  />
+                />
               </Form.Group>
               <Form.Group>
                 <Button
                   className="bt-sub"
                   type="submit"
                   id="button-login-signup"
-                  >
+                >
                   Autenticar
                 </Button>
               </Form.Group>
@@ -379,35 +384,32 @@ const SettingsConst = () => {
 
       <Row className="position-fixed alert-row" style={{ marginTop: 100 }}>
         {showAlertDadosIgauis && (
-              <Alert
-                variant="warning"
-                className="align-items-center d-flex fade"
-                onClose={() => showAlertDadosIgauis(false)}
-              >
-                Altere os dados
-              </Alert>
-            )}
-
-            {showSuccessDados && (
-              <Alert
-                variant="success"
-                className="align-items-center d-flex fade"
-                onClose={() => showSuccessDados(false)}
-              >
-                Dados alterados
-              </Alert>
-            )}{" "}
-            
+          <Alert
+            variant="warning"
+            className="align-items-center d-flex fade"
+            onClose={() => showAlertDadosIgauis(false)}
+          >
+            Altere os dados
+          </Alert>
+        )}
+        {showSuccessDados && (
+          <Alert
+            variant="success"
+            className="align-items-center d-flex fade"
+            onClose={() => showSuccessDados(false)}
+          >
+            Dados alterados
+          </Alert>
+        )}{" "}
         {showPassAlert && (
           <Alert
-          variant="warning"
+            variant="warning"
             className="align-items-center d-flex fade"
             onClose={() => setShowPassAlert(false)}
           >
             Senha incorreta
           </Alert>
         )}{" "}
-
         {showEmailAlert && (
           <Alert
             variant="warning"

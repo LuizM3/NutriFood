@@ -1,10 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/styles/dashboard.scss";
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  Navbar,
-  Nav,
   Container,
   Row,
   Col,
@@ -42,12 +40,7 @@ const Sidebar = () => {
   const [showSucceessAlert, setShowSuccessAlert] = useState(false);
   const [spinnerModal, setSpinnerModal] = useState(false);
 
-  const [textAlmoco, setTextAlmoco] = useState("");
-  const [textCafeDaManha, setTextCafeDaManha] = useState("");
-  const [textLancheDaTarde, setTextLancheDaTarde] = useState("");
-  const [textJantar, setTextJantar] = useState("");
-
-  const [showAlertErro, setShowAlertErro] = useState(false);
+   const [showAlertErro, setShowAlertErro] = useState(false);
 
   const saveMenu = async () => {
     if (

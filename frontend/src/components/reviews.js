@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Form,
@@ -9,27 +9,21 @@ import {
   Alert,
   Col,
   Figure,
-  Card,
-  Nav,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-
 
 const ReviewsConst = () => {
   const navigate = useNavigate();
   const arrow = require("../assets/images/left-arrow.png");
   const [showCont, setShowCont] = useState("");
-  const [showAdmin, setShowAdmin] = useState("");
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
 
-  let verificar = false;
   useEffect(() => {
     if (token && id != 1) {
       setShowCont(true);
     } else if (id == 1) {
       navigate("/dashboard");
-      // verificar = true;
     }
   }, [true]);
 
@@ -444,11 +438,7 @@ const ReviewsConst = () => {
       <Container className="s-container">
         {showCont ? (
           <Row className="overflow-scroll w-100 mt-5 scroll-row overflow-x-hidden">
-            <Container
-              className=""
-
-              // show={showCont} onHide={() => setShowCont(false)}
-            >
+            <Container className="">
               <Navbar id="progress-nav">
                 <Container className="mt-2">
                   <ProgressBar now={progress} id="progress-bar" />

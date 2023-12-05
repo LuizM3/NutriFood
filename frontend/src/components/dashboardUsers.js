@@ -1,25 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import "../assets/styles/dashboard.scss";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import {
-  Navbar,
-  Nav,
-  Container,
-  Row,
-  Col,
-  Stack,
   Button,
   Card,
+  Col,
+  Container,
   Figure,
   Offcanvas,
+  Row,
+  Stack,
 } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import "../assets/styles/dashboard.scss";
 
 import { useMediaQuery } from "react-responsive";
-import GraficoVegetariano from "../service/graficos/user/graficoVegetariano.js";
-import GraficoAlunoMedio from "../service/graficos/user/graficoAlunoMedio.js";
 import GraficoAlunoGraduacao from "../service/graficos/user/graficoAlunoGraduacao.js";
-import GraficoSDT from "../service/graficos/user/graficoSDT.js";
+import GraficoAlunoMedio from "../service/graficos/user/graficoAlunoMedio.js";
 import GraficoOutros from "../service/graficos/user/graficoOutros.js";
+import GraficoSDT from "../service/graficos/user/graficoSDT.js";
+import GraficoVegetariano from "../service/graficos/user/graficoVegetariano.js";
 
 import userReq from "../service/requisicao/userReq.js";
 const logo = require("../assets/images/logo.png");
@@ -188,9 +186,6 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100">
                           <Row className="w-100">
-                            {/* <Col>
-                              <ion-icon name="stats-chart"></ion-icon>
-                            </Col> */}
                             <Col>Estatísticas</Col>
                           </Row>
                         </Button>
@@ -201,9 +196,6 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100 active-sidebar">
                           <Row className="w-100">
-                            {/* <Col md={2}>
-                              <ion-icon name="people"></ion-icon>
-                            </Col> */}
                             <Col>Usuários</Col>
                           </Row>
                         </Button>
@@ -214,9 +206,6 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100">
                           <Row className="w-100">
-                            {/* <Col md={2}>
-                              <ion-icon name="file-tray"></ion-icon>
-                            </Col> */}
                             <Col>Sugestões</Col>
                           </Row>
                         </Button>
@@ -227,9 +216,6 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100">
                           <Row className="w-100">
-                            {/* <Col md={2}>
-                              <ion-icon name="restaurant"></ion-icon>
-                            </Col> */}
                             <Col>Cardápio</Col>
                           </Row>
                         </Button>
@@ -381,8 +367,6 @@ const DashboardConst = () => {
                                     <ion-icon name="leaf"></ion-icon>
                                   </Col>
                                   <Row
-                                    // lg={4}
-                                    // md={12}
                                     className="d-flex justify-content-center align-items-center c-1 w-50"
                                   >
                                     <Col className="d-flex justify-content-center align-items-center">
@@ -413,8 +397,6 @@ const DashboardConst = () => {
                                     <ion-icon name="person"></ion-icon>
                                   </Col>
                                   <Row
-                                    // lg={4}
-                                    // md={12}
                                     className="d-flex justify-content-center align-items-center c-1 w-50"
                                   >
                                     <Col className="d-flex justify-content-center align-items-center">
@@ -447,8 +429,6 @@ const DashboardConst = () => {
                                     <ion-icon name="analytics"></ion-icon>
                                   </Col>
                                   <Row
-                                    // lg={6}
-                                    // md={12}
                                     className="d-flex justify-content-center align-items-center c-1 w-50"
                                   >
                                     <Col className="d-flex justify-content-center align-items-center">
@@ -481,12 +461,9 @@ const DashboardConst = () => {
                                     md={6}
                                     className="d-flex align-items-center justify-content-center c-2"
                                   >
-                                    {/* <ion-icon name="person"></ion-icon> */}
                                     <ion-icon name="ribbon"></ion-icon>
                                   </Col>
                                   <Row
-                                    // lg={6}
-                                    // md={12}
                                     className="d-flex justify-content-center align-items-center c-1 w-50"
                                   >
                                     <Col className="d-flex justify-content-center align-items-center">
@@ -515,12 +492,9 @@ const DashboardConst = () => {
                                     md={6}
                                     className="d-flex align-items-center justify-content-center c-2"
                                   >
-                                    {/* <ion-icon name="person"></ion-icon> */}
                                     <ion-icon name="people"></ion-icon>
                                   </Col>
                                   <Row
-                                    // lg={6}
-                                    // md={12}
                                     className="d-flex justify-content-center align-items-center c-1 w-50"
                                   >
                                     <Col className="d-flex justify-content-center align-items-center">
@@ -548,12 +522,9 @@ const DashboardConst = () => {
                                     md={6}
                                     className="d-flex align-items-center justify-content-center c-2"
                                   >
-                                    {/* <ion-icon name="person"></ion-icon> */}
                                     <ion-icon name="hammer"></ion-icon>
                                   </Col>
                                   <Row
-                                    // lg={4}
-                                    // md={12}
                                     className="d-flex justify-content-center align-items-center c-1 w-50"
                                   >
                                     <Col className="d-flex justify-content-center align-items-center">
@@ -583,7 +554,6 @@ const DashboardConst = () => {
                 <Row>
                   <Stack gap={4}>
                     <Row className="p-0 m-0">
-                      {/* <Stack> */}
                       <Col md={12} lg={6}>
                         <Card className="h-100">
                           <Card.Header className="border-0">
@@ -595,7 +565,6 @@ const DashboardConst = () => {
                         </Card>
                       </Col>
                       <Col md={12} lg={6} className="div-resp">
-                        {/* <Stack gap={4}> */}
                         <Card>
                           <Card.Header className="border-0">
                             Aluno Médio X Geral
@@ -604,12 +573,9 @@ const DashboardConst = () => {
                             <GraficoAlunoMedio />
                           </Card.Body>
                         </Card>
-                        {/* </Stack> */}
                       </Col>
-                      {/* </Stack> */}
                     </Row>
                     <Row className="p-0 m-0">
-                      {/* <Stack gap={4}> */}
                       <Col md={12} lg={6}>
                         <Card>
                           <Card.Header className="border-0">

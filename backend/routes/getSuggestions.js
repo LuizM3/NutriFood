@@ -13,8 +13,15 @@ router.post("/", (req, res) => {
       } else {
         const sugestoes = results.map((result) => result.suggestion);
         const data_criacao = results.map((result) => result.data_criacao);
-        const id_sugestao = results.map((result) =>  result.id);
-        res.status(200).json({ message: "OK", suggestions: sugestoes, data_criacao, id: id_sugestao});
+        const id_sugestao = results.map((result) => result.id);
+        res
+          .status(200)
+          .json({
+            message: "OK",
+            suggestions: sugestoes,
+            data_criacao,
+            id: id_sugestao,
+          });
       }
     }
   );

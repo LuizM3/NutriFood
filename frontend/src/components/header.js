@@ -30,7 +30,6 @@ const HeaderConst = () => {
 
   const [userName, setUserName] = useState("");
   const [isToggled, setIsToggled] = useState(false);
-  const [open, setOpen] = useState(false);
   const [spinnerModal, setSpinnerModal] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [show, setShow] = useState(false);

@@ -10,20 +10,52 @@ import {
   Row,
   Figure,
   Table,
+  Stack,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
+let cardapioMain = [];
 const CarouselConst = () => {
   const id = localStorage.getItem("id");
   const navigate = useNavigate();
+  const [menuCardapio, setMenuCardapio] = useState("");
+
   useEffect(() => {
     if (id == 1) {
       navigate("/dashboard");
     }
-  }, [id]);
-let mesString = "";
-const hoje = new Date().getMonth();
+    const menu = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:9000/getCardapioMain?dia=" + dia ,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
+        if (response.ok) {
+          const data = await response.json();
+          for(const element of data.response){
+            cardapioMain.push(element[0]);
+          }
+        setTimeout(()=>{
+           setMenuCardapio(true);
+        }, 1000);
+        } else {
+          console.log("Erro na requisição");
+        }
+      } catch (error) {
+        console.error("Erro ao enviar requisição:", error);
+      }
+    };
+    menu();
+  }, [id]);
+  let mesString = "";
+  const hoje = new Date().getMonth();
+  const dia = new Date().getDate();
   switch (hoje) {
     case 0:
       mesString = "Janeiro";
@@ -63,8 +95,6 @@ const hoje = new Date().getMonth();
       break;
   }
 
-  
-  
   const land = require("../assets/images/land.png");
   const island = require("../assets/images/island.png");
   const sun = require("../assets/images/sun.png");
@@ -144,9 +174,6 @@ const hoje = new Date().getMonth();
       </div>
 
       <div id="div-f-cont">
-        {/* <Image src={decorPaper}>
-
-      </Image> */}
         <Container className="land-cont">
           <section>
             <Row>
@@ -173,40 +200,90 @@ const hoje = new Date().getMonth();
       <div>
         <Container className="acord-cont">
           <section>
+            <div>{/* <h4>{mesString}</h4> */}</div>
             <Row>
-              <h1>Cardápio do dia</h1>
+              <h1>Cardápio do dia {dia} de 
+              {mesString}</h1>
             </Row>
             <Row>
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>Café da manhã</th>
-                    <th>Almoço</th>
-                    <th>Lanche da tarde</th>
-                    <th>Janta</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Pão sírio</td>
-                    <td>Carne suína</td>
-                    <td>Bolo de cenoura</td>
-                    <td>Churrasco misto</td>
-                  </tr>
-                  <tr>
-                    <td>Goiaba</td>
-                    <td>Arroz, feijão, batata cozida e polenta </td>
-                    <td>Banana</td>
-                    <td>Arroz, feijão e cenoura cozida</td>
-                  </tr>
-                  <tr>
-                    <td>Suco de maçã</td>
-                    <td>Suco de uva</td>
-                    <td>Achocolatado</td>
-                    <td>Suco de limão</td>
-                  </tr>
-                </tbody>
-              </Table>
+              {menuCardapio ? (
+                <>
+                  <Col md={12} sm={12}>
+                    <Stack className="h-100 d-flex justify-content-end">
+                      <Table responsive striped bordered className="table-cp">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Comida</th>
+                            <th>Bebida</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Café Da Manhã</td>
+                            <td>{cardapioMain[0].comida}</td>
+                            <td>{cardapioMain[0].bebida}</td>
+                          </tr>
+                          <tr>
+                            <td>Lanche Da Tarde</td>
+                            <td>{cardapioMain[2].comida}</td>
+                            <td>{cardapioMain[2].bebida}</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Stack>
+                  </Col>
+                  <Col md={12} sm={12}>
+                    <Stack className="h-100 d-flex justify-content-start">
+                      <Table responsive striped bordered className="table-cp">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Principal</th>
+                            <th>Opção</th>
+                            <th>Arroz</th>
+                            <th>Feijão</th>
+                            <th>Guarnição</th>
+                            <th>Salada I</th>
+                            <th>Salada II</th>
+                            <th>Sobremesa</th>
+                            <th>Suco</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Almoço</td>
+                            <td>{cardapioMain[1].principal}</td>
+                            <td>{cardapioMain[1].opcao}</td>
+                            <td>{cardapioMain[1].arroz}</td>
+                            <td>{cardapioMain[1].feijao}</td>
+                            <td>{cardapioMain[1].guarnicao}</td>
+                            <td>{cardapioMain[1].salada1}</td>
+                            <td>{cardapioMain[1].salada2}</td>
+                            <td>{cardapioMain[1].sobremesa}</td>
+                            <td>{cardapioMain[1].suco}</td>
+                          </tr>
+                          <tr>
+                            <td>Jantar</td>
+                            <td>{cardapioMain[3].principal}</td>
+                            <td>{cardapioMain[3].opcao}</td>
+                            <td>{cardapioMain[3].arroz}</td>
+                            <td>{cardapioMain[3].feijao}</td>
+                            <td>{cardapioMain[3].guarnicao}</td>
+                            <td>{cardapioMain[3].salada1}</td>
+                            <td>{cardapioMain[3].salada2}</td>
+                            <td>{cardapioMain[3].sobremesa}</td>
+                            <td>{cardapioMain[3].suco}</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                      <div></div>
+                    </Stack>
+                  </Col>
+                </>
+              ) : (
+                <div></div>
+              )}
             </Row>
           </section>
         </Container>
@@ -298,55 +375,24 @@ const hoje = new Date().getMonth();
                   <Accordion.Header>Quem são os tutores?</Accordion.Header>
                   <Accordion.Body>
                     <p>Professor Milton</p>
-                    <p>
-                      Professor Fábio Bigati (colocar uma foto e uma breve fala
-                      sobre a história dele) idade, formação e uma breve fala
-                      sobre sua experiência profissional. professor da área
-                      técnica.
-                    </p>
-                    <p>
-                      Professor Filipe Ribeiro (colocar uma foto e uma breve
-                      fala sobre a história dele) idade, formação e uma breve
-                      fala sobre sua experiência profissional. professor da área
-                      básica.
-                    </p>
+                    <p>Professor Fábio Bigati</p>
+                    <p>Professor Filipe Ribeiro</p>
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="4">
                   <Accordion.Header>Quem são os integrantes?</Accordion.Header>
-                  <Accordion.Body></Accordion.Body>
+                  <Accordion.Body>
+                    <p>
+                      Bryan Zucoloto, Ruan Pablo, Luiz Felipe, Filipe Kiefer,
+                      Alex Brandão e Heitor Poleze
+                    </p>
+                  </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
             </Row>
           </section>
         </Container>
       </div>
-
-      {/* Noticias */}
-      {/* <Container className="main columns news-cont" >
-        <div id="news-title">
-          <h1>Últimas notícias</h1>
-        </div>
-        <Row xs={1} md={2} lg={3} className="p-0">
-          {noticias.map((noticia, idx) => (
-            <Col key={idx} className="column main-columns">
-              <Link to={noticia.url} className="article" target="blank">
-                <Figure className="article-image is-3by2">
-                  <Figure.Image src={noticia.urlToImage} />
-                </Figure>
-                <div className="article-body">
-                  <h2 className="article-title">{noticia.title}</h2>
-                  <p className="article-content">{noticia.description}</p>
-                  <footer className="article-info">
-                    <span>{noticia.author}</span>
-                    <span>{noticia.name}</span>
-                  </footer>
-                </div>
-              </Link>
-            </Col>
-          ))}
-        </Row>
-      </Container> */}
     </>
   );
 };

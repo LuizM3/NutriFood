@@ -5,8 +5,8 @@ import MainPage from "./views/MainPage";
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
 import reportWebVitals from "./reportWebVitals";
-import About from "./views/About"
-import Menu from "./views/Menu"
+import About from "./views/About";
+import Menu from "./views/Menu";
 import Reviews from "./views/Reviews";
 import Suggestions from "./views/Suggestions";
 import Settings from "./views/Settings";
@@ -25,17 +25,19 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<MainPage />} />{" "}
         <Route path="/login" element={<SignIn />} />{" "}
         <Route path="/sign-up" element={<SignUp />} />{" "}
-        <Route path="/about" element={<About />} /> {" "}
-        <Route path="/menu" element={<Menu />} /> {" "}
-        <Route path="/suggestions" element={<Suggestions />} /> {" "}
-        <Route path="/user/settings" element={<Settings />} /> {" "}
-        <Route path="/user/settings-data" element={<SettingsData />} /> {" "}
-        <Route path="/user/settings-security" element={<SettingsSecurity />} /> {" "}
-        <Route path="/dashboard" element={<Dashboard />} /> {" "}
-        <Route path="/dashboard/users" element={<DashboardUsers />} /> {" "}
-        <Route path="/dashboard/suggestions" element={<DashboardSuggestions />} /> {" "}
-        <Route path="/dashboard/cardapio" element={<DashboardCardapio />} /> {" "}
-
+        <Route path="/about" element={<About />} />{" "}
+        <Route path="/menu" element={<Menu />} />{" "}
+        <Route path="/suggestions" element={<Suggestions />} />{" "}
+        <Route path="/user/settings" element={<Settings />} />{" "}
+        <Route path="/user/settings-data" element={<SettingsData />} />{" "}
+        <Route path="/user/settings-security" element={<SettingsSecurity />} />{" "}
+        <Route path="/dashboard" element={<Dashboard />} />{" "}
+        <Route path="/dashboard/users" element={<DashboardUsers />} />{" "}
+        <Route
+          path="/dashboard/suggestions"
+          element={<DashboardSuggestions />}
+        />{" "}
+        <Route path="/dashboard/cardapio" element={<DashboardCardapio />} />{" "}
       </Routes>{" "}
     </Router>{" "}
   </React.StrictMode>

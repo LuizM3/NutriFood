@@ -1,8 +1,10 @@
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Figure } from "react-bootstrap";
 import React, { useEffect, useRef } from "react";
 import "../assets/styles/about.scss";
-import Chart from "chart.js/auto";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+const img1 = require("../assets/images/formatura.jpeg");
+const img2 = require("../assets/images/img2.jpeg");
+const img3 = require("../assets/images/img3.jpeg");
 const AboutConst = () => {
   const id = localStorage.getItem("id");
   const navigate = useNavigate();
@@ -12,8 +14,7 @@ const AboutConst = () => {
     }
   }, [id]);
   return (
-    <>
-     <Container className="flex-column r-about">
+    <Container className="flex-column r-about">
         <Row className="m-5">
           <Col
             md={12}
@@ -34,7 +35,9 @@ const AboutConst = () => {
             md={4}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Figura</h2>
+              <Figure>
+                <Figure.Image src={img1} />
+              </Figure>
           </Col>
           <Col md={8}>
             <p>
@@ -52,7 +55,9 @@ const AboutConst = () => {
             md={4}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Figura</h2>
+              <Figure>
+                <Figure.Image src={img2} />
+              </Figure>
           </Col>
           <Col md={8}>
             <p>
@@ -70,7 +75,9 @@ const AboutConst = () => {
             md={4}
             className="text-center align-items-center justify-content-center d-flex"
           >
-            <h2>Figura</h2>
+               <Figure>
+                <Figure.Image src={img3} />
+              </Figure>
           </Col>
           <Col md={8}>
             <p>
@@ -99,7 +106,6 @@ const AboutConst = () => {
           </Col>
         </Row>
       </Container>
-    </>
   );
 };
 

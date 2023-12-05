@@ -3,8 +3,8 @@ const router = express.Router();
 const connection = require("../db");
 
 router.get("/", (req, res) => {
-  const  email  = req.query.email;
-  // Verifique se o email já está cadastrado]
+  const email = req.query.email;
+  // Verifique se o email já está cadastrado
   connection.query(
     "SELECT email FROM users WHERE email = ?;",
     [email],
@@ -12,9 +12,9 @@ router.get("/", (req, res) => {
       if (error) {
         res.status(500).json({ error: "An error occurred" });
       } else {
-        if(results.length != 0){
+        if (results.length != 0) {
           res.json({ isUnique: false });
-        } else{
+        } else {
           res.json({ isUnique: true });
         }
       }

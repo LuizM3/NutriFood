@@ -10,15 +10,11 @@ class GraficoSDT extends Component {
       series: [
         {
           name: "Geral",
-          data: [
-            0, 0, 0
-          ],
+          data: [0, 0, 0],
         },
         {
           name: "SDT",
-          data: [
-            0, 0, 0
-          ],
+          data: [0, 0, 0],
         },
       ],
       options: {
@@ -71,12 +67,13 @@ class GraficoSDT extends Component {
         },
         xaxis: {
           categories: [
-            "Sabor Da Refeicao", "Variedade", "Temperatura Do Alimento"
+            "Sabor Da Refeicao",
+            "Variedade",
+            "Temperatura Do Alimento",
           ],
           title: {
             text: "Nota",
           },
-          
         },
       },
     };
@@ -88,10 +85,10 @@ class GraficoSDT extends Component {
       const id = userObject.id;
       const vinculoAoIfes = userObject.vinculoAoIfes;
       const idSDT = [];
-    
+
       for (let i = 0; i < vinculoAoIfes.length; i++) {
         if (vinculoAoIfes[i] == "SDT") {
-            idSDT.push(id[i]);
+          idSDT.push(id[i]);
         }
       }
 
@@ -122,10 +119,10 @@ class GraficoSDT extends Component {
           }
         }
 
-        const mediaSDTSaborDaRefeicao = somaSDT1 / contSDT *-1;
-        const mediaSDTVariedade = somaSDT2 / contSDT*-1;
-        const mediaSDTTemperaturaDoAlimento = somaSDT3 / contSDT*-1;
-        
+        const mediaSDTSaborDaRefeicao = (somaSDT1 / contSDT) * -1;
+        const mediaSDTVariedade = (somaSDT2 / contSDT) * -1;
+        const mediaSDTTemperaturaDoAlimento = (somaSDT3 / contSDT) * -1;
+
         const mediaGeralSaborDaRefeicao = somaGeral1 / contGeral;
         const mediaGeralVariedade = somaGeral2 / contGeral;
         const mediaGeralTemperaturaDoAlimento = somaGeral3 / contGeral;

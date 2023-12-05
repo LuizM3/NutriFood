@@ -4,10 +4,11 @@ const connection = require("../db");
 
 router.get("/", (req, res) => {
   const response = [];
+  const dia = req.query.dia;
 
   try {
     connection.query(
-      "SELECT comida, bebida FROM cafeDaManha",
+      "SELECT comida, bebida FROM cafeDaManha WHERE dia = ?", [dia],
       (error, results) => {
         if (error) {
           res.status(500).json({ error: "An error occurred" });
@@ -19,7 +20,7 @@ router.get("/", (req, res) => {
 
     setTimeout(() => {
       connection.query(
-        "SELECT principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco FROM almoco",
+        "SELECT principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco FROM almoco WHERE dia = ?", [dia],
         (error, results) => {
           if (error) {
             res.status(500).json({ error: "An error occurred" });
@@ -32,7 +33,7 @@ router.get("/", (req, res) => {
 
     setTimeout(() => {
       connection.query(
-        "SELECT comida, bebida FROM lancheDaTarde",
+        "SELECT comida, bebida FROM lancheDaTarde WHERE dia = ?", [dia],
         (error, results) => {
           if (error) {
             res.status(500).json({ error: "An error occurred" });
@@ -45,7 +46,7 @@ router.get("/", (req, res) => {
 
     setTimeout(() => {
       connection.query(
-        "SELECT principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco  FROM jantar",
+        "SELECT principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco  FROM jantar WHERE dia = ?", [dia],
         (error, results) => {
           if (error) {
             res.status(500).json({ error: "An error occurred" });

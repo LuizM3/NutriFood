@@ -174,19 +174,30 @@ router.post("/", async (req, res) => {
     }
   }
   contLanche = 0;
-  
+
   try {
-      connection.query("TRUNCATE TABLE jantar");
-        connection.query("TRUNCATE TABLE almoco");
-        connection.query("TRUNCATE TABLE cafeDaManha");
-        connection.query("TRUNCATE TABLE lancheDaTarde");
-      setTimeout(() =>{
-          connection.query("INSERT INTO almoco (dia, principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco) VALUES " + textAlmoco);
-        connection.query("INSERT INTO jantar (dia, principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco) VALUES" + textJantar);
-        connection.query("INSERT INTO cafeDaManha (dia, comida, bebida) VALUES" + textCafeDaManha);
-        connection.query("INSERT INTO lancheDaTarde (dia, comida, bebida) VALUES" + textLancheDaTarde);
-        res.status(200).json({ 'sucess': 'sucess' })
-      }, 2000);
+    connection.query("TRUNCATE TABLE jantar");
+    connection.query("TRUNCATE TABLE almoco");
+    connection.query("TRUNCATE TABLE cafeDaManha");
+    connection.query("TRUNCATE TABLE lancheDaTarde");
+    setTimeout(() => {
+      connection.query(
+        "INSERT INTO almoco (dia, principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco) VALUES " +
+          textAlmoco
+      );
+      connection.query(
+        "INSERT INTO jantar (dia, principal, opcao, vegetariano, arroz, feijao, guarnicao, salada1, salada2, sobremesa, suco) VALUES" +
+          textJantar
+      );
+      connection.query(
+        "INSERT INTO cafeDaManha (dia, comida, bebida) VALUES" + textCafeDaManha
+      );
+      connection.query(
+        "INSERT INTO lancheDaTarde (dia, comida, bebida) VALUES" +
+          textLancheDaTarde
+      );
+      res.status(200).json({ sucess: "sucess" });
+    }, 2000);
   } catch (error) {
     res.status(500).json({ error: error });
   }

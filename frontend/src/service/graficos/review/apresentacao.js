@@ -7,10 +7,10 @@ const vetApresentação = {
   b: 0,
   c: 0,
   d: 0,
-  e: 0
-}
+  e: 0,
+};
 
-review().then(Object => {
+review().then((Object) => {
   for (let i = 0; i < Object.length; i++) {
     if (Object[i].apresentacao == 1) {
       vetApresentação.a++;
@@ -37,21 +37,27 @@ class GraficoApresentacao extends Component {
     this.state = {
       options: {
         chart: {
-          id: "basic-bar"
+          id: "basic-bar",
         },
         xaxis: {
-          categories: [1, 2, 3, 4, 5]
-        }
+          categories: [1, 2, 3, 4, 5],
+        },
       },
       series: [
         {
           name: "Avaliações",
-          data: [vetApresentação.a, vetApresentação.b, vetApresentação.c, vetApresentação.d, vetApresentação.e]
-        }
-      ]
-    }
+          data: [
+            vetApresentação.a,
+            vetApresentação.b,
+            vetApresentação.c,
+            vetApresentação.d,
+            vetApresentação.e,
+          ],
+        },
+      ],
+    };
   }
-  
+
   render() {
     return (
       <div className="app">

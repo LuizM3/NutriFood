@@ -167,7 +167,7 @@ const SuggestionsConst = () => {
                       <Form.Control
                         as="textarea"
                         placeholder="Escreva aqui"
-                        style={{ height: "100px" }}
+                        style={{ height: "200px" }}
                         maxLength={200}
                         onChange={handleSuggestionChange}
                         value={suggestion}

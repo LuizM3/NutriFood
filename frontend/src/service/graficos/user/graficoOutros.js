@@ -10,15 +10,11 @@ class GraficoOutros extends Component {
       series: [
         {
           name: "Geral",
-          data: [
-            0, 0, 0
-          ],
+          data: [0, 0, 0],
         },
         {
           name: "Outros",
-          data: [
-            0, 0, 0
-          ],
+          data: [0, 0, 0],
         },
       ],
       options: {
@@ -71,12 +67,13 @@ class GraficoOutros extends Component {
         },
         xaxis: {
           categories: [
-            "Sabor Da Refeicao", "Variedade", "Temperatura Do Alimento"
+            "Sabor Da Refeicao",
+            "Variedade",
+            "Temperatura Do Alimento",
           ],
           title: {
             text: "Nota",
           },
-          
         },
       },
     };
@@ -88,11 +85,10 @@ class GraficoOutros extends Component {
       const id = userObject.id;
       const vinculoAoIfes = userObject.vinculoAoIfes;
       const idOutros = [];
-    
 
       for (let i = 0; i < vinculoAoIfes.length; i++) {
         if (vinculoAoIfes[i] == "Outro") {
-            idOutros.push(id[i]);
+          idOutros.push(id[i]);
         }
       }
 
@@ -123,10 +119,11 @@ class GraficoOutros extends Component {
           }
         }
 
-        const mediaOutrosSaborDaRefeicao = somaOutros1 / contOutros *-1;
-        const mediaOutrosVariedade = somaOutros2 / contOutros*-1;
-        const mediaOutrosTemperaturaDoAlimento = somaOutros3 / contOutros*-1;
-        
+        const mediaOutrosSaborDaRefeicao = (somaOutros1 / contOutros) * -1;
+        const mediaOutrosVariedade = (somaOutros2 / contOutros) * -1;
+        const mediaOutrosTemperaturaDoAlimento =
+          (somaOutros3 / contOutros) * -1;
+
         const mediaGeralSaborDaRefeicao = somaGeral1 / contGeral;
         const mediaGeralVariedade = somaGeral2 / contGeral;
         const mediaGeralTemperaturaDoAlimento = somaGeral3 / contGeral;

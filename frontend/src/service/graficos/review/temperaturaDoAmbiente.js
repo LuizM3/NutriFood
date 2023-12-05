@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import review from "../../requisicao/reviewReq";
-import Chart from "react-apexcharts";
 import ReactApexChart from "react-apexcharts";
 
 const objeto = {
@@ -12,20 +11,20 @@ const objeto = {
 }
 
 review().then(Object => {
-    for (let i = 0; i < Object.length; i++) {
-        if (Object[i].temperaturaDoAmbiente == 1) {
+    for (const element of Object) {
+        if (element.temperaturaDoAmbiente == 1) {
             objeto.a++;
         }
-        if (Object[i].temperaturaDoAmbiente == 2) {
+        if (element.temperaturaDoAmbiente == 2) {
             objeto.b++;
         }
-        if (Object[i].temperaturaDoAmbiente == 3) {
+        if (element.temperaturaDoAmbiente == 3) {
             objeto.c++;
         }
-        if (Object[i].temperaturaDoAmbiente == 4) {
+        if (element.temperaturaDoAmbiente == 4) {
             objeto.d++;
         }
-        if (Object[i].temperaturaDoAmbiente == 5) {
+        if (element.temperaturaDoAmbiente == 5) {
             objeto.e++;
         }
     }

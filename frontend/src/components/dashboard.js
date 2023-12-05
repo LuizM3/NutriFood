@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/styles/dashboard.scss";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  Navbar,
-  Nav,
   Container,
   Row,
   Col,
@@ -12,7 +10,6 @@ import {
   Card,
   Figure,
   Offcanvas,
-  Form,
 } from "react-bootstrap";
 
 import { useMediaQuery } from "react-responsive";
@@ -76,26 +73,26 @@ const DashboardConst = () => {
 
   review().then((Objeto) => {
     setQuantidade(Objeto.length);
-    for (let i = 0; i < Objeto.length; i++) {
+    for (const element of Objeto) {
       let soma = 0;
-      soma += Number(Objeto[i].apresentacao);
-      soma += Number(Objeto[i].variedade);
-      soma += Number(Objeto[i].saborDaRefeicao);
-      soma += Number(Objeto[i].saborDoSuco);
-      soma += Number(Objeto[i].saborDaSobremesa);
-      soma += Number(Objeto[i].temperaturaDoAlimento);
-      soma += Number(Objeto[i].atendimento);
-      soma += Number(Objeto[i].higiene);
-      soma += Number(Objeto[i].temperaturaDoAlimento);
-      soma += Number(Objeto[i].tempoDeEspera);
+      soma += Number(element.apresentacao);
+      soma += Number(element.variedade);
+      soma += Number(element.saborDaRefeicao);
+      soma += Number(element.saborDoSuco);
+      soma += Number(element.saborDaSobremesa);
+      soma += Number(element.temperaturaDoAlimento);
+      soma += Number(element.atendimento);
+      soma += Number(element.higiene);
+      soma += Number(element.temperaturaDoAlimento);
+      soma += Number(element.tempoDeEspera);
       soma = soma / 10;
       vetMedia.push(soma);
     }
 
     let boas = 0;
     let ruins = 0;
-    for (let i = 0; i < vetMedia.length; i++) {
-      if (vetMedia[i] < 3) {
+    for (const element of vetMedia) {
+      if (element < 3) {
         ruins += 1;
       } else {
         boas += 1;
@@ -186,9 +183,6 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100 active-sidebar">
                           <Row className="w-100">
-                            {/* <Col>
-                              <ion-icon name="stats-chart"></ion-icon>
-                            </Col> */}
                             <Col>Estatísticas</Col>
                           </Row>
                         </Button>
@@ -199,9 +193,6 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100">
                           <Row className="w-100">
-                            {/* <Col md={2}>
-                              <ion-icon name="people"></ion-icon>
-                            </Col> */}
                             <Col>Usuários</Col>
                           </Row>
                         </Button>
@@ -212,9 +203,6 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100">
                           <Row className="w-100">
-                            {/* <Col md={2}>
-                              <ion-icon name="file-tray"></ion-icon>
-                            </Col> */}
                             <Col>Sugestões</Col>
                           </Row>
                         </Button>
@@ -225,14 +213,10 @@ const DashboardConst = () => {
                       >
                         <Button className="w-100">
                           <Row className="w-100">
-                            {/* <Col md={2}>
-                              <ion-icon name="restaurant"></ion-icon>
-                            </Col> */}
                             <Col>Cardápio</Col>
                           </Row>
                         </Button>
                       </Link>
-
                       <Button onClick={showGraph} className="bt-sub text-white">
                         <Row className="w-100 m-0 p-0">
                           <Col className="d-flex justify-content-center align-items-center">
@@ -552,7 +536,6 @@ const DashboardConst = () => {
                             </Card.Body>
                           </Card>
                         </Col>
-                        {/* </Stack> */}
                       </Row>
                       <Row className="p-0 m-0">
                         <Col md={6} lg={6}>

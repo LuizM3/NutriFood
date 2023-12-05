@@ -1,15 +1,14 @@
-import { useState, useEffect, createElement } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Table,
-  Spinner,
   Row,
   Col,
   Button,
   ButtonGroup,
   Stack,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import cardapio from "../service/requisicao/cardapioReq";
 
@@ -18,13 +17,8 @@ let dia;
 
 const MenuConst = () => {
   const navigate = useNavigate();
-  const [spin, setSpin] = useState(false);
   const id = localStorage.getItem("id");
-  const [datas, setDatas] = useState([]);
   const [tabela, setTabela] = useState(false);
-  const [tabela2, setTabela2] = useState(false);
-  const [tabela1, setTabela1] = useState(false);
-  const [menu, setMenu] = useState([]);
   let mesString = "";
   const [value, onChange] = useState(new Date());
   const hoje = new Date().getMonth();
@@ -68,10 +62,6 @@ const MenuConst = () => {
       break;
   }
 
-  // const [menuCafeDaManha, setMenuCafeDaManha] = useState("");
-  // const [menuAlmoco, setMenuAlmoco] = useState("");
-  // const [menuLancheDaTarde, setMenuLancheDaTarde] = useState("");
-  // const [menuJantar, setMenuJantar] = useState("");
   const menuCafeDaManha = [];
   const menuAlmoco = [];
   const menuLancheDaTarde = [];
@@ -115,7 +105,7 @@ const MenuConst = () => {
           listaJantar.push(element);
         }
       }
-      
+
       menuState = [];
 
       menuState.push(listaCafeDaManha[e - 1]);

@@ -10,7 +10,7 @@ import {
   Container,
   Alert,
   Stack,
-  Col
+  Col,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -94,7 +94,8 @@ const LoginConst = () => {
       setErrorAlert(true);
       setTimeout(() => {
         setErrorAlert(false);
-      }, 5000);    }
+      }, 5000);
+    }
   };
 
   return (
@@ -158,11 +159,6 @@ const LoginConst = () => {
                   </Figure>
 
                   <h1>Login</h1>
-                  {/* <div className="in-section">
-                    <Form.Group className="mb-3">
-                      <Form.Label>Insira seus dados de login</Form.Label>
-                    </Form.Group>
-                  </div> */}
 
                   <div className="in-section">
                     <Form.Group className="mb-3">
