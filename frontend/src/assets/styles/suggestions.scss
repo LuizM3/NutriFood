@@ -10,6 +10,18 @@
   }
 }
 
+.cont-s{
+  min-height: 100vh;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  form {
+    @media (max-width: 375px) {
+      margin: 0 !important;
+    }
+  }
+}
+
 .alert-row {
   padding-left: 20px;
   margin: 0;

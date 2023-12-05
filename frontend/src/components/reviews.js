@@ -435,7 +435,7 @@ const ReviewsConst = () => {
           </Alert>
         )}
       </Row>
-      <Container className="s-container">
+      <Container className="cont-s h-100">
         {showCont ? (
           <Row className="overflow-scroll w-100 mt-5 scroll-row overflow-x-hidden">
             <Container className="">

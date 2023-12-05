@@ -202,8 +202,7 @@ const CarouselConst = () => {
           <section>
             <div>{/* <h4>{mesString}</h4> */}</div>
             <Row>
-              <h1>Cardápio do dia {dia} de 
-              {mesString}</h1>
+              <h1>Cardápio do dia {dia}/{hoje + 1}</h1>
             </Row>
             <Row>
               {menuCardapio ? (
