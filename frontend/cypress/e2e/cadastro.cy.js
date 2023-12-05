@@ -1,3 +1,4 @@
+//npx cypress open - Inicia o Cypress.
 import { geradorNome } from 'gerador-nome';
 const randomNome = geradorNome();
 const pass = require('password');
