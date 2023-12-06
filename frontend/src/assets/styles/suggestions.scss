@@ -84,4 +84,7 @@
 }
 .row-cont {
   height: 100%;
+  @media(max-width: 990px){
+    margin-top: 100px;
+  }
 }

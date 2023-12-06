@@ -121,7 +121,7 @@ const SuggestionsConst = () => {
       <Container className="s-container justify-content-center align-items-center d-flex flex-column">
         {showCont ? (
           <Row
-            className=" d-flex justify-content-center align-items-end text-center w-100 row-cont"
+            className="d-flex justify-content-center align-items-end text-center w-100 row-cont"
             md={12}
           >
             <Col
@@ -186,7 +186,7 @@ const SuggestionsConst = () => {
                     </Form.Group>
                     <Form.Group
                       // className="d-flex justify-content-center mb-3" md={6}
-                      className="d-flex justify-content-center"
+                      className="d-flex justify-content-center mb-3"
                     >
                       <Row className="w-100">
                         {/* <Col md={12} className="h-50 p-0"></Col> */}

@@ -1,0 +1,44 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\bryan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js build
+
+PATH: 
+  c:\Users\bryan\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\21\bin;c:\Users\bryan\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\maven\latest\bin;c:\Users\bryan\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\gradle\latest\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\Calibre2\;C:\Users\bryan\scoop\shims;C:\Ruby32-x64\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\bryan\.cargo\bin;C:\Users\bryan\AppData\Local\Microsoft\WindowsApps;C:\Users\bryan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bryan\AppData\Roaming\npm;C:\Users\bryan\AppData\Local\Microsoft\WinGet\Packages\Helix.Helix_Microsoft.Winget.Source_8wekyb3d8bbwe\helix-23.05-x86_64-windows;C:\Program Files\JetBrains\IntelliJ IDEA 2023.2\bin;;C:\Apache\apache-maven-3.9.4\bin;C:\msys64\usr\bin;C:\Users\bryan\.cargo\bin;C:\sqlite;C:\Vim\vim90;C:\Program Files\Neovim\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\bryan\Documents\nutrifood\NutriFood\backend\package.json: Unexpected token } in JSON at position 116
+      at JSON.parse (<anonymous>)
+      at C:\Users\bryan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\bryan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\bryan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "back-end",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "nodemon ./bin/www",
+    },
+    "devDependencies": {
+      "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+      "bcrypt": "^5.1.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
